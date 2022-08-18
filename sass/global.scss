@@ -1,0 +1,33 @@
+/* @use './abstracts/vars';
+@use './abstracts/mixins';
+@use './vendor'; */
+
+
+h1,h2,h3,h4,h5,h6,p,ul,li{
+	padding:0;
+	margin:0;
+	font:inherit;
+}
+
+*{
+    box-sizing: border-box; //would've helped me in my project last year. binds padding to within the available space
+}
+html{
+    min-height:100vh;
+}
+body {
+    background-color: vars.$color_light_grey;
+    color: black;
+    font-family: vars.$font_primary;
+    min-height: 100%; //100% of the parent html document
+    @include mixins.breakpoint(tablet){
+        // background-color: rgb(252, 252, 186); //this is @content, can pull in anything after specifying size in the function input
+    }
+    @include mixins.breakpoint(laptop){
+        // background-color: rgb(240, 167, 167);
+    }
+    @include mixins.breakpoint(desktop){
+        // background-color: rgb(187, 231, 231);
+    }
+}
+ul, ol{list-style: none;}

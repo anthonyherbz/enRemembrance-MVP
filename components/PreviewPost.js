@@ -1,0 +1,2 @@
+//Minified, information-sparse variant of the post component that only displays cover, title, and a small description. Used in the preview feed to advertise site contents to new visitors. 2 Col of BookCover and Text
+//Requires Col, Row, BookCover, Text
