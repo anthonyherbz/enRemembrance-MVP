@@ -1,5 +1,52 @@
+@use "../sass/abstracts/mixins.scss";
+
+$sizes: xs, sm, md, lg;
+$textAlignments: left, center, right;
+$flexDirectionValues: row, row-reverse, column, column-reverse;
+$justifyContentValues: flex-start, flex-end, center, space-between, space-around,
+	space-evenly;
+$alignItemsValues: flex-start, flex-end, center, stretch, baseline;
+
 .col {
 	width: 100%;
 	padding: 1rem;
 	display: flex;
+	flex-direction: column;
+
+	//Provided input (xs="6") specifies the number of columns as a result of 12 divided by the input. If you input 6, it will output two columns.
+	//This is legacy code, probably could use a reconstruction if time permits
+	//Ideally, you would specifcy a number of columns for each screen size and it would math out the result
+	@each $size in $sizes {
+		@include mixins.breakpoint($size) {
+			@for $i from 1 through 12 {
+				&.col-#{$size}-#{$i} {
+					width: calc(100% * ($i/12));
+				}
+			}
+		}
+	}
+	@each $textAlignment in $textAlignments {
+		&.text-align-#{$textAlignment} {
+			text-align: $textAlignment;
+		}
+	}
+	@each $value in $flexDirectionValues {
+		&.flex-direction-#{$value} {
+			display: flex;
+			flex-direction: $value;
+		}
+	}
+	@each $value in $justifyContentValues {
+		&.justify-content-#{$value} {
+			display: flex;
+			justify-content: $value;
+		}
+	}
+	@each $value in $alignItemsValues {
+		&.align-items-#{$value} {
+			display: flex;
+			align-items: $value;
+		}
+	}
+	@include mixins.marginBottom();
 }

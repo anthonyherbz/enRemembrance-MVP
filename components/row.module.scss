@@ -1,0 +1,22 @@
+$justifyContentValues: flex-start, flex-end, center, space-between, space-around, space-evenly;
+$alignItemsValues: flex-start, flex-end, center, stretch, baseline;
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    
+	 //Check if any matches exist in justifyContentValues
+    @each $value in $justifyContentValues{
+    	&.justify-content-#{$value}{
+    		justify-content: $value;
+    	}
+    }
+     @each $value in $alignItemsValues{
+    	&.align-items-#{$value}{
+    		align-items: $value;
+    	}
+    }
+    &.nowrap{
+        flex-wrap:nowrap;
+    }
+}

@@ -1,32 +1,47 @@
 //fonts
-$font_primary:"Arial";
-$font_secondary:"sans-serif";
+$font_primary: "Arial";
+$font_secondary: "sans-serif";
 
 //--------------------------------//
 //COLORS
 //monochrome
 $color_white: #ffffff;
-$color_white_99: #F9F9F9;
-$color_white_95: #F1F1F1;
-$color_grey_light: #D1D1D1;
+$color_white_99: #f9f9f9;
+$color_white_95: #f1f1f1;
+$color_grey_light: #d1d1d1;
 $color_grey: #767676;
-$color_grey_dark: #55545C;
+$color_grey_dark: #55545c;
 $color_grey_darker: #565656;
 $color_black_80: #343434;
 
 //color
-$color_logo: #629ABA;
-$color_blue_bg: #1D3543;
-$color_blue_light: #B2D0E1;
-$color_blue: #649CBB;
-$colorblue_dark: #4F6F81;
-$color_green: #78B4A9;
-$color_green_dark: #4C8379;
-$color_red: #BD423A;
-$color_red_dark: #7E2C26;
-$color_yellow: #E4CC74;
-$color_yellow_dark: #BEA95E;
-$green_enabled: #41BA2D;
+$color_logo: #629aba;
+$color_blue_bg: #1d3543;
+$color_blue_light: #b2d0e1;
+$color_blue: #649cbb;
+$color_blue_dark: #4f6f81;
+$color_green: #78b4a9;
+$color_green_dark: #4c8379;
+$color_red: #bd423a;
+$color_red_dark: #7e2c26;
+$color_yellow: #e4cc74;
+$color_yellow_dark: #bea95e;
+$green_enabled: #41ba2d;
+
+$all_colors: (
+	logo: $color_logo,
+	blue_bg: $color_blue_bg,
+	blue_light: $color_blue_light,
+	blue: $color_blue,
+	blue_dark: $color_blue_dark,
+	green: $color_green,
+	green_dark: $color_green_dark,
+	red: $color_red,
+	red_dark: $color_red_dark,
+	yellow: $color_yellow,
+	yellow_dark: $color_yellow_dark,
+	green_enabled: $green_enabled,
+);
 
 //transparencies
 $color_grey_transparent: rgba(136, 136, 136, 0.2);
