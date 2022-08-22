@@ -1,25 +1,32 @@
 //Logo component to display SVG next to text in chosen font
-//reqs: Icon, link,
+//reqs: Icon, link, text
 //props: color, backgroundcolor, clickbehavior
+//STATUS: Functional
+//TODO: per-instance size control
+
 import Icon from "../components/Icon";
 import Text from "../components/Text";
-
-function goHome(){
-	
-}
+import Link from "next/link";
+import styles from "./logo.module.scss";
 
 const Logo = () => {
 	return (
-		<div onClick={goHome}>
-			<Icon
-				name='logo_temp'
-				color='blue'
-				alt='enRemembrance icon'
-				width='100'
-				height='100'
-			/>
-			<Text color="blue" size="3rem" fontWeight="bold" >enRemembrance</Text>
-		</div>
+		<Link href='localhost:3000'>
+			<a>
+				<div className={styles.logo}>
+					<Icon
+						name='logo_temp'
+						color='blue'
+						alt='enRemembrance icon'
+						width='50'
+						height='50'
+					/>
+					<Text color='blue' size='1em' fontWeight='bold'>
+						enRemembrance
+					</Text>
+				</div>
+			</a>
+		</Link>
 	);
 };
 export default Logo;

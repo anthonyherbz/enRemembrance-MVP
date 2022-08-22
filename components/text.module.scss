@@ -1,10 +1,12 @@
 $colors: black, grey, blue;
 $fontWeights: lighter, normal, bold, bolder;
-$sizes: 1rem, 2rem, 3rem, 4rem;
+$sizes: 1em, 2em, 3em, 4em;
+$alignments: left, center, right;
 //Status: Functional
-//TODO: Allow use of every color variable, maybe from a color mixin
+//TODO: Allow use of every color variable, maybe from a color mixin, text alignment
 
 .text {
+	width: 100%;
 	display: inline;
 	@each $value in $fontWeights{
 		&.font-weight-#{$value}{
@@ -19,6 +21,11 @@ $sizes: 1rem, 2rem, 3rem, 4rem;
 	@each $value in $sizes{
 		&.size-#{$value}{
 			font-size: $value;
+		}
+	}
+	@each $value in $alignments{
+		&.text-align-#{$value}{
+			text-align: $value;
 		}
 	}
 }

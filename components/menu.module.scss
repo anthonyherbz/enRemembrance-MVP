@@ -1,0 +1,31 @@
+.menu{
+	border: 1px solid black;
+	display: flex;
+	flex-direction: column; //vertical
+	&.left{
+		align-items: flex-start;
+	}
+	&.right{
+		align-items: flex-end;
+	}
+	&.center{
+		align-items: center;
+	}
+	a{
+		color: grey;
+		display: block;
+	}
+	&.horizontal{
+		flex-direction: row;
+		gap: 1rem;
+		&.left{
+			justify-content: flex-start;
+		}
+		&.right{
+			justify-content: flex-end;
+		}
+		&.center{
+			justify-content: center;
+		}
+	}
+}

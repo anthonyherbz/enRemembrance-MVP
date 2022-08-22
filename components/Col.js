@@ -34,3 +34,23 @@ const Col = ({
 	return <div className={colClasses}>{children}</div>;
 };
 export default Col;
+
+/* 
+const Col = ({
+	children, xs = "1", sm = "2", md = "3", lg = "4", marginBottom, textAlign = "left", flexDirection="column", justifyContent="flex-start", alignItems="flex-start"
+}) => {
+	let colClasses = cx({
+		col: true,
+		[`col-sm-${xs}`]: xs,
+		[`col-sm-${sm}`]: sm,
+		[`col-md-${md}`]: md,
+		[`col-lg-${lg}`]: lg,
+		colCount : colCount
+		[`text-align-${textAlign}`]: textAlign,
+		[`margin-bottom-${marginBottom}`]: marginBottom,
+		[`flex-direction-${flexDirection}`]: flexDirection,
+		[`justify-content-${justifyContent}`]: justifyContent,
+		[`align-items-${alignItems}`]: alignItems,
+	})
+}
+*/

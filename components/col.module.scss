@@ -9,7 +9,8 @@ $alignItemsValues: flex-start, flex-end, center, stretch, baseline;
 
 .col {
 	width: 100%;
-	padding: 1rem;
+	// padding: 1rem;
+	gap: 1rem;
 	display: flex;
 	flex-direction: column;
 

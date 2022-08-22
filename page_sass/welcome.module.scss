@@ -1,0 +1,57 @@
+@use "../sass/abstracts/vars.scss";
+
+.background {
+	background-image: url("../public/images/2.png");
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.welcome {
+	background-color: vars.$color_landing-green;	padding: 31px 46px;
+	// gap: 6px;
+	// width: 311px;
+	// height: 178px;
+
+	/* Landing Green */
+	border-radius: 11px;
+}
+.feature {
+	box-sizing: border-box;
+	/* Auto layout */
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	padding: 67px 17px;
+	// gap: 10px;
+
+	width: 644px;
+	height: 212px;
+
+	/* Landing Green */
+
+	background-color: vars.$color_landing-green;
+	border-radius: 11px;
+
+	/* Inside auto layout */
+
+	flex: none;
+	order: 1;
+	flex-grow: 0;
+}
+
+.video{
+	position: absolute;
+height: 307px;
+left: 55.35%;
+right: 4.58%;
+top: 64px;
+
+/* Landing Green */
+
+background: rgba(84, 117, 119, 0.73);
+border-radius: 11px;
+}

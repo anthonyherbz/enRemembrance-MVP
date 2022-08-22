@@ -10,12 +10,14 @@ const Text = ({
 	color = "black",
 	fontWeight = "normal",
 	size = "1rem",
+	textAlign = "left",
 }) => {
 	let textClasses = cx({
 		text: true,
 		[`color-${color}`]: color,
 		[`font-weight-${fontWeight}`]: fontWeight,
 		[`size-${size}`]: size,
+		[`text-align-${textAlign}`]: textAlign,
 	});
 
 	return <p className={textClasses}>{children}</p>;
