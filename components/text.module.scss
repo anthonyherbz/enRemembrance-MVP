@@ -1,0 +1,24 @@
+$colors: black, grey, blue;
+$fontWeights: lighter, normal, bold, bolder;
+$sizes: 1rem, 2rem, 3rem, 4rem;
+//Status: Functional
+//TODO: Allow use of every color variable, maybe from a color mixin
+
+.text {
+	display: inline;
+	@each $value in $fontWeights{
+		&.font-weight-#{$value}{
+			font-weight: $value;
+		}
+	}
+	@each $value in $colors{
+		&.color-#{$value}{
+			color: $value;
+		}
+	}
+	@each $value in $sizes{
+		&.size-#{$value}{
+			font-size: $value;
+		}
+	}
+}
