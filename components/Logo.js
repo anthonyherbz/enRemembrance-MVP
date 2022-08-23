@@ -6,7 +6,7 @@
 
 import Icon from "../components/Icon";
 import Text from "../components/Text";
-import Link from "next/Link";
+import Link from "next/link";
 import styles from "./logo.module.scss";
 
 const Logo = () => {

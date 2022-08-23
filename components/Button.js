@@ -4,7 +4,7 @@
 //Props: max-width, max-height, text-size, text-color, backgroundcolor, outline-color, link, type(icon,text/IT), wrap, border-weight, border(y/n), transparency
 import classNames from "classnames/bind";
 import styles from "./button.module.scss";
-import Link from "next/Link";
+import Link from "next/link";
 import Icon from "./Icon";
 import {useState} from "react";
 

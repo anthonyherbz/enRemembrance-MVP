@@ -5,7 +5,7 @@
 //Props: hori, vert, margin-btwn-item, hover-color, corner-radius
 import styles from "./menu.module.scss";
 import classNames from "classnames/bind";
-import Link from "next/Link";
+import Link from "next/link";
 
 let cx = classNames.bind(styles);
 
