@@ -43,6 +43,17 @@ $all_colors: (
 	green_enabled: $green_enabled,
 );
 
+$button_colors:(
+	blue: $color_blue,
+	blue_dark: $color_blue_dark,
+	green: $color_green,
+	green_dark: $color_green_dark,
+	red: $color_red,
+	red_dark: $color_red_dark,
+	yellow: $color_yellow,
+	yellow_dark: $color_yellow_dark,
+);
+
 //transparencies
 $color_grey_transparent: rgba(136, 136, 136, 0.2);
 $color_white_50: rgba(103, 77, 77, 0.73);

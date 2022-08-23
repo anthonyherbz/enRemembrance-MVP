@@ -10,8 +10,14 @@
 	background-repeat: no-repeat;
 }
 .welcome {
-	background-color: vars.$color_landing-green;	padding: 31px 46px;
-	// gap: 6px;
+	background-color: vars.$color_landing-green;	
+	//moving background, northern lights
+	//moving up and to the right
+	//dense particles at one side
+	padding: 1.8rem 2.8rem;
+	& div{
+		gap: 1rem;
+	}
 	// width: 311px;
 	// height: 178px;
 

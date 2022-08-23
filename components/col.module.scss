@@ -15,15 +15,21 @@ $alignItemsValues: flex-start, flex-end, center, stretch, baseline;
 	flex-direction: column;
 
 	//Provided input (xs="6") specifies the number of columns as a result of 12 divided by the input. If you input 6, it will output two columns.
-	//This is legacy code, probably could use a reconstruction if time permits
+	//This is old code, probably could use a reconstruction if time permits
 	//Ideally, you would specifcy a number of columns for each screen size and it would math out the result
+	//NOTE - SASS PARSER DOES NOT CORRECTLY IGNORE MULTI-LINE COMMENTED-OUT VARIABLES IN FOR LOOPS
 	@each $size in $sizes {
 		@include mixins.breakpoint($size) {
-			@for $i from 1 through 12 {
+			@for $i from 1 through 10 {
 				&.col-#{$size}-#{$i} {
-					width: calc(100% * ($i/12));
+					width: calc(100% * ($i/10));
 				}
 			}
+			//@for $i from 1 through 12 {
+				//&.col-#{$size}-#{$i} {
+				//	width: calc(100% * ($i/12));
+				//}
+			//}
 		}
 	}
 	@each $textAlignment in $textAlignments {

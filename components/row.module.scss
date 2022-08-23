@@ -4,6 +4,7 @@ $alignItemsValues: flex-start, flex-end, center, stretch, baseline;
 .row {
     display: flex;
     flex-wrap: wrap;
+    // gap: 1rem;
     
 	 //Check if any matches exist in justifyContentValues
     @each $value in $justifyContentValues{

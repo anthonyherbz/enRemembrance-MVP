@@ -23,7 +23,7 @@ const Menu = ({ menuLinks, horizontal, left, center, right }) => {
 			{/* iterate (map) over defined menuLinks, creating a separate Link for each slug with the item name as the text */}
 			{menuLinks.map((navLink, index) => {
 				return (
-					<Link key={index} href={`/${menuLinks.slug}`}>
+					<Link key={index} href={`/${navLink.slug}`}>
 						<a>{navLink.item}</a>
 					</Link>
 				);

@@ -41,6 +41,7 @@ const Col = ({
 }) => {
 	let colClasses = cx({
 		col: true,
+		//These column sizes should either be percentages of width, or expected number. ex: On a large page, 4 col is expected, so it should do 100%/4=25% available to each. Small page should be 2 expected 100%/2=50% avail
 		[`col-sm-${xs}`]: xs,
 		[`col-sm-${sm}`]: sm,
 		[`col-md-${md}`]: md,

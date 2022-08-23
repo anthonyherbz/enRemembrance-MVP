@@ -1,13 +1,17 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../sass/Home.module.css";
+// import Image from "next/image";
+// import styles from "../sass/Home.module.css";
 import Layout from "../components/Layout";
 import Col from "../components/Col";
 import Row from "../components/Row";
-import Logo from "../components/Logo";
+// import Logo from "../components/Logo";
 import Header from "../components/Header";
 import Menu from "../components/Menu";
-import Author from "../components/Author";
+// import Author from "../components/Author";
+// import Button from "../components/Button";
+// import Checkbox from "../components/Checkbox";
+import Footer from "../components/Footer";
+import PostFeed from "../components/PostFeed";
 
 const navLinks = [
 	{
@@ -30,6 +34,14 @@ const navLinks = [
 		item: "Support",
 		slug: "support",
 	},
+	{
+		item: "Welcome",
+		slug: "welcome",
+	},
+	{
+		item: "Testing",
+		slug: "testing",
+	},
 ];
 
 export default function Home() {
@@ -41,32 +53,15 @@ export default function Home() {
 				<meta name='description' content='summary of website' />
 			</Head>
 			<Header show />
-			<Row>
-				<Col xs='2' md='2' lg='2'>
+			<Row nowrap>
+				<Col xs='2' md='2' lg='1'>
 					<Menu left menuLinks={navLinks} />
 				</Col>
-				<Col xs='6' md='6' lg='8'>
-					<Row>
-						<Col xs='4' md='3' lg='4'>
-							<p>Title Page Content</p>
-							<p>Title Page Content</p>
-							<p>Title Page Content</p>
-						</Col>
-						<Col xs='4' md='3' lg='4'>
-							<p>Title Page Content</p>
-							<p>Title Page Content</p>
-							<p>Title Page Content</p>
-						</Col>
-						<Col xs='4' md='3' lg='4'>
-							<p>Title Page Content</p>
-							<p>Title Page Content</p>
-							<p>Title Page Content</p>
-						</Col>
-					</Row>
+				<Col xs='8' md='8' lg='9' alignItems="center">
+					<PostFeed/>
 				</Col>
 			</Row>
-			<Logo />
-			<Author/>
+			<Footer/>
 		</Layout>
 	);
 }

@@ -6,12 +6,12 @@
 
 import Icon from "../components/Icon";
 import Text from "../components/Text";
-import Link from "next/link";
+import Link from "next/Link";
 import styles from "./logo.module.scss";
 
 const Logo = () => {
 	return (
-		<Link href='localhost:3000'>
+		<Link href='/'>
 			<a>
 				<div className={styles.logo}>
 					<Icon
