@@ -1,5 +1,11 @@
 @use "../sass/abstracts/vars.scss";
 
+// .bgvideo{
+// 	position: fixed;
+// 	top: 0;
+// 	left: 0;
+// 	z-index: -5;
+// }
 .background {
 	background-image: url("../public/images/2.png");
 	z-index: -1;
@@ -9,20 +15,35 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 }
+
 .welcome {
 	background-color: vars.$color_landing-green;	
 	//moving background, northern lights
 	//moving up and to the right
 	//dense particles at one side
-	padding: 1.8rem 2.8rem;
+	overflow: hidden;
+	padding: 1.5em 1.8em;
 	& div{
-		gap: 1rem;
+		gap: .5em;
 	}
+	@media (min-width: 1140px) {
+		& div{
+			gap: 2em;
+		}
+	}
+	max-width: 100%;
 	// width: 311px;
 	// height: 178px;
-
 	/* Landing Green */
 	border-radius: 11px;
+	&>*{
+		text-align: center;
+	}
+}
+@media (max-width: 800px) {
+	.welcome {
+		font-size: 0.75rem;
+	}
 }
 .feature {
 	box-sizing: border-box;
@@ -34,8 +55,9 @@
 	padding: 67px 17px;
 	// gap: 10px;
 
-	width: 644px;
+	width: 600px;
 	height: 212px;
+	max-width: 100%;
 
 	/* Landing Green */
 
@@ -43,21 +65,5 @@
 	border-radius: 11px;
 
 	/* Inside auto layout */
-
-	flex: none;
-	order: 1;
-	flex-grow: 0;
-}
-
-.video{
-	position: absolute;
-height: 307px;
-left: 55.35%;
-right: 4.58%;
-top: 64px;
-
-/* Landing Green */
-
-background: rgba(84, 117, 119, 0.73);
-border-radius: 11px;
+	
 }

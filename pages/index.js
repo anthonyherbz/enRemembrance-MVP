@@ -12,6 +12,8 @@ import Menu from "../components/Menu";
 // import Checkbox from "../components/Checkbox";
 import Footer from "../components/Footer";
 import PostFeed from "../components/PostFeed";
+import Post from "../components/Post";
+import Container from "../components/Container";
 
 const navLinks = [
 	{
@@ -53,15 +55,23 @@ export default function Home() {
 				<meta name='description' content='summary of website' />
 			</Head>
 			<Header show />
-			<Row nowrap>
+			<Row nowrap mHeight>
 				<Col xs='2' md='2' lg='1'>
 					<Menu left menuLinks={navLinks} />
 				</Col>
-				<Col xs='8' md='8' lg='9' alignItems="center">
-					<PostFeed/>
-				</Col>
+			
+					<Col xs='8' md='8' lg='9' alignItems='center' allowScroll>
+						<Container>
+							<Post/>
+							<Post hideAuthor hideComment/>
+							<Post/>
+							<Post/>
+							<Post/>
+						</Container>
+					</Col>
+				
 			</Row>
-			<Footer/>
+			<Footer />
 		</Layout>
 	);
 }

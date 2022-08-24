@@ -29,6 +29,14 @@ $color_yellow_dark: #bea95e;
 $green_enabled: #41ba2d;
 
 $all_colors: (
+	white: $color_white,
+	white_99: $color_white_99,
+	white_95: $color_white_95,
+	grey_light: $color_grey_light,
+	grey: $color_grey,
+	grey_dark: $color_grey_dark,
+	grey_darker: $color_grey_darker,
+	black_80: $color_black_80,
 	logo: $color_logo,
 	blue_bg: $color_blue_bg,
 	blue_light: $color_blue_light,
@@ -43,7 +51,7 @@ $all_colors: (
 	green_enabled: $green_enabled,
 );
 
-$button_colors:(
+$button_colors: (
 	blue: $color_blue,
 	blue_dark: $color_blue_dark,
 	green: $color_green,

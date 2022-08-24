@@ -1,0 +1,57 @@
+@use "../sass/abstracts/vars.scss";
+
+.post {
+	display: flex;
+	flex-direction: row;
+	background-color: vars.$color_white;
+	border-radius: 11px;
+	padding: 1rem 1.5rem;
+	gap: 1rem;
+	min-width: 100%;
+	min-height: 250px;
+	overflow: hidden;
+	.c1 {
+		display: flex;
+		flex: 1;
+		align-items: center;
+		img {
+			width: 100%;
+			max-height: 100%;
+			min-width: 75px;
+		}
+	}
+	.c2 {
+		flex: 6;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5em;
+		justify-content: space-between;
+		.r1 {
+			display: flex;
+			font-size: 1.6em;
+			justify-content: space-between;
+			img {
+				max-width: 40px;
+			}
+		}
+		.r2 {
+			font-size: 1em;
+			margin-right: 3em;
+		}
+		.r3 {
+			display: flex;
+			font-size: 1em;
+			justify-content: space-between;
+			text-align: left;
+			img {
+				max-width: 35px;
+			}
+		}
+	}
+	.hideComment {
+		display: none;
+	}
+	.hideAuthor {
+		display: none;
+	}
+}

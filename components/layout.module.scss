@@ -1,5 +1,7 @@
 .container {
 	width: 99%;
 	margin: 0 auto;
+	height: 100vh;
+	overflow: hidden; //prevents scroll of page
 	// background-color: yellow;
 }

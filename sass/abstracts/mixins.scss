@@ -20,12 +20,12 @@
 		}
 
 		@else if ($value == "md" or $value == "laptop") {
-			@media(min-width: 980px) {
+			@media(min-width: 800px) {
 				@content;
 			}
 		}
 		@else if($value == "lg" or $value == "desktop") {
-			@media (min-width: 1140px) {
+			@media (min-width: 1240px) {
 				@content;
 			}
 		}

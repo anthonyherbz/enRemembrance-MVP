@@ -1,4 +1,5 @@
-$colors: black, grey, blue;
+@use "../sass/abstracts/vars.scss";
+$all_colors: vars.$all_colors;
 $fontWeights: lighter, normal, bold, bolder;
 $sizes: 1em, 2em, 3em, 4em;
 $alignments: left, center, right;
@@ -13,8 +14,8 @@ $alignments: left, center, right;
 			font-weight: $value;
 		}
 	}
-	@each $value in $colors{
-		&.color-#{$value}{
+	@each $color, $value in $all_colors{
+		&.color-#{$color}{
 			color: $value;
 		}
 	}

@@ -5,12 +5,13 @@ import classNames from 'classnames/bind';
 import styles from "./heading.module.scss";
 
 let cx = classNames.bind(styles) //allows you to use t/f conditionals in variable
-export default function Heading({children, level, marginBottom, pushIn}){ //deconstructs here instead of having to say Heading(props) here and const {label} = props later
+export default function Heading({children, level, marginBottom, pushIn, color}){ //deconstructs here instead of having to say Heading(props) here and const {label} = props later
 	//const {label} = props; //make local var called label from props
 	
 	let headingClasses = cx({
 		heading : true,
 		[`margin-bottom-${marginBottom}`] : marginBottom,
+		[`color-${color}`] : color,
 		pushIn : pushIn,
 		heading1 : level==="1",
 		heading2 : level==="2",

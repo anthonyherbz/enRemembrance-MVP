@@ -1,0 +1,11 @@
+@use "../sass/abstracts/vars.scss";
+.wrapper {
+	margin-right: 2em;
+	margin-left: 4em;
+	margin-block: 2em;
+	.video {
+		max-width: 100%;
+		display: block;
+		background-color: vars.$color_landing-green;
+	}
+}

@@ -1,0 +1,20 @@
+.col {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	&.allowScroll{
+		overflow: scroll;
+	}
+	@each $size in $sizes {
+		@include mixins.breakpoint($size) {
+			@for $i from 1 through 10 {
+				&.col-#{$size}-#{$i} {
+					width: calc(100% * ($i/10));
+				}
+			}
+			//width: calc(100% / 5
+			//i want 5 columns on this page, you do the math to give me that and apportion them such. 
+			//<Col count=>
+		}
+	}
+}

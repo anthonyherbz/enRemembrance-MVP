@@ -20,4 +20,10 @@ $alignItemsValues: flex-start, flex-end, center, stretch, baseline;
     &.nowrap{
         flex-wrap:nowrap;
     }
+    &.mWidth{
+        max-width: 100%;
+    }
+    &.mHeight{
+        max-height: 100%;
+    }
 }

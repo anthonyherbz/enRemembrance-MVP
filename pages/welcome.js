@@ -6,8 +6,10 @@ import Row from "../components/Row";
 import Col from "../components/Col";
 import Logo from "../components/Logo";
 import Text from "../components/Text";
-import Button from "../components/Button";
+import ButtonText from "../components/ButtonText";
+import ButtonIcon from "../components/ButtonIcon";
 import Checkbox from "../components/Checkbox";
+import Video from "../components/Video";
 // import styles from '../components/welcome'
 //BG needs to stay static, max size, regardless of window size
 
@@ -15,21 +17,23 @@ const Welcome = () => {
 	return (
 		<div className={styles.background}>
 			<Layout>
+				{/* <video className={styles.bgvideo}>
+					<source src="/videos/lights.mp4"/>
+				</video> */}
 				<Container>
-					<Row>
-						<Col textAlign='center' lg='5' alignItems='center'>
+					<Row justifyContent="center">
+						<Col textAlign='center' lg='5' md='5' sm='5' xs='1' alignItems='center'>
 							<Logo />
 							<div className={styles.welcome}>
-								<Heading level='1'>Welcome</Heading>
-								<Row justifyContent="center" nowrap>
+								<Heading color="white" marginBottom="1" level='1'>Welcome</Heading>
+								<Row mWidth justifyContent="center" nowrap>
 									<Col lg='4' alignItems='center'>
-										<Button icon="logo_temp" color="blue" label="Sign In"/>
+										<ButtonText color="blue" label="Sign In"/>
 									</Col>
 									<Col lg='4' alignItems='center'>
-										<Button color="green" label="Sign Up"/>
+										<ButtonText color="green" label="Sign Up"/>
 									</Col>
 								</Row>
-								<Checkbox/>
 							</div>
 							<div className={styles.container}>
 								<Row alignItems='center'>
@@ -45,8 +49,10 @@ const Welcome = () => {
 								</Text>
 							</div>
 						</Col>
-						<Col lg='5' alignItems='center'>
-							<div className={styles.video}>Video</div>
+						<Col lg='5' md='5' sm='5' xs='1' alignItems='center'>
+							<Row>
+								<Video/>
+							</Row>
 						</Col>
 					</Row>
 				</Container>

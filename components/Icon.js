@@ -9,13 +9,14 @@ let cx = classNames.bind(styles);
 
 //TODO: support changing the SVG fill color dynamically
 
-const Icon = ({ name, alt = "alt text", width = "50", height = "50", color = "black"}) => {
+const Icon = ({ name, alt = "alt text", width = "100", height = "100", color = "black"}) => {
 	return (
 			<Image
 				src={`/images/icons/${name}_${color}.svg`}
 				alt={alt}
 				width={width}
 				height={height}
+				// layout="responsive"
 			/>
 	);
 };

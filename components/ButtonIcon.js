@@ -3,14 +3,14 @@
 //Reqs: Text, Icon, link
 //Props: max-width, max-height, text-size, text-color, backgroundcolor, outline-color, link, type(icon,text/IT), wrap, border-weight, border(y/n), transparency
 import classNames from "classnames/bind";
-import styles from "./button.module.scss";
+import styles from "./buttonicon.module.scss";
 import Link from "next/link";
 import Icon from "./Icon";
 import {useState} from "react";
 
 let cx = classNames.bind(styles);
 
-const Button = ({ label, path, size, color, icon = "null", iconpos, fill, alt }) => {
+const ButtonIcon = ({ label, path, size, color, icon = "null", iconpos, fill, alt }) => {
 	let buttonClasses = cx({
 		buttn: true,
 		fill: fill === "true",
@@ -26,11 +26,14 @@ const Button = ({ label, path, size, color, icon = "null", iconpos, fill, alt })
 				<button className={buttonClasses}>
 					{path ? (
 						// conditional-- if path is not empty, return button with a link, if path is empty return only button with label
+						<div className={styles.btnParent}>
 						<Link href={path}>
 							<a>{label}</a>
 						</Link>
+						</div>
 					) : (
-						label
+						<div className={styles.btnParent}>label</div>
+						
 					)}
 				</button>
 			</div>
@@ -41,14 +44,16 @@ const Button = ({ label, path, size, color, icon = "null", iconpos, fill, alt })
 				<button className={buttonClasses}>
 					{path ? (
 						// conditional-- if path is not empty, return button with a link, if path is empty return only button with label
+						<div className={styles.btnParent}>
 						<Link href={path}>
 							<a>
 								<Icon name={icon} alt={alt} />
 								<div className="text">{label}</div>
 							</a>
 						</Link>
+						</div>
 					) : (
-						<div>
+						<div className={styles.btnParent}>
 							<Icon name={icon} alt={alt} />
 								<div>{label}</div>
 						</div>
@@ -58,4 +63,4 @@ const Button = ({ label, path, size, color, icon = "null", iconpos, fill, alt })
 		);
 	}
 };
-export default Button;
+export default ButtonIcon;
