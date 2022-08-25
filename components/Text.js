@@ -9,7 +9,7 @@ const Text = ({
 	children,
 	color = "black",
 	fontWeight = "normal",
-	size = "1rem",
+	size = "1em",
 	textAlign = "left",
 }) => {
 	let textClasses = cx({

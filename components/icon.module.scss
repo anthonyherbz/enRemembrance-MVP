@@ -1,2 +1,10 @@
 @use "../sass/abstracts/vars.scss";
 $all_colors: vars.$all_colors;
+
+.svg{
+	@each $name, $value in $all_colors{
+		.color-#{$name}{
+			fill: $value;
+		}
+	}
+}

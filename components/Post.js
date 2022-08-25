@@ -61,7 +61,7 @@ const Post = ({ size, hideComment, hideAuthor }) => {
 				<div className={styles.r1}>
 					<div>
 						<Link href={book[0].slug}>
-							<a>{book[0].title}</a>
+							<a><Heading level="3">{book[0].title}</Heading></a>
 						</Link>
 					</div>
 					<div className={postClasses}>
@@ -75,7 +75,7 @@ const Post = ({ size, hideComment, hideAuthor }) => {
 				<div className={styles.r2}>{postContent}</div>
 				<div className={styles.r3}>
 					<div>
-						<Heading level='3'>Comments</Heading>
+						<Heading level='4'>Comments</Heading>
 						{comment[0].author}: {comment[0].content}
 					</div>
 					<div className={postClasses}>

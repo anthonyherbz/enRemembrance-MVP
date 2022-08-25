@@ -1,0 +1,30 @@
+@use "../sass/abstracts/vars.scss";
+$all_colors: vars.$all_colors;
+
+.expandingText {
+	display: inline-block;
+	background-color: #fff;
+	border-radius: 11px;
+	margin-top: 1rem;
+	width: 270px;
+	padding: 0.5rem 1rem;
+	font-size: 0.8rem;
+	.topBar {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	.content {
+		// display: none;
+		padding-top: 1rem;
+		// background-color: black;
+	}
+	@each $name, $value in $all_colors {
+		&.backgroundColor-#{$name} {
+			background-color: $value;
+		}
+	}
+}

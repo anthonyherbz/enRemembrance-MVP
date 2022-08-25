@@ -10,16 +10,17 @@ import Link from "next/link";
 import styles from "./logo.module.scss";
 
 const Logo = () => {
+	// let svg = "path";
 	return (
 		<Link href='/'>
 			<a>
 				<div className={styles.logo}>
 					<Icon
-						name='logo_temp'
+						iconName='logo_temp'
 						color='blue'
 						alt='enRemembrance icon'
-						width='50'
-						height='50'
+						width='25'
+						height='25'
 					/>
 					<Text color='blue' size='1em' fontWeight='bold'>
 						enRemembrance

@@ -27,7 +27,9 @@ $color_red_dark: #7e2c26;
 $color_yellow: #e4cc74;
 $color_yellow_dark: #bea95e;
 $green_enabled: #41ba2d;
-
+$color_grey_transparent: rgba(136, 136, 136, 0.2);
+// $color_white_50: rgba(103, 77, 77, 0.73);
+$color_landing-green: rgba(84, 117, 119, 0.73);
 $all_colors: (
 	white: $color_white,
 	white_99: $color_white_99,
@@ -49,6 +51,7 @@ $all_colors: (
 	yellow: $color_yellow,
 	yellow_dark: $color_yellow_dark,
 	green_enabled: $green_enabled,
+	green_landing: $color_landing_green,
 );
 
 $button_colors: (
@@ -63,6 +66,4 @@ $button_colors: (
 );
 
 //transparencies
-$color_grey_transparent: rgba(136, 136, 136, 0.2);
-$color_white_50: rgba(103, 77, 77, 0.73);
-$color_landing-green: rgba(84, 117, 119, 0.73);
+
