@@ -97,6 +97,8 @@ const Overlay = ({ signInShow, setSignInShow, signUpShow, setSignUpShow }) => {
 	}
 	if (signUpShow === !null) {
 		return <>{signUpShow ? signUpOverlay : null}</>;
+	}else{
+		return <div>Error, incorrect usage. Missing sign/up state</div>
 	}
 };
 export default Overlay;
