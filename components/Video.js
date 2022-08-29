@@ -7,9 +7,10 @@ import styles from "./video.module.scss";
 const Video = () => {
 	return (
 		<div className={styles.wrapper}>
-			<video width="100%" className={styles.video} controls>
+			<video className={styles.video} controls>
 				<source src='/videos/test.mp4' type='video/mp4'/>
-				The video does not work.
+				If you see this, the video is not working or incompatible.
+				
 			</video>
 		</div>
 	);

@@ -10,15 +10,19 @@ $iconpos: left, right;
 	border-radius: 25px;
 	padding: .75em 1.25em;
 	font-size: 1em;
-	font-style: bold;
+	font-style: normal;
 	// margin-inline: 1rem;
-	min-width: none;
+	min-width: 0;
 	max-width: 100%;
 	// padding-block: 1rem;
 	// height: 3rem;
 	white-space: nowrap;
 	cursor: pointer;
 	color: white;
+	a{color: white;}
+	a:hover{
+		text-decoration: none;
+	}
 
 	&.color-blue {
 		background-color: vars.$color_blue;

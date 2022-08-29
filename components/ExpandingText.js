@@ -19,14 +19,13 @@ const ExpandingText = ({
 	function handleClick() {
 		//sets expanded state to whatever it is not
 		setExpandState(!expanded); //saves like 10 lines of if/else statements
-		console.log(expanded);
 	}
-	console.log(children)
 	return (
 		<div className={expandingTextClasses}>
 			<div className={styles.topBar} onClick={handleClick}>
 				<Heading level='3' color={color}>{title}</Heading>
-				<svg style={{ transform: expanded ? "rotate(180deg)" : "" }}
+				{/* For reference, when doing an inline style with react and also using a ?, the false cannot return just "" empty */}
+				<svg style={{transform: expanded ? "rotate(180deg)" : null }}
 					xmlns='http://www.w3.org/2000/svg'
 					width='25'
 					height='24'

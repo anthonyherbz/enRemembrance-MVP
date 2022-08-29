@@ -7,18 +7,53 @@ import Col from "../components/Col";
 import Logo from "../components/Logo";
 import Text from "../components/Text";
 import ButtonText from "../components/ButtonText";
-import ButtonIcon from "../components/ButtonIcon";
-import Checkbox from "../components/Checkbox";
+// import ButtonIcon from "../components/ButtonIcon";
+// import Checkbox from "../components/Checkbox";
 import Video from "../components/Video";
 import ExpandingText from "../components/ExpandingText";
 import { useState } from "react";
 import Overlay from "../components/Overlay";
+import PreviewFeed from "../components/PreviewFeed";
 // import styles from '../components/welcome'
 //BG needs to stay static, max size, regardless of window size
 
 const Welcome = () => {
 	const [signInShow, setSignInShow] = useState(false);
 	const [signUpShow, setSignUpShow] = useState(false);
+	const books = [
+		{
+			postID: 0,
+			title: "post1",
+			slug: "/book_example",
+			cover: "bookcover.jpg",
+			content:
+				"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt facere modi sequi non minus? Provident blanditiis eos sequi excepturi, a libero officia quia, sed culp facilis dolore velit voluptatem voluptate?",
+		},
+		{
+			postID: 1,
+			title: "post2",
+			slug: "/book_example",
+			cover: "bookcover.jpg",
+			content:
+				"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt facere modi sequi non minus? Provident blanditiis eos sequi excepturi, a libero officia quia, sed culp facilis dolore velit voluptatem voluptate?",
+		},
+		{
+			postID: 2,
+			title: "post3",
+			slug: "/book_example",
+			cover: "bookcover.jpg",
+			content:
+				"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt facere modi sequi non minus? Provident blanditiis eos sequi excepturi, a libero officia quia, sed culp facilis dolore velit voluptatem voluptate?",
+		},
+		{
+			postID: 3,
+			title: "post4",
+			slug: "/book_example",
+			cover: "bookcover.jpg",
+			content:
+				"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt facere modi sequi non minus? Provident blanditiis eos sequi excepturi, a libero officia quia, sed culp facilis dolore velit voluptatem voluptate?",
+		},
+	];
 	console.log(signInShow, signUpShow);
 	function handleSignInClick() {
 		setSignInShow(!signInShow);
@@ -30,10 +65,8 @@ const Welcome = () => {
 	}
 	return (
 		<div className={styles.background}>
-			<Overlay
-				type='signIn'
-				signInShow={signInShow}
-			/>
+			<div className={styles.backgroundVideo}>
+			</div>
 			<Layout>
 				{/* <video className={styles.bgvideo}>
 					<source src="/videos/lights.mp4"/>
@@ -45,7 +78,7 @@ const Welcome = () => {
 							lg='5'
 							md='5'
 							sm='5'
-							xs='1'
+							xs='5'
 							alignItems='center'
 						>
 							<Logo />
@@ -65,14 +98,22 @@ const Welcome = () => {
 												label='Sign In'
 											/>
 										</div>
+										<Overlay
+											signUpShow={signUpShow}
+											setSignUpShow={setSignUpShow}
+										/>
 									</Col>
 									<Col ratio='1' alignItems='center'>
 										<div onClick={handleSignUpClick}>
 											<ButtonText
-												color='green'
+												color='yellow'
 												label='Sign Up'
 											/>
 										</div>
+										<Overlay
+											signInShow={signInShow}
+											setSignInShow={setSignInShow}
+										/>
 									</Col>
 								</Row>
 							</div>
@@ -109,14 +150,17 @@ const Welcome = () => {
 								</Row>
 							</div>
 							<div className={styles.feature}>
-								<Text textAlign='center' color='blue'>
+								<Text textAlign='center' color='white'>
 									COMPETITION/FEATURE SPACE
 								</Text>
 							</div>
 						</Col>
-						<Col lg='5' md='5' sm='5' xs='1' alignItems='center'>
+						<Col lg='5' md='5' sm='5' xs='5' alignItems='center'>
 							<Row>
 								<Video />
+							</Row>
+							<Row>
+								<PreviewFeed books={books} />
 							</Row>
 						</Col>
 					</Row>

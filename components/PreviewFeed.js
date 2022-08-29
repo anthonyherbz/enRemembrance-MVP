@@ -1,31 +1,23 @@
 //Appears on the welcome page to contain preview posts and display them to visitors
 //Needs to be a scrollable list of PreviewPost components. Flexible
 //Requires: Col
-import Feed from "./components/Feed";
-const previewPosts = [
-	{
-		postID: 1,
-		title: "post1"
-	},
-	{
-		postID: 2,
-		title: "post2"
-	},
-	{
-		postID: 3,
-		title: "post3"
-	},
-	{
-		postID: 4,
-		title: "post4"
-	},
-		
-];
+import Heading from "./Heading";
+import styles from "./previewfeed.module.scss";
+// import Feed from "./components/Feed";
+import PreviewPost from "./PreviewPost";
+// import Text from "./Text";
 
-const PreviewFeed = () => {
+const PreviewFeed = ({ books }) => {
+	// console.log("PreviewFeed books output: ",{ books });
 	return (
-		<div>
-			<Feed/>
-		</div>)
-}
+		<div className={styles.sizing}>
+			<div  className={styles.background}><Heading level="2" color='white'>Stories from our community</Heading></div>
+			<div className={styles.previewFeed}>
+				{books.map((book, index) => {
+					return <PreviewPost book={book} key={index} />;
+				})}
+			</div>
+		</div>
+	);
+};
 export default PreviewFeed;

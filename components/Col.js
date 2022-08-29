@@ -20,6 +20,7 @@ const Col = ({
 	alignItems = "flex-start",
 	ratio,
 	allowScroll,
+	order,
 }) => {
 	let colClasses = cx({
 		col: true,
@@ -34,6 +35,7 @@ const Col = ({
 		[`align-items-${alignItems}`]: alignItems,
 		[`ratio-${ratio}`]: ratio,
 		allowScroll : allowScroll,
+		[`order-${order}`] : order,
 	});
 	return <div className={colClasses}>{children}</div>;
 };
