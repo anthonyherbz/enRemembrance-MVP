@@ -1,0 +1,26 @@
+@use '../sass/abstracts/vars.scss';
+.container{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	width: max-content;
+	position: sticky;
+	height: max-content;
+	top: 0;
+	
+	svg{
+		cursor: pointer;
+		&:hover{
+			background-color: vars.$color_grey_light;
+		}
+	}
+	>.arrowLeft{
+		position: absolute;
+		top: 0;
+		right: 0;
+		border-radius: 11px;
+	}
+	>*{
+		gap: 0.35rem;
+	}
+}

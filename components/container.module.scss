@@ -1,11 +1,13 @@
 @use '../sass/abstracts/mixins';
 
 .container{
-    //background-color: blue;
     margin-inline: 1rem;
-    // max-width: 80%;
-    // >h1,>h2,>h3{
-    //     margin-left:1rem
-    // }
-
+    &.marginLeft{
+        margin-left: 1rem;
+        margin-right: 0;
+    }
+    &.marginRight{
+        margin-left: 0;
+        margin-right: 1rem;
+    }
 }

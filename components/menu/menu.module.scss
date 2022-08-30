@@ -1,7 +1,12 @@
+@use '../../sass/abstracts/vars.scss';
 .menu{
-	border: 1px solid black;
+	// border: 1px solid black;
 	display: flex;
 	flex-direction: column; //vertical
+	max-width: fit-content;
+	>*:hover{
+		background-color: vars.$color_white_95;
+	}
 	&.left{
 		align-items: flex-start;
 	}
@@ -12,7 +17,7 @@
 		align-items: center;
 	}
 	a{
-		color: grey;
+		color: vars.$color_black_80;
 		display: block;
 	}
 	&.horizontal{

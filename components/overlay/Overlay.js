@@ -1,6 +1,6 @@
 import styles from "./overlay.module.scss";
 // import TextInput from "./TextInput";
-import ButtonText from "./ButtonText";
+import ButtonText from "../button/ButtonText";
 
 //Name: Overlay
 //Purpose: displays one of two overlays on the landing page

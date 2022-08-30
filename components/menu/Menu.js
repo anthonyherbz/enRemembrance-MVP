@@ -6,6 +6,7 @@
 import styles from "./menu.module.scss";
 import classNames from "classnames/bind";
 import Link from "next/link";
+import Text from '../Text';
 
 let cx = classNames.bind(styles);
 
@@ -24,7 +25,7 @@ const Menu = ({ menuLinks, horizontal, left, center, right }) => {
 			{menuLinks.map((navLink, index) => {
 				return (
 					<Link key={index} href={`/${navLink.slug}`}>
-						<a>{navLink.item}</a>
+						<a><Text fontWeight="bold" size="">{navLink.item}</Text></a>
 					</Link>
 				);
 			})}

@@ -1,0 +1,18 @@
+@use "../../sass/abstracts/vars.scss";
+$all_colors: vars.$all_colors;
+$transform-deg: 0, 90, 180, 270;
+
+// .svg{
+// 	@each $name, $value in $all_colors{
+// 		.color-#{$name}{
+// 			fill: $value;
+// 		}
+// 	}
+// }
+.svg{
+	@each $value in $transform-deg{
+		&.rotate-#{$value}{
+			transform: rotate(#{$value}deg)
+		}
+	}
+}

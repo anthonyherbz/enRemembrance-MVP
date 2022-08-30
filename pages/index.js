@@ -6,47 +6,55 @@ import Col from "../components/Col";
 import Row from "../components/Row";
 // import Logo from "../components/Logo";
 import Header from "../components/Header";
-import Menu from "../components/Menu";
+import Menu from "../components/menu/Menu";
 // import Author from "../components/Author";
 // import Button from "../components/Button";
 // import Checkbox from "../components/Checkbox";
 import Footer from "../components/Footer";
-import PostFeed from "../components/PostFeed";
-import Post from "../components/Post";
+import PostFeed from "../components/feed/PostFeed";
+import Post from "../components/post/Post";
 import Container from "../components/Container";
-
-const navLinks = [
-	{
-		item: "Home",
-		slug: "home",
-	},
-	{
-		item: "About",
-		slug: "about",
-	},
-	{
-		item: "Contact",
-		slug: "contact",
-	},
-	{
-		item: "Terms and Conditions",
-		slug: "termsandconditions",
-	},
-	{
-		item: "Support",
-		slug: "support",
-	},
-	{
-		item: "Welcome",
-		slug: "welcome",
-	},
-	{
-		item: "Testing",
-		slug: "testing",
-	},
-];
+import Nav from "../components/Nav";
 
 export default function Home() {
+	const posts = [
+		{
+			postId: 0,
+			postTitle: "Post Title",
+			postContent: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
+			bookTitle: "title",
+			bookCover: "bookcover.jpg",
+			bookSlug: "/book1",
+			author: "author1",
+			authorProfile: "profile.jpg",
+			comment: "comment text",
+			commentAuthor: "commenter1"
+		},
+		{
+			postId: 1,
+			postTitle: "Post Title",
+			postContent: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
+			bookTitle: "title",
+			bookCover: "bookcover.jpg",
+			bookSlug: "/book1",
+			author: "author1",
+			authorProfile: "profile.jpg",
+			comment: "comment text",
+			commentAuthor: "commenter1"
+		},
+		{
+			postId: 2,
+			postTitle: "Post Title",
+			postContent: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
+			bookTitle: "title",
+			bookCover: "bookcover.jpg",
+			bookSlug: "/book1",
+			author: "author1",
+			authorProfile: "profile.jpg",
+			comment: "comment text",
+			commentAuthor: "commenter1"
+		}
+	]
 	return (
 		<Layout>
 			<Head>
@@ -55,22 +63,18 @@ export default function Home() {
 				<meta name='description' content='summary of website' />
 			</Head>
 			<Header show />
-			<Row nowrap mHeight>
-				<Col xs='2' md='2' lg='1'>
-					<Menu left menuLinks={navLinks} />
-				</Col>
-			
-					<Col xs='8' md='8' lg='9' alignItems='center' allowScroll>
-						<Container>
-							<Post/>
-							<Post hideAuthor hideComment/>
-							<Post/>
-							<Post/>
-							<Post/>
+			<Container>
+				<Row nowrap mHeight>
+					<Col ratio='1'>
+						<Nav />
+					</Col>
+					<Col ratio='20' alignItems='center' allowScroll>
+						<Container marginLeft>
+							<PostFeed posts={posts}/>
 						</Container>
 					</Col>
-				
-			</Row>
+				</Row>
+			</Container>
 			<Footer />
 		</Layout>
 	);

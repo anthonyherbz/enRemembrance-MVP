@@ -5,8 +5,6 @@
 import classNames from "classnames/bind";
 import styles from "./buttontext.module.scss";
 import Link from "next/link";
-import Icon from "./Icon";
-import { useState } from "react";
 
 let cx = classNames.bind(styles);
 

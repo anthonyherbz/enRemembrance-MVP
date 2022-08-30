@@ -1,0 +1,12 @@
+<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='35'
+			height='28'
+			fill='none'
+			viewBox='0 0 35 28'
+		>
+			<path
+				fill='#649CBB'
+				d='M35 0H0v28h35V0Zm-3.5 7-14 8.75L3.5 7V3.5l14 8.75 14-8.75V7Z'
+			/>
+		</svg>

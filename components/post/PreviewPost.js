@@ -2,7 +2,7 @@
 //Requires Col, Row, BookCover, Text
 import styles from "./previewpost.module.scss";
 import Link from "next/link";
-import Heading from "./Heading";
+import Heading from "../Heading";
 
 const PreviewPost = ({ book }) => {
 	//pull props out of title.book, etc.

@@ -6,14 +6,14 @@ import Row from "../components/Row";
 import Col from "../components/Col";
 import Logo from "../components/Logo";
 import Text from "../components/Text";
-import ButtonText from "../components/ButtonText";
+import ButtonText from "../components/button/ButtonText";
 // import ButtonIcon from "../components/ButtonIcon";
 // import Checkbox from "../components/Checkbox";
 import Video from "../components/Video";
 import ExpandingText from "../components/ExpandingText";
 import { useState } from "react";
-import Overlay from "../components/Overlay";
-import PreviewFeed from "../components/PreviewFeed";
+import Overlay from "../components/overlay/Overlay";
+import PreviewFeed from "../components/feed/PreviewFeed";
 // import styles from '../components/welcome'
 //BG needs to stay static, max size, regardless of window size
 

@@ -1,4 +1,4 @@
-@use "../sass/abstracts/vars.scss";
+@use "../../sass/abstracts/vars.scss";
 
 //TODO: Multiple sizes, icon position
 $sizes: small, medium, large;
@@ -6,19 +6,22 @@ $iconpos: left, right;
 
 .buttn {
 	border: none;
-	box-shadow: none;
-	border-radius: 11px;
-	// padding: 1rem 1.5rem;
+	// box-shadow: none;
+	border-radius: 25px;
+	padding: .75em 1.25em;
+	font-size: 1em;
+	font-style: normal;
+	// margin-inline: 1rem;
+	min-width: 0;
+	max-width: 100%;
 	// padding-block: 1rem;
 	// height: 3rem;
 	white-space: nowrap;
 	cursor: pointer;
 	color: white;
-
-	a {
-		display: flex;
-		align-items: center;
-		// color: white;
+	a{color: white;}
+	a:hover{
+		text-decoration: none;
 	}
 
 	&.color-blue {
@@ -59,11 +62,7 @@ $iconpos: left, right;
 			box-shadow: inset 0 5px 15px -2px rgb(32, 32, 32);
 		}
 	}
-	.btnParent {
-		display: flex;
-		flex-wrap: nowrap;
-		align-items: center;
-	}
+
 	//works, but unable to set hover color, needs more robust solution
 	// @each $value in $colors{
 	// 	&.color-#{$value}{
