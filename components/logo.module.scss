@@ -1,3 +1,28 @@
-.logo{
-	margin-block: 1rem;
+@use "../sass/abstracts/vars.scss";
+$sizes: (
+	"1x" : 1em,
+	"1-5x" : 1.5em,
+	"2x" : 2em,
+);
+.logo {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	padding: 0.1em;
+	&.hover{
+		&:hover {
+			background-color: vars.$color_white_95;
+			border-radius: 5px;
+			transition: all 0.25s;
+		}
+	}
+	@each $name, $value in $sizes{
+		&.size-#{$name}{
+			font-size: $value*.9;
+			svg{
+				width: $value*.8;
+				height: $value*.8;
+			}
+		}
+	}
 }

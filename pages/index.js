@@ -21,40 +21,43 @@ export default function Home() {
 		{
 			postId: 0,
 			postTitle: "Post Title",
-			postContent: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
+			postContent:
+				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
 			bookTitle: "title",
 			bookCover: "bookcover.jpg",
-			bookSlug: "/book1",
+			bookSlug: "book1",
 			author: "author1",
 			authorProfile: "profile.jpg",
 			comment: "comment text",
-			commentAuthor: "commenter1"
+			commentAuthor: "commenter1",
 		},
 		{
 			postId: 1,
 			postTitle: "Post Title",
-			postContent: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
+			postContent:
+				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
 			bookTitle: "title",
 			bookCover: "bookcover.jpg",
-			bookSlug: "/book1",
+			bookSlug: "book1",
 			author: "author1",
 			authorProfile: "profile.jpg",
 			comment: "comment text",
-			commentAuthor: "commenter1"
+			commentAuthor: "commenter1",
 		},
 		{
 			postId: 2,
 			postTitle: "Post Title",
-			postContent: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
+			postContent:
+				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
 			bookTitle: "title",
 			bookCover: "bookcover.jpg",
-			bookSlug: "/book1",
+			bookSlug: "book1",
 			author: "author1",
 			authorProfile: "profile.jpg",
 			comment: "comment text",
-			commentAuthor: "commenter1"
-		}
-	]
+			commentAuthor: "commenter1",
+		},
+	];
 	return (
 		<Layout>
 			<Head>
@@ -63,14 +66,28 @@ export default function Home() {
 				<meta name='description' content='summary of website' />
 			</Head>
 			<Header show />
-			<Container>
+			<Container marginTop>
 				<Row nowrap mHeight>
 					<Col ratio='1'>
 						<Nav />
 					</Col>
 					<Col ratio='20' alignItems='center' allowScroll>
 						<Container marginLeft>
-							<PostFeed posts={posts}/>
+							<div style={{ borderLeft: "1px solid #55545C" }}>
+								<div
+									style={{
+										height: "1px",
+
+										width: "100%",
+										borderBottom: "1px solid #55545C",
+										position: "fixed",
+										top: "50px",
+										boxShadow:
+											"rgb(0, 0, 0) 0 2px 5px 0px",
+									}}
+								></div>
+								<PostFeed posts={posts} />
+							</div>
 						</Container>
 					</Col>
 				</Row>

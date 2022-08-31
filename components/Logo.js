@@ -8,13 +8,20 @@ import Icon from "./icons/Icon";
 import Text from "../components/Text";
 import Link from "next/link";
 import styles from "./logo.module.scss";
+import classNames from "classnames/bind";
+let cx = classNames.bind(styles);
 
-const Logo = () => {
+const Logo = ({hover, size="1x"}) => {
 	// let svg = "path";
+	let logoClasses = cx({
+		logo: true,
+		hover: hover,
+		[`size-${size}`] : size,
+	});
 	return (
 		<Link href='/'>
 			<a>
-				<div className={styles.logo}>
+				<div className={logoClasses}>
 					<Icon name="logo" color="#629aba" width="25" height="25"/>
 					<Text color='blue' size='1em' fontWeight='bold'>
 						enRemembrance

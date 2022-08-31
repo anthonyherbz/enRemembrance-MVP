@@ -6,12 +6,17 @@
 	width: max-content;
 	position: sticky;
 	height: max-content;
-	top: 0;
+	top: 50px;
+	z-index: 10;
+	padding-top: 0.25rem;
 	
-	svg{
+	svg, a{
 		cursor: pointer;
+		padding: 2px;
 		&:hover{
 			background-color: vars.$color_grey_light;
+			transition: all 0.25s;
+			border-radius: 4px;
 		}
 	}
 	>.arrowLeft{

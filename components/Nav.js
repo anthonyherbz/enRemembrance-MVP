@@ -70,7 +70,7 @@ const Nav = ({iconSize="30"}) => {
 			slug: "home",
 		},
 	];
-	const [expanded, setExpanded] = useState(true);
+	const [expanded, setExpanded] = useState(false);
 	let navClasses = cx({
 		nav: true,
 	});

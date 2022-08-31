@@ -10,13 +10,14 @@ import Text from '../Text';
 
 let cx = classNames.bind(styles);
 
-const Menu = ({ menuLinks, horizontal, left, center, right }) => {
+const Menu = ({ menuLinks, horizontal, left, center, right, textAlign, fontWeight="bold" }) => {
 	let menuClasses = cx({
 		menu: true,
 		horizontal: horizontal,
 		left: left,
 		right: right,
 		center: center,
+		[`text-alignment-${textAlign}`] : textAlign,
 	});
 
 	return (
@@ -25,7 +26,7 @@ const Menu = ({ menuLinks, horizontal, left, center, right }) => {
 			{menuLinks.map((navLink, index) => {
 				return (
 					<Link key={index} href={`/${navLink.slug}`}>
-						<a><Text fontWeight="bold" size="">{navLink.item}</Text></a>
+						<a><Text textAlign={textAlign} fontWeight={fontWeight} size="">{navLink.item}</Text></a>
 					</Link>
 				);
 			})}

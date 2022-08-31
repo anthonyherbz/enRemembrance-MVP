@@ -9,6 +9,7 @@ $alignments: left, center, right;
 .text {
 	width: 100%;
 	display: inline;
+	margin: 0;
 	@each $value in $fontWeights{
 		&.font-weight-#{$value}{
 			font-weight: $value;

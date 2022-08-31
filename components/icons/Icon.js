@@ -44,9 +44,9 @@ const Icon = ({ color, name, width="50", height="50", rotate}) => {
 			>
 				<path
 					stroke={color}
-					stroke-linecap='round'
-					stroke-linejoin='round'
-					stroke-width={width/3}
+					strokeLinecap='round'
+					strokeLinejoin='round'
+					strokeWidth={width/3}
 					d='m18 9 17 18-17 18'
 				/>
 
@@ -84,8 +84,8 @@ const Icon = ({ color, name, width="50", height="50", rotate}) => {
 				/>
 				<path
 					stroke={color}
-					stroke-linecap='round'
-					stroke-linejoin='round'
+					strokeLinecap='round'
+					strokeLinejoin='round'
 					d='M18 5.86s-2.625-4.708-8.75-4.708A10.25 10.25 0 0 0 .636 5.641.867.867 0 0 0 .5 6.12v30.455c0 .865 1.137 1.466 1.932 1.125 1.416-.608 3.649-1.239 6.818-1.239 6.125 0 8.75 2.354 8.75 2.354M18 5.86v32.955M18 5.86s2.625-4.708 8.75-4.708a10.25 10.25 0 0 1 8.614 4.489.867.867 0 0 1 .136.479v30.455c0 .865-1.137 1.466-1.932 1.125-1.416-.608-3.649-1.239-6.818-1.239-6.125 0-8.75 2.354-8.75 2.354'
 				/>
 			</svg>
