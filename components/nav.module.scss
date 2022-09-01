@@ -1,31 +1,38 @@
-@use '../sass/abstracts/vars.scss';
-.container{
+@use "../sass/abstracts/vars.scss";
+$topSpaces: 50, 75, 100, 125, 150, 200;
+.nav {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
 	width: max-content;
 	position: sticky;
 	height: max-content;
-	top: 50px;
+
 	z-index: 10;
 	padding-top: 0.25rem;
-	
-	svg, a{
+	@each $value in $topSpaces {
+		&.topSpace-#{$value} {
+			top: #{$value}px;
+		}
+	}
+
+	svg,
+	a {
 		cursor: pointer;
 		padding: 2px;
-		&:hover{
+		&:hover {
 			background-color: vars.$color_grey_light;
 			transition: all 0.25s;
 			border-radius: 4px;
 		}
 	}
-	>.arrowLeft{
+	> .arrowLeft {
 		position: absolute;
 		top: 0;
 		right: 0;
 		border-radius: 11px;
 	}
-	>*{
+	> * {
 		gap: 0.35rem;
 	}
 }

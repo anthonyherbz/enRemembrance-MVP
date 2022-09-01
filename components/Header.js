@@ -17,10 +17,11 @@ let cx = classNames.bind(styles);
 //STATUS: visible, on/off working
 //TODO: fixed size,
 
-const Header = ({ show }) => {
+const Header = ({ show, shadow }) => {
 	let headerClasses = cx({
 		header: true,
 		show: show,
+		shadow: shadow,
 	});
 	let [expanded, setExpanded] = useState(false);
 	function handleMouseEnter() {

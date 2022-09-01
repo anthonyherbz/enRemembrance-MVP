@@ -7,15 +7,21 @@ import styles from "./icon.module.scss";
 import classNames from "classnames/bind";
 let cx = classNames.bind(styles);
 
-const Icon = ({ color, name, width="50", height="50", rotate}) => {
-
+const Icon = ({
+	color = "#000",
+	name,
+	width = "50",
+	height = "50",
+	rotate,
+}) => {
 	let svgClasses = cx({
-		svg:true,
-		[`rotate-${rotate}`]:rotate,
+		svg: true,
+		[`rotate-${rotate}`]: rotate,
 	});
 	if (name === "logo") {
 		return (
-			<svg className={svgClasses}
+			<svg
+				className={svgClasses}
 				xmlns='http://www.w3.org/2000/svg'
 				width={width}
 				height={height}
@@ -35,7 +41,8 @@ const Icon = ({ color, name, width="50", height="50", rotate}) => {
 	}
 	if (name === "arrow") {
 		return (
-			<svg className={svgClasses}
+			<svg
+				className={svgClasses}
 				xmlns='http://www.w3.org/2000/svg'
 				width={width}
 				height={height}
@@ -46,16 +53,16 @@ const Icon = ({ color, name, width="50", height="50", rotate}) => {
 					stroke={color}
 					strokeLinecap='round'
 					strokeLinejoin='round'
-					strokeWidth={width/3}
+					strokeWidth={width / 3}
 					d='m18 9 17 18-17 18'
 				/>
-
 			</svg>
 		);
 	}
 	if (name === "home") {
 		return (
-			<svg className={svgClasses}
+			<svg
+				className={svgClasses}
 				xmlns='http://www.w3.org/2000/svg'
 				width={width}
 				height={height}
@@ -71,7 +78,8 @@ const Icon = ({ color, name, width="50", height="50", rotate}) => {
 	}
 	if (name === "book") {
 		return (
-			<svg className={svgClasses}
+			<svg
+				className={svgClasses}
 				xmlns='http://www.w3.org/2000/svg'
 				width={width}
 				height={height}
@@ -93,7 +101,8 @@ const Icon = ({ color, name, width="50", height="50", rotate}) => {
 	}
 	if (name === "info") {
 		return (
-			<svg className={svgClasses}
+			<svg
+				className={svgClasses}
 				xmlns='http://www.w3.org/2000/svg'
 				width={width}
 				height={height}
@@ -109,7 +118,8 @@ const Icon = ({ color, name, width="50", height="50", rotate}) => {
 	}
 	if (name === "mail") {
 		return (
-			<svg className={svgClasses}
+			<svg
+				className={svgClasses}
 				xmlns='http://www.w3.org/2000/svg'
 				width={width}
 				height={height}
@@ -125,7 +135,8 @@ const Icon = ({ color, name, width="50", height="50", rotate}) => {
 	}
 	if (name === "question") {
 		return (
-			<svg className={svgClasses}
+			<svg
+				className={svgClasses}
 				xmlns='http://www.w3.org/2000/svg'
 				width={width}
 				height={height}
@@ -141,7 +152,8 @@ const Icon = ({ color, name, width="50", height="50", rotate}) => {
 	}
 	if (name === "security") {
 		return (
-			<svg className={svgClasses}
+			<svg
+				className={svgClasses}
 				xmlns='http://www.w3.org/2000/svg'
 				width={width}
 				height={height}
@@ -157,7 +169,8 @@ const Icon = ({ color, name, width="50", height="50", rotate}) => {
 	}
 	if (name === "cart") {
 		return (
-			<svg className={svgClasses}
+			<svg
+				className={svgClasses}
 				xmlns='http://www.w3.org/2000/svg'
 				width={width}
 				height={height}
@@ -173,7 +186,8 @@ const Icon = ({ color, name, width="50", height="50", rotate}) => {
 	}
 	if (name === "contract") {
 		return (
-			<svg className={svgClasses}
+			<svg
+				className={svgClasses}
 				xmlns='http://www.w3.org/2000/svg'
 				width={width}
 				height={height}
@@ -195,6 +209,172 @@ const Icon = ({ color, name, width="50", height="50", rotate}) => {
 			</svg>
 		);
 	}
+	if (name === "edit") {
+		return (
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				width={width}
+				height={height}
+				fill='none'
+				viewBox='0 0 36 28'
+			>
+				<path
+					fill={color}
+					d='M27.344 22.227H8.656a.812.812 0 0 0-.812.812v.914c0 .112.091.203.203.203h19.906a.204.204 0 0 0 .203-.203v-.914a.811.811 0 0 0-.812-.812Zm-15.8-2.133c.05 0 .1-.005.151-.013l4.271-.749a.248.248 0 0 0 .135-.071L26.864 8.498a.253.253 0 0 0 0-.358l-4.22-4.223a.251.251 0 0 0-.18-.073.251.251 0 0 0-.18.073L11.52 14.681a.258.258 0 0 0-.07.134l-.75 4.27a.85.85 0 0 0 .239.757.86.86 0 0 0 .604.252Z'
+				/>
+			</svg>
+		);
+	}
+
+	if (name === "published") {
+		return (
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				width={width}
+				height={height}
+				fill='none'
+				viewBox='0 0 26 26'
+			>
+				<path
+					fill={color}
+					d='M10.682 19.5a1.084 1.084 0 0 1-.791-.347l-5.265-5.6a1.085 1.085 0 0 1 1.581-1.485l4.464 4.756 9.11-9.967a1.084 1.084 0 1 1 1.604 1.452l-9.902 10.833a1.084 1.084 0 0 1-.79.358h-.011Z'
+				/>
+			</svg>
+		);
+	}
+	if (name === "visible") {
+		return (
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				width={width}
+				height={height}
+				fill='none'
+				viewBox='0 0 26 26'
+			>
+				<path
+					stroke={color}
+					strokeLinecap='round'
+					strokeLinejoin='round'
+					strokeWidth='2.167'
+					d='M23.028 11.875a1.834 1.834 0 0 1 0 2.25c-1.617 2.11-5.497 6.458-10.028 6.458-4.53 0-8.411-4.347-10.028-6.459a1.833 1.833 0 0 1 0-2.249C4.589 9.764 8.469 5.417 13 5.417c4.53 0 8.411 4.347 10.028 6.458v0Z'
+				/>
+				<path
+					stroke={color}
+					strokeLinecap='round'
+					strokeLinejoin='round'
+					strokeWidth='2.167'
+					d='M13 16.25a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z'
+				/>
+			</svg>
+		);
+	}
+	if (name === "monetized") {
+		return (
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				width={width}
+				height={height}
+				fill='none'
+				viewBox='0 0 26 26'
+			>
+				<path
+					fill={color}
+					d='M13 16.25c-1.993 0-2.167-.932-2.167-1.083H8.667c0 .996.715 2.762 3.25 3.163v1.17h2.166v-1.17c2.167-.368 3.25-1.766 3.25-3.163 0-1.214-.563-3.25-4.333-3.25-2.167 0-2.167-.683-2.167-1.084 0-.4.759-1.083 2.167-1.083s1.506.693 1.517 1.083h2.166a3.25 3.25 0 0 0-2.6-3.12V6.5h-2.166v1.18c-2.167.358-3.25 1.756-3.25 3.153 0 1.214.563 3.25 4.333 3.25 2.167 0 2.167.737 2.167 1.084 0 .346-.672 1.083-2.167 1.083Z'
+				/>
+				<path
+					fill={color}
+					d='M5.417 2.167h-3.25v2.166h2.166V22.75a1.083 1.083 0 0 0 1.084 1.083h15.166a1.083 1.083 0 0 0 1.084-1.083V4.333h2.166V2.167H5.417Zm14.083 19.5h-13V4.333h13v17.334Z'
+				/>
+			</svg>
+		);
+	}
+	if (name === "print") {
+		return (
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				width={width}
+				height={height}
+				fill='none'
+				viewBox='0 0 26 26'
+			>
+				<path
+					fill={color}
+					d='M6.5 5.688A2.437 2.437 0 0 1 8.938 3.25h8.124A2.437 2.437 0 0 1 19.5 5.688V6.5h1.625a3.25 3.25 0 0 1 3.25 3.25v7.313a2.438 2.438 0 0 1-2.438 2.437h-2.274v.813a2.438 2.438 0 0 1-2.438 2.437H8.937A2.438 2.438 0 0 1 6.5 20.312V19.5H4.062a2.438 2.438 0 0 1-2.437-2.438V9.75a3.25 3.25 0 0 1 3.25-3.25H6.5v-.813Zm11.375.812v-.813a.812.812 0 0 0-.813-.812H8.938a.812.812 0 0 0-.812.813V6.5h9.75ZM6.5 8.125H4.875A1.625 1.625 0 0 0 3.25 9.75v7.313a.812.812 0 0 0 .813.812H6.5v-.813a2.437 2.437 0 0 1 2.438-2.437h8.287a2.438 2.438 0 0 1 2.438 2.438v.812h2.274a.812.812 0 0 0 .813-.813V9.75a1.625 1.625 0 0 0-1.625-1.625H6.5Zm2.438 8.125a.812.812 0 0 0-.813.813v3.25a.812.812 0 0 0 .813.812h8.287a.812.812 0 0 0 .813-.813v-3.25a.812.812 0 0 0-.813-.812H8.937Z'
+				/>
+			</svg>
+		);
+	}
+	if (name === "pdf") {
+		return (
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				width={width}
+				height={height}
+				fill='none'
+				viewBox='0 0 26 26'
+			>
+				<path
+					fill={color}
+					d='M19.5 19.5v3.25h-13V19.5H4.875v3.25A1.625 1.625 0 0 0 6.5 24.375h13a1.625 1.625 0 0 0 1.625-1.625V19.5H19.5Z'
+				/>
+				<path
+					fill={color}
+					d='m17.063 17.063-1.15-1.15-2.1 2.102v-6.64h-1.626v6.64l-2.1-2.101-1.15 1.149L13 21.125l4.063-4.063ZM22.75 3.25V1.625h-4.875V9.75H19.5V6.5h2.438V4.875H19.5V3.25h3.25Zm-8.938 6.5h-3.25V1.625h3.25a2.44 2.44 0 0 1 2.438 2.438v3.25a2.44 2.44 0 0 1-2.438 2.437Zm-1.624-1.625h1.624a.813.813 0 0 0 .813-.813v-3.25a.813.813 0 0 0-.813-.812h-1.624v4.875Zm-4.876-6.5H3.25V9.75h1.625V7.312h2.438a1.627 1.627 0 0 0 1.625-1.625V3.25a1.627 1.627 0 0 0-1.626-1.625ZM4.876 5.688V3.25h2.438v2.438H4.875Z'
+				/>
+			</svg>
+		);
+	}
+	if (name === "trash") {
+		return (
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				width={width}
+				height={height}
+				fill='none'
+				viewBox='0 0 26 26'
+			>
+				<path
+					fill={color}
+					d='M8.938 8.938a.812.812 0 0 1 .812.812v9.75a.812.812 0 1 1-1.625 0V9.75a.812.812 0 0 1 .813-.813Zm4.062 0a.812.812 0 0 1 .813.812v9.75a.812.812 0 1 1-1.626 0V9.75A.812.812 0 0 1 13 8.937Zm4.875.812a.812.812 0 1 0-1.625 0v9.75a.812.812 0 1 0 1.625 0V9.75Z'
+				/>
+				<path
+					fill={color}
+					fillRule='evenodd'
+					d='M23.563 4.875A1.625 1.625 0 0 1 21.938 6.5h-.813v14.625a3.25 3.25 0 0 1-3.25 3.25h-9.75a3.25 3.25 0 0 1-3.25-3.25V6.5h-.813a1.625 1.625 0 0 1-1.625-1.625V3.25a1.625 1.625 0 0 1 1.626-1.625H9.75A1.625 1.625 0 0 1 11.375 0h3.25a1.625 1.625 0 0 1 1.625 1.625h5.688a1.625 1.625 0 0 1 1.625 1.625v1.625ZM6.692 6.5l-.192.096v14.529a1.625 1.625 0 0 0 1.625 1.625h9.75a1.625 1.625 0 0 0 1.625-1.625V6.595l-.192-.095H6.692Zm-2.63-1.625V3.25h17.875v1.625H4.063Z'
+					clipRule='evenodd'
+				/>
+			</svg>
+		);
+	}
+	if (name === "more") {
+		return (
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				width={width}
+				height={height}
+				fill='none'
+				viewBox='0 0 26 26'
+			>
+				<path
+					fill={color}
+					d='M4.875 15.438a2.438 2.438 0 1 1 0-4.876 2.438 2.438 0 0 1 0 4.876Zm8.125 0a2.438 2.438 0 1 1 0-4.876 2.438 2.438 0 0 1 0 4.876Zm8.125 0a2.438 2.438 0 1 1 0-4.876 2.438 2.438 0 0 1 0 4.876Z'
+				/>
+				<rect
+					width={width}
+					height={height}
+					x='.5'
+					y='.5'
+					stroke={color}
+					rx='9.5'
+				/>
+			</svg>
+		);
+	}
+	// if (name === "contract") {
+	// 	return (
+
+	// 	)
+	// }
 };
 export default Icon;
 

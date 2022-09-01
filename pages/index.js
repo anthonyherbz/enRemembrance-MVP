@@ -69,7 +69,7 @@ export default function Home() {
 			<Container marginTop>
 				<Row nowrap mHeight>
 					<Col ratio='1'>
-						<Nav />
+						<Nav topSpace="50"/>
 					</Col>
 					<Col ratio='20' alignItems='center' allowScroll>
 						<Container marginLeft>

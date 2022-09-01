@@ -5,7 +5,7 @@ import Icon from "./icons/Icon";
 import styles from "./nav.module.scss";
 let cx = classNames.bind(styles);
 
-const Nav = ({iconSize="30"}) => {
+const Nav = ({iconSize="30", topSpace="50"}) => {
 	const navLinks = [
 		{
 			item: "Home",
@@ -73,6 +73,7 @@ const Nav = ({iconSize="30"}) => {
 	const [expanded, setExpanded] = useState(false);
 	let navClasses = cx({
 		nav: true,
+		[`topSpace-${topSpace}`] : topSpace,
 	});
 	function handleClick() {
 		setExpanded(!expanded);
@@ -81,7 +82,7 @@ const Nav = ({iconSize="30"}) => {
 	return (
 		<>
 			{expanded ? (
-				<div className={styles.container}>
+				<div className={navClasses}>
 					<div onClick={handleClick} className={styles.arrowLeft}>
 						<Icon
 							name='arrow'
@@ -94,7 +95,7 @@ const Nav = ({iconSize="30"}) => {
 					<Menu menuLinks={navLinks} />
 				</div>
 			) : (
-				<div className={styles.container}>
+				<div className={navClasses}>
 					<div onClick={handleClick} className={styles.arrowRight}>
 						<Icon
 							name='arrow'
