@@ -8,7 +8,6 @@ const statusIcons = ({ book, old }) => {
 	let inactive = "rgba(209, 209, 209, 1)";
 	let red = "#bd423a";
 	if (published || visible || monetized) {
-		// console.log("returned true");
 		return (
 			// style={{ display: "flex", justifyContent: "center" }}
 			<div style={{display: "flex", justifyContent: "center"}}>
@@ -17,12 +16,12 @@ const statusIcons = ({ book, old }) => {
 				) : (
 					<Icon name='published' color={inactive} />
 				)}
-				{visible ? (
+				{visible && published ? (
 					<Icon name='visible' color={active} />
 				) : (
 					<Icon name='visible' color={inactive} />
 				)}
-				{monetized ? (
+				{monetized && published ? (
 					<Icon name='monetized' color={active} />
 				) : (
 					<Icon name='monetized' color={inactive} />

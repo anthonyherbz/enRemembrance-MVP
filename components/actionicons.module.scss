@@ -1,0 +1,32 @@
+@use "../sass/abstracts/vars.scss";
+.parent {
+	display: flex;
+	justify-content: center;
+	height: max-content;
+	align-items: center;
+	gap: 0.25rem;
+	svg {
+		cursor: pointer;
+		padding: 0.15rem;
+		&:hover {
+			background: vars.$color_grey_light;
+			border-radius: 7px;
+		}
+	}
+	.moreParent {
+		position: relative;
+		.moreMenu {
+			position: absolute;
+			top: 30px;
+			right: 0;
+			// height: 40px;
+			// width: 40px;
+			width: max-content;
+			padding: 0.5rem 1rem;
+			box-shadow: 5px 5px 5px 3px rgba(0, 0, 0, 0.219);
+
+			background-color: #fff;
+			z-index: 1;
+		}
+	}
+}

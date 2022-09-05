@@ -10,55 +10,51 @@ import Icon from "../icons/Icon";
 import { useState } from "react";
 import React from "react";
 import Image from "next/image";
-import EditorBookPages from "./EditorBookPages";
 
 const BookEditor = () => {
-	let pages = [
-		{
-			id: 1,
-			image: "placeholder1.jpg",
-		},
-		{
-			id: 2,
-			image: "placeholder2.jpg",
-		},
-		{
-			id: 3,
-			image: "placeholder3.jpg",
-		},
-		{
-			id: 4,
-			image: "placeholder4.jpg",
-		},
-		{
-			id: 5,
-			image: "placeholder5.jpg",
-		},
-		{
-			id: 6,
-			image: "placeholder6.jpg",
-		},
-		{
-			id: 7,
-			image: "placeholder7.jpg",
-		},
-		{
-			id: 8,
-			image: "placeholder8.jpg",
-		},
-	];
 	const [position, setPosition] = useState(0);
 	function addPos() {
-		if (position < pages.length){
-			setPosition(position + 1);
-		}
+		setPosition(position + 1);
 	}
 	function subPos() {
 		if (position >= 1) {
 			setPosition(position - 1);
 		}
 	}
-	
+	let pages = [
+		{
+			id: 1,
+			image: "placeholder1.jpg"
+		},
+		{
+			id: 2,
+			image: "placeholder2.jpg"
+		},
+		{
+			id: 3,
+			image: "placeholder3.jpg"
+		},
+		{
+			id: 4,
+			image: "placeholder4.jpg"
+		},
+		{
+			id: 5,
+			image: "placeholder5.jpg"
+		},
+		{
+			id: 6,
+			image: "placeholder6.jpg"
+		},
+		{
+			id: 7,
+			image: "placeholder7.jpg"
+		},
+		{
+			id: 8,
+			image: "placeholder8.jpg"
+		},
+]
 
 	return (
 		<div className={styles.bookEditorParent}>
@@ -66,32 +62,36 @@ const BookEditor = () => {
 				<div className={styles.arrow} onClick={subPos}>
 					<Icon name='arrow' rotate='180' />
 				</div>
-				<EditorBookPages
-					pageList={pages}
-					position={position}
-					setPosition={setPosition}
-				/>
+				<div className={styles.bookElement}>
+					<div className={styles.textbox}>
+						<label htmlFor='booktitle'>Book Title</label>
+						<input name='booktitle' type='text'></input>
+					</div>
+					<div className={styles.buttons}>
+						<ButtonText
+							size='large'
+							color='yellow'
+							label='Choose Cover'
+						/>
+						<label htmlFor="cover">Upload Image</label>
+						<input type="file" name="cover" accept="image/png, image/jpg"/>
+						<ButtonText size='medium' label='pick category' />
+					</div>
+					<div className={styles.authorText}>
+						<Text>Author name goes here "author"</Text>
+					</div>
+				</div>
 				<div className={styles.arrow} onClick={addPos}>
 					<Icon name='arrow' />
 				</div>
 			</div>
 			<div className={styles.bookBottom}>
 				<div className={styles.filmstrip}>
-					{pages.map((page, index) => {
-						return (
-							<div key={index}
-								onClick={() => {
-									setPosition(index + 1);
-								}}
-							>
-								<Image
-									layout='fill'
-									// width='75'
-									// height='75'
-									src={`/images/${page.image}`}
-								/>
+					{pages.map((page, index)=>{
+						return(
+							<div onClick={() => {setPosition(index+1)}}><Image layout="fill" key={index} width="75" height="75" src={`/images/${page.image}`}/>
 							</div>
-						);
+						)
 					})}
 				</div>
 				Page {position}

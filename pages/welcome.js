@@ -12,7 +12,7 @@ import ButtonText from "../components/button/ButtonText";
 import Video from "../components/Video";
 import ExpandingText from "../components/ExpandingText";
 import { useState } from "react";
-import Overlay from "../components/overlay/Overlay";
+import SignOverlay from "../components/overlay/SignOverlay";
 import PreviewFeed from "../components/feed/PreviewFeed";
 // import styles from '../components/welcome'
 //BG needs to stay static, max size, regardless of window size
@@ -98,7 +98,7 @@ const Welcome = () => {
 												label='Sign In'
 											/>
 										</div>
-										<Overlay
+										<SignOverlay
 											signUpShow={signUpShow}
 											setSignUpShow={setSignUpShow}
 										/>
@@ -110,7 +110,7 @@ const Welcome = () => {
 												label='Sign Up'
 											/>
 										</div>
-										<Overlay
+										<SignOverlay
 											signInShow={signInShow}
 											setSignInShow={setSignInShow}
 										/>

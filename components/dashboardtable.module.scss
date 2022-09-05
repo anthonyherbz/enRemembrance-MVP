@@ -15,6 +15,12 @@ $spacer-size: .75rem;
 	border-spacing: 0;	// // overflow: scroll;
 	// overflow: hidden;
 	// // height: 450px;
+	.old{
+		color: vars.$color_red
+	}
+	.new{
+		color: vars.$color_black_80
+	}
 	.endcap >td{
 		background-color: #fff;
 		// line-height: 1rem;
@@ -28,7 +34,7 @@ $spacer-size: .75rem;
 	// border-spacing: 5em 0;
 	tr {
 		&:nth-child(odd) {
-			background-color: vars.$color_grey_light;
+			background-color: vars.$color_white_95;
 		}
 		&:nth-child(even) {
 			background-color: vars.$color_white;
@@ -39,7 +45,7 @@ $spacer-size: .75rem;
 		font-size: 2em;
 		padding-top: 2rem;
 		// margin: 4rem;
-		border-inline: $spacer-size solid vars.$color_white_99;
+		// border-inline: $spacer-size solid vars.$color_white_99;
 		&:first-child {
 			border-left: none;
 		}
@@ -50,7 +56,7 @@ $spacer-size: .75rem;
 	}
 	td {
 		// margin: 4rem;
-		border-inline: $spacer-size solid vars.$color_white_99;
+		// border-inline: $spacer-size solid vars.$color_white_99;
 		&:first-child {
 			border-left: none;
 		}

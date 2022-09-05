@@ -8,13 +8,13 @@ import Link from "next/link";
 
 let cx = classNames.bind(styles);
 
-const ButtonText = ({path, size, color, fill, alt, label }) => {
+const ButtonText = ({path, size, color="empty", fill, alt, label }) => {
 	let buttonTextClasses = cx({
 		buttn: true,
 		fill: fill === "true",
 		unfill: fill === "false",
 		[`color-${color}`]: color,
-		size: size,
+		[`size-${size}`]: size,
 	});
 	return (
 		<div>

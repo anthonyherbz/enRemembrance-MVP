@@ -1,0 +1,25 @@
+.editor{
+	display: flex;
+	top: 50px;
+	position: absolute;
+	justify-content: space-between;
+	width: 100%;
+	height: calc(100vh - 50px);
+	.menuSection{
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		.buttons>*{
+			margin-top: 1rem;
+		}
+	}
+	.bookSection{
+		flex: 2;
+		// border: 1px solid black;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+
+	}
+}

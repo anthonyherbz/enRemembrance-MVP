@@ -10,7 +10,6 @@ import Menu from './menu/Menu';
 let cx = classNames.bind(styles);
 
 const Profile = ({ user, userLink, expanded, setExpanded }) => {
-	console.log("Expanded state: ", expanded);
 	let profileClasses = cx({
 		profile : true,
 	})

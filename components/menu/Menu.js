@@ -9,6 +9,7 @@ import Link from "next/link";
 import Text from '../Text';
 
 let cx = classNames.bind(styles);
+//menuLinks takes input of slug and item as objects in an array
 
 const Menu = ({ menuLinks, horizontal, left, center, right, textAlign, fontWeight="bold" }) => {
 	let menuClasses = cx({

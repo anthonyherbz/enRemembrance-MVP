@@ -1,4 +1,4 @@
-import styles from "./overlay.module.scss";
+import styles from "./signoverlay.module.scss";
 // import TextInput from "./TextInput";
 import ButtonText from "../button/ButtonText";
 
@@ -11,7 +11,7 @@ import ButtonText from "../button/ButtonText";
 //Details: setXShow props are called when clicking outside of the .inside div (AKA on .closeZone) or when clicking on the x
 //Opportunities for improvement: reduce duplicates by checking once if the type is sign in or sign up and using vars accordingly
 
-const Overlay = ({ signInShow, setSignInShow, signUpShow, setSignUpShow }) => {
+const SignOverlay = ({ signInShow, setSignInShow, signUpShow, setSignUpShow }) => {
 	console.log("signInShow state: ", signInShow);
 	function handleSignInClick() {
 		setSignInShow(!signInShow);
@@ -99,4 +99,4 @@ const Overlay = ({ signInShow, setSignInShow, signUpShow, setSignUpShow }) => {
 		return <>{signUpShow ? signUpOverlay : null}</>;
 	}
 };
-export default Overlay;
+export default SignOverlay;
