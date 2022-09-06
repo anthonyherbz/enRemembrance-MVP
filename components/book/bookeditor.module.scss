@@ -15,8 +15,9 @@
 		.filmstrip {
 			display: flex;
 			gap: 0.25rem;
-			background-color: vars.$color_white_95;
-			padding: 0.75rem;
+			background-color: vars.$color_white;
+			padding: 1rem;
+			border-radius: 11px;
 			& > div {
 				position: relative;
 				width: 50px;

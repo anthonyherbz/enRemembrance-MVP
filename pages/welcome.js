@@ -93,10 +93,7 @@ const Welcome = () => {
 								<Row mWidth justifyContent='center' nowrap>
 									<Col ratio='1' alignItems='center'>
 										<div onClick={handleSignInClick}>
-											<ButtonText
-												color='blue'
-												label='Sign In'
-											/>
+											<ButtonText color='blue'>Sign In</ButtonText>
 										</div>
 										<SignOverlay
 											signUpShow={signUpShow}
@@ -105,10 +102,7 @@ const Welcome = () => {
 									</Col>
 									<Col ratio='1' alignItems='center'>
 										<div onClick={handleSignUpClick}>
-											<ButtonText
-												color='yellow'
-												label='Sign Up'
-											/>
+											<ButtonText color='yellow'>Sign Up</ButtonText>
 										</div>
 										<SignOverlay
 											signInShow={signInShow}

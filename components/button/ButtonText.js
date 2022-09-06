@@ -8,26 +8,32 @@ import Link from "next/link";
 
 let cx = classNames.bind(styles);
 
-const ButtonText = ({path, size, color="empty", fill, alt, label }) => {
+const ButtonText = ({path, size, color="empty", fill="true", label, submit, formId, targetUrl, btnType, expand, children}) => {
 	let buttonTextClasses = cx({
 		buttn: true,
 		fill: fill === "true",
 		unfill: fill === "false",
+		expand: expand,
 		[`color-${color}`]: color,
 		[`size-${size}`]: size,
 	});
+	let passedProps = {
+		form: formId,
+		formAction: targetUrl,
+		type: btnType
+	}
 	return (
 		<div>
-			<button className={buttonTextClasses}>
+			<button className={buttonTextClasses} {...passedProps}>
 				{path ? (
 					// conditional-- if path is not empty, return button with a link, if path is empty return only button with label
 					<div className={styles.btnTxtParent}>
 						<Link href={path}>
-							<a>{label}</a>
+							<a>{label}{children}</a>
 						</Link>
 					</div>
 				) : (
-					<div className={styles.btnTxtParent}>{label}</div>
+					<div className={styles.btnTxtParent} {...passedProps}>{label}{children}</div>
 				)}
 			</button>
 		</div>

@@ -54,7 +54,7 @@ const BookEditor = () => {
 		}
 	}
 	function subPos() {
-		if (position >= 1) {
+		if (position >= 1) {	
 			setPosition(position - 1);
 		}
 	}
@@ -86,6 +86,7 @@ const BookEditor = () => {
 							>
 								<Image
 									layout='fill'
+									objectFit="cover"
 									// width='75'
 									// height='75'
 									src={`/images/${page.image}`}
@@ -94,7 +95,7 @@ const BookEditor = () => {
 						);
 					})}
 				</div>
-				Page {position}
+				{position >0 ? <>Page {position}</> : <>Cover</> }
 			</div>
 		</div>
 	);

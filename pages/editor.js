@@ -19,15 +19,17 @@ const Editor = () => {
 					<Nav />
 					<div className={styles.buttons}>
 						<ButtonText
-							size='medium'
+							// size='medium'
+							expand
 							fill='true'
-							label='save for later'
+							label='SaveV'
 							color='green'
 						/>
 						<ButtonText
-							size='medium'
+							// size='medium'
+							expand
 							fill='true'
-							label='delete story'
+							label='DeleteT'
 							color='red'
 						/>
 					</div>

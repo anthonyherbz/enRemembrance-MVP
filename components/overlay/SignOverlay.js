@@ -56,10 +56,7 @@ const SignOverlay = ({ signInShow, setSignInShow, signUpShow, setSignUpShow }) =
 						<div className={styles.button}>
 							<ButtonText
 								color='yellow'
-								size='small'
-								label='Sign Up'
-								// path='/'
-							/>
+								size='small'>Sign Up</ButtonText>
 						</div>
 					</form>
 				</div>

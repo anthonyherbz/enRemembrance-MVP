@@ -32,6 +32,9 @@ $topSpaces: 50, 75, 100, 125, 150, 200;
 		right: 0;
 		border-radius: 11px;
 	}
+	> .arrowRight{
+		cursor: pointer;
+	}
 	> * {
 		gap: 0.35rem;
 	}
