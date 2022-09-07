@@ -13,7 +13,7 @@ const Author = ({ author }) => {
 				<div className={styles.r1c1}>
 					<div className={styles.r1c1c1}>
 						<Image
-							src={author.profileImg}
+							src={`/images/${author.profileImg}`}
 							width='30'
 							height='30'
 							alt='profile icon'

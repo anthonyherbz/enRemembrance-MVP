@@ -10,7 +10,6 @@ const Video = () => {
 			<video className={styles.video} controls>
 				<source src='/videos/test.mp4' type='video/mp4'/>
 				If you see this, the video is not working or incompatible.
-				
 			</video>
 		</div>
 	);

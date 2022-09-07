@@ -70,7 +70,7 @@ const EditorBookPages = ({ pageList, position, setPosition }) => {
 					<ButtonText size='medium' label='pick category' />
 				</div>
 				<div className={styles.authorText}>
-					Author name goes here "author"
+					Author name goes here
 				</div>
 			</div>
 		);

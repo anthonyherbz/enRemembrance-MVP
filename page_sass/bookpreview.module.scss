@@ -1,0 +1,9 @@
+@use '../sass/abstracts/vars.scss';
+
+.bookPreview{
+	display: flex;
+	height: 100vh;
+	.bookContent{
+		background-color: vars.$color_white;
+	}
+}

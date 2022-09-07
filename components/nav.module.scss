@@ -7,7 +7,6 @@ $topSpaces: 50, 75, 100, 125, 150, 200;
 	width: max-content;
 	position: sticky;
 	height: max-content;
-
 	z-index: 10;
 	padding-top: 0.25rem;
 	@each $value in $topSpaces {

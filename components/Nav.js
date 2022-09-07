@@ -9,7 +9,7 @@ const Nav = ({iconSize="30", topSpace="50"}) => {
 	const navLinks = [
 		{
 			item: "Home",
-			slug: "home",
+			slug: "/",
 		},
 		{
 			item: "About",
@@ -35,6 +35,22 @@ const Nav = ({iconSize="30", topSpace="50"}) => {
 			item: "Testing",
 			slug: "testing",
 		},
+		{
+			item: "Dashboard",
+			slug: "dashboard",
+		},
+		{
+			item: "Post",
+			slug: "postpage",
+		},
+		{
+			item: "Author",
+			slug: "authorpage",
+		},
+		{
+			item: "Editor",
+			slug: "editor",
+		},
 	];
 	const navIcons = [
 		{
@@ -59,14 +75,6 @@ const Nav = ({iconSize="30", topSpace="50"}) => {
 		},
 		{
 			item: <Icon color='#000' name='contract' width={iconSize} height={iconSize} />,
-			slug: "home",
-		},
-		{
-			item: <Icon color='#000' name='security' width={iconSize} height={iconSize} />,
-			slug: "home",
-		},
-		{
-			item: <Icon color='#000' name='home' width={iconSize} height={iconSize} />,
 			slug: "home",
 		},
 	];

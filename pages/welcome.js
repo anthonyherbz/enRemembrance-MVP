@@ -7,53 +7,22 @@ import Col from "../components/Col";
 import Logo from "../components/Logo";
 import Text from "../components/Text";
 import ButtonText from "../components/button/ButtonText";
-// import ButtonIcon from "../components/ButtonIcon";
-// import Checkbox from "../components/Checkbox";
 import Video from "../components/Video";
 import ExpandingText from "../components/ExpandingText";
 import { useState } from "react";
+import {getBooks} from './api/api'
 import SignOverlay from "../components/overlay/SignOverlay";
 import PreviewFeed from "../components/feed/PreviewFeed";
-// import styles from '../components/welcome'
-//BG needs to stay static, max size, regardless of window size
+
+//This is the Landing Page. It be the only page accessible while unauthenticated
+
 
 const Welcome = () => {
 	const [signInShow, setSignInShow] = useState(false);
 	const [signUpShow, setSignUpShow] = useState(false);
-	const books = [
-		{
-			postID: 0,
-			title: "post1",
-			slug: "/book_example",
-			cover: "bookcover.jpg",
-			content:
-				"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt facere modi sequi non minus? Provident blanditiis eos sequi excepturi, a libero officia quia, sed culp facilis dolore velit voluptatem voluptate?",
-		},
-		{
-			postID: 1,
-			title: "post2",
-			slug: "/book_example",
-			cover: "bookcover.jpg",
-			content:
-				"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt facere modi sequi non minus? Provident blanditiis eos sequi excepturi, a libero officia quia, sed culp facilis dolore velit voluptatem voluptate?",
-		},
-		{
-			postID: 2,
-			title: "post3",
-			slug: "/book_example",
-			cover: "bookcover.jpg",
-			content:
-				"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt facere modi sequi non minus? Provident blanditiis eos sequi excepturi, a libero officia quia, sed culp facilis dolore velit voluptatem voluptate?",
-		},
-		{
-			postID: 3,
-			title: "post4",
-			slug: "/book_example",
-			cover: "bookcover.jpg",
-			content:
-				"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt facere modi sequi non minus? Provident blanditiis eos sequi excepturi, a libero officia quia, sed culp facilis dolore velit voluptatem voluptate?",
-		},
-	];
+	const books = getBooks();
+
+
 	console.log(signInShow, signUpShow);
 	function handleSignInClick() {
 		setSignInShow(!signInShow);
@@ -80,8 +49,9 @@ const Welcome = () => {
 							sm='5'
 							xs='5'
 							alignItems='center'
+							justifyContent="space-between"
 						>
-							<Logo />
+							<Logo size="2x" />
 							<div className={styles.welcome}>
 								<Heading
 									color='white'

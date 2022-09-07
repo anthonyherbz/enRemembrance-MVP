@@ -1,7 +1,7 @@
 import styles from "./dashboardtable.module.scss";
 import classNames from "classnames/bind";
 let cx = classNames.bind(styles);
-import { getBooks } from "../lib/api/api";
+import { getBooks } from "../pages/api/api"
 import StatusIcons from "./StatusIcons";
 import ActionIcons from "./ActionIcons";
 import NoSsr from "./NoSsr";
