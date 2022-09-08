@@ -1,6 +1,6 @@
 import Head from "next/head";
 import ButtonText from "../components/button/ButtonText";
-import Header from "../components/Header";
+import Header from "../components/header/Header";
 import Nav from "../components/Nav";
 import styles from "../page_sass/editor.module.scss";
 import BookEditor from "../components/book/BookEditor";

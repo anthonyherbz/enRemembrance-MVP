@@ -49,16 +49,15 @@ const BookEditor = () => {
 	];
 	const [position, setPosition] = useState(0);
 	function addPos() {
-		if (position < pages.length){
+		if (position < pages.length) {
 			setPosition(position + 1);
 		}
 	}
 	function subPos() {
-		if (position >= 1) {	
+		if (position >= 1) {
 			setPosition(position - 1);
 		}
 	}
-	
 
 	return (
 		<div className={styles.bookEditorParent}>
@@ -79,14 +78,15 @@ const BookEditor = () => {
 				<div className={styles.filmstrip}>
 					{pages.map((page, index) => {
 						return (
-							<div key={index}
+							<div
+								key={index}
 								onClick={() => {
 									setPosition(index + 1);
 								}}
 							>
 								<Image
 									layout='fill'
-									objectFit="cover"
+									objectFit='cover'
 									// width='75'
 									// height='75'
 									src={`/images/${page.image}`}
@@ -95,7 +95,7 @@ const BookEditor = () => {
 						);
 					})}
 				</div>
-				{position >0 ? <>Page {position}</> : <>Cover</> }
+				{position > 0 ? <>Page {position}</> : <>Cover</>}
 			</div>
 		</div>
 	);

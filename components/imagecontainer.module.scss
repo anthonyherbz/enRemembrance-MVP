@@ -1,0 +1,11 @@
+.imageContainer{
+height: 100%;
+width: 100%;
+
+	&.fill{
+		position: relative;
+	}
+	&.responsive{
+		display: block;
+	}
+}

@@ -9,7 +9,7 @@ const Nav = ({iconSize="30", topSpace="50"}) => {
 	const navLinks = [
 		{
 			item: "Home",
-			slug: "/",
+			slug: "",
 		},
 		{
 			item: "About",

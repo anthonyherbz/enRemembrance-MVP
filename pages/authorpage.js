@@ -1,7 +1,7 @@
 import styles from '../page_sass/authorpage.module.scss'
 import Author from '../components/Author'
 import { getAuthors, getPosts } from "./api/api";
-import PostFeed from "../components/feed/PostFeed";
+import PostFeed from "../components/post/PostFeed";
 import ButtonText from "../components/button/ButtonText";
 
 const AuthorPage = () => {

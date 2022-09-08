@@ -1,18 +1,10 @@
 import Head from "next/head";
-// import Image from "next/image";
-// import styles from "../sass/Home.module.css";
 import Layout from "../components/Layout";
 import Col from "../components/Col";
 import Row from "../components/Row";
-// import Logo from "../components/Logo";
-import Header from "../components/Header";
-import Menu from "../components/menu/Menu";
-// import Author from "../components/Author";
-// import Button from "../components/Button";
-// import Checkbox from "../components/Checkbox";
+import Header from "../components/header/Header";
 import Footer from "../components/Footer";
-import PostFeed from "../components/feed/PostFeed";
-import Post from "../components/post/Post";
+import PostFeed from "../components/post/PostFeed";
 import Container from "../components/Container";
 import Nav from "../components/Nav";
 

@@ -1,9 +1,9 @@
 import styles from "../page_sass/dashboard.module.scss";
 import classNames from "classnames/bind";
-import Header from "../components/Header";
+import Header from "../components/header/Header";
 import Nav from "../components/Nav";
 import ButtonText from "../components/button/ButtonText";
-import DBTable from '../components/DBTable';
+import DBTable from '../components/dashboard/DBTable';
 let cx = classNames.bind(styles);
 
 //https://www.geeksforgeeks.org/how-to-calculate-the-number-of-days-between-two-dates-in-javascript/

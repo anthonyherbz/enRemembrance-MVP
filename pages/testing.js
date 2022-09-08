@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import Author from "../components/Author";
-import { getAuthors, getPosts } from "./api/api";
-import PostFeed from "../components/feed/PostFeed";
-import ButtonText from "../components/button/ButtonText";
+import { makeBooks } from "./api/arrayConstructors";
+import ImageContainer from "../components/ImageContainer";
 
 const Testing = () => {
 	const [selectedFile, setSelectedFile] = useState();
@@ -19,9 +17,13 @@ const Testing = () => {
 		
 	};
 	const handleUpload = () => {};
-
+	let books = makeBooks()
+	console.log(books)
 	return (
 		<div>
+			<div style={{width: "200px", height: "200px"}}>
+				<ImageContainer src="/images/placeholder1.jpg"/>
+			</div>
 			
 
 
@@ -33,7 +35,7 @@ const Testing = () => {
 
 
 
-			<div style={{display: "none"}}>
+			<div >
 				<input
 					type='file'
 					name='file'

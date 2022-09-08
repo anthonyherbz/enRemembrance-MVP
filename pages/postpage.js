@@ -7,7 +7,7 @@ import {
 	getPost,
 } from "./api/api";
 import styles from "../page_sass/postpage.module.scss";
-import CommentFeed from "../components/CommentFeed";
+import CommentFeed from "../components/comment/CommentFeed";
 import Heading from "../components/Heading";
 import Image from "next/image";
 import Link from "next/link";

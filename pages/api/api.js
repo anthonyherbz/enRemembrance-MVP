@@ -26,6 +26,8 @@
 // 		commentId:2,
 // 	}
 // ]
+
+import { makeBooks } from "./arrayConstructors";
 const posts = [
 	{
 		postId: 0,
@@ -140,83 +142,107 @@ const comments = [
 	},
 ];
 //DB needs an affordance to prevent visible and monetized being true if published isn't true
-const books = [
-	{
-		id: 0,
-		title: "title",
-		author: "author",
-		coverName: "placeholder1.jpg",
-		slug: "slug",
-		date: "2022, 9, 1",
-		postId: 0,
-		published: false,
-		visible: false,
-		monetized: false,
-		expressionsListId: 0,
-		commentsListId: 0,
-		description: "book description",
-	},
-	{
-		id: 1,
-		title: "title",
-		author: "author",
-		coverName: "placeholder1.jpg",
-		slug: "slug",
-		date: "2022, 8, 22",
-		postId: 0,
-		published: true,
-		visible: true,
-		monetized: false,
-		expressionsListId: 0,
-		commentsListId: 0,
-		description: "book description",
-	},
-	{
-		id: 2,
-		title: "title",
-		author: "author",
-		coverName: "placeholder1.jpg",
-		slug: "slug",
-		date: "2022, 8, 16",
-		postId: 0,
-		published: false,
-		visible: false,
-		monetized: false,
-		expressionsListId: 0,
-		commentsListId: 0,
-		description: "book description",
-	},
-	{
-		id: 3,
-		title: "title",
-		author: "author",
-		coverName: "placeholder1.jpg",
-		slug: "slug",
-		date: "2022, 8, 15",
-		postId: 0,
-		published: false,
-		visible: false,
-		monetized: false,
-		expressionsListId: 0,
-		commentsListId: 0,
-		description: "book description",
-	},
-	{
-		id: 4,
-		title: "title",
-		author: "author",
-		coverName: "placeholder1.jpg",
-		slug: "slug",
-		date: "2022, 5, 1",
-		postId: 0,
-		published: true,
-		visible: false,
-		monetized: true,
-		expressionsListId: 0,
-		commentsListId: 0,
-		description: "book description",
-	},
-];
+// const books = [
+// 	{
+// 		id: 0,
+// 		title: "title",
+// 		author: "author",
+// 		coverName: "placeholder1.jpg",
+// 		slug: "slug",
+// 		date: "2022, 9, 1",
+// 		pages: {
+// 			number: 0,
+// 			template: {
+// 				templateName: "template1, template2, etc",
+// 				position0:{
+// 					type: "image or text",
+// 					content: "src if image, text content if text",
+// 				},
+// 				position1:{
+// 					type: "image or text",
+// 					content: "src if image, text content if text",
+// 				},
+
+// 				position2:{
+// 					type: "image or text",
+// 					content: "src if image, text content if text",
+// 				},
+
+// 				position3:{
+// 					type: "image or text",
+// 					content: "src if image, text content if text",
+// 				},
+// 			},
+// 		},
+// 		postId: 0,
+// 		published: false,
+// 		visible: false,
+// 		monetized: false,
+// 		expressionsListId: 0,
+// 		commentsListId: 0,
+// 		description: "book description",
+// 	},
+// 	{
+// 		id: 1,
+// 		title: "title",
+// 		author: "author",
+// 		coverName: "placeholder1.jpg",
+// 		slug: "slug",
+// 		date: "2022, 8, 22",
+// 		postId: 0,
+// 		published: true,
+// 		visible: true,
+// 		monetized: false,
+// 		expressionsListId: 0,
+// 		commentsListId: 0,
+// 		description: "book description",
+// 	},
+// 	{
+// 		id: 2,
+// 		title: "title",
+// 		author: "author",
+// 		coverName: "placeholder1.jpg",
+// 		slug: "slug",
+// 		date: "2022, 8, 16",
+// 		postId: 0,
+// 		published: false,
+// 		visible: false,
+// 		monetized: false,
+// 		expressionsListId: 0,
+// 		commentsListId: 0,
+// 		description: "book description",
+// 	},
+// 	{
+// 		id: 3,
+// 		title: "title",
+// 		author: "author",
+// 		coverName: "placeholder1.jpg",
+// 		slug: "slug",
+// 		date: "2022, 8, 15",
+// 		postId: 0,
+// 		published: false,
+// 		visible: false,
+// 		monetized: false,
+// 		expressionsListId: 0,
+// 		commentsListId: 0,
+// 		description: "book description",
+// 	},
+// 	{
+// 		id: 4,
+// 		title: "title",
+// 		author: "author",
+// 		coverName: "placeholder1.jpg",
+// 		slug: "slug",
+// 		date: "2022, 5, 1",
+// 		postId: 0,
+// 		published: true,
+// 		visible: false,
+// 		monetized: true,
+// 		expressionsListId: 0,
+// 		commentsListId: 0,
+// 		description: "book description",
+// 	},
+// ];
 
 const authors = [
 	{
@@ -247,11 +273,11 @@ const authors = [
 		profileImg: "/images/profile.svg",
 	},
 ];
-
+const books = makeBooks()
 function getBooks() {
 	const data = books;
 	return data;
-};
+}
 export { getBooks };
 
 // const getPosts = () =>{
@@ -265,46 +291,49 @@ function getPosts() {
 }
 export { getPosts };
 
-function getComments (){
+function getComments() {
 	const data = comments;
 	return data;
-};
+}
 export { getComments };
 
-function getAuthors(){
+function getAuthors() {
 	const data = authors;
 	return data;
-};
+}
 export { getAuthors };
 
 function getPost(searchId) {
-	let result =  getPosts().filter((item) => {
+	let result = getPosts().filter((item) => {
 		return item.postId === searchId;
 	});
-	return result = result[0]
-} export {getPost}
+	return (result = result[0]);
+}
+export { getPost };
 
 function getBook(searchId) {
-	let result =  getBooks().filter((item) => {
+	let result = getBooks().filter((item) => {
 		return item.id === searchId;
 	});
-	return result = result[0]
-} export {getBook}
+	return (result = result[0]);
+}
+export { getBook };
 
 function getComment(searchId) {
-	let result =  getComments().filter((item) => {
+	let result = getComments().filter((item) => {
 		return item.id === searchId;
 	});
-	return result = result[0]
-} export {getComment}
+	return (result = result[0]);
+}
+export { getComment };
 
 function getAuthor(searchId) {
-	let result =  getAuthors().filter((item) => {
+	let result = getAuthors().filter((item) => {
 		return item.id === searchId;
 	});
-	return result = result[0]
-} export {getAuthor}
-
+	return (result = result[0]);
+}
+export { getAuthor };
 
 // function getPost(searchId) {
 // 	return getPosts().filter((item) => {

@@ -12,7 +12,7 @@ import ExpandingText from "../components/ExpandingText";
 import { useState } from "react";
 import {getBooks} from './api/api'
 import SignOverlay from "../components/overlay/SignOverlay";
-import PreviewFeed from "../components/feed/PreviewFeed";
+import PreviewFeed from "../components/post/PreviewFeed";
 
 //This is the Landing Page. It be the only page accessible while unauthenticated
 
