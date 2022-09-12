@@ -5,13 +5,17 @@
 import classNames from "classnames/bind";
 import styles from "./searchbar.module.scss";
 import Image from "next/image";
+// import {useState} from './react'
 let cx = classNames.bind(styles);
 
-const SearchBar = () => {
+const SearchBar = ({showCarousel, setShowCarousel}) => {
+	function handleSearchClick(){
+		setShowCarousel(showCarousel=1)
+	}
 	return (
 		<div className={styles.searchbar}>
 			<form className={styles.box}>
-				<input type='text' />
+				<input type='text' onClick={handleSearchClick}/>
 			</form>
 
 			<div className={styles.sbutton}>

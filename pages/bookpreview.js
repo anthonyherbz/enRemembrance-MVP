@@ -14,13 +14,14 @@ const BookPreview = () => {
 	return (
 		<div className={styles.bookPreview}>
 			<Col ratio="1" alignItems='center' justifyContent='space-between'>
-				<Logo/>
+				<Logo size="1-5x"/>
 				<div className={styles.bookContent}>
 				<Heading level="1">{book.title}</Heading>
 					<Row>{book.date}</Row>
+					<Row>{book.author}</Row>
 					<Row>{book.description}</Row>
 				</div>
-				<ButtonText>Back</ButtonText>
+				<ButtonText path="/" color="blue">Back</ButtonText>
 			</Col>
 			<div className={styles.colright}>
 				<BookViewer book={book}/>

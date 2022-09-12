@@ -1,3 +1,12 @@
-//Arrays the different expressions horizontally and shows their description on hover
+//Minified expression component that shows a summarized row of expressions that have been made on a post or book
 //Reqs: Icon, Row
-//Props: icon-color, row-spacing, 
+//Props: used-expressions
+
+const Expressions = ({setShowExp, showExp}) => {
+	return (
+		<>
+			text
+		</>
+	)
+}
+export default Expressions;

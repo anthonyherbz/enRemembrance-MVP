@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { makeBooks } from "./api/arrayConstructors";
 import ImageContainer from "../components/ImageContainer";
-
+import Expressions from "../components/expressions/ExpressionPreview";
+import ExpressionPreview from "../components/expressions/ExpressionPreview";
 const Testing = () => {
 	const [selectedFile, setSelectedFile] = useState();
 	const [isSelected, setIsSelected] = useState(false);
@@ -21,10 +22,8 @@ const Testing = () => {
 	console.log(books)
 	return (
 		<div>
-			<div style={{width: "200px", height: "200px"}}>
-				<ImageContainer src="/images/placeholder1.jpg"/>
-			</div>
 			
+			<ExpressionPreview/>
 
 
 
@@ -35,7 +34,7 @@ const Testing = () => {
 
 
 
-			<div >
+			{/* <div >
 				<input
 					type='file'
 					name='file'
@@ -56,7 +55,7 @@ const Testing = () => {
 				<div>
 					<button onClick={handleUpload}>Submission</button>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 };

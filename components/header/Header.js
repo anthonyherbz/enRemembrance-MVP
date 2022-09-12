@@ -9,6 +9,7 @@ import SearchBar from "./SearchBar";
 import Profile from "./Profile";
 import styles from "./header.module.scss";
 import classNames from "classnames/bind";
+import Carousel from "./Carousel";
 import { useState } from "react";
 
 let cx = classNames.bind(styles);
@@ -22,6 +23,7 @@ const Header = ({ show, shadow }) => {
 		shadow: shadow,
 	});
 	let [expanded, setExpanded] = useState(false);
+	let [showCarousel, setShowCarousel] = useState(false);
 	function handleMouseEnter() {
 		setExpanded((expanded = true));
 	}
@@ -34,6 +36,7 @@ const Header = ({ show, shadow }) => {
 		setExpanded((expanded = false));
 	}
 
+
 	let user = "Jane Doe";
 	let userLink = "janedoe"
 	return (
@@ -42,7 +45,8 @@ const Header = ({ show, shadow }) => {
 				<Logo hover size='1-5x' />
 			</div>
 			<div className={styles.pos2}>
-				<SearchBar />
+				<SearchBar setShowCarousel={setShowCarousel} showCarousel={showCarousel}/>
+				{showCarousel ? <Carousel setShowCarousel={setShowCarousel} showCarousel={showCarousel}/> : null}
 			</div>
 			<div
 				onMouseEnter={handleMouseEnter}

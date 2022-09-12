@@ -11,28 +11,64 @@ import Icon from "../icons/Icon";
 const BookViewer = ({ book }) => {
 	const [position, setPosition] = useState(0);
 	// console.log(book.pages.length)
+	console.log("pages ", book.pages.length);
+	//Function to increment the position
 	function addPos() {
-		if (position < (book.pages.length)-2) {
-			setPosition(position + 2);
+		//Prevents error of position of second page outrunning pages length
+		if (position < book.pages.length - 3) {
+			//If pos is less than 1 (aka 0) increment by 1
+			//Allows showing cover at position 0 and page 1 and 2 at postion 1
+			if (position < 1) {
+				setPosition(position + 1);
+			} 
+			//Otherwise, add two to pos
+			else {
+				setPosition(position + 2);
+			}
 		}
 	}
+	//Function to decrement the position
 	function subPos() {
-		if (position >= 1) {
+		if (position >= 2) {
 			setPosition(position - 2);
+		}
+		else if (position >= 1) {
+			setPosition(position - 1);
 		}
 	}
 
-	console.log(book);
+	// console.log(book);
 	return (
 		<div className={styles.bookParent}>
 			<div className={styles.bookViewer}>
-				<BookPage page={book.pages[position]} />
-				<BookPage page={book.pages[position+1]} />
+				{position > 0 ? (
+					<>
+						{console.log("position reported by bookviewer ", {
+							position,
+						})}
+						<BookPage pos={position} page={book.pages[position]} />
+						<BookPage
+							pos={position}
+							page={book.pages[position + 1]}
+						/>
+					</>
+				) : (
+					<>
+						<BookPage
+							cover={book.coverName}
+							pos={position}
+							page={book.pages[position]}
+						/>
+					</>
+				)}
 			</div>
 			<div className={styles.bookController}>
-				<div onClick={subPos}><Icon name='arrow' rotate='180' /></div>
-				<div className={styles.indicator}> position {position}</div>
-				<div onClick={addPos}><Icon name='arrow' /></div>
+				<div onClick={subPos}>
+					<Icon name='arrow' rotate='180' />
+				</div>
+				<div onClick={addPos}>
+					<Icon name='arrow' />
+				</div>
 			</div>
 		</div>
 	);

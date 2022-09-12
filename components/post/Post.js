@@ -6,6 +6,8 @@ import styles from "./post.module.scss";
 import classNames from "classnames/bind";
 import Link from "next/link";
 import Heading from "../Heading";
+import Expressions from "../expressions/ExpressionPreview";
+import ExpressionPreview from "../expressions/ExpressionPreview";
 
 let cx = classNames.bind(styles);
 
@@ -31,6 +33,7 @@ const Post = ({ author, authorProfile, book, bookCover, bookSlug, comment, comme
 						/>
 					</a>
 				</Link>
+				<ExpressionPreview/>
 			</div>
 			<div className={styles.c2}>
 				{/* col */}

@@ -1,18 +1,20 @@
-//Must be scrollable single column of flexible width and infinite(?) rows
-//Requires Col,
 
 import Post from "./Post";
 import styles from './postfeed.module.scss'
+import { getPosts } from "../../pages/api/api";
 
-const PostFeed = ({ posts }) => {
+//Generates a feed of posts via data from getPosts()
+const PostFeed = () => {
+	const posts = getPosts();
 	return (
+		//May be better to pass in the post object instead
 		<div className={styles.postFeed}>
 			{posts.map((post, index) => {
 				return (
 					<Post
 						postId={post.postId}
 						key={index}
-						title={post.PostTitle}
+						title={post.postTitle}
 						author={post.author}
 						authorProfile={post.authorProfile}
 						comment={post.comment}

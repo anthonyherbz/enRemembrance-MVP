@@ -3,10 +3,13 @@
 .bookPreview{
 	display: flex;
 	height: 100vh;
+	padding: 1rem;
 	.bookContent{
 		background-color: vars.$color_white;
 		height: 100%;
-		padding-block: 2rem;
+		padding: 2rem 1rem;
+		width: 100%;
+		border-radius: 11px;
 	}
 	.colright{
 		display: flex;

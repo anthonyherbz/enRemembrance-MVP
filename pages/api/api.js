@@ -36,7 +36,7 @@ const posts = [
 			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
 		bookTitle: "title",
 		bookCover: "bookcover.jpg",
-		bookSlug: "book1",
+		bookSlug: "book0",
 		author: "author1",
 		authorProfile: "profile.jpg",
 		comment: "comment text",
@@ -62,7 +62,46 @@ const posts = [
 			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
 		bookTitle: "title",
 		bookCover: "bookcover.jpg",
-		bookSlug: "book1",
+		bookSlug: "book2",
+		author: "author1",
+		authorProfile: "profile.jpg",
+		comment: "comment text",
+		commentAuthor: "commenter1",
+	},
+	{
+		postId: 3,
+		postTitle: "Post Title",
+		postContent:
+			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
+		bookTitle: "title",
+		bookCover: "bookcover.jpg",
+		bookSlug: "book3",
+		author: "author1",
+		authorProfile: "profile.jpg",
+		comment: "comment text",
+		commentAuthor: "commenter1",
+	},
+	{
+		postId: 4,
+		postTitle: "Post Title",
+		postContent:
+			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
+		bookTitle: "title",
+		bookCover: "bookcover.jpg",
+		bookSlug: "book4",
+		author: "author1",
+		authorProfile: "profile.jpg",
+		comment: "comment text",
+		commentAuthor: "commenter1",
+	},
+	{
+		postId: 5,
+		postTitle: "Post Title",
+		postContent:
+			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
+		bookTitle: "title",
+		bookCover: "bookcover.jpg",
+		bookSlug: "book5",
 		author: "author1",
 		authorProfile: "profile.jpg",
 		comment: "comment text",
@@ -312,10 +351,13 @@ function getPost(searchId) {
 export { getPost };
 
 function getBook(searchId) {
-	let result = getBooks().filter((item) => {
-		return item.id === searchId;
-	});
-	return (result = result[0]);
+	let books = getBooks()
+	return books[searchId];
+	// let result = getBooks().filter((book) => {
+	// 	return book.id === searchId;
+	// });
+	// // console.log(result)
+	// return (result = result[0]);
 }
 export { getBook };
 

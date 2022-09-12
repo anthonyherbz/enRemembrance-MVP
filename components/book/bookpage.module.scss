@@ -1,12 +1,20 @@
+@use '../../sass/abstracts/vars.scss';
+
 $quads: quad-1, quad-2, quad-3, quad-4;
 
 .quadrants {
 	width: 100%;
 	display: grid;
+	border: 1px solid vars.$color_grey_dark;
+	background-color: #fff;
+	position: relative;
 	// flex-wrap: wrap;
 	grid-template-columns: 1fr 1fr;
 	.quadStyles {
-		background-color: blue;
+		// text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 	.span {
 		grid-column-start: 1;
@@ -25,4 +33,18 @@ $quads: quad-1, quad-2, quad-3, quad-4;
 	.quad-4 {
 		order: 4;
 	}
+}
+.cover{
+	width: 50%;
+	height: 100%;
+	border: 1px solid vars.$color_grey_dark;
+}
+
+.pageNum{
+	position: absolute;
+	margin: 0 auto;
+	bottom: -25px;
+	z-index: 10;
+	right: 50%;
+	left: 50%;
 }
