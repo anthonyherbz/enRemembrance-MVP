@@ -54,14 +54,14 @@ export default function Home() {
 		<Layout>
 			<Head>
 				<title>enRemembrance</title>
-				<link rel='icon' href='/favicon.ico' />
+				<link rel='icon' href='/images/icons/logo_temp_blue.svg' />
 				<meta name='description' content='summary of website' />
 			</Head>
 			<Header show />
 			<Container marginTop>
 				<Row nowrap mHeight>
 					<Col ratio='1'>
-						<Nav topSpace="50"/>
+						<Nav topSpace='50' />
 					</Col>
 					<Col ratio='20' alignItems='center' allowScroll>
 						<Container marginLeft>
@@ -69,13 +69,11 @@ export default function Home() {
 								<div
 									style={{
 										height: "1px",
-
 										width: "100%",
 										borderBottom: "1px solid #55545C",
 										position: "fixed",
 										top: "50px",
-										boxShadow:
-											"rgb(0, 0, 0) 0 2px 5px 0px",
+										boxShadow: "rgb(0, 0, 0) 0 2px 5px 0px",
 									}}
 								></div>
 								<PostFeed posts={posts} />

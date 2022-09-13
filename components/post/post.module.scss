@@ -3,13 +3,17 @@
 .post {
 	display: flex;
 	flex-direction: row;
+	position: relative;
 	background-color: vars.$color_white;
 	border-radius: 11px;
-	padding: 1rem 1.5rem;
-	gap: 1rem;
+	padding: 1em 1.5em;
+	gap: 1em;
 	min-width: 100%;
 	min-height: 250px;
-	overflow: hidden;
+	// overflow: hidden;
+	&:hover{
+		box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.057);
+	}
 	.c1 {
 		display: flex;
 		flex-direction: column;
@@ -19,7 +23,8 @@
 		img {
 			width: 100%;
 			max-height: 100%;
-			min-width: 75px;
+			border-radius: 25px;
+			// min-width: 75px;
 		}
 	}
 	.c2 {
@@ -38,7 +43,7 @@
 		}
 		.r2 {
 			font-size: 1em;
-			margin-right: 3em;
+			// margin-right: 3em;
 		}
 		.r3 {
 			display: flex;
@@ -46,7 +51,7 @@
 			justify-content: space-between;
 			text-align: left;
 			img {
-				max-width: 35px;
+				max-width: 2em;
 			}
 		}
 	}
@@ -55,5 +60,14 @@
 	}
 	.hideAuthor {
 		display: none;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.post{
+		font-size: 16px;
+	}
+	.c1 img{
+		min-width: 30px;
 	}
 }

@@ -8,6 +8,7 @@ $quads: quad-1, quad-2, quad-3, quad-4;
 	border: 1px solid vars.$color_grey_dark;
 	background-color: #fff;
 	position: relative;
+	height: 100%;
 	// flex-wrap: wrap;
 	grid-template-columns: 1fr 1fr;
 	.quadStyles {
@@ -47,4 +48,7 @@ $quads: quad-1, quad-2, quad-3, quad-4;
 	z-index: 10;
 	right: 50%;
 	left: 50%;
+	&.hidecount{
+		display: none;
+	}
 }

@@ -10,18 +10,16 @@ import ButtonText from "../components/button/ButtonText";
 import Video from "../components/Video";
 import ExpandingText from "../components/ExpandingText";
 import { useState } from "react";
-import {getBooks} from './api/api'
+import { getBooks } from "./api/api";
 import SignOverlay from "../components/overlay/SignOverlay";
 import PreviewFeed from "../components/post/PreviewFeed";
 
 //This is the Landing Page. It be the only page accessible while unauthenticated
 
-
 const Welcome = () => {
 	const [signInShow, setSignInShow] = useState(false);
 	const [signUpShow, setSignUpShow] = useState(false);
 	const books = getBooks();
-
 
 	console.log(signInShow, signUpShow);
 	function handleSignInClick() {
@@ -34,9 +32,9 @@ const Welcome = () => {
 	}
 	return (
 		<div className={styles.background}>
-			<div className={styles.backgroundVideo}>
-			</div>
+			<div className={styles.backgroundVideo}></div>
 			<Layout>
+				{/* nonfunctional bg video */}
 				{/* <video className={styles.bgvideo}>
 					<source src="/videos/lights.mp4"/>
 				</video> */}
@@ -47,11 +45,10 @@ const Welcome = () => {
 							lg='5'
 							md='5'
 							sm='5'
-							xs='5'
 							alignItems='center'
-							justifyContent="space-between"
+							justifyContent='space-between'
 						>
-							<Logo size="2x" />
+							<Logo size='2x' />
 							<div className={styles.welcome}>
 								<Heading
 									color='white'
@@ -63,7 +60,9 @@ const Welcome = () => {
 								<Row mWidth justifyContent='center' nowrap>
 									<Col ratio='1' alignItems='center'>
 										<div onClick={handleSignInClick}>
-											<ButtonText color='blue'>Sign In</ButtonText>
+											<ButtonText color='blue'>
+												Sign In
+											</ButtonText>
 										</div>
 										<SignOverlay
 											signUpShow={signUpShow}
@@ -72,7 +71,9 @@ const Welcome = () => {
 									</Col>
 									<Col ratio='1' alignItems='center'>
 										<div onClick={handleSignUpClick}>
-											<ButtonText color='yellow'>Sign Up</ButtonText>
+											<ButtonText color='yellow'>
+												Sign Up
+											</ButtonText>
 										</div>
 										<SignOverlay
 											signInShow={signInShow}
@@ -119,7 +120,7 @@ const Welcome = () => {
 								</Text>
 							</div>
 						</Col>
-						<Col lg='5' md='5' sm='5' xs='5' alignItems='center'>
+						<Col lg='5' md='5' sm='5' alignItems='center'>
 							<Row>
 								<Video />
 							</Row>

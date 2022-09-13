@@ -6,8 +6,12 @@ let cx = classNames.bind(styles);
 
 //Create one page for a book using the page object, but if the position is 0 display the cover instead.
 //Currently only produces a single template (split top, wide bottom)
-const BookPage = ({ cover, page, pos }) => {
+const BookPage = ({ cover, page, pos, hidecount }) => {
 	console.log("book page ", page.number)
+	let pageNum = cx({
+		pageNum: true,
+		hidecount: hidecount
+	})
 
 	//destructure data from page template
 	let {templateName, positions} = page.template;
@@ -50,7 +54,7 @@ const BookPage = ({ cover, page, pos }) => {
 				)
 			})}
 			{/* Display the page number below the page */}
-			<div className={styles.pageNum}>{page.number}</div>
+			<div className={pageNum}>{page.number}</div>
 		</div>
 	)
 }};

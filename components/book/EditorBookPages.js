@@ -2,8 +2,11 @@ import styles from "./editorbookpages.module.scss";
 import ButtonText from "../button/ButtonText";
 import Image from "next/image";
 import React, { useState } from "react";
+import BookPage from "./BookPage";
 
-const EditorBookPages = ({ pageList, position, setPosition }) => {
+const EditorBookPages = ({ book, position, setPosition }) => {
+	// let title = book.title;
+	// console.log(title)
 	const [selectedFile, setSelectedFile] = useState();
 	const [isSelected, setIsSelected] = useState();
 	const [fileUrl, setFileUrl] = useState();
@@ -15,15 +18,19 @@ const EditorBookPages = ({ pageList, position, setPosition }) => {
 		setFileUrl(URL.createObjectURL(file));
 	};
 
-	function matchId(searchId) {
-		let result = pageList.filter((item) => {
-			return item.id === searchId;
-		});
-		return result[0].image;
-	}
+	//deprecated function that would search to match an image with an index
+	// function matchId(searchId) {
+	// 	let result = pageList.filter((item) => {
+	// 		return item.id === searchId;
+	// 	});
+	// 	return result[0].image;
+	// }
+
+	//returns the cover interactive screen if position is 0
 	if (position == 0) {
 		return (
 			<div className={styles.bookElement}>
+				{/* shows the selected image if isSelected is true */}
 				{isSelected ? (
 					<div
 						style={{
@@ -50,10 +57,14 @@ const EditorBookPages = ({ pageList, position, setPosition }) => {
 						</div>
 					</div>
 				) : null}
-				<div className={styles.textbox}>
-					<label htmlFor='booktitle'>Book Title</label>
-					<input name='booktitle' type='text'></input>
-				</div>
+				{isSelected ? (
+					book.title
+				) : (
+					<div className={styles.textbox}>
+						<label htmlFor='booktitle' >Book Title</label>
+						<input placeholder={book.title} name='booktitle' type='text'></input>
+					</div>
+				)}
 				<div className={styles.buttons}>
 					<ButtonText
 						size='large'
@@ -69,20 +80,13 @@ const EditorBookPages = ({ pageList, position, setPosition }) => {
 					/>
 					<ButtonText size='medium' label='pick category' />
 				</div>
-				<div className={styles.authorText}>
-					Author name goes here
-				</div>
+				<div className={styles.authorText}>{book.author}</div>
 			</div>
 		);
 	} else {
 		return (
 			<div className={styles.bookElement}>
-				{console.log(matchId(position))}
-				<Image
-					layout='fill'
-					objectFit='cover'
-					src={`/images/${matchId(position)}`}
-				/>
+				<BookPage hidecount pos={position} page={book.pages[position]}/>
 			</div>
 		);
 	}

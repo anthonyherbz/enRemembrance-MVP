@@ -1,12 +1,41 @@
-.expressionPreview{
+@use "../../sass/abstracts/vars.scss";
+
+.popup {
 	display: flex;
-	// padding: 1rem;
-	margin-left: 1rem; 
-	cursor: pointer;
-	svg{
-		margin-left: -1rem;
-		background-color: #fff;
-		border-radius: 25px;
-		border: 1px dashed grey;
+	// position: absolute;
+	position: absolute;
+	justify-content: center;
+	gap: 0.25rem;
+	// position: relative;
+	background-color: vars.$color_white;
+	box-shadow: 3px 5px 10px 5px rgba(0, 0, 0, 0.341);
+	padding: 0.25rem 0.5rem 1rem 0.5rem;
+	z-index: 100;
+
+	.icon {
+		position: relative;
+		padding: 0.5rem;
+		// background-color: rgba(255, 255, 255, 0);
+		.counter {
+			position: absolute;
+			right: 0;
+			top: 0;
+			background-color: #fff;
+			border-radius: 100%;
+			padding: 0.1rem;
+		}
 	}
+}
+.desc {
+	position: absolute;
+	// background: rgb(255, 255, 255);
+	width: 100%;
+	background: linear-gradient(
+		0deg,
+		vars.$color_white_95 0%,
+		rgba(255, 255, 255, 0.50) 100%
+	);
+	bottom: 0px;
+	left: 0;
+	// transition: all 125s;
 }

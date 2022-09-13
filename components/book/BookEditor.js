@@ -12,47 +12,21 @@ import React from "react";
 import Image from "next/image";
 import EditorBookPages from "./EditorBookPages";
 
-const BookEditor = () => {
-	let pages = [
-		{
-			id: 1,
-			image: "placeholder1.jpg",
-		},
-		{
-			id: 2,
-			image: "placeholder2.jpg",
-		},
-		{
-			id: 3,
-			image: "placeholder3.jpg",
-		},
-		{
-			id: 4,
-			image: "placeholder4.jpg",
-		},
-		{
-			id: 5,
-			image: "placeholder5.jpg",
-		},
-		{
-			id: 6,
-			image: "placeholder6.jpg",
-		},
-		{
-			id: 7,
-			image: "placeholder7.jpg",
-		},
-		{
-			id: 8,
-			image: "placeholder8.jpg",
-		},
-	];
+//pull in book from main id page
+const BookEditor = ({ book }) => {
+
+	let pages = book.pages;
+	console.log(book);
+	console.log(book.pages.length)
+	//store the page position
 	const [position, setPosition] = useState(0);
+	//increment page position
 	function addPos() {
-		if (position < pages.length) {
+		if (position < pages.length-1) {
 			setPosition(position + 1);
 		}
 	}
+	//decrement page position
 	function subPos() {
 		if (position >= 1) {
 			setPosition(position - 1);
@@ -62,34 +36,38 @@ const BookEditor = () => {
 	return (
 		<div className={styles.bookEditorParent}>
 			<div className={styles.bookEditor}>
+				{/* arrow pointing left, needs cursor:pointer, click runs subPos */}
 				<div className={styles.arrow} onClick={subPos}>
 					<Icon name='arrow' rotate='180' />
 				</div>
+				{/* primary component of the page. should take a book and position states */}
 				<EditorBookPages
-					pageList={pages}
+					book={book}
 					position={position}
 					setPosition={setPosition}
 				/>
+				{/* arrow pointing right, needs cursor:pointer, click runs addPos */}
 				<div className={styles.arrow} onClick={addPos}>
 					<Icon name='arrow' />
 				</div>
 			</div>
+			{/* bottom navigation to change between pages on click */}
 			<div className={styles.bookBottom}>
 				<div className={styles.filmstrip}>
+					{/* take the pages from book */}
 					{pages.map((page, index) => {
 						return (
 							<div
 								key={index}
+								// 
 								onClick={() => {
-									setPosition(index + 1);
+									setPosition(index);
 								}}
 							>
 								<Image
 									layout='fill'
 									objectFit='cover'
-									// width='75'
-									// height='75'
-									src={`/images/${page.image}`}
+									src={`/images/${page.template.positions[1].content}`}
 								/>
 							</div>
 						);

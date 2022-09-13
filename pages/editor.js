@@ -4,8 +4,11 @@ import Header from "../components/header/Header";
 import Nav from "../components/Nav";
 import styles from "../page_sass/editor.module.scss";
 import BookEditor from "../components/book/BookEditor";
+import { getBook } from "./api/api";
 
 const Editor = () => {
+	//Get book from the current page id (at 0 for testing purpose)
+	const book = getBook(0)
 	return (
 		<>
 			<Head>
@@ -17,16 +20,15 @@ const Editor = () => {
 			<div className={styles.editor}>
 				<div className={styles.menuSection}>
 					<Nav />
+					{/* buttons to save changes or delete book; not implemented; not useable until database is implemented */}
 					<div className={styles.buttons}>
 						<ButtonText
-							// size='medium'
 							expand
 							fill='true'
 							label='SaveV'
 							color='green'
 						/>
 						<ButtonText
-							// size='medium'
 							expand
 							fill='true'
 							label='DeleteT'
@@ -35,7 +37,8 @@ const Editor = () => {
 					</div>
 				</div>
 				<div className={styles.bookSection}>
-					<BookEditor />
+					{/* instance book editor component */}
+					<BookEditor book={book}/>
 				</div>
 			</div>
 		</>

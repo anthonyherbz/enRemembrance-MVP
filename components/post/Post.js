@@ -8,14 +8,30 @@ import Link from "next/link";
 import Heading from "../Heading";
 import Expressions from "../expressions/ExpressionPreview";
 import ExpressionPreview from "../expressions/ExpressionPreview";
+import { useState } from "react";
+import EnterComment from "./EnterComment";
 
 let cx = classNames.bind(styles);
 
-const Post = ({ author, authorProfile, book, bookCover, bookSlug, comment, commentAuthor, postContent, hideComment, hideAuthor }) => {
-	//Below are some placeholder arrays of what the component might expect to work with. Missing in props above because React can't take a prop declared in the same file.
-	//Placeholder author array
+const Post = ({
+	author,
+	authorProfile,
+	book,
+	bookCover,
+	bookSlug,
+	comment,
+	commentAuthor,
+	postContent,
+	hideComment,
+	hideAuthor,
+	postSlug,
+}) => {
+	const [showComment, setShowComment] = useState(0);
+	function toggleComment() {
+		setShowComment(!showComment);
+	}
 
-
+	//Set dynamic styles based on props
 	let postClasses = cx({
 		hideComment: hideComment,
 		hideAuthor: hideAuthor,
@@ -23,26 +39,28 @@ const Post = ({ author, authorProfile, book, bookCover, bookSlug, comment, comme
 	return (
 		<div className={styles.post}>
 			{/* <Row> */}
+			{/* left-most column containing the book's cover and it's expressions */}
 			<div className={styles.c1}>
 				{/* col */}
 				<Link href={`/books/${bookSlug}`}>
 					<a>
-						<img
-							src={`/images/${bookCover}`}
-							alt='placeholder'
-						/>
+						<img src={`/images/${bookCover}`} alt='placeholder' />
 					</a>
 				</Link>
-				<ExpressionPreview/>
+				<ExpressionPreview />
 			</div>
+			{/* center column containing book title, the post text, and a single comment */}
 			<div className={styles.c2}>
 				{/* col */}
 				<div className={styles.r1}>
 					<div>
 						<Link href={`/books/${bookSlug}`}>
-							<a><Heading level="3">{book}</Heading></a>
+							<a>
+								<Heading level='3'>{book}</Heading>
+							</a>
 						</Link>
 					</div>
+					{/* should link to a specific author's profile */}
 					<div className={postClasses}>
 						<Link href={`/authors/${author}`}>
 							<a>
@@ -50,19 +68,39 @@ const Post = ({ author, authorProfile, book, bookCover, bookSlug, comment, comme
 							</a>
 						</Link>
 					</div>
-				</div>
-				<div className={styles.r2}>{postContent}</div>
+				</div> {/*row1 end*/}
+				<div className={styles.r2}>
+					<Link href={`/posts/${postSlug}`}>
+						<a>{postContent}</a>
+					</Link>
+				</div> {/*row 2 end*/}
 				<div className={styles.r3}>
 					<div>
-						<Heading level='4'>Comments</Heading>
-						{commentAuthor}: {comment}
-					</div>
-					<div className={postClasses}>
+						<Link href={`/posts/${postSlug}`}>
+							<a>
+								<Heading level='4'>Comments</Heading>
+								{commentAuthor}: {comment}
+							</a>
+						</Link>
+					</div> 
+					{/* comment icon that opens and closes the comment box */}
+					<div
+						style={{ cursor: "pointer", zIndex:"1" }}
+						className={postClasses}
+						onClick={toggleComment}
+					>
 						<img src='/images/comment.jpg' alt='placeholder' />
 					</div>
-				</div>
+				</div> {/*row 3 end*/}
 			</div>
 			{/* </Row> */}
+			{showComment ? (
+				<EnterComment
+					toggleComment={toggleComment}
+					showComment={showComment}
+					setShowComment={setShowComment}
+				/>
+			) : null}
 		</div>
 	);
 };

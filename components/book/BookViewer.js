@@ -20,7 +20,7 @@ const BookViewer = ({ book }) => {
 			//Allows showing cover at position 0 and page 1 and 2 at postion 1
 			if (position < 1) {
 				setPosition(position + 1);
-			} 
+			}
 			//Otherwise, add two to pos
 			else {
 				setPosition(position + 2);
@@ -31,8 +31,7 @@ const BookViewer = ({ book }) => {
 	function subPos() {
 		if (position >= 2) {
 			setPosition(position - 2);
-		}
-		else if (position >= 1) {
+		} else if (position >= 1) {
 			setPosition(position - 1);
 		}
 	}

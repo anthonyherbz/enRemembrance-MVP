@@ -1,0 +1,20 @@
+.enterComment {
+	position: absolute;
+	bottom: 10px;
+
+	width: 100%;
+	// right: 25%;
+	// left: 25%;
+	display: flex;
+	justify-content: center;
+	.form {
+		background-color: #fff;
+		padding: 0.75rem;
+		width: 55%;
+		box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.416);
+		form > label, textarea {
+			display: block;
+			width: 100% !important;
+		}
+	}
+}

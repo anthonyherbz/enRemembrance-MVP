@@ -12,7 +12,7 @@
 	flex-shrink: 0;
 	flex-grow: 1;
 	max-width: 500px;
-	padding-block: 1rem;
+	margin-block: 1rem;
 	// max-height: 900px;
 	height: 100%;
 	.textbox {
@@ -25,6 +25,9 @@
 		gap: 1rem;
 		align-items: center;
 		width: 100%;
+	}
+	.textbox, .authorText{
+		margin-left: 3rem;
 	}
 	.authorText {
 		// position: absolute;

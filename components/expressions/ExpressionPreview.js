@@ -8,16 +8,19 @@ import { useState } from "react";
 
 import { IconContext } from "react-icons";
 import Image from "next/image";
-import styles from './expressions.module.scss';
+import styles from './expressionspreview.module.scss';
 import Expressions from "./Expressions";
 const ExpressionPreview = () => {
 	let [showExp, setShowExp] = useState(0)
 	function handleClick(){
 		setShowExp(showExp=1)
 	}
+	function hideExp(){
+		setShowExp(showExp=0)
+	}
 	return (
-		<div onClick={handleClick}>
-			<IconContext.Provider value={{ color: "black", size: "2em"}}>
+		<div onClick={handleClick} onMouseLeave={hideExp}>
+			<IconContext.Provider value={{ color: "black", size: "1.5em"}}>
 				<div className={styles.expressionPreview}>
 					<BsFlower1 />
 					<BsFlower2/>

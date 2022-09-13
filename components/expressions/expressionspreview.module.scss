@@ -1,0 +1,13 @@
+.expressionPreview{
+	display: flex;
+	position: relative;
+	// padding: 1rem;
+	margin-left: 1em; 
+	cursor: pointer;
+	svg{
+		margin-left: -0.55em;
+		background-color: #fff;
+		border-radius: 25px;
+		border: 1px dashed grey;
+	}
+}

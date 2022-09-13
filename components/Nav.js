@@ -12,8 +12,8 @@ const Nav = ({iconSize="30", topSpace="50"}) => {
 			slug: "",
 		},
 		{
-			item: "About",
-			slug: "about",
+			item: "Books",
+			slug: "dashboard",
 		},
 		{
 			item: "Contact",
@@ -24,58 +24,31 @@ const Nav = ({iconSize="30", topSpace="50"}) => {
 			slug: "termsandconditions",
 		},
 		{
-			item: "Support",
-			slug: "support",
+			item: "About",
+			slug: "about",
 		},
-		{
-			item: "Welcome",
-			slug: "welcome",
-		},
-		{
-			item: "Testing",
-			slug: "testing",
-		},
-		{
-			item: "Dashboard",
-			slug: "dashboard",
-		},
-		{
-			item: "Post",
-			slug: "postpage",
-		},
-		{
-			item: "Author",
-			slug: "authorpage",
-		},
-		{
-			item: "Editor",
-			slug: "editor",
-		},
+		
 	];
 	const navIcons = [
 		{
 			item: <Icon color='#000' name='home' width={iconSize} height={iconSize} />,
-			slug: "home",
+			slug: "",
 		},
 		{
 			item: <Icon color='#000' name='book' width={iconSize} height={iconSize} />,
-			slug: "home",
-		},
-		{
-			item: <Icon color='#000' name='info' width={iconSize} height={iconSize} />,
-			slug: "home",
+			slug: "dashboard",
 		},
 		{
 			item: <Icon color='#000' name='mail' width={iconSize} height={iconSize} />,
-			slug: "home",
-		},
-		{
-			item: <Icon color='#000' name='question' width={iconSize} height={iconSize} />,
-			slug: "home",
+			slug: "contact",
 		},
 		{
 			item: <Icon color='#000' name='contract' width={iconSize} height={iconSize} />,
-			slug: "home",
+			slug: "termsandconditions",
+		},
+		{
+			item: <Icon color='#000' name='info' width={iconSize} height={iconSize} />,
+			slug: "about",
 		},
 	];
 	const [expanded, setExpanded] = useState(false);

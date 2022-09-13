@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeBooks } from "./api/arrayConstructors";
 import ImageContainer from "../components/ImageContainer";
-import Expressions from "../components/expressions/ExpressionPreview";
+import Expressions from "../components/expressions/Expressions";
 import ExpressionPreview from "../components/expressions/ExpressionPreview";
 const Testing = () => {
 	const [selectedFile, setSelectedFile] = useState();
@@ -23,8 +23,8 @@ const Testing = () => {
 	return (
 		<div>
 			
-			<ExpressionPreview/>
-
+			{/* <ExpressionPreview/> */}
+			{/* <Expressions/> */}
 
 
 
