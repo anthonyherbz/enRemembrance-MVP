@@ -11,7 +11,11 @@ const PreviewFeed = ({ books }) => {
 	// console.log("PreviewFeed books output: ",{ books });
 	return (
 		<div className={styles.sizing}>
-			<div  className={styles.background}><Heading level="2" color='white'>Stories from our community</Heading></div>
+			<div className={styles.background}>
+				<Heading level='2' color='white'>
+					Stories from our community
+				</Heading>
+			</div>
 			<div className={styles.previewFeed}>
 				{books.map((book, index) => {
 					return <PreviewPost book={book} key={index} />;

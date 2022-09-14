@@ -7,9 +7,8 @@ import Footer from "../components/Footer";
 import PostFeed from "../components/post/PostFeed";
 import Container from "../components/Container";
 import Nav from "../components/Nav";
-import MobileNav from "../components/MobileNav";
 
-export default function Home() {
+export default function adad() {
 	const posts = [
 		{
 			postId: 0,
@@ -59,18 +58,14 @@ export default function Home() {
 				<meta name='description' content='summary of website' />
 			</Head>
 			<Header show />
-			<MobileNav/>
 			<Container marginTop>
 				<Row nowrap mHeight>
 					<Col ratio='1'>
-						<Nav border topSpace='50' />
+						<Nav topSpace='50' />
 					</Col>
-					
-					
-					
-					<Col border="left" ratio='20' alignItems='center' allowScroll>
-						<Container>
-							<div>
+					<Col ratio='20' alignItems='center' allowScroll>
+						<Container marginLeft>
+							<div style={{ borderLeft: "1px solid #55545C" }}>
 								<div
 									style={{
 										height: "1px",
@@ -78,7 +73,6 @@ export default function Home() {
 										borderBottom: "1px solid #55545C",
 										position: "fixed",
 										top: "50px",
-										zIndex: 2,
 										boxShadow: "rgb(0, 0, 0) 0 2px 5px 0px",
 									}}
 								></div>

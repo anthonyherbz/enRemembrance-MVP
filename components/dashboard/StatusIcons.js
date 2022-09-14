@@ -13,16 +13,16 @@ const statusIcons = ({ book, old }) => {
 		return (
 			// style={{ display: "flex", justifyContent: "center" }}
 			<div style={{display: "flex", justifyContent: "center"}}>
-				<Icon name='published' color={active} />
+				<Icon name='published' width='2.5em' height='2.5em' color={active} />
 				{visible ? (
-					<Icon name='visible' color={active} />
+					<Icon name='visible' width='2.5em' height='2.5em' color={active} />
 				) : (
-					<Icon name='visible' color={inactive} />
+					<Icon name='visible' width='2.5em' height='2.5em' color={inactive} />
 				)}
 				{monetized ? (
-					<Icon name='monetized' color={active} />
+					<Icon name='monetized' width='2.5em' height='2.5em' color={active} />
 				) : (
-					<Icon name='monetized' color={inactive} />
+					<Icon name='monetized' width='2.5em' height='2.5em' color={inactive} />
 				)}
 			</div>
 		);
@@ -31,9 +31,9 @@ const statusIcons = ({ book, old }) => {
 			<NoSsr>
 				<div style={{ display: "flex", justifyContent: "center"}}>
 					{old ? (
-						<Icon name='edit' color={red} />
+						<Icon name='edit' width='2.5em' height='2.5em' color={red} />
 					) : (
-						<Icon name='edit' color={active} />
+						<Icon name='edit' width='2.5em' height='2.5em' color={active} />
 					)}
 				</div>
 			</NoSsr>

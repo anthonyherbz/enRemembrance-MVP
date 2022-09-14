@@ -21,6 +21,7 @@ const Col = ({
 	ratio,
 	allowScroll,
 	order,
+	border,
 }) => {
 	let colClasses = cx({
 		col: true,
@@ -36,6 +37,7 @@ const Col = ({
 		[`ratio-${ratio}`]: ratio,
 		allowScroll : allowScroll,
 		[`order-${order}`] : order,
+		[`border-${border}`] : border,
 	});
 	return <div className={colClasses}>{children}</div>;
 };

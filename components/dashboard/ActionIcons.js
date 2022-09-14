@@ -40,18 +40,18 @@ const ActionIcons = ({ old, published }) => {
 			) : null}
 
 			<div>
-				<Icon name='print' color='#000' width='30' height='30' />
+				<Icon name='print' color='#000' width='2em' height='2em' />
 			</div>
 			<div>
-				<Icon name='pdf' color='#000' width='30' height='30' />
+				<Icon name='pdf' color='#000' width='2em' height='2em' />
 			</div>
 			{published ? null : (
 				<div onClick={handleDeleteClick}>
-					<Icon name='trash' color='#000' width='30' height='30' />
+					<Icon name='trash' color='#000' width='2em' height='2em' />
 				</div>
 			)}
 			<div className={styles.moreParent} onClick={handleMoreClick} onMouseLeave={handleMoreMouseOff}>
-				<Icon name='more' color='#000' width='30' height='30' />
+				<Icon name='more' color='#000' width='2em' height='2em' />
 				{moreState ? <div className={styles.moreMenu}><Menu textAlign="right" fontWeight="normal" menuLinks={moreLinks} right/></div> : null}
 			</div>
 		</div>

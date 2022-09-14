@@ -11,7 +11,7 @@ import Text from '../Text';
 let cx = classNames.bind(styles);
 //menuLinks takes input of slug and item as objects in an array
 
-const Menu = ({ menuLinks, horizontal, left, center, right, textAlign, fontWeight="bold" }) => {
+const Menu = ({ menuLinks, horizontal, left, center, right, textAlign, fontWeight="bold", isMobile }) => {
 	let menuClasses = cx({
 		menu: true,
 		horizontal: horizontal,
@@ -26,9 +26,11 @@ const Menu = ({ menuLinks, horizontal, left, center, right, textAlign, fontWeigh
 			{/* iterate (map) over defined menuLinks, creating a separate Link for each slug with the item name as the text */}
 			{menuLinks.map((navLink, index) => {
 				return (
-					<Link key={index} href={`/${navLink.slug}`}>
-						<a><Text textAlign={textAlign} fontWeight={fontWeight} size="">{navLink.item}</Text></a>
-					</Link>
+					<div key={index}>
+						<Link href={`/${navLink.slug}`}>
+							<a><Text textAlign={textAlign} fontWeight={fontWeight} size="">{navLink.item}</Text></a>
+						</Link>
+					</div>
 				);
 			})}
 		</div>

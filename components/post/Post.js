@@ -75,7 +75,7 @@ const Post = ({
 					</Link>
 				</div> {/*row 2 end*/}
 				<div className={styles.r3}>
-					<div>
+					<div className={styles.commentbody}>
 						<Link href={`/posts/${postSlug}`}>
 							<a>
 								<Heading level='4'>Comments</Heading>

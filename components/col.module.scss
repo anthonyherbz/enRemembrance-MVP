@@ -7,6 +7,7 @@ $justifyContentValues: flex-start, flex-end, center, space-between, space-around
 	space-evenly;
 $alignItemsValues: flex-start, flex-end, center, stretch, baseline;
 $flexRatioValues: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
+$borders: left, right, top, bottom;
 
 .col {
 	width: 100%;
@@ -15,7 +16,15 @@ $flexRatioValues: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
 	display: flex;
 	flex-direction: column;
 	&.allowScroll {
-		overflow: scroll;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+	@each $value in $borders {
+		@media screen and (min-width: 401px) {
+			&.border-#{$value} {
+				border-#{$value}: 1px solid #55545c;
+			}
+		}
 	}
 
 	//Provided input (xs="6") specifies the number of columns as a result of 12 divided by the input. If you input 6, it will output two columns.

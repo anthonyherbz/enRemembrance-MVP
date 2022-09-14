@@ -3,6 +3,8 @@ import Author from '../components/Author'
 import { getAuthors, getPosts } from "./api/api";
 import PostFeed from "../components/post/PostFeed";
 import ButtonText from "../components/button/ButtonText";
+import Header from '../components/header/Header';
+import Container from '../components/Container';
 
 const AuthorPage = () => {
 	function getAuthor(searchId) {
@@ -16,12 +18,15 @@ const AuthorPage = () => {
 	let posts = getPosts();
 	console.log(posts);
 	return (
-		<div style={{maxWidth: "100vw"}}>
-			<div className={styles.authorlead}>
-				<Author author={author} />
-				<ButtonText color='green' size='large' label='Back' />
-			</div>
-			<PostFeed posts={posts} />
+		<div >
+			<Header show/>
+			<Container marginTop>
+				<div className={styles.authorlead}>
+					<Author author={author} />
+					<ButtonText color='green' expand label='Back' />
+				</div>
+				<PostFeed posts={posts} />
+			</Container>
 		</div>
 	);
 };

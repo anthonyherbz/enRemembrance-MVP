@@ -1,19 +1,24 @@
 @use '../sass/abstracts/mixins';
 
 .container{
-    margin-inline: 1rem;
+    // margin-inline: 1rem;
+    width: 100%;
     &.marginLeft{
         margin-left: 1rem;
-        margin-right: 0;
+        // margin-right: 0;
     }
     &.marginRight{
-        margin-left: 0;
+        // margin-left: 0;
         margin-right: 1rem;
     }
     &.marginTop{
         margin-top: 50px;
+        @media screen and (max-width: 400px) {
+            margin-top: 90px;
+        }
     }
     &.marginBottom{
         margin-bottom: 50px;
+        
     }
 }

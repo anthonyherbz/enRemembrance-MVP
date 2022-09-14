@@ -1,0 +1,16 @@
+@use '../sass/abstracts/vars.scss';
+.mobilenav {
+	display: none;
+}
+
+@media screen and (max-width: 400px) {
+	.mobilenav {
+		display: block;
+		position: fixed;
+		top: 50px;
+		z-index: 2;
+		background-color: vars.$color_white_99;
+		width: 100%;
+		padding-block: 0.5em;
+	}
+}

@@ -17,7 +17,7 @@ const ExpressionIcon = ({ expression, styles }) => {
 				className={styles.icon}
 				
 			>
-				<IconContext.Provider value={{ size: "48px" }}>
+				<IconContext.Provider value={{ size: "3em" }}>
 					<div>{expression.icon}</div>
 				</IconContext.Provider>
 				<div className={styles.counter}>{expression.count}</div>

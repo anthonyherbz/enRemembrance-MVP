@@ -9,6 +9,7 @@ $topSpaces: 50, 75, 100, 125, 150, 200;
 	height: max-content;
 	z-index: 10;
 	padding-top: 0.25rem;
+	padding-inline: .5rem;
 	@each $value in $topSpaces {
 		&.topSpace-#{$value} {
 			top: #{$value}px;
@@ -36,5 +37,11 @@ $topSpaces: 50, 75, 100, 125, 150, 200;
 	}
 	> * {
 		gap: 0.35rem;
+	}
+}
+
+@media screen and (max-width: 400px){
+	.nav {
+		display: none;
 	}
 }

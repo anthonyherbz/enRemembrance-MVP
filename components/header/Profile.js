@@ -36,7 +36,7 @@ const Profile = ({ user, userLink, expanded, setExpanded }) => {
 	return (
 		<div className={profileClasses}>
 			<div className={styles.profileDisplay}>
-				<Text>{user}</Text>
+				<div className={styles.usertext}><Text>{user}</Text></div>
 				<Image src='/images/profile.svg' width='25' height='25' />
 			</div>
 			{expanded ? <div className={styles.expandedMenu}>{profileMenu}</div> : null}

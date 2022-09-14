@@ -1,6 +1,6 @@
-@use '../../sass/abstracts/vars.scss';
+@use "../../sass/abstracts/vars.scss";
 
-.searchbar{
+.searchbar {
 	display: flex;
 	justify-content: center;
 	max-width: 500px;
@@ -8,25 +8,69 @@
 	// margin-right: 2em;
 	align-items: center;
 	gap: 0.25rem;
-	.box{
+	.box {
 		width: 100%;
 		// height: 1.5em;
 		min-width: 100px;
 		// background-color: green;
-		input{
+		input {
 			width: 100%;
 			height: 30px;
 		}
 	}
-	.sbutton{
+	.sbutton {
 		width: 30px;
 		height: 30px;
 		padding: 6px;
 		border-radius: 50%;
 		background-color: vars.$color_blue_light;
 		cursor: pointer;
-		&:hover{
+		&:hover {
 			background-color: vars.$color_blue;
+		}
+	}
+}
+@media screen and (max-width: 400px) {
+	.searchbar {
+		.box,
+		.sbutton {
+			display: none;
+		}
+	}
+}
+.mobilesearch {
+	display: none;
+}
+@media screen and (max-width: 400px) {
+	.mobilesearch {
+		position: relative;
+		overflow: visible;
+		.mobilebox{
+			position: fixed;
+			top: 50px;
+			z-index: 3;
+			left: 0;
+			right: 0;
+			.box{
+				padding: .25rem;
+				background-color: #fff;
+				input{
+					width: 100%;
+				}
+			}
+		}
+		display: block;
+		.sbutton {
+			display: block;
+			width: 30px;
+			height: 30px;
+			padding: 6px;
+			border-radius: 50%;
+			background-color: vars.$color_blue_light;
+			cursor: pointer;
+			&:hover {
+				background-color: vars.$color_blue;
+			}
 		}
 	}
 }

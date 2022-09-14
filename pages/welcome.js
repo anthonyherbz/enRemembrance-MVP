@@ -46,7 +46,7 @@ const Welcome = () => {
 							md='5'
 							sm='5'
 							alignItems='center'
-							justifyContent='space-between'
+							justifyContent='space-around'
 						>
 							<Logo size='2x' />
 							<div className={styles.welcome}>

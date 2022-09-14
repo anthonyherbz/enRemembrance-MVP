@@ -19,6 +19,7 @@
 	//dense particles at one side
 	overflow: hidden;
 	padding: 1.5em 1.8em;
+	margin-inline: 0.5rem;
 	& div{
 		gap: .5em;
 	}
@@ -49,10 +50,11 @@
 	align-items: center;
 	justify-content: center;
 	padding: 67px 17px;
+	margin-inline: 0.5rem;
 	// gap: 10px;
 
-	width: 450px;
-	height: 212px;
+	max-width: 450px;
+	max-height: 212px;
 	max-width: 100%;
 
 	/* Landing Green */
