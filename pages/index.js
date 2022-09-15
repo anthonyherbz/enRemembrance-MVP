@@ -70,7 +70,6 @@ export default function Home() {
 					
 					<Col border="left" ratio='20' alignItems='center' allowScroll>
 						<Container>
-							<div>
 								<div
 									style={{
 										height: "1px",
@@ -83,7 +82,6 @@ export default function Home() {
 									}}
 								></div>
 								<PostFeed posts={posts} />
-							</div>
 						</Container>
 					</Col>
 				</Row>

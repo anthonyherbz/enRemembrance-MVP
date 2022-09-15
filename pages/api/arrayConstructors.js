@@ -56,7 +56,7 @@ function makeBooks(quantity, pagecount) {
 			});
 		}
 	}
-	console.log("makeBooks() has run");
+	// console.log("makeBooks() has run");
 
 	return books;
 }
