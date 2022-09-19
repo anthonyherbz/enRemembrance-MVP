@@ -1,0 +1,134 @@
+[
+	{
+		"id": 1,
+		"author_id": 1,
+		"title": "about my family1",
+		"create_date": "2022-09-01 00:00:00",
+		"publish_date": "2022-09-02 00:00:00",
+		"page_xml": "",
+		"published": 1,
+		"visible": 0,
+		"monetized": 0
+	},
+	{
+		"id": 2,
+		"author_id": 4,
+		"title": "about my family2",
+		"create_date": "2022-09-01 00:00:00",
+		"publish_date": "2022-09-02 00:00:00",
+		"page_xml": "",
+		"published": 0,
+		"visible": 0,
+		"monetized": 0
+	},
+	{
+		"id": 3,
+		"author_id": 2,
+		"title": "about my family3",
+		"create_date": "2022-09-01 00:00:00",
+		"publish_date": "2022-09-02 00:00:00",
+		"page_xml": "",
+		"published": 1,
+		"visible": 1,
+		"monetized": 1
+	},
+	{
+		"id": 4,
+		"author_id": 5,
+		"title": "about my family4",
+		"create_date": "2022-09-01 00:00:00",
+		"publish_date": "2022-09-02 00:00:00",
+		"page_xml": "",
+		"published": 1,
+		"visible": 1,
+		"monetized": 0
+	},
+	{
+		"id": 5,
+		"author_id": 6,
+		"title": "about my family5",
+		"create_date": "2022-09-01 00:00:00",
+		"publish_date": "2022-09-02 00:00:00",
+		"page_xml": "",
+		"published": 1,
+		"visible": 0,
+		"monetized": 1
+	},
+	{
+		"id": 6,
+		"author_id": 6,
+		"title": "about my family6",
+		"create_date": "2022-09-01 00:00:00",
+		"publish_date": "2022-09-02 00:00:00",
+		"page_xml": "",
+		"published": 0,
+		"visible": 0,
+		"monetized": 0
+	},
+	{
+		"id": 7,
+		"author_id": 8,
+		"title": "about my family7",
+		"create_date": "2022-09-01 00:00:00",
+		"publish_date": "2022-09-02 00:00:00",
+		"page_xml": "",
+		"published": 1,
+		"visible": 1,
+		"monetized": 1
+	},
+	{
+		"id": 8,
+		"author_id": 1,
+		"title": "about my family8",
+		"create_date": "2022-09-01 00:00:00",
+		"publish_date": "2022-09-02 00:00:00",
+		"page_xml": "",
+		"published": 1,
+		"visible": 0,
+		"monetized": 0
+	},
+	{
+		"id": 9,
+		"author_id": 3,
+		"title": "about my family9",
+		"create_date": "2022-09-01 00:00:00",
+		"publish_date": "2022-09-02 00:00:00",
+		"page_xml": "",
+		"published": 1,
+		"visible": 1,
+		"monetized": 0
+	},
+	{
+		"id": 10,
+		"author_id": 5,
+		"title": "about my family10",
+		"create_date": "2022-09-01 00:00:00",
+		"publish_date": "2022-09-02 00:00:00",
+		"page_xml": "",
+		"published": 0,
+		"visible": 0,
+		"monetized": 0
+	},
+	{
+		"id": 11,
+		"author_id": 7,
+		"title": "about my family11",
+		"create_date": "2022-09-01 00:00:00",
+		"publish_date": "2022-09-02 00:00:00",
+		"page_xml": "",
+		"published": 1,
+		"visible": 1,
+		"monetized": 1
+	},
+	{
+		"id": 12,
+		"author_id": 7,
+		"title": "about my family12",
+		"create_date": "2022-09-01 00:00:00",
+		"publish_date": "2022-09-02 00:00:00",
+		"page_xml": "",
+		"published": 1,
+		"visible": 0,
+		"monetized": 1
+	}
+]

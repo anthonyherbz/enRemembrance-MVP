@@ -1,0 +1,74 @@
+[
+	{
+		"id": 1,
+		"post_date": "2022-09-01 00:00:00",
+		"story_id": 1,
+		"post_text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+	},
+	{
+		"id": 2,
+		"post_date": "2022-09-01 00:00:00",
+		"story_id": 2,
+		"post_text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+	},
+	{
+		"id": 3,
+		"post_date": "2022-09-01 00:00:00",
+		"story_id": 3,
+		"post_text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+	},
+	{
+		"id": 4,
+		"post_date": "2022-09-01 00:00:00",
+		"story_id": 4,
+		"post_text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+	},
+	{
+		"id": 5,
+		"post_date": "2022-09-01 00:00:00",
+		"story_id": 5,
+		"post_text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+	},
+	{
+		"id": 6,
+		"post_date": "2022-09-01 00:00:00",
+		"story_id": 6,
+		"post_text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+	},
+	{
+		"id": 7,
+		"post_date": "2022-09-01 00:00:00",
+		"story_id": 7,
+		"post_text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+	},
+	{
+		"id": 8,
+		"post_date": "2022-09-01 00:00:00",
+		"story_id": 8,
+		"post_text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+	},
+	{
+		"id": 9,
+		"post_date": "2022-09-01 00:00:00",
+		"story_id": 9,
+		"post_text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+	},
+	{
+		"id": 10,
+		"post_date": "2022-09-01 00:00:00",
+		"story_id": 10,
+		"post_text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+	},
+	{
+		"id": 11,
+		"post_date": "2022-09-01 00:00:00",
+		"story_id": 11,
+		"post_text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+	},
+	{
+		"id": 12,
+		"post_date": "2022-09-01 00:00:00",
+		"story_id": 12,
+		"post_text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+	}
+]

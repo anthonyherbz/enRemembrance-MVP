@@ -22,7 +22,7 @@
 		flex: 1;
 		justify-content: center;
 		align-items: center;
-		max-width: max-content;
+		max-width: 14%;
 		img {
 			max-height: 9em;
 			// width: 100%;
@@ -59,12 +59,6 @@
 				max-width: 2em;
 			}
 		}
-	}
-	.hideComment {
-		display: none;
-	}
-	.hideAuthor {
-		display: none;
 	}
 }
 // }
