@@ -10,8 +10,7 @@ import EnterComment from "./EnterComment";
 const Postv2 = ({
 	post,
 	count,
-	hideComment,
-	hideAuthor,
+	hide
 }) => {
 	const [storyResponse, setstoryResponse] = useState([]);
 	useEffect(() => {
@@ -42,8 +41,7 @@ const Postv2 = ({
 	let commentAuthor = "";
 	let comment = "";
 	let postClasses = cx({
-		hideComment: hideComment,
-		hideAuthor: hideAuthor,
+		hide: hide
 	});
 
 	if (storyResponse == undefined) {
@@ -59,7 +57,7 @@ const Postv2 = ({
 				<Link href={`/stories/${storyResponse.id}`}>
 					<a>
 						<img
-							src={`/images/covers/placeholder${storyResponse.id}.jpg`}
+							src={`/images/covers/placeholder${post.story_id}.jpg`}
 							alt='placeholder'
 						/>
 					</a>
@@ -81,10 +79,10 @@ const Postv2 = ({
 					</div>
 					{/* should link to a specific author's profile */}
 					<div className={postClasses}>
-						<Link href={`/authors/${storyResponse.author_id}`}>
+						<Link href={`/users/${storyResponse.author_id}`}>
 							<a>
 								<img
-									src={`/images/authors/${storyResponse.author_id}.jpg`}
+									src={`/images/users/${storyResponse.author_id}.jpg`}
 								/>
 							</a>
 						</Link>

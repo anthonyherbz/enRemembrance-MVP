@@ -3,10 +3,10 @@ import ImageContainer from './ImageContainer';
 import { useRouter } from 'next/router';
 
 const StoriesFeed = ({userId}) => {
-	const router = useRouter()
 	console.log(userId)
 	const [dataResponse, setdataResponse] = useState([]);
 	useEffect(() => {
+		if(userId==undefined) return; //don't run useEffect contents if the userId hasn't yet been passed
 		async function getPageData() {
 			const apiUrlEndpoint = "http://localhost:3000/api/getstoriesbyuser-lib";
 			const postData = {
@@ -23,12 +23,12 @@ const StoriesFeed = ({userId}) => {
 			setdataResponse(res.stories);
 		}
 		getPageData();
-	}, [router.isReady]);
+	}, [userId]);
 	console.log("dataresponse", dataResponse)
 
 	if (dataResponse.length == 0) {
 		//basic error handling
-		return <div>No stories returned on intial render</div>;
+		return <div>This user has no stories</div>;
 	}
 	return (
 		<div>

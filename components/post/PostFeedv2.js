@@ -19,11 +19,13 @@ const PostFeedv2 = () => {
 		getPosts();
 	}, []);
 	// console.log(dataResponse[0]);
+	if (dataResponse.length == 0) return <div>loading</div>
 	return (
 		//May be better to pass in the post object instead
 		<div className={styles.postFeed}>
-			{/* <Postv2 post={dataResponse[0]} /> */}
-			{dataResponse.map((post, index) => {
+			{/* {console.log(dataResponse[0])} */}
+			<Postv2 post={dataResponse[0]} />
+			{/* {dataResponse.map((post, index) => {
 				return (
 					<Postv2 
 						post={post}
@@ -32,7 +34,7 @@ const PostFeedv2 = () => {
 						hideComment="false"
 					/>
 				);
-			})}
+			})} */}
 		</div>
 	);
 };

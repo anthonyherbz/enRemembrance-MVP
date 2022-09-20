@@ -6,12 +6,19 @@ import Container from "../../components/Container";
 import styles from '../../page_sass/authorpage.module.scss'
 import User from "../../components/User";
 import StoriesFeed from "../../components/StoriesFeed";
+// import NoSsr from '../../components/NoSsr'
 
-const users = () => {
+const user = () => {
+	const [isLoaded, setisLoaded] = useState(0);
 	const router = useRouter();
-	const {id} = router.query;
+	const { id } = router.query;
+	// console.log("id", id)
 	const [dataResponse, setdataResponse] = useState([]);
 	useEffect(() => {
+		if(!router.isReady) return; //don't run the useEffect contents until the router returns the ID
+		setisLoaded(isLoaded=1)
+		console.log("isLoaded", isLoaded)
+		console.log("useeffect ran")
 		async function getPageData() {
 			const apiUrlEndpoint = "http://localhost:3000/api/getuser-lib";
 			const postData = {
@@ -32,6 +39,9 @@ const users = () => {
 	//empty [] needed for useEffect otherwise it will infinitely rerender, making infinite calls to server
 	//[] contents waits for router 
 
+	// if (isLoaded == 0){
+	// 	return <div>Loading Page</div>
+	// }
 	return (
 		<div>
 			<div >
@@ -41,11 +51,10 @@ const users = () => {
 					<User user={dataResponse} />
 					<ButtonText color='green' expand label='Back' />
 				</div>
-				<StoriesFeed userId={dataResponse.id}/>
-				{/* <PostFeed posts={posts} /> */}
+				{isLoaded ? <StoriesFeed userId={dataResponse.id}/> : null}
 			</Container>
 		</div>
 		</div>
 	);
 };
-export default users;
+export default user;

@@ -8,6 +8,8 @@ export default async function handler(req, res) {
 		const data = await query({query: querySql, values: valuesParams});
 		// (await db).end
 		res.status(200).json({ stories: data });
-	} catch (error) {}
+	} catch (error) {
+		// res.status(400).json({error})
+	}
 	
 }
