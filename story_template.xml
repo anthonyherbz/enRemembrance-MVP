@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book>
+	<page>
+		<number>1</number>
+		<templateName>splitTop</templateName>
+		<positions>
+			<quadrant>
+				<quad>1</quad>
+				<type>text</type>
+				<content>content</content>
+				<span>false</span>
+			</quadrant>
+			<quadrant>
+				<quad>2</quad>
+				<type>img</type>
+				<content>img1</content>
+				<span>false</span>
+			</quadrant>
+			<quadrant>
+				<quad>1</quad>
+				<type>img</type>
+				<content>img2</content>
+				<span>true</span>
+			</quadrant>
+		</positions>
+	</page>
+</book>

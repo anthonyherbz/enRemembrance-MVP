@@ -28,6 +28,7 @@ const ExpressionPreview = () => {
 					<GiSpotedFlower/>
 					<GiLotusFlower/>
 				</div>
+				<div className={styles.expressionsMobile}><BsFlower1/></div>
 			</IconContext.Provider>
 			{showExp ? <Expressions setShowExp={setShowExp} showExp={showExp} /> : null}
 		</div>

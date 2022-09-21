@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Testing = () => {
+const Testing1 = () => {
 	const [dataResponse, setdataResponse] = useState([]);
 	// const [userResponse, setUserResponse] = useState([]);
 	useEffect(() => {
@@ -25,4 +25,4 @@ const Testing = () => {
 		</div>
 	);
 };
-export default Testing;
+export default Testing1;

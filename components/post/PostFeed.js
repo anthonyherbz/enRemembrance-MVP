@@ -23,7 +23,8 @@ const PostFeed = () => {
 						book={post.bookTitle}
 						bookCover={post.bookCover}
 						bookSlug={post.bookSlug}
-						postSLug="post"
+						postSlug="post"
+						hideAuthor
 					/>
 				);
 			})}

@@ -18,16 +18,19 @@ const AuthorPage = () => {
 	let posts = getPosts();
 	console.log(posts);
 	return (
-		<div >
+		<>
 			<Header show/>
 			<Container marginTop>
 				<div className={styles.authorlead}>
 					<Author author={author} />
-					<ButtonText color='green' expand label='Back' />
+					<div className={styles.buttonContainer}>
+						<div className={styles.authorPosts}>Posts by {author.author}</div>
+						<ButtonText color='green' expand label='Back' />
+					</div>
 				</div>
-				<PostFeed posts={posts} />
+				<PostFeed posts={posts}/>
 			</Container>
-		</div>
+		</>
 	);
 };
 export default AuthorPage;

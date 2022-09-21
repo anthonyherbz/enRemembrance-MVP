@@ -22,7 +22,6 @@ const Post = ({
 	comment,
 	commentAuthor,
 	postContent,
-	hideComment,
 	hideAuthor,
 	postSlug,
 }) => {
@@ -33,7 +32,6 @@ const Post = ({
 
 	//Set dynamic styles based on props
 	let postClasses = cx({
-		hideComment: hideComment,
 		hideAuthor: hideAuthor,
 	});
 	return (
@@ -86,7 +84,6 @@ const Post = ({
 					{/* comment icon that opens and closes the comment box */}
 					<div
 						style={{ cursor: "pointer", zIndex:"1" }}
-						className={postClasses}
 						onClick={toggleComment}
 					>
 						<img src='/images/comment.jpg' alt='placeholder' />

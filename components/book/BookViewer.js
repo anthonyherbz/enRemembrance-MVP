@@ -36,15 +36,23 @@ const BookViewer = ({ book }) => {
 		}
 	}
 
+	function addPosMobile(){
+		if (position < book.pages.length - 2){
+			setPosition(position + 1)
+		}
+	}
+	function subPosMobile(){
+		if (position >= 1){
+			setPosition(position - 1)
+		}
+	}
+
 	// console.log(book);
 	return (
 		<div className={styles.bookParent}>
 			<div className={styles.bookViewer}>
 				{position > 0 ? (
 					<>
-						{console.log("position reported by bookviewer ", {
-							position,
-						})}
 						<BookPage pos={position} page={book.pages[position]} />
 						<BookPage
 							pos={position}
@@ -67,6 +75,23 @@ const BookViewer = ({ book }) => {
 				</div>
 				<div onClick={addPos}>
 					<Icon name='arrow' />
+				</div>
+			</div>
+			<div className={styles.mobile}>
+				<div className={styles.bookViewerMobile}>
+					<BookPage
+						cover={book.coverName}
+						pos={position}
+						page={book.pages[position]}
+					/>
+				</div>
+				<div className={styles.bookController}>
+					<div onClick={subPosMobile}>
+						<Icon name='arrow' rotate='180' />
+					</div>
+					<div onClick={addPosMobile}>
+						<Icon name='arrow' />
+					</div>
 				</div>
 			</div>
 		</div>

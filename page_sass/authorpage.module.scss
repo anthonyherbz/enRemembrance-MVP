@@ -1,4 +1,4 @@
-.authorlead{
+.authorlead {
 	display: flex;
 	flex-wrap: nowrap;
 	// width: 100%;
@@ -6,4 +6,28 @@
 	align-items: center;
 	margin-inline: 1rem;
 	// margin-right: 5rem;
+	.buttonContainer {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-items: center;
+		justify-content: space-around;
+		
+		.authorPosts {
+			display: none;
+		}
+	}
+	@media screen and (max-width: 400px) {
+		flex-direction: column;
+		margin-inline: 0;
+		section {
+			border-radius: 0;
+		}
+		.buttonContainer {
+			width: 100%;
+			.authorPosts {
+				display: block;
+			}
+		}
+	}
 }

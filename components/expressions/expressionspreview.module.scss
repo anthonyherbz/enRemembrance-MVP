@@ -11,3 +11,14 @@
 		border: 1px dashed grey;
 	}
 }
+.expressionsMobile{
+	display: none;
+}
+@media screen and (max-width: 550px) {
+	.expressionPreview{
+		display: none;
+	}
+	.expressionsMobile{
+		display: block;
+	}
+}

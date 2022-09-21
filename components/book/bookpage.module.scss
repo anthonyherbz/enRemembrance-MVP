@@ -9,6 +9,11 @@ $quads: quad-1, quad-2, quad-3, quad-4;
 	background-color: #fff;
 	position: relative;
 	height: 100%;
+	aspect-ratio: .75;
+	@media screen and (max-width: 700px) {
+		// width: 50%;
+		// aspect-ratio: .75
+	}
 	// flex-wrap: wrap;
 	grid-template-columns: 1fr 1fr;
 	.quadStyles {
@@ -36,9 +41,16 @@ $quads: quad-1, quad-2, quad-3, quad-4;
 	}
 }
 .cover{
-	width: 50%;
-	height: 100%;
+	width: 75%;
+	display: grid;
 	border: 1px solid vars.$color_grey_dark;
+	background-color: #fff;
+	position: relative;
+	height: 100%;
+	aspect-ratio: .75;
+	@media screen and (min-width: 700px) {
+		width: 50%;		
+	}
 }
 
 .pageNum{

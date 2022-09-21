@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 //Dyanmically generate a category page. This is a good candidate for using static paths because they're not likely to change often, but was a good proof of concept for getting dynamic pages working
 const Category = () => {
@@ -29,12 +30,44 @@ const Category = () => {
 	//[] contents waits for router
 	const category = dataResponse[0];
 	// if (!router.isReady) return <div>Loading</div>
-	if (category == undefined) return <div>This category does not exist</div>;
 	return (
 		<div>
 			<strong>Category</strong>
-			<div>{category.name}</div>
+			<div>
+				<Link href="/categories">
+					<a>
+						Return to Categories List
+					</a>
+				</Link>
+			</div>
+			{category != undefined ? (
+				<div>{category.name}</div>
+			) : (
+				<div>This category does not exist</div>
+			)}
 		</div>
 	);
 };
 export default Category;
+
+
+
+// export async function getStaticPaths(){
+// 	return {
+// 		paths: categories,
+// 		fallback: false,
+// 	}
+// }
+
+
+// export async function getStaticProps(){
+// 	const apiUrlEndpoint = "http://localhost:3000/api/getcategories-lib";
+// 	const response = await fetch(apiUrlEndpoint);
+// 	const categories = await response.json()
+// 	// console.log(categories)
+// 	return{
+// 		props:{
+// 			categories,
+// 		},
+// 	}
+// }
