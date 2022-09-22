@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<book>
-	<page>
-		<number>1</number>
-		<templateName>splitTop</templateName>
-		<positions>
-			<quadrant>
-				<quad>1</quad>
-				<type>text</type>
-				<content>content</content>
-				<span>false</span>
+<story>
+	<page number="{pageNumber}" templateName="{templateName}" positions="{positionsCount}">
+			<quadrant number="1" type="{type}" span="{span}">
+				<content>{content}</content>
 			</quadrant>
-			<quadrant>
-				<quad>2</quad>
-				<type>img</type>
-				<content>img1</content>
-				<span>false</span>
+			<quadrant number="2" type="{type}" span="{span}">
+				<content>{content}</content>
 			</quadrant>
-			<quadrant>
-				<quad>1</quad>
-				<type>img</type>
-				<content>img2</content>
-				<span>true</span>
+			<quadrant number="3" type="{type}" span="{span}">
+				<content>{content}</content>
 			</quadrant>
-		</positions>
+			<quadrant number="4" type="{type}" span="{span}">
+				<content>{content}</content>
+			</quadrant>
 	</page>
-</book>
+</story>

@@ -1,0 +1,37 @@
+{
+	"story": {
+		"pages": [
+			{
+				"number": "{pageNumber}",
+				"templateName": "{templateName}",
+				"positions": "{positionsCount}",
+				"quadrants": [
+					{
+						"number": 1,
+						"type": "{type}",
+						"span": "{span}",
+						"content": "{content}"
+					},
+					{
+						"number": 1,
+						"type": "{type}",
+						"span": "{span}",
+						"content": "{content}"
+					},
+					{
+						"number": 1,
+						"type": "{type}",
+						"span": "{span}",
+						"content": "{content}"
+					},
+					{
+						"number": 1,
+						"type": "{type}",
+						"span": "{span}",
+						"content": "{content}"
+					}
+				]
+			}
+		]
+	}
+}
