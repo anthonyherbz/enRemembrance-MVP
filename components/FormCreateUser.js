@@ -40,6 +40,7 @@ const FormCreateUser = () => {
 						required
 						type='email'
 						name='email'
+						pattern="[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]"
 						placeholder='Email Address'
 						minLength='4'
 						maxLength='48'

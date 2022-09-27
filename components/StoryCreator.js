@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-
+import StoryCreatorPage from "./StoryCreatorPage";
+import styles from "./storycreator.module.scss";
+import Image from "next/image";
+import Icon from "./icons/Icon";
 
 const StoryCreator = () => {
 	let story = {
@@ -20,17 +23,17 @@ const StoryCreator = () => {
 		],
 	};
 	//TBD
-	const user_id = 1
-	const coverpath = ""
-	const title = ""
-	const visible = 0;
-	const published = 0;
-	const monetized = 0;
-
-
-
+	//let session = getSession()
+	//let user = session.user
+	//let user_id = session.user_id
+	let user_id = 1;
+	let coverpath;
+	let visible = 0;
+	let published = 0;
+	let monetized = 0;
 
 	//Store the story in state
+	const [title, updateTitle] = useState();
 	const [storyState, updatestoryState] = useState({ story });
 	//Store the current page in state
 	const [page, setPage] = useState(0);
@@ -51,10 +54,11 @@ const StoryCreator = () => {
 			setPage(page - 1);
 		}
 	}
-
 	function makeNewPage(storyState) {
+		setPage(page+1)
 		//Do not update state directly
 		let myStory = storyState;
+		console.log("mystory is", myStory)
 		//Set the maximum number of pages as 10 and log to the console if this count is reached
 		if (pageCount >= 10)
 			return console.log("You have reached the maximum number of pages");
@@ -62,28 +66,9 @@ const StoryCreator = () => {
 		console.log("intial pageCount", pageCount);
 
 		//populate placeholder variables
-		let templateName = "splitTop";
-		let positions = 3;
-		let quadrants = [
-			{
-				number: 1,
-				type: "image",
-				span: false,
-				content: "/images/placeholders/cover.jpg",
-			},
-			{
-				number: 2,
-				type: "image",
-				span: false,
-				content: "/images/placeholders/cover.jpg",
-			},
-			{
-				number: 3,
-				type: "image",
-				span: true,
-				content: "/images/placeholders/cover.jpg",
-			},
-		];
+		let templateName = "uninitialized";
+		let positions = 0;
+		let quadrants = [];
 
 		//Into the first item in the .pages array, push
 		myStory.story.pages.push({
@@ -92,7 +77,7 @@ const StoryCreator = () => {
 			number: pageCount + 1,
 			templateName: templateName,
 			positions: positions,
-			quadrants: [],
+			quadrants: quadrants,
 		});
 		// console.log("myStory.story.pages", myStory.story.pages)
 
@@ -129,20 +114,51 @@ const StoryCreator = () => {
 					published: published,
 					visible: visible,
 					monetized: monetized,
-					user: user_id
+					user: user_id,
 				}),
 			};
-			// postData sends info to the API. Using to specify ID of item to request
 			const response = await fetch(apiUrlEndpoint, postData);
 			const res = await response.json();
 			console.log(res);
-			// setdataResponse(res.user[0]);
 		}
 		sendToDB();
 	}
 	return (
 		<>
-			<div>
+			<section className={styles.storyCreator}>
+				<form>
+					{/* hidden button prevents submission on enter behavior */}
+					<button type="submit" disabled style={{display: "none"}} aria-hidden="true"></button>
+					<label htmlFor='title'>Give your story a title</label>
+					<input
+						name='title'
+						type='text'
+						placeholder='Untitled Story'
+						onChange={(e) => updateTitle(e.target.value)}
+					/>
+					{console.log("changed title", title)}
+				</form>
+				<div className={styles.body}>
+					<StoryCreatorPage
+						makeNewPage={makeNewPage}
+						workingStory={storyState}
+						forward={forward}
+						page={page}
+						title={title}
+					/>
+					<span onClick={() => makeNewPage(storyState)}>+</span>
+				</div>
+				<div className={styles.controls}>
+					<div onClick={backward}>
+						<Icon name='arrow' rotate='180' />
+					</div>
+					<div onClick={forward}>
+						<Icon name='arrow' />
+					</div>
+				</div>
+			</section>
+
+			<section style={{display: "none"}}>
 				<div onClick={() => makeNewPage(storyState)}>
 					Click me to create a new page
 				</div>
@@ -151,7 +167,7 @@ const StoryCreator = () => {
 				<div onClick={() => saveStory(storyState)}>
 					Click me to save the story into the database
 				</div>
-			</div>
+			</section>
 		</>
 	);
 };

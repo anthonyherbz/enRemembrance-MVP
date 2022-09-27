@@ -1,0 +1,35 @@
+.storyCreatorPage {
+	border: 1px solid black;
+	position: relative;
+	height: 75%;
+	width: 50%;
+	.title{
+		position: absolute;
+		z-index: 1;
+		background-color: #fff;
+		padding: 0.5em;
+		border-radius: 11px;
+		box-shadow: 3px 3px 10px 5px rgba(130, 130, 130, 0.554);
+	}
+	.cover {
+		border: 1px solid green;
+		background-color: yellow;
+		// height: 100%;
+		// width: 100%;
+		display: block;
+	}
+	.splitTop{
+		display: grid;
+		height: 100%;
+		background-color: grey;
+		width: 100%;
+		grid-template-columns: (1fr 1fr);
+		>div{
+			border: 1px solid yellow;
+		}
+		:nth-child(3){
+			grid-column-start: 1;
+			grid-column-end: 3;
+		}
+	}
+}
