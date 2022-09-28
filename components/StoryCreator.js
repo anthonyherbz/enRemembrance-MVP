@@ -5,12 +5,12 @@ import Image from "next/image";
 import Icon from "./icons/Icon";
 
 const StoryCreator = () => {
+	//Define the initial structure for the story object. Set a placeholder cover at a specific location.
 	let story = {
 		pages: [
 			{
 				number: 0,
 				templateName: "cover",
-				positions: 1,
 				quadrants: [
 					{
 						number: 1,
@@ -23,86 +23,68 @@ const StoryCreator = () => {
 		],
 	};
 	//TBD
-	//let session = getSession()
-	//let user = session.user
-	//let user_id = session.user_id
+	//let session = getSession() < get the current session
+	//let user = session.user < get the current user from the session
+	//let user_id = session.user_id <get the current user_id from the session
 	let user_id = 1;
 	let coverpath;
 	let visible = 0;
 	let published = 0;
 	let monetized = 0;
 
-	//Store the story in state
+	//Store the title, story object, current page, and maximum page in state
 	const [title, updateTitle] = useState();
 	const [storyState, updatestoryState] = useState({ story });
-	//Store the current page in state
 	const [page, setPage] = useState(0);
-	//Store the maximum number of pages in state
 	const [pageCount, setpageCount] = useState(0);
-	console.log("Page number ", page);
-	console.log("page max", pageCount);
-	console.log(storyState);
-	//If the current page is less than the maximum pages, increment the page by one
+	// console.log("Page number ", page);
+	// console.log("page max", pageCount);
+	// console.log(storyState);
+
 	function forward() {
+		//If the current page is less than the maximum pages, increment the page by one
 		if (page < pageCount) {
 			setPage(page + 1);
 		}
 	}
-	//If the current page is greater than 0, decrement the current page by one
+
 	function backward() {
+		//If the current page is greater than 0, decrement the current page by one
 		if (page > 0) {
 			setPage(page - 1);
 		}
 	}
+
 	function makeNewPage(storyState) {
-		setPage(page+1)
+
 		//Do not update state directly
-		let myStory = storyState;
-		console.log("mystory is", myStory)
+		
+		// console.log("mystory is", myStory);
 		//Set the maximum number of pages as 10 and log to the console if this count is reached
 		if (pageCount >= 10)
 			return console.log("You have reached the maximum number of pages");
 		//Check the intial page count before running the function
-		console.log("intial pageCount", pageCount);
-
-		//populate placeholder variables
+		// console.log("intial pageCount", pageCount);
+		
 		let templateName = "uninitialized";
-		let positions = 0;
 		let quadrants = [];
 
 		//Into the first item in the .pages array, push
-		myStory.story.pages.push({
+		storyState.story.pages.push({
 			//one higher than the page count. Averts issue of duplicate page numbers
 			//Create quadrants as an empty array
 			number: pageCount + 1,
 			templateName: templateName,
-			positions: positions,
 			quadrants: quadrants,
 		});
-		// console.log("myStory.story.pages", myStory.story.pages)
-
-		//Increment over the specified number of positions
-		for (let i = 0; i < positions; i++) {
-			//Log the contents of each quadrant
-			console.log(quadrants[i]);
-			//In my story, story, pages, one higher than the current maximum number of pages, in quadrants, add a new object into the array
-			myStory.story.pages[pageCount + 1].quadrants.push({
-				number: quadrants[i].number,
-				type: quadrants[i].type,
-				span: quadrants[i].span,
-				content: quadrants[i].content,
-			});
-		}
-		// console.log("Story with new page added: ", story)
-		// console.log("page number after adding new", page)
 		setpageCount(pageCount + 1);
-		// console.log("final page count", pageCount)
-		// return myStory;
-		//Update story state when the job is done. Unclear if this is actually doing anything.
-		updatestoryState(myStory);
+		setPage(pageCount+1);
+
+		// updatestoryState(myStory);
 	}
-	function saveStory(storyState) {
-		let myStory = storyState;
+
+	function saveStory(storyState, title, published, visible, monetized, user_id) {
+		const myStory = storyState;
 		async function sendToDB() {
 			const apiUrlEndpoint = "http://localhost:3000/api/uploadstory-lib";
 			const postData = {
@@ -128,7 +110,12 @@ const StoryCreator = () => {
 			<section className={styles.storyCreator}>
 				<form>
 					{/* hidden button prevents submission on enter behavior */}
-					<button type="submit" disabled style={{display: "none"}} aria-hidden="true"></button>
+					<button
+						type='submit'
+						disabled
+						style={{ display: "none" }}
+						aria-hidden='true'
+					></button>
 					<label htmlFor='title'>Give your story a title</label>
 					<input
 						name='title'
@@ -136,7 +123,7 @@ const StoryCreator = () => {
 						placeholder='Untitled Story'
 						onChange={(e) => updateTitle(e.target.value)}
 					/>
-					{console.log("changed title", title)}
+					{/* {console.log("changed title", title)} */}
 				</form>
 				<div className={styles.body}>
 					<StoryCreatorPage
@@ -145,8 +132,14 @@ const StoryCreator = () => {
 						forward={forward}
 						page={page}
 						title={title}
+						updatestoryState={updatestoryState}
 					/>
-					<span onClick={() => makeNewPage(storyState)}>+</span>
+					<div
+						className={styles.addPage}
+						onClick={() => makeNewPage(storyState)}
+					>
+						+
+					</div>
 				</div>
 				<div className={styles.controls}>
 					<div onClick={backward}>
@@ -158,7 +151,7 @@ const StoryCreator = () => {
 				</div>
 			</section>
 
-			<section style={{display: "none"}}>
+			<section style={{ display: "none" }}>
 				<div onClick={() => makeNewPage(storyState)}>
 					Click me to create a new page
 				</div>
