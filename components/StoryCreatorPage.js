@@ -23,6 +23,7 @@ const StoryCreatorPage = ({
 	})
 	const [templateType, settemplateType] = useState("uninitialized");
 	const [pageState, setpageState] = useState(page)
+	const [storedImages, setStoredImages] = useState([])
 
 	const contentArray = [1, 2, 3, 4];
 	// console.log("template type", templateType);
@@ -45,9 +46,7 @@ const StoryCreatorPage = ({
 	// console.log("Story", workingStory);
 	// console.log(`template at ${page}`, workingStory.story.pages[page].templateName);
 
-	if (currPage.number != 0){
-		// currPage.templateName="uninitialized"
-	}
+	console.log("storedimages", storedImages)
 
 	function pushQuadrants(currPage, i, span){
 		currPage.quadrants.push({
@@ -90,11 +89,11 @@ const StoryCreatorPage = ({
 							if (quadrant.span == true) {
 								return (
 									<div key={quadrant.number}>
-										<StoryContentSelector type="both" quadrant={quadrant}/>
+										<StoryContentSelector type="both" quadrant={quadrant} setStoredImages={setStoredImages} storedImages={storedImages}/>
 									</div>
 								);
 							}
-							return <div key={quadrant.number}><StoryContentSelector type="image" quadrant={quadrant}/></div>;
+							return <div key={quadrant.number}><StoryContentSelector type="image" quadrant={quadrant} setStoredImages={setStoredImages} storedImages={storedImages}/></div>;
 						})}
 					</div>
 				</div>
@@ -153,7 +152,7 @@ const StoryCreatorPage = ({
 	return (
 		<div className={styles.storyCreatorPage}>
 			{page !== 0 ? (
-				<>
+				<div className={styles.buttons}>
 					{currPage.templateName !="uninitialized" ? <button onClick={() => updateTemplateJson("uninitialized")}>
 						Undo Choice
 					</button> : null} 
@@ -170,7 +169,7 @@ const StoryCreatorPage = ({
 						</button> 
 					</>
 					: null}
-				</>
+				</div>
 				// onChange={(e) => updateTemplate(e.target.value)
 			) : null}
 			{page == 0 && !!title ? (
@@ -179,7 +178,7 @@ const StoryCreatorPage = ({
 				</div>
 			) : null}
 			{template}
-			<div style={{position: "fixed"}}>{page}</div>
+			<div style={{position: "absolute", bottom: "0", right: "0"}}>{page}</div>
 		</div>
 	);
 };
