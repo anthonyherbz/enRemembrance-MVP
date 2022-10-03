@@ -5,6 +5,7 @@ import Nav from "../components/Nav";
 import styles from "../page_sass/editor.module.scss";
 import BookEditor from "../components/book/BookEditor";
 import { getBook } from "./api/api";
+import StoryCreator from "../components/StoryCreator";
 
 const Editor = () => {
 	//Get book from the current page id (at 0 for testing purpose)
@@ -37,8 +38,7 @@ const Editor = () => {
 					</div>
 				</div>
 				<div className={styles.bookSection}>
-					{/* instance book editor component */}
-					<BookEditor book={book}/>
+					<StoryCreator/>
 				</div>
 			</div>
 		</>
