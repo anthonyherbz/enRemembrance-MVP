@@ -20,7 +20,7 @@ const user = () => {
 		console.log("isLoaded", isLoaded)
 		console.log("useeffect ran")
 		async function getPageData() {
-			const apiUrlEndpoint = "http://localhost:3000/api/getuser-lib";
+			const apiUrlEndpoint = "/api/getuser-lib";
 			const postData = {
 				method: "Post",
 				headers: {"Content-Type": "application/json"},

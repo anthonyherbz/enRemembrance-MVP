@@ -1,27 +1,27 @@
-import { useEffect, useState } from "react";
-import styles from "./post.module.scss";
-import classNames from "classnames/bind";
-import Link from "next/link";
-import Heading from "../Heading";
-import ExpressionPreview from "../expressions/ExpressionPreview";
-import EnterComment from "./EnterComment";
-import ImageContainer from "../ImageContainer";
+import { useEffect, useState } from "react"
+import styles from "./post.module.scss"
+import classNames from "classnames/bind"
+import Link from "next/link"
+import Heading from "../Heading"
+import ExpressionPreview from "../expressions/ExpressionPreview"
+import EnterComment from "./EnterComment"
+import ImageContainer from "../ImageContainer"
 // import { useRouter } from "next/router";
 
 //3rd iteration of the post component which will use multiQuery to get data from multiple statements with a single connection
 
 const Postv3 = ({ post, count, hide }) => {
-	const [dataResponse, setdataResponse] = useState([]);
-	const [loaded, setLoaded] = useState(false);
-	const [story, setStory] = useState();
-	const [comment, setComment] = useState();
+	const [dataResponse, setdataResponse] = useState([])
+	const [loaded, setLoaded] = useState(false)
+	const [story, setStory] = useState()
+	const [comment, setComment] = useState()
 
 	useEffect(() => {
-		if (post == undefined) return;
+		if (post == undefined) return
 		// let story = dataResponse.stories[0]
 		// let comment = dataResponse.comments[0]
 		async function getData() {
-			const apiUrlEndpoint = "http://localhost:3000/api/getpostinfo-lib";
+			const apiUrlEndpoint = "/api/getpostinfo-lib"
 			const postData = {
 				method: "Post",
 				headers: { "Content-Type": "application/json" },
@@ -29,29 +29,29 @@ const Postv3 = ({ post, count, hide }) => {
 					story_id: post.story_id,
 					post_id: post.id,
 				}),
-			};
-			const response = await fetch(apiUrlEndpoint, postData);
-			const res = await response.json();
-			console.log("res", res);
-			setdataResponse((dataResponse = res));
-			console.log("dataResponse", dataResponse);
-			setStory((story = dataResponse.stories[0]));
-			setComment((comment = dataResponse.comments[0]));
-			setLoaded(true);
-			console.log(story, comment);
+			}
+			const response = await fetch(apiUrlEndpoint, postData)
+			const res = await response.json()
+			console.log("res", res)
+			setdataResponse((dataResponse = res))
+			console.log("dataResponse", dataResponse)
+			setStory((story = dataResponse.stories[0]))
+			setComment((comment = dataResponse.comments[0]))
+			setLoaded(true)
+			console.log(story, comment)
 		}
-		getData();
+		getData()
 		// console.log("Story response ", storyResponse)
-	}, []);
+	}, [])
 
-	const [showComment, setShowComment] = useState(0);
+	const [showComment, setShowComment] = useState(0)
 
 	function toggleComment() {
-		setShowComment(!showComment);
+		setShowComment(!showComment)
 	}
-	let cx = classNames.bind(styles);
-	let commentAuthor = "";
-	let postClasses = cx({});
+	let cx = classNames.bind(styles)
+	let commentAuthor = ""
+	let postClasses = cx({})
 
 	// if (storyResponse == undefined) {
 	// 	//basic error handling
@@ -133,8 +133,7 @@ const Postv3 = ({ post, count, hide }) => {
 					<div
 						style={{ cursor: "pointer", zIndex: "1" }}
 						className={postClasses}
-						onClick={toggleComment}
-					>
+						onClick={toggleComment}>
 						<div style={{ width: "50px", height: "50px" }}>
 							{loaded ? (
 								<ImageContainer
@@ -156,14 +155,13 @@ const Postv3 = ({ post, count, hide }) => {
 				/>
 			) : null}
 		</div>
-	);
-};
-export default Postv3;
-
+	)
+}
+export default Postv3
 
 //Potential post query
-// SELECT posts.post_text, posts.post_date, 
-// users.id AS user_id, users.handle, 
+// SELECT posts.post_text, posts.post_date,
+// users.id AS user_id, users.handle,
 // post_comments.comment_text, post_comments.commentor_id, post_comments.comment_date,
 // stories.title, stories.author_id, stories.id AS story_id,
 // post_expressions.*, story_expressions.*

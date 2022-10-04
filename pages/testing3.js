@@ -1,13 +1,19 @@
-import Image from "next/image";
-import styles from './testing3.module.scss'
-
-const Testing3 = () => {
-	return (
-		<div className={styles.topLevel}>
-			<div className={styles.midLevel}>
-				<Image src="/images/placeholders/cover.jpg" layout="intrinsic" objectFit="cover" width="650px" height="850px"></Image>
-			</div>
-		</div>
-	)
+// import { query} from '../lib/db'
+import {getData} from './api/getposts-lib'
+import PostFeedv2 from "../components/post/PostFeedv2"
+const Testing3 = (destruct) => {
+	const posts = destruct.destruct
+	// console.log(posts)
+	return <><PostFeedv2 posts={posts}/></>
 }
-export default Testing3;
+export default Testing3
+
+export async function getServerSideProps() {
+		let data = await getData()
+		const destruct = data.posts
+	return {
+		props:{
+			destruct
+		},
+	}
+}

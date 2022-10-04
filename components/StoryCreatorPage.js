@@ -9,13 +9,13 @@ let cx = classNames.bind(styles);
 
 const StoryCreatorPage = ({
 	page,
-	makeNewPage,
+	// makeNewPage,
 	workingStory,
-	forward,
+	// forward,
 	title,
-	updatestoryState,
-	pagePreInc,
-	setPagePreInc,
+	// updatestoryState,
+	// pagePreInc,
+	// setPagePreInc,
 	storyId,
 }) => {
 	let modifierClasses = cx({
@@ -36,7 +36,7 @@ const StoryCreatorPage = ({
 		settemplateType(value);
 		currPage.templateName = value;
 	};
-	console.log(currPage.quadrants);
+	console.log("currPage.quadrants", currPage.quadrants);
 	//Resets template state if the current page is not the one stored in pageState, and updates pageState to match the current page. This is to avoid the problem where you can only force a rerender on state change, so when adding a new page with MakeNewPage() the templateType state would not reset (and MakeNewPage is working with the story object at the parent component, so this component's states are inaccessible), meaning there was no rerender if two of the same page types were changed in a row. I'm sure this isn't the best solution for the problem, but I've spent like an hour and a half trying different thigns so this is what I'm going to use.
 	if (pageState != page) {
 		settemplateType("uninitialized");
@@ -55,7 +55,7 @@ const StoryCreatorPage = ({
 			number: i + 1,
 			type: undefined,
 			span: span,
-			content: contentArray[i],
+			content: ""
 		});
 	}
 

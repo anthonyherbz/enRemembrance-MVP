@@ -1,52 +1,48 @@
-import { useEffect, useState } from "react";
-import styles from "./post.module.scss";
-import classNames from "classnames/bind";
-import Link from "next/link";
-import Heading from "../Heading";
-import ExpressionPreview from "../expressions/ExpressionPreview";
-import EnterComment from "./EnterComment";
+import { useEffect, useState } from "react"
+import styles from "./post.module.scss"
+import classNames from "classnames/bind"
+import Link from "next/link"
+import Heading from "../Heading"
+import ExpressionPreview from "../expressions/ExpressionPreview"
+import EnterComment from "./EnterComment"
 // import { useRouter } from "next/router";
 
-const Postv2 = ({
-	post,
-	count,
-	hide
-}) => {
-	const [storyResponse, setstoryResponse] = useState([]);
+const Postv2 = ({ post, count, hide }) => {
+	const [storyResponse, setstoryResponse] = useState([])
 	useEffect(() => {
 		async function getSingleStory() {
-			const apiUrlEndpoint = "http://localhost:3000/api/getstory-lib";
+			const apiUrlEndpoint = "/api/getstory-lib"
 			const postData = {
 				method: "Post",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
 					id: post.story_id,
 				}),
-			};
-			const response = await fetch(apiUrlEndpoint, postData);
-			const res = await response.json();
-			console.log("res", res);
-			setstoryResponse((storyResponse = res.story[0]));
-			console.log("storyResponse", storyResponse);
+			}
+			const response = await fetch(apiUrlEndpoint, postData)
+			const res = await response.json()
+			console.log("res", res)
+			setstoryResponse((storyResponse = res.story[0]))
+			console.log("storyResponse", storyResponse)
 		}
-		getSingleStory();
+		getSingleStory()
 		// console.log("Story response ", storyResponse)
-	}, []);
+	}, [])
 
-	const [showComment, setShowComment] = useState(0);
+	const [showComment, setShowComment] = useState(0)
 	function toggleComment() {
-		setShowComment(!showComment);
+		setShowComment(!showComment)
 	}
-	let cx = classNames.bind(styles);
-	let commentAuthor = "";
-	let comment = "";
+	let cx = classNames.bind(styles)
+	let commentAuthor = ""
+	let comment = ""
 	let postClasses = cx({
-		hide: hide
-	});
+		hide: hide,
+	})
 
 	if (storyResponse == undefined) {
 		//basic error handling
-		return <div>No story returned for post_id {post.id}</div>;
+		return <div>No story returned for post_id {post.id}</div>
 	}
 	return (
 		<div key={count} className={styles.post}>
@@ -108,8 +104,7 @@ const Postv2 = ({
 					<div
 						style={{ cursor: "pointer", zIndex: "1" }}
 						className={postClasses}
-						onClick={toggleComment}
-					>
+						onClick={toggleComment}>
 						<img src='/images/comment.jpg' alt='placeholder' />
 					</div>
 				</div>{" "}
@@ -124,6 +119,6 @@ const Postv2 = ({
 				/>
 			) : null}
 		</div>
-	);
-};
-export default Postv2;
+	)
+}
+export default Postv2

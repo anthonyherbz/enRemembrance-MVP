@@ -1,14 +1,18 @@
 module.exports = {
-  webpack: (config, { isServer }) => {
-      if (!isServer) {
-          // don't resolve 'fs' module on the client to prevent this error on build --> Error: Can't resolve 'fs'
-          config.resolve.fallback = {
-              fs: false,
-              path: false,
-              "fs-extra": false
-          }
-      }
+	webpack5: true,
+	webpack: (config, { isServer }) => {
+		if (!isServer) {
+			// don't resolve 'fs' module on the client to prevent this error on build --> Error: Can't resolve 'fs'
+			config.resolve.fallback = {
+				fs: false,
+				path: false,
+				"fs-extra": false,
+			}
+			config.node = {
+				net: "empty",
+			}
+		}
 
-      return config;
-  }
+		return config
+	},
 }

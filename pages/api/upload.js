@@ -1,5 +1,6 @@
 import { IncomingForm } from 'formidable';
 import { promises as fs } from 'fs';
+import {ensureDir} from 'fs-extra'
 //https://github.com/vercel/next.js/discussions/11634#discussioncomment-1865018
 // first we need to disable the default body parser
 export const config = {
@@ -33,6 +34,7 @@ export default async (req, res) => {
 				 fileType = imageFile.mimetype.split("/")[1]
 			  }
 			  const pathToWriteImage = `public/${imageName}.${fileType}`; // include name and .extention, you can get the name from data.files.image object
+			//   ensureDir('public/testfolder1')
 			  const image = await fs.readFile(imagePath);
 			  await fs.writeFile(pathToWriteImage, image);
 			  //store path in DB
