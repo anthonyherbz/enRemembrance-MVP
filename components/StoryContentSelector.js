@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { useState } from "react";
-import { GiConsoleController } from "react-icons/gi";
-import ImageUpload from "./imageupload";
+import Image from "next/image"
+import { useState } from "react"
+import { GiConsoleController } from "react-icons/gi"
+import ImageUpload from "./imageupload"
 
 const StoryContentSelector = ({
 	type,
@@ -11,31 +11,31 @@ const StoryContentSelector = ({
 	path,
 }) => {
 	// const [image, setImage] = useState();
-	const [text, setText] = useState();
+	const [text, setText] = useState()
 	// const [isSelected, setIsSelected] = useState(false);
-	const [spanChoice, setspanChoice] = useState();
-	const [parentImg, setParentImg] = useState();
-	const [imageType, setimageType] = useState();
+	const [spanChoice, setspanChoice] = useState()
+	const [parentImg, setParentImg] = useState()
+	const [imageType, setimageType] = useState()
 	// console.log("quadrant.type", quadrant.type);
-	console.log("quadrant.content", quadrant.content);
+	// console.log("quadrant.content", quadrant.content)
 	// console.log("image", image);
 	// console.log("quadnum", quadrant.number);
-	console.log("quadimg", storedImages[quadrant.number]);
+	// console.log("quadimg", storedImages[quadrant.number])
 	// console.log("text", text);
-	console.log("parentImg value", parentImg)
-	let finalPath = path;
+	// console.log("parentImg value", parentImg)
+	let finalPath = path
+	if (parentImg != undefined) {
+		quadrant.type = "image"
+		quadrant.content = `${finalPath}.${imageType}`
+	}
 
 	const handleChange = (event) => {
-		if (spanChoice == "text"){
-			let value = event.target.value;
-		setText(value);
-		quadrant.type = "text"
-		quadrant.content = value
+		if (spanChoice == "text") {
+			let value = event.target.value
+			setText(value)
+			quadrant.type = "text"
+			quadrant.content = value
 		}
-	}
-	if (parentImg != undefined){
-		quadrant.type="image"
-		quadrant.content=`${finalPath}.${imageType}`
 	}
 
 	// const changeHandler = (event) => {
@@ -57,15 +57,22 @@ const StoryContentSelector = ({
 	if (type == "image") {
 		return (
 			<>
-				<ImageUpload fileNamePath={finalPath} setParentImg={setParentImg} parentImg={parentImg}
-								imageType={imageType}
-								setimageType={setimageType}
-								/>
-								{parentImg != undefined ? <Image layout='fill' objectFit='cover' src={`/${finalPath}.${imageType}`}/> : null}
-				{/* <input type="file" onChange={changeHandler}></input>
-			{isSelected ? <Image layout="fill" objectFit="cover" src={storedImages[(quadrant.number)-1].image}></Image> : null} */}
+				<ImageUpload
+					fileNamePath={finalPath}
+					setParentImg={setParentImg}
+					parentImg={parentImg}
+					imageType={imageType}
+					setimageType={setimageType}
+				/>
+				{parentImg != undefined ? (
+					<Image
+						layout='fill'
+						objectFit='cover'
+						src={`/${finalPath}.${imageType}`}
+					/>
+				) : null}
 			</>
-		);
+		)
 	}
 
 	if (type == "both") {
@@ -82,29 +89,39 @@ const StoryContentSelector = ({
 					</div>
 				) : (
 					<div>
-						<button style={{zIndex: "50"}} onClick={() => setspanChoice(undefined)}>
+						<button
+							style={{ zIndex: "50" }}
+							onClick={() => setspanChoice(undefined)}>
 							Undo Choice
 						</button>
 						{spanChoice == "text" ? (
 							<div>
 								<input
 									type='text'
-									onChange={handleChange}
-								></input>
+									onChange={handleChange}></input>
 							</div>
 						) : (
 							<div>
-								<ImageUpload fileNamePath={finalPath} setParentImg={setParentImg} parentImg={parentImg}
-								imageType={imageType}
-								setimageType={setimageType}
+								<ImageUpload
+									fileNamePath={finalPath}
+									setParentImg={setParentImg}
+									parentImg={parentImg}
+									imageType={imageType}
+									setimageType={setimageType}
 								/>
-								{parentImg != undefined ? <Image layout='fill' objectFit='cover' src={`/${finalPath}.${imageType}`}/> : null}
+								{parentImg != undefined ? (
+									<Image
+										layout='fill'
+										objectFit='cover'
+										src={`/${finalPath}.${imageType}`}
+									/>
+								) : null}
 							</div>
 						)}
 					</div>
 				)}
 			</>
-		);
+		)
 
 		// if (spanChoice != undefined) {
 		// 	if (spanChoice == "text") {
@@ -126,5 +143,5 @@ const StoryContentSelector = ({
 		// 	</>
 		// );
 	}
-};
-export default StoryContentSelector;
+}
+export default StoryContentSelector

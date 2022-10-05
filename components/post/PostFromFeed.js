@@ -7,7 +7,7 @@ import ExpressionPreview from "../expressions/ExpressionPreview"
 import EnterComment from "./EnterComment"
 import ImageContainer from "../ImageContainer"
 
-const PostFromFeed = ({ post, count = 1 }) => {
+const PostFromFeed = ({ post, key }) => {
 	const [loaded, setLoaded] = useState(true)
 	const [comment, setComment] = useState()
 	const [showComment, setShowComment] = useState(0)
@@ -23,7 +23,7 @@ const PostFromFeed = ({ post, count = 1 }) => {
 	}
 	return (
 		<>
-			<div key={count} className={styles.post}>
+			<div key={key} className={styles.post}>
 				{/* <Row> */}
 				{/* left-most column containing the book's cover and it's expressions */}
 				<div className={styles.c1}>

@@ -5,6 +5,7 @@
 	height: 100vh;
 	overflow: hidden;
 	display: flex;
+	position: relative;
 	flex-direction: column;
 	>form{
 		text-align: center;
@@ -25,8 +26,8 @@
 		}
 	}
 	.controls{
-		position: fixed;
-		bottom: 0;
+		position: absolute;
+		bottom: 50px;
 		left: 0;
 		right: 0;
 		display: flex;

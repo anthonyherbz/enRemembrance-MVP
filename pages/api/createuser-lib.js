@@ -1,8 +1,5 @@
-import { query } from "../../lib/db";
+import { query } from "../../lib/db"
 export default async function handler(req, res) {
-	console.log(req.body)
-	console.log(req.body.handle)
-	console.log(req.body.password)
 	// if (!req.body.handle || !req.body.pasword || !req.body.email){
 	// 	return res.status(400).json({data: 'Form is missing field, cannot be submitted'})
 	// }
@@ -22,13 +19,22 @@ export default async function handler(req, res) {
 	// const bio = "Your bio will go here"
 
 	try {
-		const querySql = "INSERT INTO users (fullname, handle, email, password, phone_number, enabled) values (?, ?, ?, ?, ?, ?)"
+		const querySql =
+			"INSERT INTO users (fullname, handle, email, password, phone_number, enabled) values (?, ?, ?, ?, ?, ?)"
 		//one question mark per param
-		const valuesParams = [fullname, handle, email, password, phone_number, enabled];
+		const valuesParams = [
+			fullname,
+			handle,
+			email,
+			password,
+			phone_number,
+			enabled,
+		]
 		console.log("sending")
-		const data = await query({query: querySql, values: valuesParams});
+		const data = await query({ query: querySql, values: valuesParams })
 		// (await db).end
-		res.status(200).json({ users: data });
-	} catch (error) {}
-	
+		res.status(200).json({ users: data })
+	} catch (error) {
+		res.status(400).json({ message: error })
+	}
 }

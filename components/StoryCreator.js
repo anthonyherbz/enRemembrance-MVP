@@ -28,20 +28,18 @@ const StoryCreator = () => {
 
 	//Store the whether the story has been created, the id, the title, the object, the page, and the page limit
 	const [storyInstantiated, setStoryInstantiated] = useState(false);
-	const [storyId, setstoryId] = useState();
 	const [title, updateTitle] = useState();
 	const [storyState, updatestoryState] = useState({ story });
 	const [page, setPage] = useState(0);
 	const [pageCount, setpageCount] = useState(0);
-	console.log("story after id update", storyState)
+	// console.log("story after id update", storyState)
 
 	//TBD
 	//let session = getSession() < get the current session
 	//let user = session.user < get the current user from the session
 	//let user_id = session.user_id <get the current user_id from the session
 	let user_id = 1;
-	// let coverpath;
-	// let story_id;
+
 
 	function handleStartStory() {
 		console.log("ran handleStartStory");
@@ -99,7 +97,7 @@ const StoryCreator = () => {
 			};
 			const response = await fetch(apiUrlEndpoint, postData);
 			const res = await response.json();
-			console.log("res story", res.story.insertId);
+			// console.log("res story", res.story.insertId);
 			updatestoryState(current => {
 				return {
 					...current,
@@ -109,9 +107,8 @@ const StoryCreator = () => {
 					}
 				}
 			})
-			// setstoryId(res.story.insertId);
-			// myStory.story.id = res.story.insertId;
-			console.log("res", res);
+
+			// console.log("res", res);
 			async function createNewDir() {
 				const testId = res.story.insertId;
 				console.log("createnewdir storyid", testId);
@@ -127,21 +124,21 @@ const StoryCreator = () => {
 
 				const response = await fetch(apiUrlEndpoint, postData);
 				const data = await response.json();
-				console.log("diretory data", data);
+				// console.log("diretory data", data);
 			}
 			createNewDir();
 		}
 		sendToDB();
 	}
 	/* function saveStory(storyState, title, story_id) {
-		const myStory = storyState;
+		const story = storystate.story
 		async function sendToDB() {
 			const apiUrlEndpoint = "/api/updatestory-lib";
 			const postData = {
 				method: "Post",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
-					storyjson: myStory,
+					storyjson: story,
 					title: title,
 					story_id: story_id
 				}),
@@ -155,7 +152,7 @@ const StoryCreator = () => {
 	}  */
 	return (
 		<>
-			{storyInstantiated != true ? (
+			{!storyInstantiated ? (
 				<div onClick={handleStartStory}>
 					<ButtonText color='blue'>Start Your Story</ButtonText>
 				</div>
@@ -181,12 +178,12 @@ const StoryCreator = () => {
 					<div className={styles.body}>
 						<StoryCreatorPage
 							makeNewPage={makeNewPage}
-							workingStory={storyState}
+							storyState={storyState}
 							forward={forward}
 							page={page}
 							title={title}
 							updatestoryState={updatestoryState}
-							storyId={storyId}
+							storyId={storyState.story.id}
 						/>
 						<div
 							className={styles.addPage}

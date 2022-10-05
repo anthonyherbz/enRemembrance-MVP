@@ -9,32 +9,28 @@ let cx = classNames.bind(styles);
 
 const StoryCreatorPage = ({
 	page,
-	// makeNewPage,
-	workingStory,
-	// forward,
+	storyState,
 	title,
-	// updatestoryState,
-	// pagePreInc,
-	// setPagePreInc,
 	storyId,
 }) => {
-	let modifierClasses = cx({
-		coverStyle: page == 0,
-		gridStyle: page != 0,
-	});
+	// let modifierClasses = cx({
+	// 	coverStyle: page == 0,
+	// 	gridStyle: page != 0,
+	// });
 	const [templateType, settemplateType] = useState("uninitialized");
 	const [pageState, setpageState] = useState(page);
 	const [storedImages, setStoredImages] = useState([]);
 
-	const contentArray = [1, 2, 3, 4];
+	// const contentArray = [1, 2, 3, 4];
 	// console.log("template type", templateType);
-	let currPage = workingStory.story.pages[page];
+	let currPage = storyState.story.pages[page];
 	// console.log(currPage);
-	console.log("workingstory", workingStory);
+	console.log("storyState", storyState);
 	const parentPath = `images/stories/id${storyId}/page${page}`;
 	const updateTemplateJson = (value) => {
 		settemplateType(value);
 		currPage.templateName = value;
+		updatestoryState()
 	};
 	console.log("currPage.quadrants", currPage.quadrants);
 	//Resets template state if the current page is not the one stored in pageState, and updates pageState to match the current page. This is to avoid the problem where you can only force a rerender on state change, so when adding a new page with MakeNewPage() the templateType state would not reset (and MakeNewPage is working with the story object at the parent component, so this component's states are inaccessible), meaning there was no rerender if two of the same page types were changed in a row. I'm sure this isn't the best solution for the problem, but I've spent like an hour and a half trying different thigns so this is what I'm going to use.
@@ -45,8 +41,8 @@ const StoryCreatorPage = ({
 
 	// console.log("currpage template name", currPage.templateName)
 	// console.log("page reported by scp", page);
-	// console.log("Story", workingStory);
-	// console.log(`template at ${page}`, workingStory.story.pages[page].templateName);
+	// console.log("Story", storyState);
+	// console.log(`template at ${page}`, storyState.story.pages[page].templateName);
 
 	console.log("storedimages", storedImages);
 
@@ -155,7 +151,7 @@ const StoryCreatorPage = ({
 				let span = false;
 				pushQuadrants(currPage, i, span);
 			}
-			// console.log("workingStory", workingStory)
+			// console.log("storyState", storyState)
 			template = (
 				<div className={styles.retainer}>
 					<div className={styles.splitFour}>

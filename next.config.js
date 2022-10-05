@@ -1,5 +1,4 @@
 module.exports = {
-	webpack5: true,
 	webpack: (config, { isServer }) => {
 		if (!isServer) {
 			// don't resolve 'fs' module on the client to prevent this error on build --> Error: Can't resolve 'fs'
@@ -7,9 +6,6 @@ module.exports = {
 				fs: false,
 				path: false,
 				"fs-extra": false,
-			}
-			config.node = {
-				net: "empty",
 			}
 		}
 

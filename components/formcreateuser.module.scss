@@ -11,10 +11,10 @@
 		margin-bottom: 1rem;
 		display: flex;
 		flex-direction: column;
-		padding: .25rem 0.5rem;
+		padding: 0.25rem 0.5rem;
 		border-radius: 11px;
 		gap: 0.2rem;
-		&:focus-within{
+		&:focus-within {
 			background-color: #fff;
 		}
 	}
@@ -54,6 +54,19 @@
 			&:valid {
 				border: 3px solid var(--valid);
 			}
+		}
+	}
+	.email {
+		position: relative;
+		.stylecheck {
+			border: 3px solid var(--invalid) !important;
+		}
+		.emailalert {
+			border: 1px solid red;
+			background-color: #fff;
+			padding: 0.25em;
+			position: absolute;
+			bottom: 10px;
 		}
 	}
 }

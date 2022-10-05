@@ -20,11 +20,16 @@ const PostFeedv2 = ({posts}) => {
 	// }, [])
 	// console.log(dataResponse)
 	// if (dataResponse.length == 0) return <div>loading</div>
-	console.log("posts in dataResponse", dataResponse)
+	// console.log("posts in dataResponse", dataResponse)
+	// console.log("dr c", dataResponse.post)
 	return (
 		<div className={styles.postFeed}>
-			{console.log(dataResponse[0])}
-			<PostFromFeed post={dataResponse[0]} />
+			{dataResponse.map((post, index) =>{
+				{console.log(post)}
+				return (
+					<PostFromFeed post={post} key={index}/>
+				)
+			})}
 		</div>
 	)
 }

@@ -1,56 +1,17 @@
-import Head from "next/head";
-import Layout from "../components/Layout";
-import Col from "../components/Col";
-import Row from "../components/Row";
-import Header from "../components/header/Header";
-import Footer from "../components/Footer";
-import PostFeed from "../components/post/PostFeed";
-import Container from "../components/Container";
-import Nav from "../components/Nav";
-import MobileNav from "../components/MobileNav";
+import Head from "next/head"
+import Layout from "../components/Layout"
+import Col from "../components/Col"
+import {getData} from './api/getposts-lib'
+import Row from "../components/Row"
+import Header from "../components/header/Header"
+import Footer from "../components/Footer"
+import Container from "../components/Container"
+import Nav from "../components/Nav"
+import MobileNav from "../components/MobileNav"
+import PostFeedv2 from "../components/post/PostFeedv2"
 
-export default function Home() {
-	const posts = [
-		{
-			postId: 0,
-			postTitle: "Post Title",
-			postContent:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
-			bookTitle: "title",
-			bookCover: "bookcover.jpg",
-			bookSlug: "book1",
-			author: "author1",
-			authorProfile: "profile.jpg",
-			comment: "comment text",
-			commentAuthor: "commenter1",
-		},
-		{
-			postId: 1,
-			postTitle: "Post Title",
-			postContent:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
-			bookTitle: "title",
-			bookCover: "bookcover.jpg",
-			bookSlug: "book1",
-			author: "author1",
-			authorProfile: "profile.jpg",
-			comment: "comment text",
-			commentAuthor: "commenter1",
-		},
-		{
-			postId: 2,
-			postTitle: "Post Title",
-			postContent:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quos nemo illo maiores",
-			bookTitle: "title",
-			bookCover: "bookcover.jpg",
-			bookSlug: "book1",
-			author: "author1",
-			authorProfile: "profile.jpg",
-			comment: "comment text",
-			commentAuthor: "commenter1",
-		},
-	];
+export default function Home(destruct) {
+	const posts = destruct.destruct
 	return (
 		<Layout>
 			<Head>
@@ -59,34 +20,43 @@ export default function Home() {
 				<meta name='description' content='summary of website' />
 			</Head>
 			<Header show />
-			<MobileNav/>
+			<MobileNav />
 			<Container marginTop>
 				<Row nowrap mHeight>
 					<Col ratio='1'>
 						<Nav border topSpace='50' />
 					</Col>
-					
-					
-					
-					<Col border="left" ratio='20' alignItems='center' allowScroll>
+					<Col
+						border='left'
+						ratio='20'
+						alignItems='center'
+						allowScroll>
 						<Container>
-								<div
-									style={{
-										height: "1px",
-										width: "100%",
-										borderBottom: "1px solid #55545C",
-										position: "fixed",
-										top: "50px",
-										zIndex: 2,
-										boxShadow: "rgb(0, 0, 0) 0 2px 5px 0px",
-									}}
-								></div>
-								<PostFeed posts={posts} />
+							<div
+								style={{
+									height: "1px",
+									width: "100%",
+									borderBottom: "1px solid #55545C",
+									position: "fixed",
+									top: "50px",
+									zIndex: 2,
+									boxShadow: "rgb(0, 0, 0) 0 2px 5px 0px",
+								}}></div>
+							<PostFeedv2 posts={posts} />
 						</Container>
 					</Col>
 				</Row>
 			</Container>
 			<Footer />
 		</Layout>
-	);
+	)
+}
+export async function getServerSideProps() {
+	let data = await getData()
+	const destruct = data.posts
+	return {
+		props: {
+			destruct,
+		},
+	}
 }
