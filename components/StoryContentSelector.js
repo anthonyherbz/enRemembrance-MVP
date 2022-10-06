@@ -2,12 +2,16 @@ import Image from "next/image"
 import { useState } from "react"
 import { GiConsoleController } from "react-icons/gi"
 import ImageUpload from "./imageupload"
+import update from "immutability-helper"
 
 const StoryContentSelector = ({
 	type,
 	quadrant,
 	setStoredImages,
 	storedImages,
+	storyState,
+	updatestoryState,
+	page,
 	path,
 }) => {
 	// const [image, setImage] = useState();
@@ -16,19 +20,61 @@ const StoryContentSelector = ({
 	const [spanChoice, setspanChoice] = useState()
 	const [parentImg, setParentImg] = useState()
 	const [imageType, setimageType] = useState()
-	// console.log("quadrant.type", quadrant.type);
-	// console.log("quadrant.content", quadrant.content)
-	// console.log("image", image);
-	// console.log("quadnum", quadrant.number);
-	// console.log("quadimg", storedImages[quadrant.number])
-	// console.log("text", text);
-	// console.log("parentImg value", parentImg)
-	let finalPath = path
-	if (parentImg != undefined) {
-		quadrant.type = "image"
-		quadrant.content = `${finalPath}.${imageType}`
-	}
+	console.log("content type", type)
+	console.log("content quadrant.content", quadrant.content)
+	console.log("content parentImg", parentImg);
+	console.log("content quadimg", storedImages[quadrant.number])
+	console.log("content text", text);
+	console.log("context ParentImg value", parentImg)
 
+	// let upd = update(storyState, {
+	// 	story: {
+	// 		pages: { [page]: { templateName: { $set: type }
+	// 	},
+	// })
+	console.log("quadrants", storyState.story.pages[page].quadrants)
+	let finalPath = path
+	let fileFormat;
+	console.log("file format", fileFormat)
+	// if (storyState.story.pages[page].quadrants[quadrant.number-1].content.split([1] == jpg)){
+	// 	fileFormat = "jpg"
+	// } else {
+	// 	fileFormat = "png"
+	// }
+
+	if (storyState.story.pages[page].quadrants[quadrant.number-1].content.split('.')[1] == "jpg"){
+		// console.log("whoopee")
+		fileFormat = "jpg"}
+	if (storyState.story.pages[page].quadrants[quadrant.number-1].content.split('.')[1] == "png"){
+			// console.log("whoopee other")
+			fileFormat = "png"}
+
+	if (parentImg != undefined) {
+		let upd = update(storyState, {
+			// story:{
+			// 	pages: {[page]: {quadrants: {[quadrant.number-1] : {type: {$set: "image"}}}}}
+			// }
+			story: {
+				pages: {
+					[page]: {
+						quadrants: {
+							[quadrant.number-1]: {
+								type: { $set: "image" },
+								content: { $set: `${finalPath}.${imageType}` },
+							},
+						},
+					},
+				},
+			},
+		})
+		// console.log("yeah", upd.story.pages[page].quadrants[quadrant.number-1].content.split('.')[1])
+		
+		updatestoryState(upd)
+		// console.log("upd interrior", upd)
+		// quadrant.type = "image"
+		// quadrant.content = `${finalPath}.${imageType}`
+	}
+	console.log("updated story state", storyState)
 	const handleChange = (event) => {
 		if (spanChoice == "text") {
 			let value = event.target.value
@@ -64,13 +110,9 @@ const StoryContentSelector = ({
 					imageType={imageType}
 					setimageType={setimageType}
 				/>
-				{parentImg != undefined ? (
-					<Image
-						layout='fill'
-						objectFit='cover'
-						src={`/${finalPath}.${imageType}`}
-					/>
-				) : null}
+				{storyState.story.pages[page].quadrants[quadrant.number-1].content != "" ? 
+					<Image layout='fill' objectFit='cover' src={`/${finalPath}.${fileFormat}`} />
+				 : null}
 			</>
 		)
 	}
@@ -80,25 +122,17 @@ const StoryContentSelector = ({
 			<>
 				{spanChoice == undefined ? (
 					<div>
-						<button onClick={() => setspanChoice("image")}>
-							Use an image
-						</button>
-						<button onClick={() => setspanChoice("text")}>
-							Use text
-						</button>
+						<button onClick={() => setspanChoice("image")}>Use an image</button>
+						<button onClick={() => setspanChoice("text")}>Use text</button>
 					</div>
 				) : (
 					<div>
-						<button
-							style={{ zIndex: "50" }}
-							onClick={() => setspanChoice(undefined)}>
+						<button style={{ zIndex: "50" }} onClick={() => setspanChoice(undefined)}>
 							Undo Choice
 						</button>
 						{spanChoice == "text" ? (
 							<div>
-								<input
-									type='text'
-									onChange={handleChange}></input>
+								<input type='text' onChange={handleChange}></input>
 							</div>
 						) : (
 							<div>
@@ -113,7 +147,7 @@ const StoryContentSelector = ({
 									<Image
 										layout='fill'
 										objectFit='cover'
-										src={`/${finalPath}.${imageType}`}
+										src={`/${finalPath}.${fileFormat}`}
 									/>
 								) : null}
 							</div>
