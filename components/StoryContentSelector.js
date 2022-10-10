@@ -22,9 +22,9 @@ const StoryContentSelector = ({
 	const [imageType, setimageType] = useState()
 	console.log("content type", type)
 	console.log("content quadrant.content", quadrant.content)
-	console.log("content parentImg", parentImg);
+	console.log("content parentImg", parentImg)
 	console.log("content quadimg", storedImages[quadrant.number])
-	console.log("content text", text);
+	console.log("content text", text)
 	console.log("context ParentImg value", parentImg)
 
 	// let upd = update(storyState, {
@@ -34,7 +34,7 @@ const StoryContentSelector = ({
 	// })
 	console.log("quadrants", storyState.story.pages[page].quadrants)
 	let finalPath = path
-	let fileFormat;
+	let fileFormat
 	console.log("file format", fileFormat)
 	// if (storyState.story.pages[page].quadrants[quadrant.number-1].content.split([1] == jpg)){
 	// 	fileFormat = "jpg"
@@ -42,12 +42,18 @@ const StoryContentSelector = ({
 	// 	fileFormat = "png"
 	// }
 
-	if (storyState.story.pages[page].quadrants[quadrant.number-1].content.split('.')[1] == "jpg"){
+	if (
+		storyState.story.pages[page].quadrants[quadrant.number - 1].content.split(".")[1] == "jpg"
+	) {
 		// console.log("whoopee")
-		fileFormat = "jpg"}
-	if (storyState.story.pages[page].quadrants[quadrant.number-1].content.split('.')[1] == "png"){
-			// console.log("whoopee other")
-			fileFormat = "png"}
+		fileFormat = "jpg"
+	}
+	if (
+		storyState.story.pages[page].quadrants[quadrant.number - 1].content.split(".")[1] == "png"
+	) {
+		// console.log("whoopee other")
+		fileFormat = "png"
+	}
 
 	if (parentImg != undefined) {
 		let upd = update(storyState, {
@@ -58,7 +64,7 @@ const StoryContentSelector = ({
 				pages: {
 					[page]: {
 						quadrants: {
-							[quadrant.number-1]: {
+							[quadrant.number - 1]: {
 								type: { $set: "image" },
 								content: { $set: `${finalPath}.${imageType}` },
 							},
@@ -68,20 +74,73 @@ const StoryContentSelector = ({
 			},
 		})
 		// console.log("yeah", upd.story.pages[page].quadrants[quadrant.number-1].content.split('.')[1])
-		
+
 		updatestoryState(upd)
 		// console.log("upd interrior", upd)
 		// quadrant.type = "image"
 		// quadrant.content = `${finalPath}.${imageType}`
 	}
+
+	function updateContent(value, param) {
+		let upd
+		if (param == "content") {
+			upd = update(storyState, {
+				story: {
+					pages: {
+						[page]: {
+							quadrants: {
+								[quadrant.number - 1]: {
+									content: { $set: value },
+								},
+							},
+						},
+					},
+				},
+			})
+			updatestoryState(upd)
+		}
+		if (param == "type") {
+			upd = update(storyState, {
+				story: {
+					pages: {
+						[page]: {
+							quadrants: {
+								[quadrant.number - 1]: {
+									type: { $set: value },
+								},
+							},
+						},
+					},
+				},
+			})
+			updatestoryState(upd)
+		}
+	}
+
 	console.log("updated story state", storyState)
 	const handleChange = (event) => {
-		if (spanChoice == "text") {
-			let value = event.target.value
-			setText(value)
-			quadrant.type = "text"
-			quadrant.content = value
-		}
+		let value = event.target.value
+		setText(value)
+		// quadrant.type = "text"
+		// quadrant.content = value
+		let upd = update(storyState, {
+			// story:{
+			// 	pages: {[page]: {quadrants: {[quadrant.number-1] : {type: {$set: "image"}}}}}
+			// }
+			story: {
+				pages: {
+					[page]: {
+						quadrants: {
+							[quadrant.number - 1]: {
+								type: { $set: "text" },
+								content: { $set: value },
+							},
+						},
+					},
+				},
+			},
+		})
+		updatestoryState(upd)
 	}
 
 	// const changeHandler = (event) => {
@@ -110,9 +169,9 @@ const StoryContentSelector = ({
 					imageType={imageType}
 					setimageType={setimageType}
 				/>
-				{storyState.story.pages[page].quadrants[quadrant.number-1].content != "" ? 
+				{storyState.story.pages[page].quadrants[quadrant.number - 1].content != "" ? (
 					<Image layout='fill' objectFit='cover' src={`/${finalPath}.${fileFormat}`} />
-				 : null}
+				) : null}
 			</>
 		)
 	}
@@ -120,19 +179,23 @@ const StoryContentSelector = ({
 	if (type == "both") {
 		return (
 			<>
-				{spanChoice == undefined ? (
+				{storyState.story.pages[page].quadrants[quadrant.number - 1].type == undefined ? (
 					<div>
-						<button onClick={() => setspanChoice("image")}>Use an image</button>
-						<button onClick={() => setspanChoice("text")}>Use text</button>
+						<button onClick={() => updateContent("image", "type")}>Use an image</button>
+						<button onClick={() => updateContent("text", "type")}>Use text</button>
 					</div>
 				) : (
 					<div>
-						<button style={{ zIndex: "50" }} onClick={() => setspanChoice(undefined)}>
+						<button
+							style={{ zIndex: "50" }}
+							onClick={() => updateContent(undefined, "type")}>
 							Undo Choice
 						</button>
-						{spanChoice == "text" ? (
+						{storyState.story.pages[page].quadrants[quadrant.number - 1].type ==
+						"text" ? (
 							<div>
-								<input type='text' onChange={handleChange}></input>
+								<input type='text' onBlur={handleChange}></input>
+								<div>{storyState.story.pages[page].quadrants[quadrant.number - 1].content}</div>
 							</div>
 						) : (
 							<div>
@@ -143,7 +206,8 @@ const StoryContentSelector = ({
 									imageType={imageType}
 									setimageType={setimageType}
 								/>
-								{parentImg != undefined ? (
+								{storyState.story.pages[page].quadrants[quadrant.number - 1]
+									.content != "" ? (
 									<Image
 										layout='fill'
 										objectFit='cover'

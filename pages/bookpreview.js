@@ -34,7 +34,7 @@ const BookPreview = () => {
 				</ButtonText>
 			</div>
 			<div className={styles.colright}>
-				<BookViewer book={book} />
+				{/* <BookViewer book={book} /> */}
 			</div>
 		</div>
 	);

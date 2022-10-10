@@ -8,14 +8,21 @@ import Image from "next/image";
 import ImageContainer from "../ImageContainer";
 import BookPage from "./BookPage";
 import Icon from "../icons/Icon";
-const BookViewer = ({ book }) => {
+const BookViewer = ({ story }) => {
+	console.log("BV", story)
+	// console.log(story.page_json)
+	if (story.page_json == undefined){
+		return <div>Sorry, there's something wrong with the format of this story</div>
+	}
+	const pages = story.page_json.story.pages
+	console.log(pages)
 	const [position, setPosition] = useState(0);
-	// console.log(book.pages.length)
-	console.log("pages ", book.pages.length);
+	// console.log(story.pages.length)
+	// console.log("pages ", story.pages.length);
 	//Function to increment the position
 	function addPos() {
 		//Prevents error of position of second page outrunning pages length
-		if (position < book.pages.length - 3) {
+		if (position < pages.length - 3) {
 			//If pos is less than 1 (aka 0) increment by 1
 			//Allows showing cover at position 0 and page 1 and 2 at postion 1
 			if (position < 1) {
@@ -37,7 +44,7 @@ const BookViewer = ({ book }) => {
 	}
 
 	function addPosMobile(){
-		if (position < book.pages.length - 2){
+		if (position < pages.length - 1){
 			setPosition(position + 1)
 		}
 	}
@@ -47,24 +54,22 @@ const BookViewer = ({ book }) => {
 		}
 	}
 
-	// console.log(book);
 	return (
 		<div className={styles.bookParent}>
 			<div className={styles.bookViewer}>
 				{position > 0 ? (
 					<>
-						<BookPage pos={position} page={book.pages[position]} />
+						<BookPage pos={position} page={pages[position]} />
 						<BookPage
 							pos={position}
-							page={book.pages[position + 1]}
+							page={pages[position + 1]}
 						/>
 					</>
 				) : (
 					<>
 						<BookPage
-							cover={book.coverName}
 							pos={position}
-							page={book.pages[position]}
+							page={pages[position]}
 						/>
 					</>
 				)}
@@ -80,9 +85,8 @@ const BookViewer = ({ book }) => {
 			<div className={styles.mobile}>
 				<div className={styles.bookViewerMobile}>
 					<BookPage
-						cover={book.coverName}
 						pos={position}
-						page={book.pages[position]}
+						page={pages[position]}
 					/>
 				</div>
 				<div className={styles.bookController}>

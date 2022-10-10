@@ -16,12 +16,6 @@ $quads: quad-1, quad-2, quad-3, quad-4;
 	}
 	// flex-wrap: wrap;
 	grid-template-columns: 1fr 1fr;
-	.quadStyles {
-		// text-align: center;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
 	.span {
 		grid-column-start: 1;
 		grid-column-end: 3;
@@ -51,6 +45,12 @@ $quads: quad-1, quad-2, quad-3, quad-4;
 	@media screen and (min-width: 700px) {
 		width: 50%;		
 	}
+}
+.blank{
+	width: 100%;
+	aspect-ratio: .75;
+	border: 1px solid vars.$color_grey_dark;
+	position: relative;
 }
 
 .pageNum{
