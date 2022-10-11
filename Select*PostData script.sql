@@ -19,5 +19,3 @@ LEFT JOIN post_expressions ON posts.id=post_expressions.post_id
 LEFT JOIN story_expressions ON stories.id=story_expressions.story_id
 LEFT JOIN expressions post_expressions_summary ON post_expressions.expression_id=post_expressions_summary.id
 LEFT JOIN expressions story_expressions_summary ON story_expressions.expression_id=story_expressions_summary.id
-
--- WHERE post.id = 1

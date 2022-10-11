@@ -12,22 +12,22 @@ const Comment = ({ comment }) => {
 	return (
 		<div className={styles.comment}>
 			<div>
-				<Link href={`/authors/${author.slug}`}>
+				<Link href={`/users/${comment.commentor_id}`}>
 					<a>
 						<div className={styles.commentAuthor}>
 							<div className={styles.containedImg}>
 								<Image
-									src={`/images/${author.profileImg}`}
+									src={`/images/users/${comment.commentor_id}.jpg`}
 									layout='fill'
 									objectFit='cover'
 								/>
 							</div>
-							{author.author}:
+							{comment.handle}:
 						</div>
 					</a>
 				</Link>
 			</div>
-			<div>{comment.content}</div>
+			<div>{comment.comment_text}</div>
 		</div>
 	);
 };

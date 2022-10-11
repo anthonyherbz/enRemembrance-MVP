@@ -1,37 +1,45 @@
 @use "../sass/abstracts/vars.scss";
+$bp-width: 500px;
+
 .postPage {
 	display: flex;
 	flex-direction: column;
 	margin-top: 0.5em;
-	gap: .5rem;
+	gap: 0.5rem;
 	height: 100vh;
 	overflow: hidden;
 	margin-inline: 0.5em;
-	.mobileButton{
+	.mobileButton {
 		// width: 100%;
 		display: none;
 		position: fixed;
 		right: 0;
 		justify-content: center;
-		@media screen and (max-width:400px) {
+		@media screen and (max-width: $bp-width) {
 			display: block;
 		}
 	}
-
+	.info {
+		ul {
+			padding: 0;
+		}
+		li {
+			list-style: none;
+		}
+	}
 	.body {
 		display: flex;
 		gap: 0.5em;
 		height: 100%;
 		margin-bottom: 1rem;
 		overflow: hidden;
-		
 
 		.leftcol {
 			display: flex;
 			flex-direction: column;
 			gap: 0.5em;
 			align-items: center;
-			@media screen and (max-width: 400px) {
+			@media screen and (max-width: $bp-width) {
 				display: none;
 			}
 			.bookElement {
@@ -44,7 +52,7 @@
 				// height: 100%;
 				// // margin: 1rem;
 				border-radius: 11px;
-				.bookCover{
+				.bookCover {
 					height: 7em;
 				}
 			}
@@ -53,33 +61,26 @@
 			display: flex;
 			flex-direction: column;
 			flex-grow: 1;
-			gap: .5em;
+			gap: 0.5em;
 
 			.postElement {
 				background-color: vars.$color_white;
-				padding: .5rem;
+				padding: 0.5rem;
 				border-radius: 11px;
-				
-				.mobileRow{
+
+				.mobileRow {
 					display: none;
 				}
-				@media screen and (max-width: 400px) {
+				@media screen and (max-width: $bp-width) {
 					background-color: rgba(0, 0, 0, 0);
 					padding: 0;
-					.peR2{
+					.peR2 {
 						display: none;
 					}
-					.mobileRow{
+					.mobileRow {
 						padding: 0.5em;
 						border-radius: 11px;
-						.mobileInfo{
-							display: flex;
-							flex-direction: column;
-							li{
-								list-style: none;
-							}
-						}
-						.mobileCover{
+						.mobileCover {
 							width: 75px;
 							height: 100px;
 						}

@@ -39,8 +39,10 @@
 		.colleft {
 			flex-direction: row;
 			gap: 1rem;
+
 			.bookContent {
 				flex-direction: row;
+				flex-wrap: wrap;
 				display: flex;
 				align-items: center;
 				gap: 2rem;

@@ -15,7 +15,7 @@ const story = () => {
 	const { id } = router.query
 	const [story, setStory] = useState()
 	const [visPostDiag, setvisPostDiag] = useState(false)
-	console.log("story", story)
+	// console.log("story", story)
 	useEffect(() => {
 		if (!router.isReady) return
 		async function getStoryData() {
@@ -30,7 +30,7 @@ const story = () => {
 			}
 			const response = await fetch(apiUrlEndpoint, postData)
 			const res = await response.json()
-			console.log(res)
+			// console.log(res)
 			if (res.story.length == 0) {
 				// console.log("len 0")
 				setStory("invalid")
@@ -42,7 +42,7 @@ const story = () => {
 		getStoryData()
 	}, [router.query.id, router.isReady])
 
-	function toggleDiag(){
+	function toggleDiag() {
 		setvisPostDiag(!visPostDiag)
 	}
 	if (story == "invalid") {
@@ -65,15 +65,18 @@ const story = () => {
 						</div>
 						<Row>Created on {story.create_date}</Row>
 						<Row>By {story.handle}</Row>
+						<div onClick={() => toggleDiag()}>
+							<ButtonText color='green'>Post about this story</ButtonText>
+						</div>
+						{visPostDiag ? (
+							<CreatePostDiag
+								id={id}
+								user_id={logged_in_user_id}
+								setvisPostDiag={setvisPostDiag}
+							/>
+						) : null}
 						<div>
-							<div onClick={() => toggleDiag()}><ButtonText color='green'>Post about this story</ButtonText></div>
-							{visPostDiag ? (
-								<CreatePostDiag
-									id={id}
-									user_id={logged_in_user_id}
-									setvisPostDiag={setvisPostDiag}
-								/>
-							) : null}
+							Comments about this story
 						</div>
 					</div>
 					<ButtonText path='/' color='blue'>

@@ -11,7 +11,9 @@ import MobileNav from "../components/MobileNav"
 import PostFeedv2 from "../components/post/PostFeedv2"
 
 export default function Home(destruct) {
-	const posts = destruct.destruct
+	console.log(destruct)
+	const {posts, comments} = destruct.destruct
+	console.log(posts, comments)
 	return (
 		<Layout>
 			<Head>
@@ -42,7 +44,7 @@ export default function Home(destruct) {
 									zIndex: 2,
 									boxShadow: "rgb(0, 0, 0) 0 2px 5px 0px",
 								}}></div>
-							<PostFeedv2 posts={posts} />
+							<PostFeedv2 posts={posts} comments={comments} />
 						</Container>
 					</Col>
 				</Row>
@@ -53,7 +55,7 @@ export default function Home(destruct) {
 }
 export async function getServerSideProps() {
 	let data = await getData()
-	const destruct = data.posts
+	const destruct = data
 	return {
 		props: {
 			destruct,
