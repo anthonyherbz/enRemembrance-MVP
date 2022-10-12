@@ -1,5 +1,4 @@
 import { query } from "../../lib/db"
-
 export default async function handler(req, res){
 	const searchID = req.body.searchID
 	const matchID = req.body.matchID

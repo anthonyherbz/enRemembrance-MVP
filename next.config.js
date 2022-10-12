@@ -9,7 +9,8 @@ module.exports = {
 				"fs-extra": false,
 				net: "empty",
 				tls: "empty",
-				mysql2: "empty"
+				mysql2: false,
+				mysql: "empty"
 			}
 		}
 
