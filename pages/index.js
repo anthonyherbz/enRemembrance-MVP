@@ -1,7 +1,8 @@
 import Head from "next/head"
 import Layout from "../components/Layout"
 import Col from "../components/Col"
-import {getData} from './api/getposts-lib'
+// import {getData} from './api/getposts-lib'
+// import {query} from '../lib/db'
 import Row from "../components/Row"
 import Header from "../components/header/Header"
 import Footer from "../components/Footer"
@@ -54,8 +55,9 @@ export default function Home(destruct) {
 	)
 }
 export async function getServerSideProps() {
-	let data = await getData()
-	const destruct = data
+	const response = await fetch('http://localhost:3000/api/getposts-lib')
+	const res = await response.json()
+	const destruct = res
 	return {
 		props: {
 			destruct,

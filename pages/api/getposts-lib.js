@@ -1,9 +1,7 @@
 import { multiQuery } from "../../lib/db";
 
 export async function getData(){
-	const response = await fetch('http://localhost:3000/api/getposts-lib')
-	const res = await response.json()
-	return res
+	
 }
 
 export default async function handler(req, res) {

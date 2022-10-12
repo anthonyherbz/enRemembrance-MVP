@@ -1,8 +1,4 @@
-import Post from "./Post"
 import styles from "./postfeed.module.scss"
-import { getPosts } from "../../pages/api/api"
-import { useState, useEffect } from "react"
-import Postv3 from "./Postv3"
 import PostFromFeed from "./PostFromFeed"
 
 //Generates a feed of posts via data from getPosts()
