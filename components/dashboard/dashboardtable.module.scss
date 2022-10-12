@@ -16,10 +16,18 @@ $spacer-size: .75rem;
 	// overflow: hidden;
 	// // height: 450px;
 	.old{
-		color: vars.$color_red
+		color: vars.$color_red;
+		a{
+			color: vars.$color_blue_dark;
+			font-weight: 900;
+		}
 	}
 	.new{
-		color: vars.$color_black_80
+		// color: vars.$color_black_80
+		a{
+			color: vars.$color_blue_dark;
+			font-weight: 600;
+		}
 	}
 	.endcap >td{
 		background-color: #fff;

@@ -5,7 +5,7 @@ import Link from "next/link"
 
 const StoriesFeed = ({ stories }) => {
 	if (stories.length == 0) {
-		return <div>This user doesn't have any stories visible to you</div>
+		return <div>This user doesn&apos;t have any stories visible to you</div>
 	}
 
 	return (

@@ -1,80 +1,76 @@
-import styles from "./dashboardtable.module.scss";
-import classNames from "classnames/bind";
-let cx = classNames.bind(styles);
+import styles from "./dashboardtable.module.scss"
+import classNames from "classnames/bind"
+let cx = classNames.bind(styles)
 import { getBooks } from "../../pages/api/api"
-import StatusIcons from "./StatusIcons";
-import ActionIcons from "./ActionIcons";
-import NoSsr from "../NoSsr";
+import StatusIcons from "./StatusIcons"
+import ActionIcons from "./ActionIcons"
+import NoSsr from "../NoSsr"
+import { useState } from "react"
+import Link from "next/link"
 
-const DBTable = ({}) => {
+const DBTable = ({ stories, user_id }) => {
 	let dashboardTableClasses = cx({
 		dashboardTable: true,
-	});
+	})
 
-	const books = getBooks();
-	function buildTableRow(book, index) {
-		book = book.book;
-		function checkAge(book) {
-			let bookDate = book.date;
-			const createdDate = new Date(bookDate);
-			const today = new Date();
-			let age = Math.trunc(
-				(today.getTime() - createdDate.getTime()) / (1000 * 3600 * 24)
-			);
-			return age;
-		}
-
-		let age = checkAge(book);
-		let old = age >= 21 ? true : false;
-		let month = Math.round(age / 31);
+	function buildTableRow(story, index) {
+		let old = story.daysOld >= 21 ? true : false
+		let month = Math.round(story.daysOld / 31)
+		// console.log("old", old)
+		// console.log("month", month)
 
 		return (
-			<tr key={index.index}>
+			<tr key={index}>
 				<td>
-					<StatusIcons book={book} old={old} />
+					<StatusIcons story={story} old={old} />
 				</td>
-				<NoSsr>
-					{old && !book.published ? (
-						<>
-							<td className={styles.old}>{book.title}</td>
-							<td className={styles.old}>
-								{age >= 31 ? (
-									<>
-										{month}
-										{month > 1 ? " months " : " month "}old
-									</>
-								) : (
-									<>
-										{age} {age > 1 ? " days " : " day "} old
-									</>
-								)}
-							</td>
-						</>
-					) : (
-						<>
-							<td className={styles.new}>{book.title}</td>
-							<td className={styles.new}>
-								{age >= 31 ? (
-									<>
-										{month}
-										{month > 1 ? " months " : " month "}old
-									</>
-								) : (
-									<>
-										{age} {age > 1 ? " days " : " day "} old
-									</>
-								)}
-							</td>
-						</>
-					)}
-				</NoSsr>
+				{old && story.published == 0 ? (
+					<>
+						<td className={styles.old}>
+							<Link href={`/stories/${story.id}`}>
+								<a>{story.title}</a>
+							</Link>
+						</td>
+						<td className={styles.old}>
+							{story.daysOld >= 31 ? (
+								<>
+									{month}
+									{month > 1 ? " months " : " month "}old
+								</>
+							) : (
+								<>
+									{story.daysOld} {story.daysOld > 1 ? " days " : " day "} old
+								</>
+							)}
+						</td>
+					</>
+				) : (
+					<>
+						<td className={styles.new}>
+							<Link href={`/stories/${story.id}`}>
+								<a>{story.title}</a>
+							</Link>
+						</td>
+						<td className={styles.new}>
+							{story.daysOld >= 31 ? (
+								<>
+									{month}
+									{month > 1 ? " months " : " month "}old
+								</>
+							) : (
+								<>
+									{story.daysOld} {story.daysOld > 1 ? " days " : " day "} old
+								</>
+							)}
+						</td>
+					</>
+				)}
+
 				<td>
-					<NoSsr>
-						<ActionIcons old={old} published={book.published} />
-					</NoSsr>
+					<ActionIcons old={old} story_id={story.id} user_id={user_id} published={story.published}  />
 				</td>
 			</tr>
-		);
+		)
 	}
 
 	return (
@@ -88,11 +84,8 @@ const DBTable = ({}) => {
 				</tr>
 			</thead>
 			<tbody>
-				{books.map((book, index) => {
-					return buildTableRow(
-						(book = { book }),
-						(index = { index })
-					);
+				{stories.map((story, index) => {
+					return buildTableRow(story, index)
 				})}
 				<tr className={styles.endcap}>
 					<td></td>
@@ -102,6 +95,71 @@ const DBTable = ({}) => {
 				</tr>
 			</tbody>
 		</table>
-	);
-};
-export default DBTable;
+	)
+}
+export default DBTable
+
+// function buildTableRow(book, index) {
+// 	book = book.book;
+// 	function checkAge(book) {
+// 		let bookDate = book.date;
+// 		const createdDate = new Date(bookDate);
+// 		const today = new Date();
+// 		let age = Math.trunc(
+// 			(today.getTime() - createdDate.getTime()) / (1000 * 3600 * 24)
+// 		);
+// 		return age;
+// 	}
+
+// 	let age = checkAge(book);
+// 	let old = age >= 21 ? true : false;
+// 	let month = Math.round(age / 31);
+
+// 	return (
+// 		<tr key={index.index}>
+// 			<td>
+// 				<StatusIcons book={book} old={old} />
+// 			</td>
+// 			<NoSsr>
+// 				{old && !book.published ? (
+// 					<>
+// 						<td className={styles.old}>{book.title}</td>
+// 						<td className={styles.old}>
+// 							{age >= 31 ? (
+// 								<>
+// 									{month}
+// 									{month > 1 ? " months " : " month "}old
+// 								</>
+// 							) : (
+// 								<>
+// 									{age} {age > 1 ? " days " : " day "} old
+// 								</>
+// 							)}
+// 						</td>
+// 					</>
+// 				) : (
+// 					<>
+// 						<td className={styles.new}>{book.title}</td>
+// 						<td className={styles.new}>
+// 							{age >= 31 ? (
+// 								<>
+// 									{month}
+// 									{month > 1 ? " months " : " month "}old
+// 								</>
+// 							) : (
+// 								<>
+// 									{age} {age > 1 ? " days " : " day "} old
+// 								</>
+// 							)}
+// 						</td>
+// 					</>
+// 				)}
+// 			</NoSsr>
+// 			<td>
+// 				<NoSsr>
+// 					<ActionIcons old={old} published={book.published} />
+// 				</NoSsr>
+// 			</td>
+// 		</tr>
+// 	);
+// }

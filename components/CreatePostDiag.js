@@ -53,7 +53,7 @@ const CreatePostDiag = ({ id, user_id, setvisPostDiag }) => {
 				</div>
 				{isDuplicate == 1 ? (
 					<div className={styles.dupe}>
-						Sorry, you've already created a post about this story.
+						Sorry, you&apos;ve already created a post about this story.
 					</div>
 				) : null}
 			</div>

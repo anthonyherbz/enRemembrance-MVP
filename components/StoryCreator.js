@@ -61,19 +61,19 @@ const StoryCreator = () => {
 			const response = await fetch(apiUrlEndpoint, postData)
 			const res = await response.json()
 			setstoryId(res.story.insertId)
-			// console.log("res story", res.story.insertId);
-
-			// updatestoryState((current) => {
-			// 	return {
-			// 		...current,
-			// 		story: {
-			// 			...current.story,
-			// 			id: res.story.insertId,
-			// 		},
-			// 	}
-			// })
-
-			// console.log("res", res);
+			async function defaultCover(){
+				const endpoint = "/api/cover-lib"
+				const pd = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						id: res.story.insertId,
+					}),
+				}
+				const response = await fetch(endpoint, pd)
+				const data = await response.json()
+				console.log("data", data)
+			}
 			async function createNewDir() {
 				const dirId = res.story.insertId
 				console.log("createnewdir storyid", dirId)
@@ -89,9 +89,10 @@ const StoryCreator = () => {
 
 				const response = await fetch(apiUrlEndpoint, postData)
 				const data = await response.json()
-				console.log("diretory data", data)
+				// console.log("diretory data", data)
 			}
 			createNewDir()
+			defaultCover()
 		}
 		sendToDB()
 	}

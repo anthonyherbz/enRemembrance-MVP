@@ -11,12 +11,13 @@ import Icon from "../icons/Icon";
 const BookViewer = ({ story }) => {
 	// console.log("BV", story)
 	// console.log(story.page_json)
-	if (story.page_json == undefined){
-		return <div>Sorry, there's something wrong with the format of this story</div>
+	const [position, setPosition] = useState(0);
+	if (story.page_json == undefined || story.page_json == ""){
+		return <div>Sorry, there&apos;s something wrong with the format of this story</div>
 	}
 	const pages = story.page_json.story.pages
 	// console.log(pages)
-	const [position, setPosition] = useState(0);
+	
 	// console.log(story.pages.length)
 	// console.log("pages ", story.pages.length);
 	//Function to increment the position

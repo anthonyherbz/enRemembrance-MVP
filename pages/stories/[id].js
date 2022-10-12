@@ -8,7 +8,7 @@ import Logo from "../../components/Logo"
 import ButtonText from "../../components/button/ButtonText"
 import CreatePostDiag from "../../components/CreatePostDiag"
 
-const story = () => {
+const Story = () => {
 	const logged_in_user_id = 1 //temporary until authentication is set up
 	const [isLoaded, setisLoaded] = useState(0)
 	const router = useRouter()
@@ -90,4 +90,4 @@ const story = () => {
 		)
 	}
 }
-export default story
+export default Story

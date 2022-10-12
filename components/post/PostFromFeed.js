@@ -13,7 +13,8 @@ const PostFromFeed = ({ post, counter, comments }) => {
 	const [showComment, setShowComment] = useState(0)
 
 	// console.log(post)
-	const storyCover = `/stories/id${post.story_id}/cover.jpg`
+	const storyCover = `/images/stories/id${post.story_id}/cover.jpg`
+	console.log("story cover", storyCover)
 	const storyUrl = `/stories/${post.story_id}`
 	const authorUrl = `/users/${post.post_user_id}`
 	const authorImg = `/images/users/${post.post_user_id}`

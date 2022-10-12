@@ -8,7 +8,7 @@ import User from "../../components/User";
 import StoriesFeed from "../../components/StoriesFeed";
 // import NoSsr from '../../components/NoSsr'
 
-const user = () => {
+const User = () => {
 	const [isLoaded, setisLoaded] = useState(0);
 	const router = useRouter();
 	const { id } = router.query;
@@ -62,4 +62,4 @@ const user = () => {
 		</div>
 	);
 };
-export default user;
+export default User;

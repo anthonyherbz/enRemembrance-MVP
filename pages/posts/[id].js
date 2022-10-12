@@ -11,7 +11,7 @@ import { useRouter } from "next/router"
 import React, { useState, useEffect } from "react"
 import { getComments } from "../api/api"
 
-const post = () => {
+const Post = () => {
 	const logged_in_user_id = 1 //temporary until authentication is set up
 	const [isLoaded, setisLoaded] = useState(0)
 	const router = useRouter()
@@ -153,4 +153,4 @@ const post = () => {
 		)
 	}
 }
-export default post
+export default Post

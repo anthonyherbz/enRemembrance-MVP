@@ -1,7 +1,7 @@
 import EnterComment from "../components/post/EnterComment"
 import { useState } from "react"
 
-const testing5 = () => {
+const Testing5 = () => {
 	const [showComment, setShowComment] = useState(0)
 	function toggleComment() {
 		setShowComment(!showComment)
@@ -16,4 +16,4 @@ const testing5 = () => {
 		</>
 	)
 }
-export default testing5
+export default Testing5
