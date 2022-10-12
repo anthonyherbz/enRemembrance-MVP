@@ -1,8 +1,6 @@
 import Head from "next/head"
 import Layout from "../components/Layout"
 import Col from "../components/Col"
-// import {getData} from './api/getposts-lib'
-// import {query} from '../lib/db'
 import Row from "../components/Row"
 import Header from "../components/header/Header"
 import Footer from "../components/Footer"
