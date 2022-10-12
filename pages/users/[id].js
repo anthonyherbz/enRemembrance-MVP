@@ -4,8 +4,9 @@ import Header from "../../components/header/Header";
 import ButtonText from "../../components/button/ButtonText";
 import Container from "../../components/Container";
 import styles from '../../page_sass/authorpage.module.scss'
-import User from "../../components/User";
+import User from "../../components/UserComp";
 import StoriesFeed from "../../components/StoriesFeed";
+import UserComp from "../../components/UserComp";
 // import NoSsr from '../../components/NoSsr'
 
 const User = () => {
@@ -53,7 +54,7 @@ const User = () => {
 			{/* <Header show/> */}
 			<Container marginTop>
 				<div className={styles.authorlead}>
-					<User user={user} />
+					<UserComp user={user} />
 					<ButtonText color='green' expand label='Back' />
 				</div>
 				{isLoaded ? <StoriesFeed stories={stories}/> : null}

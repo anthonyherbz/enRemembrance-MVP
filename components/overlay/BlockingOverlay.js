@@ -9,7 +9,7 @@ const BlockingOverlay = ({children, buttonText, buttonColor, state, setState, pa
 		closeOverlay();
 		if (passedFunction != undefined){
 			passedFunction()
-			window.location.reload()
+			// window.location.reload()
 		}
 	}
 	return (

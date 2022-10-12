@@ -6,7 +6,7 @@ import Heading from "./Heading";
 import Text from "./Text";
 import Image from "next/image";
 
-const User = ({ user }) => {
+const UserComp = ({ user }) => {
 	return (
 		<section className={styles.author}>
 			<div className={styles.r1}>
@@ -34,4 +34,4 @@ const User = ({ user }) => {
 		</section>
 	);
 };
-export default User;
+export default UserComp;

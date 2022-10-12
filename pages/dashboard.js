@@ -84,7 +84,7 @@ const Dashboard = () => {
 								<div className={styles.overlayScroll}>
 									<ul>
 										{stories.map((story, index) => {
-											return <li>
+											return <li key={index}>
 												<Link href={`/editor`}><a>{story.title}</a></Link>
 											</li>
 										})}
