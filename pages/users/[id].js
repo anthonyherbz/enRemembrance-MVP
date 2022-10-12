@@ -4,7 +4,6 @@ import Header from "../../components/header/Header";
 import ButtonText from "../../components/button/ButtonText";
 import Container from "../../components/Container";
 import styles from '../../page_sass/authorpage.module.scss'
-import User from "../../components/UserComp";
 import StoriesFeed from "../../components/StoriesFeed";
 import UserComp from "../../components/UserComp";
 // import NoSsr from '../../components/NoSsr'

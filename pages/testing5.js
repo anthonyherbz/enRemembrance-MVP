@@ -1,19 +1,10 @@
-import EnterComment from "../components/post/EnterComment"
-import { useState } from "react"
+import profUrl, { ReactComponent as Prof } from '../public/images/Profile.svg'
 
 const Testing5 = () => {
-	const [showComment, setShowComment] = useState(0)
-	function toggleComment() {
-		setShowComment(!showComment)
-	}
+	console.log({Prof})
+	console.log(profUrl)
 	return (
-		<>
-			<EnterComment
-				toggleComment={toggleComment}
-				showComment={showComment}
-				setShowComment={setShowComment}
-			/>
-		</>
+			<img src={profUrl}/>
 	)
 }
 export default Testing5
