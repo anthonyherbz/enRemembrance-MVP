@@ -7,8 +7,12 @@ export default async function handler(req, res) {
 		const valuesParams = [story_id, post_id];
 		const data = await multiQuery({query: querySql, values: valuesParams});
 		// (await db).end
-		res.status(200).json({ stories: data[0], comments: data[1]});
-	} catch (error) {}
+		const result = res.status(200).json({ stories: data[0], comments: data[1]});
+		return { props: result }
+	} catch (error) {
+		const result = res.status(400).json({ message: error.message })
+		return { props: result }
+	}
 	
 }
 // stories: data[0], comments: data[1], expressions: data[2]

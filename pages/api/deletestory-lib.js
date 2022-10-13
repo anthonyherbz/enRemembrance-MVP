@@ -1,6 +1,6 @@
 import { query } from "../../lib/db";
 
-export default async function handler(req, res) {
+export default async function getServerSideProps(req, res) {
 	const id = req.body.id	
 	const user_id = req.body.user_id
 	try {
@@ -11,9 +11,11 @@ export default async function handler(req, res) {
 		if (data.affectedRows == 0){
 			throw new Error ("Deletion failed")
 		}
-		res.status(200).json({ message: "deletion successful"});
+		const result = res.status(200).json({ message: "deletion successful"});
+		return { props: result }
 	} catch (error) {
-		res.status(400).json({message: error.message})
+		const result = res.status(400).json({message: error.message})
+		return { props: result }
 	}
 	
 }

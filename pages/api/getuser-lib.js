@@ -1,6 +1,6 @@
 import { multiQuery } from "../../lib/db";
 
-export default async function handler(req, res) {
+export default async function getServerSideProps(req, res) {
 	const user_id = req.body.user_id
 	//ultimately this is going to need to check that a story is visible publically
 	try {

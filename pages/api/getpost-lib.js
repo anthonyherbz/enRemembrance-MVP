@@ -1,6 +1,6 @@
 import { multiQuery } from "../../lib/db";
 
-export default async function handler(req, res) {
+export default async function getServerSideProps(req, res) {
 	const post_id = req.body.post_id
 	try {
 		const valuesParams = [post_id, post_id];
@@ -10,9 +10,11 @@ export default async function handler(req, res) {
 		const querySql = query1 + query2
 
 		const data = await multiQuery({query: querySql, values: valuesParams});
-		res.status(200).json({ post: data[0], comments: data[1] });
+		const result = res.status(200).json({ post: data[0], comments: data[1] });
+		return { props: result }
 	} catch (error) {
-		res.status(400).json({message: error.message})
+		const result = res.status(400).json({message: error.message})
+		return { props: result }
 
 	}
 	

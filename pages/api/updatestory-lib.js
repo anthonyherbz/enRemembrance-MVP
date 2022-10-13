@@ -1,11 +1,11 @@
-import { query } from "../../lib/db";
+import { query } from "../../lib/db"
 
-export default async function handler(req, res) {
+export default async function getServerSideProps(req, res) {
 	let page_json = req.body.storyjson
 	let title
-	if (req.body.title == undefined){
+	if (req.body.title == undefined) {
 		title = "new story"
-	} else{
+	} else {
 		title = req.body.title
 	}
 
@@ -14,12 +14,13 @@ export default async function handler(req, res) {
 	// let title = "abc"
 
 	try {
-		const querySql = "UPDATE stories SET title = ?, page_json = ? WHERE id = ?";
-		const valuesParams = [title, page_json, id];
-		const data = await query({query: querySql, values: valuesParams});
-		res.status(200).json({ response:"success" });
+		const querySql = "UPDATE stories SET title = ?, page_json = ? WHERE id = ?"
+		const valuesParams = [title, page_json, id]
+		const data = await query({ query: querySql, values: valuesParams })
+		const result = res.status(200).json({ response: "success" })
+		return { props: result }
 	} catch (error) {
-		res.status(400).json({message: error})
+		const result = res.status(400).json({ message: error })
+		return { props: result }
 	}
-	
 }

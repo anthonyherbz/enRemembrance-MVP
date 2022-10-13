@@ -1,5 +1,5 @@
 import { query } from "../../lib/db"
-export default async function handler(req, res) {
+export default async function getServerSideProps(req, res) {
 	// if (!req.body.handle || !req.body.pasword || !req.body.email){
 	// 	return res.status(400).json({data: 'Form is missing field, cannot be submitted'})
 	// }
@@ -33,8 +33,10 @@ export default async function handler(req, res) {
 		console.log("sending")
 		const data = await query({ query: querySql, values: valuesParams })
 		// (await db).end
-		res.status(200).json({ users: data })
+		const result = res.status(200).json({ users: data })
+		return { props: result }
 	} catch (error) {
-		res.status(400).json({ message: error })
+		const result = res.status(400).json({ message: error })
+		return { props: result }
 	}
 }
