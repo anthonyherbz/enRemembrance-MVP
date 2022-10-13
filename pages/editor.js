@@ -3,13 +3,9 @@ import ButtonText from "../components/button/ButtonText";
 import Header from "../components/header/Header";
 import Nav from "../components/Nav";
 import styles from "../page_sass/editor.module.scss";
-import BookEditor from "../components/book/BookEditor";
-import { getBook } from "./api/api";
 import StoryCreator from "../components/StoryCreator";
 
 const Editor = () => {
-	//Get book from the current page id (at 0 for testing purpose)
-	const book = getBook(0)
 	return (
 		<>
 			<Head>

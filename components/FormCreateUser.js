@@ -2,6 +2,8 @@ import { useState } from "react"
 import Link from "next/link"
 import styles from "./formcreateuser.module.scss"
 const FormCreateUser = () => {
+	const URL = process.env.NEXT_PUBLIC_ROOT
+	console.log(URL)
 	const [emailOK, setemailOK] = useState(true)
 	const [submitted, setsubmitted] = useState(false)
 	console.log("emailOK", emailOK)
@@ -25,7 +27,7 @@ const FormCreateUser = () => {
 			return
 		}
 		console.log(val)
-		const endpoint = "/api/checkdb-lib"
+		const endpoint = `${URL}/api/checkdb-lib`
 		const postData = {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
@@ -46,7 +48,7 @@ const FormCreateUser = () => {
 	}
 	async function generateDefaults(id) {
 		// const id = 1
-		const url = "/api/generatedefaults-lib"
+		const url = `${URL}/api/generatedefaults-lib`
 		const postData = {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
@@ -77,7 +79,7 @@ const FormCreateUser = () => {
 			password: event.target.password.value,
 		}
 		// console.log(data)
-		const endpoint = "/api/createuser-lib"
+		const endpoint = `${URL}/api/createuser-lib`
 		const postData = {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },

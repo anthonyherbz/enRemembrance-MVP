@@ -6,6 +6,9 @@ import { GiSpotedFlower, GiLotusFlower, GiFlowerTwirl } from "react-icons/gi";
 import { useState } from "react";
 import ExpressionIcon from "./ExpressionIcon";
 import styles from "./expressions.module.scss";
+
+
+
 const Expressions = ({ setShowExp, showExp }) => {
 
 	//defines list of expressions with count. In final version, count should be expored from the relevant expressions table

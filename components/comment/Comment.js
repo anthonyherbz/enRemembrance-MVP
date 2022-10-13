@@ -7,8 +7,7 @@ import Image from "next/image";
 import styles from "./comment.module.scss";
 
 const Comment = ({ comment }) => {
-	let post = getPost(comment.postId);
-	let author = getAuthor(comment.authorId);
+	console.log(comment.commentor_id)
 	return (
 		<div className={styles.comment}>
 			<div>
@@ -17,7 +16,7 @@ const Comment = ({ comment }) => {
 						<div className={styles.commentAuthor}>
 							<div className={styles.containedImg}>
 								<Image
-									src={`/images/users/${comment.commentor_id}.jpg`}
+									src={`/images/users/id${comment.commentor_id}.svg`}
 									layout='fill'
 									objectFit='cover'
 								/>

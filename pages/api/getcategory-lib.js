@@ -1,6 +1,6 @@
 import { query } from "../../lib/db"
 
-export default async function handler(req, res) {
+export default async function getServerSideProps(req, res) {
 	const name = req.body.name
 	try {
 		const querySql = "SELECT id, name FROM categories WHERE name = ?"

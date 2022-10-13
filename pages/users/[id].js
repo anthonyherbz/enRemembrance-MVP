@@ -1,65 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import Header from "../../components/header/Header";
-import ButtonText from "../../components/button/ButtonText";
-import Container from "../../components/Container";
-import styles from '../../page_sass/authorpage.module.scss'
-import StoriesFeed from "../../components/StoriesFeed";
-import UserComp from "../../components/UserComp";
-// import NoSsr from '../../components/NoSsr'
+import React, { useState} from "react"
+import Header from "../../components/header/Header"
+import ButtonText from "../../components/button/ButtonText"
+import Container from "../../components/Container"
+import styles from "../../page_sass/authorpage.module.scss"
+import StoriesFeed from "../../components/StoriesFeed"
+import UserComp from "../../components/UserComp"
+import { multiQuery } from "../../lib/db"
+export async function getServerSideProps({ params }) {
+	const id = params.id
+	try {
+		const query1 =
+			"SELECT id, fullname, handle, email, password, phone_number, CONVERT(join_date, char) as join_date, CONVERT(last_login_date, char) as last_login_date, enabled, bio FROM users WHERE id = ?;"
+		const query2 =
+			"SELECT id AS story_id, title AS story_title FROM stories WHERE author_id = ? ;"
 
-const User = () => {
-	const [isLoaded, setisLoaded] = useState(0);
-	const router = useRouter();
-	const { id } = router.query;
-	// console.log("id", id)
-	const [user, setuser] = useState([]);
-	const [stories, setstories] = useState([])
-	useEffect(() => {
-		if(!router.isReady) return; //don't run the useEffect contents until the router returns the ID
-		setisLoaded(isLoaded=1)
-		console.log("isLoaded", isLoaded)
-		console.log("useeffect ran")
-		async function getPageData() {
-			const apiUrlEndpoint = "/api/getuser-lib";
-			const postData = {
-				method: "Post",
-				headers: {"Content-Type": "application/json"},
-				body: JSON.stringify({
-					user_id: id,
-				})
-			}
-			// postData sends info to the API. Using to specify ID of item to request
-			const response = await fetch(apiUrlEndpoint, postData);
-			const res = await response.json();
-			console.log(res);
-			setuser(res.user[0])
-			setstories(res.stories)
-		}
-		getPageData();
-	}, [router.query.id, router.isReady]);
-	//empty [] needed for useEffect otherwise it will infinitely rerender, making infinite calls to server
-	//[] contents waits for router 
-
-	if (isLoaded == 0){
-		return <div>...</div>
+		const querySql = query1 + query2
+		const valuesParams = [id, id]
+		const data = await multiQuery({ query: querySql, values: valuesParams })
+		console.log("d1", data[0])
+		return { props: { data } }
+	} catch (error) {
+		const data = error
+		console.log(data)
+		return { props: { data } }
 	}
-	if (user == undefined){
+}
+const User = ({ data }) => {
+	const [user, setuser] = useState(data[0][0])
+	const [stories, setstories] = useState(data[1])
+
+	if (user == undefined) {
 		return <div>This user does not exist</div>
 	}
 	return (
 		<div>
-			<div >
-			{/* <Header show/> */}
-			<Container marginTop>
-				<div className={styles.authorlead}>
-					<UserComp user={user} />
-					<ButtonText color='green' expand label='Back' />
-				</div>
-				{isLoaded ? <StoriesFeed stories={stories}/> : null}
-			</Container>
+			<div>
+				<Header show/>
+				<Container marginTop>
+					<div className={styles.authorlead}>
+						<UserComp user={user} />
+						<ButtonText color='green' expand label='Back' />
+					</div>
+					<StoriesFeed stories={stories} />
+				</Container>
+			</div>
 		</div>
-		</div>
-	);
-};
-export default User;
+	)
+}
+export default User
