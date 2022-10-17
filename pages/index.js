@@ -18,9 +18,9 @@ export async function getServerSideProps({ params }) {
 		const selectComments =
 			"SELECT post_comments.post_id AS post_comments_id, post_comments.commentor_id, CONVERT(post_comments.comment_date, char) AS comment_date, post_comments.comment_text, users.id AS user_id, users.handle FROM post_comments LEFT JOIN posts ON post_comments.post_id = posts.id LEFT JOIN users ON post_comments.commentor_id = users.id;"
 		const selectPostExpressions =
-			"SELECT posts.id AS post_id, post_expressions.expression_id AS post_expressions_id, post_expressions.count AS post_expressions_count, post_expressions_summary.id AS post_expressions_summary_id, post_expressions_summary.name AS post_expressions_summary_name,  post_expressions_summary.description AS post_expressions_summary_description, post_expressions_summary.image_path AS post_expressions_summary_image_path FROM posts  LEFT JOIN post_expressions ON posts.id=post_expressions.post_id  LEFT JOIN expressions post_expressions_summary ON post_expressions.expression_id=post_expressions_summary.id;"
+			"SELECT posts.id AS post_id, post_expressions.expression_id AS expression_id, post_expressions.count AS count, post_expressions_summary.id AS summary_id, post_expressions_summary.name AS summary_name,  post_expressions_summary.description AS summary_description, post_expressions_summary.image_path AS image_path FROM posts  LEFT JOIN post_expressions ON posts.id=post_expressions.post_id  LEFT JOIN expressions post_expressions_summary ON post_expressions.expression_id=post_expressions_summary.id ORDER BY expression_id ASC;"
 		const selectStoryExpressions =
-			"SELECT stories.id AS story_id, story_expressions.expression_id AS story_expressions_id, story_expressions.count AS story_expressions_count, story_expressions_summary.id AS story_expressions_summary_id, story_expressions_summary.name AS story_expressions_summary_name,  story_expressions_summary.description AS story_expressions_summary_description, story_expressions_summary.image_path AS story_expressions_summary_image_path  FROM posts  LEFT JOIN stories ON posts.story_id=stories.id   LEFT JOIN story_expressions ON stories.id=story_expressions.story_id  LEFT JOIN expressions story_expressions_summary ON story_expressions.expression_id=story_expressions_summary.id;"
+			"SELECT stories.id AS story_id, story_expressions.expression_id AS expression_id, story_expressions.count AS count, story_expressions_summary.id AS summary_id, story_expressions_summary.name AS summary_name,  story_expressions_summary.description AS summary_description, story_expressions_summary.image_path AS image_path FROM story_expressions  LEFT JOIN stories ON stories.id=story_expressions.story_id  LEFT JOIN expressions story_expressions_summary ON story_expressions.expression_id=story_expressions_summary.id ORDER BY expression_id ASC;"
 		const querySql =
 			selectPosts + selectComments + selectPostExpressions + selectStoryExpressions
 		const data = await multiQuery({ query: querySql, values: valuesParams })
@@ -38,6 +38,7 @@ export default function Home({ data }) {
 	const comments = data[1]
 	const postExpressions = data[2]
 	const storyExpressions = data[3]
+	console.log("SE",storyExpressions)
 	// console.log(posts, comments)
 	return (
 		<Layout>
@@ -65,12 +66,14 @@ export default function Home({ data }) {
 									zIndex: 2,
 									boxShadow: "rgb(0, 0, 0) 0 2px 5px 0px",
 								}}></div>
-							<PostFeedv2
-								posts={posts}
-								comments={comments}
-								storyExpressions={storyExpressions}
-								postExpressions={postExpressions}
-							/>
+							<div style={{paddingBottom: "10px"}}>
+								<PostFeedv2
+									posts={posts}
+									comments={comments}
+									storyExpressions={storyExpressions}
+									postExpressions={postExpressions}
+								/>
+							</div>
 						</Container>
 					</Col>
 				</Row>

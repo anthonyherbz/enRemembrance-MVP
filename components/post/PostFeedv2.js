@@ -5,7 +5,9 @@ import PostFromFeed from "./PostFromFeed"
 const PostFeedv2 = ({ posts, comments, postExpressions, storyExpressions}) => {
 	// console.log("post exp", postExpressions)
 	const mappedPosts = posts.map((post, index) => {
+		// {console.log(post)}
 		let pid = post.post_id
+		let sid = post.story_id
 		let fComm = comments.filter(function (comment) {
 			return comment.post_comments_id == pid
 		})
@@ -13,7 +15,7 @@ const PostFeedv2 = ({ posts, comments, postExpressions, storyExpressions}) => {
 			return PE.post_id == pid
 		})
 		let fSE = storyExpressions.filter(function (SE) {
-			return SE.post_id == pid
+			return SE.story_id == sid
 		})
 		// console.log("fPE", fPE)
 		// console.log("fSE", fSE)

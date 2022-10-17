@@ -19,7 +19,7 @@ const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressio
 	// console.log("story cover", storyCover)
 	const storyUrl = `/stories/${post.story_id}`
 	const authorUrl = `/users/${post.post_user_id}`
-	const authorImg = `/images/users/${post.post_user_id}`
+	const authorImg = `/images/users/id${post.post_user_id}.svg`
 	// console.log("post comment", post.comment_text)
 	function toggleComment() {
 		setShowComment(!showComment)
@@ -33,13 +33,13 @@ const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressio
 				{loaded ? (
 					<Link href={storyUrl}>
 						<a>
-							<div style={{ width: "50px", height: "75px" }}>
+							<div style={{ width: "80px", height: "100px" }}>
 								<ImageContainer src={storyCover} alt='Story cover' />
 							</div>
 						</a>
 					</Link>
 				) : null}
-				<ExpressionPreview expressions={storyExpressions} align='right' />
+				<ExpressionPreview type="story" expressions={storyExpressions} align='right' />
 			</div>
 			{/* center column containing book title, the post text, and a single comment */}
 			<div className={styles.c2}>
@@ -57,7 +57,7 @@ const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressio
 					{/* should link to a specific author's profile */}
 					<div style={{display: "flex", flexDirection: "row"}}>
 						<div style={{ fontSize: "1rem" }}>
-							<ExpressionPreview expressions={postExpressions} align='left' />
+							{/* <ExpressionPreview expressions={postExpressions} align='left' type="post" /> */}
 						</div>
 						{loaded ? (
 							<Link href={authorUrl}>
@@ -65,7 +65,7 @@ const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressio
 									<div
 										style={{
 											width: "50px",
-											height: "75px",
+											height: "50px",
 										}}>
 										<ImageContainer
 											src={authorImg}
@@ -105,7 +105,7 @@ const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressio
 					</div>
 					{/* comment icon that opens and closes the comment box */}
 					<div style={{ cursor: "pointer", zIndex: "1" }} onClick={toggleComment}>
-						<div style={{ width: "50px", height: "50px" }}>
+						<div style={{ width: "30px", height: "30px" }}>
 							{loaded ? (
 								<ImageContainer src='/images/comment.jpg' alt='Comment icon' />
 							) : null}

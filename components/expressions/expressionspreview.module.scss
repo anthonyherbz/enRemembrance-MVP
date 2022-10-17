@@ -1,24 +1,33 @@
-.expressionPreview{
+.expressionPreview {
 	display: flex;
 	position: relative;
 	// padding: 1rem;
-	margin-left: 1em; 
+	margin-left: 1em;
 	cursor: pointer;
-	svg{
+	svg {
 		margin-left: -0.55em;
 		background-color: #fff;
 		border-radius: 25px;
 		border: 1px dashed grey;
 	}
 }
-.expressionsMobile{
+.expressionsMobile {
 	display: none;
 }
-@media screen and (max-width: 550px) {
-	.expressionPreview{
+@media screen and (max-width: 850px) {
+	.expressionPreview {
+		svg {
+			margin-left: -0.9em;
+		}
+	}
+}
+@media screen and (max-width: 650px) {
+	.expressionPreview {
 		display: none;
 	}
-	.expressionsMobile{
+	.expressionsMobile {
 		display: block;
+		cursor: pointer;
+
 	}
 }

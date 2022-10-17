@@ -1,75 +1,78 @@
 //Minified expression component that shows a summarized row of expressions that have been made on a post or book
 //Reqs: Icon, Row
 //Props: used-expressions
-import { BsFlower1, BsFlower2, BsFlower3 } from "react-icons/bs";
-import { GiSpotedFlower, GiLotusFlower, GiFlowerTwirl } from "react-icons/gi";
-import { useState } from "react";
-import ExpressionIcon from "./ExpressionIcon";
-import styles from "./expressions.module.scss";
+import { BsFlower1 as Daisy, BsFlower3 as FMN } from "react-icons/bs"
+import { GiSpotedFlower as Daffodil, GiLotusFlower, GiTrefoilLily, GiPoppy } from "react-icons/gi"
+import { TbHandClick as Snap } from "react-icons/tb"
+import { useState } from "react"
+import ExpressionIcon from "./ExpressionIcon"
+import styles from "./expressions.module.scss"
 
-
-
-const Expressions = ({ setShowExp, showExp }) => {
-
+const Expressions = ({ expressions, setShowExp, type }) => {
 	//defines list of expressions with count. In final version, count should be expored from the relevant expressions table
 	const expList = [
 		{
-			type: "lotus",
+			id: 1,
 			description: "Lotus - ex: Rebirth and ressurection",
-			count: 31,
 			icon: <GiLotusFlower />,
 		},
 		{
-			type: "lilly",
+			id: 2,
 			description: "Lilly - ex: Purity, innocence, rebirth",
-			count: 22,
-			icon: <BsFlower3 />,
+			icon: <GiTrefoilLily />,
 		},
 		{
-			type: "poppy",
+			id: 3,
 			description: "Poppy - ex: Remembrance and consolation",
-			count: 23,
-			icon: <GiFlowerTwirl />,
+			icon: <GiPoppy />,
 		},
 		{
-			type: "daffodil",
+			id: 4,
 			description: "Daffodil - ex: Memories, hope, rebirth, forgiveness",
-			count: 24,
-			icon: <BsFlower2 />,
+			icon: <Daffodil />,
 		},
 		{
-			type: "daisy",
+			id: 5,
 			description: "Dasiy - ex: Love, motherhood, childbirth, fertility",
-			count: 25,
-			icon: <BsFlower1 />,
+			icon: <Daisy />,
 		},
-		// {
-		// 	type: "forgetmenot",
-		// 	description:
-		// 		"Forget Me Not - ex: True love, respect, a promise to always remember",
-		// 	count: 26,
-		// },
-		// {
-		// 	type: "snap",
-		// 	description: "Snapping Fingers - ex: Appreciation for the author",
-		// 	count: 27,
-		// },
-	];
-
-	// getExpressions(book.id)
+		{
+			id: 6,
+			description: "Forget Me Not - ex: True love, respect, a promise to always remember",
+			icon: <FMN />,
+		},
+		{
+			id: 7,
+			description: "Snapping Fingers - ex: Appreciation for the author",
+			icon: <Snap />,
+		},
+	]
+	// console.log("expressionssss", expressions)
 	return (
-		//defines div that appears on click of preview icons
-		<div className={styles.popup}>
-			{/* map over expList */}
+		<div className={styles.popup} onMouseLeave={() => setShowExp(0)}>
 			{expList.map((expression, index) => {
+				let fexp = expressions.filter(function (expr) {
+					return expr.expression_id == expression.id
+				})
+				let count
+				let update_id
+				if (fexp[0] == undefined) {
+					count = 0
+					update_id = null
+				} else {
+					count = fexp[0].count
+					if (type=="post"){update_id = fexp[0].post_id}
+					if (type=="story"){update_id = fexp[0].story_id}
+				}
+
+				// console.log(count)
 				return (
 					<div key={index} className={styles.expression}>
-						{/* pass expression instance to icon handling component, pass styles too */}
-						<ExpressionIcon expression={expression} styles={styles}/>
+						<ExpressionIcon type={type} expression={expression} update_id={update_id} count={count} styles={styles} />
 					</div>
-				);
+				)
 			})}
 		</div>
-	);
-};
-export default Expressions;
+	)
+}
+export default Expressions

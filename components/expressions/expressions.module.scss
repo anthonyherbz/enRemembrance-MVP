@@ -5,16 +5,25 @@
 	// position: absolute;
 	position: absolute;
 	justify-content: center;
+	// bottom: 25%;
+	top: 30%;
+	// bottom: 35%;
+	left: 3%;
 	gap: 0.25em;
 	// position: relative;
 	background-color: vars.$color_white;
 	box-shadow: 3px 5px 10px 5px rgba(0, 0, 0, 0.341);
-	padding: 0.25em 0.5em 1em 0.5em;
+	padding: 1em 1em 1em 0.5em;
 	z-index: 100;
+	border-radius: 11px;
 
 	.icon {
 		position: relative;
 		padding: 0.5em;
+		// font-size: 0.75em;
+		&:hover{
+			cursor: pointer;
+		}
 		// background-color: rgba(255, 255, 255, 0);
 		.counter {
 			position: absolute;
@@ -23,24 +32,30 @@
 			background-color: #fff;
 			border-radius: 100%;
 			padding: 0.1em;
+			// font-size: 1em;
 		}
 	}
 }
 .desc {
+	z-index: 101;
 	position: absolute;
 	// background: rgb(255, 255, 255);
-	width: 100%;
+	// width: 100%;
 	background: linear-gradient(
 		0deg,
 		vars.$color_white_95 0%,
-		rgba(255, 255, 255, 0.50) 100%
+		rgba(224, 224, 224, 0.72) 100%
 	);
 	bottom: 0px;
 	left: 0;
+	right: 0;
+	padding: 0 5px 2px 5px;
+	// left: 3px;
+	border-radius: 0px 0px 11px 11px
 	// transition: all 125s;
 }
 @media screen and (max-width: 400px) {
 	.popup {
-		font-size: 14px;
+		// font-size: 14px;
 	}
 }
