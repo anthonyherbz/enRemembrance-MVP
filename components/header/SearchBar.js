@@ -17,11 +17,15 @@ const SearchBar = ({ showCarousel, setShowCarousel }) => {
 	function handleSearchClick() {
 		setShowCarousel((showCarousel = 1));
 	}
+	async function handleSubmit(event){
+		event.preventDefault
+		const data = event.target.query.value
+	}
 	return (
 		<>
 			<div className={styles.searchbar}>
-				<form className={styles.box}>
-					<input type='text' onClick={handleSearchClick} />
+				<form className={styles.box} onSubmit={handleSubmit}>
+					<input type='text' name='query' placeholder='Search for a "user:" or a "story:"' onClick={handleSearchClick} />
 				</form>
 
 				<div className={styles.sbutton}>

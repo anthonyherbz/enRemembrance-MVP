@@ -1,17 +1,13 @@
 import { IconContext } from "react-icons/lib"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 
-const ExpressionIcon = ({ expression, styles, count, update_id, type }) => {
+const ExpressionIcon = ({ expression, styles, count, update_id, type, description }) => {
 	//handle whether the particular tip will be shown
 	const [showTip, setShowTip] = useState(0)
 	const [counter, setCounter] = useState(count)
 	const [hasUpdated, setHasUpdated] = useState(false)
-	useEffect(() => {
-		async function	getData(){
-			
-		}
-	}, [])
+	
 	async function handleClose() {
 		handleHover()
 	}
@@ -45,7 +41,27 @@ const ExpressionIcon = ({ expression, styles, count, update_id, type }) => {
 			const res = await response.json()
 			console.log(res)
 		}
+		if (hasUpdated){
+			setHasUpdated(false)
+			let c = counter
+			setCounter(c - 1)
+			const endpoint = "/api/updateExpressionCounter-lib"
+			const postData = {
+				method: "Post",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					update_id: update_id,
+					countVal: c - 1,
+					expression: expression.id,
+					type: type,
+				}),
+			}
+			const response = await fetch(endpoint, postData)
+			const res = await response.json()
+			console.log(res)
+		}
 	}
+	// console.log(expression)
 	return (
 		<div onMouseEnter={handleHover} onMouseLeave={handleClose}>
 			{/* show the tip on hover, hide the tip on leave */}
@@ -55,7 +71,7 @@ const ExpressionIcon = ({ expression, styles, count, update_id, type }) => {
 				</IconContext.Provider>
 				{counter != 0 ? <div className={styles.counter}>{counter}</div> : null}
 			</div>
-			{showTip ? <div className={styles.desc}>{expression.description}</div> : null}
+			{showTip ? <div className={styles.desc}>{description}</div> : null}
 		</div>
 	)
 }

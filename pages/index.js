@@ -10,7 +10,8 @@ import Nav from "../components/Nav"
 import MobileNav from "../components/MobileNav"
 import PostFeedv2 from "../components/post/PostFeedv2"
 
-export async function getServerSideProps({ params }) {
+//Retrieve all of the posts, comments, and expressions from the database
+export async function getServerSideProps({}) {
 	try {
 		const valuesParams = []
 		const selectPosts =
@@ -21,25 +22,26 @@ export async function getServerSideProps({ params }) {
 			"SELECT posts.id AS post_id, post_expressions.expression_id AS expression_id, post_expressions.count AS count, post_expressions_summary.id AS summary_id, post_expressions_summary.name AS summary_name,  post_expressions_summary.description AS summary_description, post_expressions_summary.image_path AS image_path FROM posts  LEFT JOIN post_expressions ON posts.id=post_expressions.post_id  LEFT JOIN expressions post_expressions_summary ON post_expressions.expression_id=post_expressions_summary.id ORDER BY expression_id ASC;"
 		const selectStoryExpressions =
 			"SELECT stories.id AS story_id, story_expressions.expression_id AS expression_id, story_expressions.count AS count, story_expressions_summary.id AS summary_id, story_expressions_summary.name AS summary_name,  story_expressions_summary.description AS summary_description, story_expressions_summary.image_path AS image_path FROM story_expressions  LEFT JOIN stories ON stories.id=story_expressions.story_id  LEFT JOIN expressions story_expressions_summary ON story_expressions.expression_id=story_expressions_summary.id ORDER BY expression_id ASC;"
+		const selectTemplates = "SELECT id, name, description, image_path FROM expressions"
+
+		//Combine all of the queries into a single statement
 		const querySql =
-			selectPosts + selectComments + selectPostExpressions + selectStoryExpressions
+			selectPosts + selectComments + selectPostExpressions + selectStoryExpressions + selectTemplates
 		const data = await multiQuery({ query: querySql, values: valuesParams })
 		return { props: { data } }
 	} catch (error) {
 		const data = error.message
-		console.log(data)
 		return { props: { data } }
 	}
 }
 
 export default function Home({ data }) {
-	// console.log(data)
 	const posts = data[0]
 	const comments = data[1]
 	const postExpressions = data[2]
 	const storyExpressions = data[3]
-	console.log("SE",storyExpressions)
-	// console.log(posts, comments)
+	const expressionTemplates = data[4]
+
 	return (
 		<Layout>
 			<Head>
@@ -66,12 +68,13 @@ export default function Home({ data }) {
 									zIndex: 2,
 									boxShadow: "rgb(0, 0, 0) 0 2px 5px 0px",
 								}}></div>
-							<div style={{paddingBottom: "10px"}}>
+							<div style={{ paddingBottom: "10px" }}>
 								<PostFeedv2
 									posts={posts}
 									comments={comments}
 									storyExpressions={storyExpressions}
 									postExpressions={postExpressions}
+									expressionTemplates={expressionTemplates}
 								/>
 							</div>
 						</Container>

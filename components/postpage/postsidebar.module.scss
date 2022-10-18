@@ -1,0 +1,25 @@
+@use "../../sass/abstracts/vars.scss";
+
+
+.info {
+	ul {
+		padding: 0;
+	}
+	li {
+		list-style: none;
+	}
+}
+.bookElement {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	background-color: vars.$color_white;
+	padding: 1rem;
+	gap: 0.5em;
+	// height: 100%;
+	// // margin: 1rem;
+	border-radius: 11px;
+	.bookCover {
+		height: 7em;
+	}
+}

@@ -4,10 +4,11 @@ import Header from "../components/header/Header";
 import Nav from "../components/Nav";
 import styles from "../page_sass/editor.module.scss";
 import StoryCreator from "../components/StoryCreator";
+import Layout from "../components/Layout";
 
 const Editor = () => {
 	return (
-		<>
+		<Layout>
 			<Head>
 				<title>enRemembrance | Editor</title>
 				<link rel='icon' href='/favicon.ico' />
@@ -37,7 +38,7 @@ const Editor = () => {
 					<StoryCreator/>
 				</div>
 			</div>
-		</>
+		</Layout>
 	);
 };
 export default Editor;

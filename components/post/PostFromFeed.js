@@ -7,7 +7,7 @@ import ExpressionPreview from "../expressions/ExpressionPreview"
 import EnterComment from "./EnterComment"
 import ImageContainer from "../ImageContainer"
 
-const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressions }) => {
+const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressions, expressionTemplates }) => {
 	// console.log("postexpres", postExpressions)
 	// console.log("storyexp", storyExpressions)
 	const [loaded, setLoaded] = useState(true)
@@ -39,7 +39,7 @@ const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressio
 						</a>
 					</Link>
 				) : null}
-				<ExpressionPreview type="story" expressions={storyExpressions} align='right' />
+				<ExpressionPreview type='story' expressions={storyExpressions} template={expressionTemplates}/>
 			</div>
 			{/* center column containing book title, the post text, and a single comment */}
 			<div className={styles.c2}>
@@ -54,11 +54,16 @@ const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressio
 							</Link>
 						) : null}
 					</div>
-					{/* should link to a specific author's profile */}
-					<div style={{display: "flex", flexDirection: "row"}}>
-						<div style={{ fontSize: "1rem" }}>
-							{/* <ExpressionPreview expressions={postExpressions} align='left' type="post" /> */}
+					<div style={{ fontSize: "1rem", position:"relative"}}>
+							<ExpressionPreview
+								expressions={postExpressions}
+								template={expressionTemplates}
+								align='right'
+								type='post'
+							/>
 						</div>
+					{/* should link to a specific author's profile */}
+					<div style={{ display: "flex", flexDirection: "row" }}>
 						{loaded ? (
 							<Link href={authorUrl}>
 								<a>

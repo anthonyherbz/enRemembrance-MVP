@@ -4,7 +4,6 @@ export default async function getServerSideProps(req, res) {
 	const countVal = req.body.countVal
 	const expression_id = req.body.expression
 	const type = req.body.type
-	console.log
 	try {
 		let querySql;
 		if (type == "story"){

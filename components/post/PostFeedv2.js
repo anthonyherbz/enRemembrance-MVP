@@ -2,7 +2,7 @@ import styles from "./postfeed.module.scss"
 import PostFromFeed from "./PostFromFeed"
 
 //Generates a feed of posts via data from getPosts()
-const PostFeedv2 = ({ posts, comments, postExpressions, storyExpressions}) => {
+const PostFeedv2 = ({ posts, comments, postExpressions, storyExpressions, expressionTemplates}) => {
 	// console.log("post exp", postExpressions)
 	const mappedPosts = posts.map((post, index) => {
 		// {console.log(post)}
@@ -19,7 +19,7 @@ const PostFeedv2 = ({ posts, comments, postExpressions, storyExpressions}) => {
 		})
 		// console.log("fPE", fPE)
 		// console.log("fSE", fSE)
-		return <PostFromFeed post={post} key={index} counter={index} comments={fComm} postExpressions={fPE} storyExpressions={fSE}/>
+		return <PostFromFeed post={post} key={index} counter={index} comments={fComm} postExpressions={fPE} storyExpressions={fSE} expressionTemplates={expressionTemplates}/>
 	})
 	return <div className={styles.postFeed}>{mappedPosts}</div>
 }

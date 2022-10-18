@@ -8,29 +8,43 @@ import ButtonText from "../../components/button/ButtonText"
 import Logo from "../../components/Logo"
 import ExpressionPreview from "../../components/expressions/ExpressionPreview"
 import { multiQuery } from "../../lib/db"
+import PostSidebar from "../../components/postpage/PostSidebar"
 
 export async function getServerSideProps({ params }) {
 	let id = params.id
-	console.log("pid", id)
+
 	try {
-		const query1 =
-			"SELECT posts.post_text, posts.id AS post_id, CONVERT(posts.post_date, char) AS post_date, post_users.handle AS post_user_handle, post_users.id AS post_user_id, stories.title, stories.id AS story_id, CONVERT(stories.publish_date, char) AS story_publish_date, post_expressions.expression_id AS post_expressions_id, post_expressions.count AS post_expressions_count,story_expressions.expression_id AS story_expressions_id, story_expressions.count AS story_expressions_count,post_expressions_summary.id AS post_expressions_summary_id, post_expressions_summary.name AS post_expressions_summary_name, post_expressions_summary.description AS post_expressions_summary_description, post_expressions_summary.image_path AS post_expressions_summary_image_path,story_expressions_summary.id AS story_expressions_summary_id, story_expressions_summary.name AS story_expressions_summary_name, story_expressions_summary.description AS story_expressions_summary_description, story_expressions_summary.image_path AS story_expressions_summary_image_path FROM posts LEFT JOIN users post_users ON posts.user_id=post_users.id LEFT JOIN stories ON posts.story_id=stories.id  LEFT JOIN post_expressions ON posts.id=post_expressions.post_id LEFT JOIN story_expressions ON stories.id=story_expressions.story_id LEFT JOIN expressions post_expressions_summary ON post_expressions.expression_id=post_expressions_summary.id LEFT JOIN expressions story_expressions_summary ON story_expressions.expression_id=story_expressions_summary.id WHERE posts.id = ?;"
-		const query2 =
+		const selectPost =
+			"SELECT posts.id AS post_id, CONVERT(posts.post_date, char) AS post_date, posts.story_id, posts.post_text, posts.user_id, stories.title, post_users.handle AS poster_handle, users.handle AS story_author, users.id AS author_id FROM posts LEFT JOIN stories ON posts.story_id = stories.id LEFT JOIN users ON stories.author_id = users.id LEFT JOIN users post_users ON post_users.id = posts.user_id WHERE posts.id = ?;"
+		const selectPostExpressions =
+			"SELECT posts.id AS post_id, post_expressions.expression_id AS expression_id, post_expressions.count AS count, post_expressions_summary.id AS summary_id, post_expressions_summary.name AS summary_name,  post_expressions_summary.description AS summary_description, post_expressions_summary.image_path AS image_path FROM post_expressions  LEFT JOIN posts ON posts.id=post_expressions.post_id  LEFT JOIN expressions post_expressions_summary ON post_expressions.expression_id=post_expressions_summary.id WHERE post_id = ?  ORDER BY expression_id ASC;"
+		const selectComments =
 			"SELECT post_comments.post_id AS post_comments_id, post_comments.commentor_id, CONVERT(post_comments.comment_date, char) AS comment_date, post_comments.comment_text, users.handle FROM post_comments LEFT JOIN posts ON post_comments.post_id = posts.id LEFT JOIN users ON post_comments.commentor_id = users.id WHERE post_comments.post_id = ?;"
-		const querySql = query1 + query2
-		const valuesParams = [id, id]
+		const selectStoryExpressions =
+			"SELECT stories.id AS story_id, story_expressions.expression_id AS expression_id, story_expressions.count AS count, story_expressions_summary.id AS summary_id, story_expressions_summary.name AS summary_name,  story_expressions_summary.description AS summary_description, story_expressions_summary.image_path AS image_path FROM story_expressions LEFT JOIN stories ON stories.id=story_expressions.story_id  LEFT JOIN expressions story_expressions_summary ON story_expressions.expression_id=story_expressions_summary.id LEFT JOIN posts ON posts.story_id = stories.id WHERE posts.id = ?  ORDER BY expression_id ASC;"
+		const querySql =
+			selectPost + selectPostExpressions + selectComments + selectStoryExpressions
+		const valuesParams = [id, id, id, id]
 		const data = await multiQuery({ query: querySql, values: valuesParams })
-		console.log("d1", data)
-		return { props: { post: data[0], comments: data[1] } }
+		console.log(data)
+		// console.log("d1", data)
+		return {
+			props: {
+				post: data[0],
+				postExpressions: data[1],
+				comments: data[2],
+				storyExpressions: data[3],
+			},
+		}
 	} catch (error) {
-		const data = error
+		const data = error.message
 		console.log(data)
 		return { props: { data } }
 	}
 }
 
-const Post = ({ post, comments }) => {
-	console.log(post, comments)
+const Post = ({ post, postExpressions, comments, storyExpressions }) => {
+	console.log(post, comments, postExpressions, storyExpressions)
 	const logged_in_user_id = 1 //temporary until authentication is set up
 	post = post[0]
 	console.log("post", post)
@@ -45,37 +59,7 @@ const Post = ({ post, comments }) => {
 				</div>
 				<div className={styles.body}>
 					<div className={styles.leftcol}>
-						<div className={styles.bookElement}>
-							<div className={styles.bookCover}>
-								<Link href={`/stories/${post.story_id}`}>
-									<a>
-										<ImageContainer
-											src={`/images/stories/id${post.story_id}/cover.jpg`} alt="The story's cover image"
-										/>
-									</a>
-								</Link>
-							</div>
-							<div>
-								{/* to be replaced */}
-								<ExpressionPreview />
-							</div>
-							<div>
-								{/* should technically be about the published 0/1 but */}
-								{post.story_publish_date != undefined
-									? post.story_publish_date
-									: "Not published"}
-							</div>
-							<div className={styles.info}>
-								<ul>
-									<li>
-										<Link href={`/stories/${post.story_id}`}>
-											<a>View Story</a>
-										</Link>
-									</li>
-									<li>Buy Story</li>
-								</ul>
-							</div>
-						</div>
+						<PostSidebar post={post} expressions={storyExpressions} />
 						<div onClick={() => history.back()}>
 							<ButtonText>Back</ButtonText>
 						</div>
@@ -84,16 +68,16 @@ const Post = ({ post, comments }) => {
 						<div className={styles.postElement}>
 							<div className={styles.peR1}>
 								<Heading level='1'>{post.title}</Heading>
-								<ExpressionPreview />
+								<ExpressionPreview expressions={storyExpressions} />
 								<div className={styles.per1c}>
 									{/* change to jpg */}
 									<Image
 										width='50'
 										height='50'
-										src={`/images/users/id${post.post_user_id}.svg`}
+										src={`/images/users/id${post.user_id}.svg`}
 										alt="The post creator's profile image"
 									/>
-									{post.post_user_handle}
+									{post.poster_handle}
 								</div>
 							</div>
 							<div className={styles.peR2}>{post.postContent}</div>
