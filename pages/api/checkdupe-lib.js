@@ -5,6 +5,7 @@ export default async function getServerSideProps(req, res) {
 	const type = req.body.type
 	try {
 		let querySql
+		//Check if a user has already created a post about a specific story
 		if (type == "post") {
 			querySql =
 				"SELECT EXISTS (SELECT stories.id AS story_id, story_posts.id AS posts_id, post_users.id AS users_id FROM stories INNER JOIN posts story_posts ON stories.id = story_posts.story_id INNER JOIN users post_users ON story_posts.user_id = post_users.id WHERE story_id = ? AND post_users.id = ?) AS result"

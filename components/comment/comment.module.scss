@@ -8,6 +8,10 @@
 	gap: 0.5em;
 	padding-block: 0.5rem;
 	border-bottom: 1px solid vars.$color_grey_light;
+	&.stacked{
+		flex-direction: column;
+		align-items: flex-start;
+	}
 	.commentAuthor{
 		display: flex;
 		align-items: flex-end;

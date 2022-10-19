@@ -15,11 +15,11 @@ const Profile = ({ user, userLink, expanded, setExpanded }) => {
 	const profileLinks = [
 		{
 			item : "Your Profile",
-			slug : [`authors/${userLink}`]
+			slug : [`users/${userLink}`]
 		},
 		{
-			item : "Your Books",
-			slug : [`authors/${userLink}/books`]
+			item : "Your Dashboard",
+			slug : [`dashboard`]
 		},
 		{
 			item : "Settings",
@@ -27,7 +27,7 @@ const Profile = ({ user, userLink, expanded, setExpanded }) => {
 		},
 		{
 			item : "Log Out",
-			slug : [`authors/${userLink}/signout`]
+			slug : [`api/logout`]
 		}
 	]
 	const profileMenu = (

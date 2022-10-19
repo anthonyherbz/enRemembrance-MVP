@@ -3,8 +3,6 @@ export default async function handler(req, res) {
 	const type = req.body.type
 	let userId
 	let coverId
-	// const coverId = req.body.cover
-
 	if (type == "user") {
 		userId = req.body.id
 		try {

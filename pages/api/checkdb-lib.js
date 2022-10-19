@@ -1,4 +1,7 @@
 import { query } from "../../lib/db"
+
+//Checks if a email exists in the database
+
 export default async function getServerSideProps(req, res) {
 	const checkVal = req.body.checkVal
 	try {

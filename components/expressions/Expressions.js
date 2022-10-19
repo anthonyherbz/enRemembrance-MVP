@@ -12,22 +12,15 @@ import styles from "./expressions.module.scss"
 import classNames from "classnames/bind"
 let cx = classNames.bind(styles)
 
-const Expressions = ({ expressions, setShowExp, type, align, template }) => {
-	//defines list of expressions with count. In final version, count should be expored from the relevant expressions table
+const Expressions = ({ expressions, setShowExp, type, align, template, parent_id }) => {
+
 	const expressionStyleVars = cx({
 		popup: true,
 		default: align === "default",
 		left: align === "left",
 		right: align === "right",
 	})
-	let search_id
-	if (expressions.length != 0 && type == "story") {
-		search_id = expressions[0].story_id
-	}
-	if (expressions.length != 0 && type == "post") {
-		search_id = expressions[0].post_id
-	}
-	console.log(search_id)
+
 	const [expData, setExpData] = useState()
 	useEffect(() => {
 		async function getData() {
@@ -36,7 +29,7 @@ const Expressions = ({ expressions, setShowExp, type, align, template }) => {
 				method: "Post",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
-					search_id: search_id,
+					search_id: parent_id,
 					type: type,
 				}),
 			}
@@ -47,6 +40,7 @@ const Expressions = ({ expressions, setShowExp, type, align, template }) => {
 		}
 		getData()
 	}, [])
+	// console.log(expData)
 	const expList = [
 		{
 			id: 1,
@@ -77,9 +71,9 @@ const Expressions = ({ expressions, setShowExp, type, align, template }) => {
 			icon: <Snap />,
 		},
 	]
-	console.log("expressionssss", expressions)
-	console.log("expData", expData)
-	console.log("template", template)
+	// console.log("expressionssss", expressions)
+	// console.log("expData", expData)
+	// console.log("template", template)
 	if (expData != undefined) {
 		return (
 			<div className={expressionStyleVars} onMouseLeave={() => setShowExp(0)}>
@@ -87,19 +81,18 @@ const Expressions = ({ expressions, setShowExp, type, align, template }) => {
 					let filteredData = expData.filter(function (expr) {
 						return expr.expression_id == templ.id
 					})
-					let count = filteredData[0].count
-					console.log("filteredData", filteredData)
-					let update_id
-					if (type == "post") {
-						update_id = expressions[0].post_id
+					console.log(filteredData[0])
+					let count
+					if (filteredData[0] == undefined) {
+						count = null
+					} else {
+						count = filteredData[0].count
 					}
-					if (type == "story") {
-						update_id = expressions[0].story_id
-					}
+
 					return (
 						<div key={templ.id}>
 							<NewExpressionRenderer
-								update_id={update_id}
+								update_id={parent_id}
 								count={count}
 								templ={templ}
 								styles={styles}

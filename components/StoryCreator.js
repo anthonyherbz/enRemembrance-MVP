@@ -31,7 +31,6 @@ const StoryCreator = () => {
 	const [page, setPage] = useState(0)
 	const [pageCount, setpageCount] = useState(0)
 	const [storyId, setstoryId] = useState(0)
-	// console.log("story after id update", storyState)
 
 	//TBD
 	//let session = getSession() < get the current session
@@ -62,12 +61,13 @@ const StoryCreator = () => {
 			const res = await response.json()
 			setstoryId(res.story.insertId)
 			async function defaultCover(){
-				const endpoint = "/api/cover-lib"
+				const endpoint = "/api/generatedefaults-lib"
 				const pd = {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
 						id: res.story.insertId,
+						type: "cover"
 					}),
 				}
 				const response = await fetch(endpoint, pd)

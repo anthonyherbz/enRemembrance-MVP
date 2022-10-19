@@ -118,7 +118,13 @@ const StoryCreatorPage = ({ page, storyState, title, storyId, updatestoryState }
 		case "cover":
 			template = (
 				<div className={styles.cover}>
-					<Image layout='fill' objectFit='contain' src={currPage.quadrants[0].content} />
+					<div style={{ position: "absolute" }}>
+						{" "}
+						<StoryContentSelector
+							currPage={currPage.quadrants[0].content}
+							type='cover'
+						/>{" "}
+					</div>
 				</div>
 			)
 			break

@@ -13,6 +13,7 @@ const StoryContentSelector = ({
 	updatestoryState,
 	page,
 	path,
+	currPage,
 }) => {
 	// const [image, setImage] = useState();
 	const [text, setText] = useState()
@@ -20,39 +21,42 @@ const StoryContentSelector = ({
 	const [spanChoice, setspanChoice] = useState()
 	const [parentImg, setParentImg] = useState()
 	const [imageType, setimageType] = useState()
-	console.log("content type", type)
-	console.log("content quadrant.content", quadrant.content)
-	console.log("content parentImg", parentImg)
-	console.log("content quadimg", storedImages[quadrant.number])
-	console.log("content text", text)
-	console.log("context ParentImg value", parentImg)
+	// console.log("content type", type)
+	// console.log("content quadrant.content", quadrant.content)
+	// console.log("content parentImg", parentImg)
+	// console.log("content quadimg", storedImages[quadrant.number])
+	// console.log("content text", text)
+	// console.log("context ParentImg value", parentImg)
 
 	// let upd = update(storyState, {
 	// 	story: {
 	// 		pages: { [page]: { templateName: { $set: type }
 	// 	},
 	// })
-	console.log("quadrants", storyState.story.pages[page].quadrants)
+	// console.log("quadrants", storyState.story.pages[page].quadrants)
 	let finalPath = path
 	let fileFormat
-	console.log("file format", fileFormat)
+	// console.log("file format", fileFormat)
 	// if (storyState.story.pages[page].quadrants[quadrant.number-1].content.split([1] == jpg)){
 	// 	fileFormat = "jpg"
 	// } else {
 	// 	fileFormat = "png"
 	// }
-
-	if (
-		storyState.story.pages[page].quadrants[quadrant.number - 1].content.split(".")[1] == "jpg"
-	) {
-		// console.log("whoopee")
-		fileFormat = "jpg"
-	}
-	if (
-		storyState.story.pages[page].quadrants[quadrant.number - 1].content.split(".")[1] == "png"
-	) {
-		// console.log("whoopee other")
-		fileFormat = "png"
+	if (type != "cover") {
+		if (
+			storyState.story.pages[page].quadrants[quadrant.number - 1].content.split(".")[1] ==
+			"jpg"
+		) {
+			// console.log("whoopee")
+			fileFormat = "jpg"
+		}
+		if (
+			storyState.story.pages[page].quadrants[quadrant.number - 1].content.split(".")[1] ==
+			"png"
+		) {
+			// console.log("whoopee other")
+			fileFormat = "png"
+		}
 	}
 
 	if (parentImg != undefined) {
@@ -195,7 +199,12 @@ const StoryContentSelector = ({
 						"text" ? (
 							<div>
 								<input type='text' onBlur={handleChange}></input>
-								<div>{storyState.story.pages[page].quadrants[quadrant.number - 1].content}</div>
+								<div>
+									{
+										storyState.story.pages[page].quadrants[quadrant.number - 1]
+											.content
+									}
+								</div>
 							</div>
 						) : (
 							<div>
@@ -220,26 +229,24 @@ const StoryContentSelector = ({
 				)}
 			</>
 		)
-
-		// if (spanChoice != undefined) {
-		// 	if (spanChoice == "text") {
-		// 		return (
-		//
-		// 		)
-		// 	}
-		// 	if (spanChoice == "image") {
-		// 		return <ImageUpload fileNamePath={finalPath} />;
-		// 	}
-		// }
-		// return (
-		// 	<>
-		// 		<input type='file' onChange={changeHandler}></input>
-		// 		{isSelected ? (
-		// 			<Image layout='fill' objectFit='cover' src={image}></Image>
-		// 		) : null}
-		// 		<input type='text'></input>
-		// 	</>
-		// );
 	}
+	// if (type == "cover") {
+	// 	return (
+	// 		<>
+	// 		<div style={{position: "relative", zIndex: "100"}}>
+	// 			<ImageUpload
+	// 					fileNamePath={finalPath}
+	// 					setParentImg={setParentImg}
+	// 					parentImg={parentImg}
+	// 					imageType={imageType}
+	// 					setimageType={setimageType}
+	// 				/>
+	// 		</div>
+
+	// 				<Image layout='fill' objectFit='cover' src={`/${finalPath}.${fileFormat}`} />
+
+	// 		</>
+	// 	)
+	// }
 }
 export default StoryContentSelector

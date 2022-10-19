@@ -14,11 +14,20 @@ const NewExpressionRenderer = ({ update_id, count, templ, styles, type }) => {
 		setShowTip(!showTip)
 	}
 
+	console.log("type", type, "templ", templ)
+
 	function increment() {
-		async function handleUpdate(incrementVal, hasUpdateVal) {
+		async function handleUpdate(incrementVal, hasUpdateVal, counterNull) {
 			setHasUpdated(hasUpdateVal)
-			let c = counter + incrementVal
-			setCounter(c)
+			let c
+			if (count == null) {
+				c = null
+				setCounter(1)
+			} else {
+				c = counter + incrementVal
+				setCounter(c)
+			}
+
 			const endpoint = "/api/updateExpressionCounter-lib"
 			const postData = {
 				method: "Post",
@@ -41,13 +50,15 @@ const NewExpressionRenderer = ({ update_id, count, templ, styles, type }) => {
 	return (
 		<div onMouseEnter={handleHover} onMouseLeave={handleClose}>
 			{/* show the tip on hover, hide the tip on leave */}
-			<div className={styles.icon}>
-				<div onClick={() => increment()}>
-					<Image src={templ.image_path} width="35px" height="35px"/>
-				</div>
-				{counter != 0 ? <div className={styles.counter}>{counter}</div> : null}
+			<div className={styles.icon} onClick={() => increment()}>
+				<Image src={templ.image_path} layout='fill' />
+				{counter != null ? <div className={styles.counter}>{counter}</div> : null}
 			</div>
-			{showTip ? <div className={styles.desc}>{templ.description}</div> : null}
+			{showTip ? (
+				<div className={styles.desc}>
+					{templ.name} - {templ.description}
+				</div>
+			) : null}
 		</div>
 	)
 }

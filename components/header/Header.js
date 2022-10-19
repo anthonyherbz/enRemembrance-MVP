@@ -38,7 +38,7 @@ const Header = ({ show, shadow }) => {
 
 
 	let user = "Jane Doe";
-	let userLink = "janedoe"
+	let logged_in_user_id = 1
 	return (
 		<div className={headerClasses}>
 			<div className={styles.pos1}>
@@ -55,7 +55,7 @@ const Header = ({ show, shadow }) => {
 			>
 				<Profile
 					user={user}
-					userLink={userLink}
+					userLink={logged_in_user_id}
 					expanded={expanded}
 					setExpanded={setExpanded}
 				/>

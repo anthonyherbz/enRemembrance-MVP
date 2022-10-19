@@ -1,11 +1,15 @@
 import styles from "./entercomment.module.scss"
 import { useState } from "react"
+import classNames from "classnames/bind";
+let cx = classNames.bind(styles);
 
 const EnterComment = ({
-	post_id = "1",
+	post_id,
+	story_id,
 	logged_in_user_id = "1",
 	toggleComment,
 }) => {
+
 	const [text, setText] = useState("")
 	// console.log(text)
 	function updateText(event) {
@@ -21,6 +25,7 @@ const EnterComment = ({
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
 				post_id: post_id,
+				story_id: story_id,
 				user: logged_in_user_id,
 				text: text,
 			}),

@@ -3,7 +3,7 @@ import Link from "next/link"
 import ExpressionPreview from "../expressions/ExpressionPreview"
 import ImageContainer from "../ImageContainer"
 
-const PostSidebar = ({ post, expressions }) => {
+const PostSidebar = ({ post, expressions, templates }) => {
 	return (
 		<>
 			<div className={styles.bookElement}>
@@ -18,7 +18,7 @@ const PostSidebar = ({ post, expressions }) => {
 					</Link>
 				</div>
 				<div style={{position: "relative"}}>
-					<ExpressionPreview align="left" expressions={expressions} />
+					<ExpressionPreview align="left" expressions={expressions} template={templates} parent_id={post.story_id} type='story'/>
 				</div>
 				<div>
 					{/* should technically be about the published 0/1 but */}

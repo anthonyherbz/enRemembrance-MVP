@@ -1,16 +1,25 @@
 import Comment from "./Comment"
 import styles from "./commentfeed.module.scss"
 
-const CommentFeed = ({ comments }) => {
-	if (comments == undefined) {
-		return <div>There are no comments to show.</div>
+
+const CommentFeed = ({ comments, stacked }) => {
+	
+	let undef = false
+	if (comments == undefined || comments.length == 0) {
+		undef = true
 	}
 	return (
-		<div className={styles.commentfeed}>
-			{comments.map((comment, index) => {
-				return <Comment key={index} comment={comment} />
-			})}
-		</div>
+		<>
+			{undef == false ? (
+				<div className={styles.commentfeed}>
+					{comments.map((comment, index) => {
+						return <Comment key={index} comment={comment} stacked={stacked} />
+					})}
+				</div>
+			) : (
+				<div>There are no comments to show.</div>
+			)}
+		</>
 	)
 }
 export default CommentFeed

@@ -1,10 +1,10 @@
 import { query } from "../../lib/db";
 
+//Create a post
 export default async function getServerSideProps(req, res) {
 	const user_id = req.body.user_id
 	const story_id = req.body.story_id
 	const content = req.body.content
-	console.log(user_id, story_id, content)
 	try {
 		const querySql =
 			"INSERT INTO posts (story_id, post_text, user_id) values (?, ?, ?)"

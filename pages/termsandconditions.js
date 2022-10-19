@@ -1,5 +1,6 @@
 import Layout from "../components/Layout"
 import Heading from "../components/Heading"
+import Head from "next/head"
 import Container from "../components/Container"
 
 const TermsAndConditions = () => {

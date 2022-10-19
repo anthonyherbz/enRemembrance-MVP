@@ -39,7 +39,7 @@ const User = ({ data }) => {
 				<Container marginTop>
 					<div className={styles.authorlead}>
 						<UserComp user={user} />
-						<ButtonText color='green' expand label='Back' />
+						<div onClick={() => history.back()}><ButtonText color='green' expand label='Back' /></div>
 					</div>
 					<StoriesFeed stories={stories} />
 				</Container>

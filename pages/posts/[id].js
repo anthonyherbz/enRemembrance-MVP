@@ -22,8 +22,9 @@ export async function getServerSideProps({ params }) {
 			"SELECT post_comments.post_id AS post_comments_id, post_comments.commentor_id, CONVERT(post_comments.comment_date, char) AS comment_date, post_comments.comment_text, users.handle FROM post_comments LEFT JOIN posts ON post_comments.post_id = posts.id LEFT JOIN users ON post_comments.commentor_id = users.id WHERE post_comments.post_id = ?;"
 		const selectStoryExpressions =
 			"SELECT stories.id AS story_id, story_expressions.expression_id AS expression_id, story_expressions.count AS count, story_expressions_summary.id AS summary_id, story_expressions_summary.name AS summary_name,  story_expressions_summary.description AS summary_description, story_expressions_summary.image_path AS image_path FROM story_expressions LEFT JOIN stories ON stories.id=story_expressions.story_id  LEFT JOIN expressions story_expressions_summary ON story_expressions.expression_id=story_expressions_summary.id LEFT JOIN posts ON posts.story_id = stories.id WHERE posts.id = ?  ORDER BY expression_id ASC;"
+		const selectTemplates = "SELECT id, name, description, image_path FROM expressions"
 		const querySql =
-			selectPost + selectPostExpressions + selectComments + selectStoryExpressions
+			selectPost + selectPostExpressions + selectComments + selectStoryExpressions + selectTemplates
 		const valuesParams = [id, id, id, id]
 		const data = await multiQuery({ query: querySql, values: valuesParams })
 		console.log(data)
@@ -34,6 +35,7 @@ export async function getServerSideProps({ params }) {
 				postExpressions: data[1],
 				comments: data[2],
 				storyExpressions: data[3],
+				templates: data[4]
 			},
 		}
 	} catch (error) {
@@ -43,7 +45,7 @@ export async function getServerSideProps({ params }) {
 	}
 }
 
-const Post = ({ post, postExpressions, comments, storyExpressions }) => {
+const Post = ({ post, postExpressions, comments, storyExpressions, templates }) => {
 	console.log(post, comments, postExpressions, storyExpressions)
 	const logged_in_user_id = 1 //temporary until authentication is set up
 	post = post[0]
@@ -59,7 +61,7 @@ const Post = ({ post, postExpressions, comments, storyExpressions }) => {
 				</div>
 				<div className={styles.body}>
 					<div className={styles.leftcol}>
-						<PostSidebar post={post} expressions={storyExpressions} />
+						<PostSidebar post={post} expressions={storyExpressions} templates={templates} />
 						<div onClick={() => history.back()}>
 							<ButtonText>Back</ButtonText>
 						</div>
@@ -68,7 +70,14 @@ const Post = ({ post, postExpressions, comments, storyExpressions }) => {
 						<div className={styles.postElement}>
 							<div className={styles.peR1}>
 								<Heading level='1'>{post.title}</Heading>
-								<ExpressionPreview expressions={storyExpressions} />
+								{console.log(postExpressions, post.id, templates)}
+								<ExpressionPreview 
+								expressions={postExpressions} 
+								type='post'
+								parent_id={post.post_id}
+								template={templates}
+								align='right'
+								/>
 								<div className={styles.per1c}>
 									{/* change to jpg */}
 									<Image

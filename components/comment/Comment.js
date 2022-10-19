@@ -5,11 +5,17 @@ import { getPost, getAuthor, getBook } from "../../pages/api/api";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./comment.module.scss";
+import classNames from "classnames/bind";
+let cx = classNames.bind(styles);
 
-const Comment = ({ comment }) => {
-	console.log(comment.commentor_id)
+const Comment = ({ comment, stacked }) => {
+	console.log(comment)
+	const varStyles = cx({
+		comment: true,
+		stacked: stacked == true
+	})
 	return (
-		<div className={styles.comment}>
+		<div className={varStyles}>
 			<div>
 				<Link href={`/users/${comment.commentor_id}`}>
 					<a>

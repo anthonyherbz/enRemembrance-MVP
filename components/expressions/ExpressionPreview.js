@@ -15,9 +15,9 @@ import { IconContext } from "react-icons"
 import Image from "next/image"
 import styles from "./expressionspreview.module.scss"
 import Expressions from "./Expressions"
-const ExpressionPreview = ({ align = "default", expressions, template, type }) => {
+const ExpressionPreview = ({ align = "default", expressions, template, type, parent_id }) => {
 	// console.log(expressions)
-
+	// console.log(parent_id)
 	// console.log("align", align)
 	// console.log("exp", expressions)
 	let [showExp, setShowExp] = useState(0)
@@ -79,21 +79,20 @@ const ExpressionPreview = ({ align = "default", expressions, template, type }) =
 		</>
 	)
 	// console.log(selectedExpressions)
+	// console.log('showx', showExp)
 	return (
 		<>
 			<div onClick={() => setShowExp(1)}>
-				<IconContext.Provider value={{ color: "black", size: "1.5em" }}>
-					{expressions.length != 0 ? (
-						<div className={styles.expressionPreview}>{selectedExpressions}</div>
-					) : (
-						<div className={styles.expressionPreview}>
-							<GiButterflyFlower />
-						</div>
-					)}
-					<div className={styles.expressionsMobile}>
+				{expressions.length != 0 ? (
+					<div className={styles.expressionPreview}>{selectedExpressions}</div>
+				) : (
+					<div className={styles.expressionPreview}>
 						<GiButterflyFlower />
 					</div>
-				</IconContext.Provider>
+				)}
+				<div className={styles.expressionsMobile}>
+					<GiButterflyFlower />
+				</div>
 			</div>
 			<div>
 				{showExp ? (
@@ -103,6 +102,7 @@ const ExpressionPreview = ({ align = "default", expressions, template, type }) =
 						align={align}
 						setShowExp={setShowExp}
 						template={template}
+						parent_id={parent_id}
 					/>
 				) : null}
 			</div>

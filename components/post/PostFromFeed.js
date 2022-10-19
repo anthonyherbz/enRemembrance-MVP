@@ -4,7 +4,7 @@ import classNames from "classnames/bind"
 import Link from "next/link"
 import Heading from "../Heading"
 import ExpressionPreview from "../expressions/ExpressionPreview"
-import EnterComment from "./EnterComment"
+import EnterComment from "../EnterComment"
 import ImageContainer from "../ImageContainer"
 
 const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressions, expressionTemplates }) => {
@@ -39,7 +39,7 @@ const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressio
 						</a>
 					</Link>
 				) : null}
-				<ExpressionPreview type='story' expressions={storyExpressions} template={expressionTemplates}/>
+				<ExpressionPreview parent_id={post.story_id} type='story' expressions={storyExpressions} template={expressionTemplates}/>
 			</div>
 			{/* center column containing book title, the post text, and a single comment */}
 			<div className={styles.c2}>
@@ -60,6 +60,7 @@ const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressio
 								template={expressionTemplates}
 								align='right'
 								type='post'
+								parent_id={post.post_id}
 							/>
 						</div>
 					{/* should link to a specific author's profile */}
