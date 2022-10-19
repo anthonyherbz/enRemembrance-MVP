@@ -6,7 +6,7 @@ import ButtonText from "./button/ButtonText"
 import update from "immutability-helper"
 
 const StoryCreator = () => {
-	//Define the initial structure for the story object. Set a placeholder cover at a specific location.
+	//Define the initial structure for the story object. Set a placeholder cover at a specific location. This can't be set to the story ID because we don't have that yet.
 	let story = {
 		pages: [
 			{
@@ -38,13 +38,16 @@ const StoryCreator = () => {
 	//let user_id = session.user_id <get the current user_id from the session
 	let user_id = 1
 
+	//Run when the "Start story" button is clicked
 	function handleStartStory() {
 		console.log("ran handleStartStory")
-		setStoryInstantiated(true)
-		startStory(storyState, user_id)
+		setStoryInstantiated(true) //Change the state to reflect that the story has been started
+		startStory(storyState, user_id) //Run the start story function and pass the logged in user
 	}
+
 	function startStory(storyState, user_id) {
 		console.log("ran startStory")
+		//Sends a story to the database as the logged in user, default story state, and default title
 		async function sendToDB() {
 			//make sure the path is relative instead of absolute
 			const apiUrlEndpoint = "/api/uploadstory-lib"
@@ -59,21 +62,25 @@ const StoryCreator = () => {
 			}
 			const response = await fetch(apiUrlEndpoint, postData)
 			const res = await response.json()
-			setstoryId(res.story.insertId)
-			async function defaultCover(){
-				const endpoint = "/api/generatedefaults-lib"
-				const pd = {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({
-						id: res.story.insertId,
-						type: "cover"
-					}),
-				}
-				const response = await fetch(endpoint, pd)
-				const data = await response.json()
-				console.log("data", data)
-			}
+			setstoryId(res.story.insertId) //Set the story ID to the insertID of the response
+
+			// Assign a default cover 
+			// async function defaultCover() {
+			// 	const endpoint = "/api/generatedefaults-lib"
+			// 	const pd = {
+			// 		method: "POST",
+			// 		headers: { "Content-Type": "application/json" },
+			// 		body: JSON.stringify({
+			// 			id: res.story.insertId,
+			// 			type: "cover",
+			// 		}),
+			// 	}
+			// 	const response = await fetch(endpoint, pd)
+			// 	const data = await response.json()
+			// 	console.log("data", data)
+			// }
+
+			// Create a new directory according to the story ID
 			async function createNewDir() {
 				const dirId = res.story.insertId
 				console.log("createnewdir storyid", dirId)
@@ -89,10 +96,9 @@ const StoryCreator = () => {
 
 				const response = await fetch(apiUrlEndpoint, postData)
 				const data = await response.json()
-				// console.log("diretory data", data)
 			}
-			createNewDir()
-			defaultCover()
+			createNewDir() //Create the directory
+			// defaultCover() //Save the cover file to the directory
 		}
 		sendToDB()
 	}
@@ -111,12 +117,7 @@ const StoryCreator = () => {
 	}
 
 	function makeNewPage(storyState) {
-		console.log("ran makeNewPage")
-		// if (pageCount > 0) {
-		// 	saveStory(storyState, title, story_id);
-		// }
-		if (pageCount >= 10)
-			return console.log("You have reached the maximum number of pages")
+		if (pageCount >= 10) return console.log("You have reached the maximum number of pages")
 
 		let newPageDefault = {
 			number: pageCount + 1,
@@ -128,44 +129,37 @@ const StoryCreator = () => {
 		})
 		console.log("upd", upd)
 		updatestoryState(upd)
-
-		//REPLACED
-		// storyState.story.pages.push({
-		// 	number: pageCount + 1,
-		// 	templateName: "uninitialized",
-		// 	quadrants: [],
-		// })
 		setpageCount(pageCount + 1)
 		setPage(pageCount + 1)
 	}
 
 	function saveStory(storyState, title, story_id) {
 		console.log("trying to save")
-		let story = storyState.story
-		console.log("story1111", storyState)
 		async function sendToDB() {
-			const apiUrlEndpoint = "/api/updatestory-lib";
+			const apiUrlEndpoint = "/api/updatestory-lib"
 			const postData = {
 				method: "Post",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
 					storyjson: storyState,
 					title: title,
-					story_id: story_id
+					story_id: story_id,
 				}),
-			};
-			const response = await fetch(apiUrlEndpoint, postData);
-			const res = await response.json();
-			console.log(res);
+			}
+			const response = await fetch(apiUrlEndpoint, postData)
+			const res = await response.json()
+			console.log(res)
 		}
-		sendToDB();
-	} 
-	
+		sendToDB()
+	}
+
 	return (
 		<>
 			{!storyInstantiated ? (
-				<div className={styles.startButton} >
-					<div onClick={handleStartStory}><ButtonText color='blue'>Start Your Story</ButtonText></div>
+				<div className={styles.startButton}>
+					<div onClick={handleStartStory}>
+						<ButtonText color='blue'>Start Your Story</ButtonText>
+					</div>
 				</div>
 			) : (
 				<section className={styles.storyCreator}>
@@ -183,26 +177,23 @@ const StoryCreator = () => {
 							placeholder='Untitled Story'
 							onChange={(e) => updateTitle(e.target.value)}
 						/>
-						{/* {console.log("changed title", title)} */}
 					</form>
 					<div className={styles.body}>
 						<StoryCreatorPage
-							// makeNewPage={makeNewPage}
 							storyState={storyState}
-							// forward={forward}
 							page={page}
 							title={title}
 							updatestoryState={updatestoryState}
 							storyId={storyId}
 						/>
-						<div
-							className={styles.addPage}
-							onClick={() => makeNewPage(storyState)}>
+						<div className={styles.addPage} onClick={() => makeNewPage(storyState)}>
 							+
 						</div>
 					</div>
 					<div className={styles.controls}>
-						<button onClick={ () => saveStory(storyState, title, storyId)}>save to db</button>
+						<button onClick={() => saveStory(storyState, title, storyId)}>
+							save to db
+						</button>
 						<div onClick={backward}>
 							<Icon name='arrow' rotate='180' />
 						</div>
