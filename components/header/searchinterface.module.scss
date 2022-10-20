@@ -1,0 +1,58 @@
+@use "../../sass/abstracts/vars.scss";
+
+.interface {
+	width: 100%;
+	.interactions {
+		display: block;
+		position: relative;
+		.bar {
+			width: 100%;
+		}
+		.dropdown {
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+			background-color: vars.$color_white_99;
+			padding: 0.5em;
+			border-radius: 0px 0px 11px 11px;
+			box-shadow: 0px 10px 5px 5px vars.$color_grey_light;
+			// border-bottom: 1px solid vars.$color_grey;
+			// border-right: 1px solid vars.$color_grey;
+			// border-left: 1px solid vars.$color_grey;
+			.buttons {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+		}
+	}
+	@media screen and (min-width: 500px) {
+		.mobileButton,
+		.mobileBar {
+			display: none;
+		}
+		.dropdown{
+			width: 100%;
+
+		}
+	}
+	@media screen and (max-width: 499px) {
+		position: relative;
+		.interactions .dropdown {
+			position: fixed;
+			left: 0;
+			right: 0;
+			padding-top: 10px;
+			// margin-inline: 10px;
+		}
+		.bar {
+			display: none;
+		}
+		.mobileButton,
+		.mobileBar {
+			display: block;
+			text-align: center;
+		}
+	}
+}

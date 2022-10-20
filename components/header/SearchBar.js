@@ -9,7 +9,7 @@ import { useState } from "react";
 // import {useState} from './react'
 let cx = classNames.bind(styles);
 
-const SearchBar = ({ showCarousel, setShowCarousel }) => {
+const SearchBar = ({ showCarousel, setShowCarousel,  }) => {
 	const [showBar, setShowBar] = useState(0);
 	function handleMobileClick() {
 		setShowBar(!showBar);
@@ -22,19 +22,19 @@ const SearchBar = ({ showCarousel, setShowCarousel }) => {
 		const data = event.target.query.value
 	}
 	return (
-		<>
+		<form style={{width: "100%"}} onSubmit={handleSubmit}>
 			<div className={styles.searchbar}>
-				<form className={styles.box} onSubmit={handleSubmit}>
+				<div className={styles.box} >
 					<input type='text' name='query' placeholder='Search for a "user:" or a "story:"' onClick={handleSearchClick} />
-				</form>
+				</div>
 
-				<div className={styles.sbutton}>
+				<button type="submit" style={{border: "none"}} className={styles.sbutton}>
 					<Image
 						width='25'
 						height='25'
 						src='/images/icons/search.png'
 					/>
-				</div>
+				</button>
 			</div>
 			<div className={styles.mobilesearch}>
 				<div onClick={handleMobileClick} className={styles.sbutton}>
@@ -46,13 +46,14 @@ const SearchBar = ({ showCarousel, setShowCarousel }) => {
 				</div>
 				{showBar ? (
 					<div className={styles.mobilebox}>
-						<form className={styles.box}>
+						<div className={styles.box} autocomplete="off">
 							<input type='text' onClick={handleSearchClick} />
-						</form>
+							<button style={{border: "none", borderRadius: "100px", backgroundColor: "green", width:"25px", height:"25px"}}>Go</button>
+						</div>
 					</div>
 				) : null}
 			</div>
-		</>
+		</form>
 	);
 };
 export default SearchBar;

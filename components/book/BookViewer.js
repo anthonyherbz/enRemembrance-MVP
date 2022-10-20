@@ -23,7 +23,10 @@ const BookViewer = ({ story }) => {
 	//Function to increment the position
 	function addPos() {
 		//Prevents error of position of second page outrunning pages length
-		if (position < pages.length - 3) {
+		// console.log(pages.length)
+		if (position <= pages.length - 3) {
+			// console.log("addpos")
+		// console.log(position)
 			//If pos is less than 1 (aka 0) increment by 1
 			//Allows showing cover at position 0 and page 1 and 2 at postion 1
 			if (position < 1) {

@@ -15,7 +15,7 @@ const ImageUpload = ({fileNamePath = "default", parentImg, setParentImg, imageTy
 
     const uploadPictureHandler = async () => {
         if (parentImg == undefined){
-            setParentImg(parentImg = pictureFile)
+            setParentImg(pictureFile)
         }
         
         console.log("prntimg", parentImg)

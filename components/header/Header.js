@@ -10,7 +10,8 @@ import Profile from "./Profile";
 import styles from "./header.module.scss";
 import classNames from "classnames/bind";
 import Carousel from "./Carousel";
-import { useState } from "react";
+import SearchInterface from './SearchInterface'
+import { useState, useEffect } from "react";
 
 let cx = classNames.bind(styles);
 //STATUS: visible, on/off working
@@ -23,14 +24,13 @@ const Header = ({ show, shadow }) => {
 		shadow: shadow,
 	});
 	let [expanded, setExpanded] = useState(false);
+	const [expand, setExpand] = useState(false)
+
 	let [showCarousel, setShowCarousel] = useState(false);
+	const [categories, setcategories] = useState();
 	function handleMouseEnter() {
 		setExpanded((expanded = true));
 	}
-	// function handleMouseLeave() {
-	// 	const delay = setTimeout(() => setExpanded((expanded = false)), 1000);
-	// 	clearTimeout(delay);
-	// }
 
 	function handleMouseLeave() {
 		setExpanded((expanded = false));
@@ -40,13 +40,17 @@ const Header = ({ show, shadow }) => {
 	let user = "Jane Doe";
 	let logged_in_user_id = 1
 	return (
-		<div className={headerClasses}>
+		<div className={headerClasses} onMouseLeave={() => setExpand(false) }>
 			<div className={styles.pos1}>
 				<Logo hover size='1-5x' />
 			</div>
 			<div className={styles.pos2}>
-				<SearchBar setShowCarousel={setShowCarousel} showCarousel={showCarousel}/>
-				{showCarousel ? <Carousel setShowCarousel={setShowCarousel} showCarousel={showCarousel}/> : null}
+				<SearchInterface
+				expand={expand}
+				setExpand={setExpand}
+				/>
+				{/* <SearchBar setShowCarousel={setShowCarousel} showCarousel={showCarousel}/>
+				{showCarousel ? <Carousel categories={categories} setShowCarousel={setShowCarousel} showCarousel={showCarousel}/> : null} */}
 			</div>
 			<div
 				onMouseEnter={handleMouseEnter}

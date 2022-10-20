@@ -1,11 +1,8 @@
 import styles from "./dashboardtable.module.scss"
 import classNames from "classnames/bind"
 let cx = classNames.bind(styles)
-import { getBooks } from "../../pages/api/api"
 import StatusIcons from "./StatusIcons"
 import ActionIcons from "./ActionIcons"
-import NoSsr from "../NoSsr"
-import { useState } from "react"
 import Link from "next/link"
 
 const DBTable = ({ stories, user_id }) => {
