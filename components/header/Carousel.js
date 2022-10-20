@@ -10,8 +10,6 @@ const Carousel = ({ showCarousel, setShowCarousel, categories }) => {
 		setShowCarousel((showCarousel = 0))
 	}
 
-	console.log("cat", categories)
-	// return <div></div>
 	return (
 		<div className={styles.carousel} onMouseLeave={handleMouseLeave}>
 			{categories.map((category, index) => {

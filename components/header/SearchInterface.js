@@ -3,20 +3,21 @@ import Carousel from "./Carousel"
 import styles from "./searchinterface.module.scss"
 
 const SearchInterface = ({ expand, setExpand }) => {
-	const [searchVal, setSearchVal] = useState("")
-	const [categories, setCategories] = useState()
-	const [showCarousel, setShowCarousel] = useState(false)
+	const [searchVal, setSearchVal] = useState("") // Store the search string
+	const [categories, setCategories] = useState() // Store the categories when the button is clicked
+	const [showCarousel, setShowCarousel] = useState(false) // Store the visibility of the category carousel
 
 	function handleSubmit(e) {
-		e.preventDefault()
+		e.preventDefault() // Disable default form submission behavior
 	}
 
 	function search(type) {
-		function sanitizeString(str) {
+		//Will need to redirect to a search page and use headers to confer the query or results to GSSP
+		function sanitizeString(str) { //sanitize input
 			str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "")
 			return str.trim()
 		}
-		const parsedString = sanitizeString(searchVal.toLowerCase())
+		const parsedString = sanitizeString(searchVal.toLowerCase()) // convert string to lowercase
 		async function getData(type) {
 			const endPoint = "/api/searchDB-lib"
 			const postData = {
@@ -34,6 +35,7 @@ const SearchInterface = ({ expand, setExpand }) => {
 		}
 		getData(type)
 	}
+	// Function to get the categories from the table in DB
 	function showCategories() {
 		async function getData() {
 			const endPoint = "/api/getcategories-lib"
@@ -47,26 +49,27 @@ const SearchInterface = ({ expand, setExpand }) => {
 			// console.log(res)
 		}
 		getData()
-		if (!!categories) setShowCarousel(true)
+		if (!!categories) setShowCarousel(true) // If categories has a value, set showCarousel to true
 	}
 
 	return (
 		<form className={styles.interface} onSubmit={handleSubmit}>
-			<button className={styles.mobileButton} onClick={() => setExpand(!expand)}>
+			<button className={styles.mobileButton} onClick={() => setExpand(!expand)}> {/* Only visible in mobile */}
 				Go
 			</button>
 			<div className={styles.interactions}>
-				<input
+				<input // Display: none in mobile
 					className={styles.bar}
 					onClick={() => setExpand(true)}
 					type='text'
 					placeholder='Enter your query'
 					onChange={(e) => setSearchVal(e.target.value)}
 					value={searchVal}
+					
 				/>
-				{expand ? (
+				{expand ? ( // Show if expand is true
 					<div className={styles.dropdown}>
-						<input
+						<input // Display none in desktop
 							className={styles.mobileBar}
 							type='text'
 							placeholder='Enter your query'
@@ -74,9 +77,9 @@ const SearchInterface = ({ expand, setExpand }) => {
 							value={searchVal}
 						/>
 						<div className={styles.buttons}>
-							<button name='user'>Search User</button>
-							<button name='story'>Search Story</button>
-							<button name='tags'>Search by Tag</button>
+							<button onClick={search(user)} name='user'>Search User</button>
+							<button onClick={search(story)} name='story'>Search Story</button>
+							<button onClick={search(tag)} name='tags'>Search by Tag</button>
 							<button onClick={showCategories} name='category'>
 								View Categories
 							</button>

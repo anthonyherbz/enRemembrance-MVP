@@ -14,8 +14,6 @@ import SearchInterface from './SearchInterface'
 import { useState, useEffect } from "react";
 
 let cx = classNames.bind(styles);
-//STATUS: visible, on/off working
-//TODO: fixed size,
 
 const Header = ({ show, shadow }) => {
 	let headerClasses = cx({
@@ -46,11 +44,10 @@ const Header = ({ show, shadow }) => {
 			</div>
 			<div className={styles.pos2}>
 				<SearchInterface
-				expand={expand}
+				expand={expand} // hold onto expand states so they persist between desktop/mobile
 				setExpand={setExpand}
 				/>
-				{/* <SearchBar setShowCarousel={setShowCarousel} showCarousel={showCarousel}/>
-				{showCarousel ? <Carousel categories={categories} setShowCarousel={setShowCarousel} showCarousel={showCarousel}/> : null} */}
+				
 			</div>
 			<div
 				onMouseEnter={handleMouseEnter}
