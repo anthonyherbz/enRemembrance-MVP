@@ -1,0 +1,71 @@
+.container {
+	--headerHeight: 50px;
+
+	top: 50px;
+	position: absolute;
+	width: 100%;
+	height: calc(100% - var(--headerHeight));
+	// margin: 0 2rem;
+	.results {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 1rem 12.5%;
+		@media screen and (max-width: 600px) {
+			margin: 1rem 5%;
+		}
+		gap: 1rem;
+		.user,
+		.story {
+			width: 100%;
+			background-color: white;
+			border-radius: 11px;
+			box-shadow: 0px 10px 15px 7px rgba(128, 128, 128, 0.358);
+			padding: 2rem 3rem;
+		}
+
+		.user {
+			display: flex;
+			justify-content: space-between;
+			.text {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				.handle {
+					font-size: 1.5em;
+					font-weight: 700;
+				}
+			}
+			.image {
+				border-radius: 50px;
+			}
+		}
+		.story {
+			display: flex;
+			justify-content: space-between;
+			gap: 2rem;
+			.items {
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				.text {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					.titleBox{
+						.title{font-size: 1.5em;
+							font-weight: 700;}
+						.byline{
+							
+						}
+					}
+				}
+			}
+		}
+	}
+	.noResults {
+		margin: 2rem 2rem;
+	}
+}
