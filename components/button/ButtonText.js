@@ -8,7 +8,7 @@ import Link from "next/link";
 
 let cx = classNames.bind(styles);
 
-const ButtonText = ({path, size, color="empty", fill="true", label, submit, formId, targetUrl, btnType, expand, children}) => {
+const ButtonText = ({path, size, color="empty", fill="true", label, submit, formId, targetUrl, btnType, expand, children, state, setState, func}) => {
 	let buttonTextClasses = cx({
 		buttn: true,
 		fill: fill === "true",
@@ -20,7 +20,8 @@ const ButtonText = ({path, size, color="empty", fill="true", label, submit, form
 	let passedProps = {
 		form: formId,
 		formAction: targetUrl,
-		type: btnType
+		type: btnType,
+		onClick: () => {func}
 	}
 	return (
 		<div>

@@ -22,7 +22,7 @@ export async function getServerSideProps({ query }) {
 		// let valuesParams = []
 		if (type == "story") {
 			querySql =
-				"SELECT stories.id AS story_id, stories.title, CONVERT(stories.create_date, char) AS create_date, users.handle, users.id AS user_id FROM stories LEFT JOIN users ON users.id = stories.author_id WHERE stories.title LIKE ?"
+				"SELECT stories.id AS story_id, stories.title, CONVERT(stories.create_date, char) AS create_date, users.handle, users.id AS user_id FROM stories LEFT JOIN users ON users.id = stories.author_id WHERE stories.title LIKE ? ORDER BY create_date DESC"
 		}
 		if (type == "user") {
 			querySql =
@@ -30,7 +30,7 @@ export async function getServerSideProps({ query }) {
 		}
 		if (type == "tag") {
 			querySql =
-				"SELECT story_tags.story_id, story_tags.tag_string, stories.id AS story_id, stories.title, CONVERT(stories.create_date, char) AS create_date, users.handle, users.id AS user_id FROM stories LEFT JOIN story_tags ON story_tags.story_id = stories.id LEFT JOIN users ON users.id = stories.author_id WHERE story_tags.tag_string LIKE ?"
+				"SELECT story_tags.story_id, story_tags.tag_string, stories.id AS story_id, stories.title, CONVERT(stories.create_date, char) AS create_date, users.handle, users.id AS user_id FROM stories LEFT JOIN story_tags ON story_tags.story_id = stories.id LEFT JOIN users ON users.id = stories.author_id WHERE story_tags.tag_string LIKE ? ORDER BY create_date DESC"
 		}
 		const data = await squery({ query: querySql, values: valuesParams })
 		console.log("dt", data)
@@ -64,7 +64,7 @@ const Results = ({ data, type }) => {
 						<div className={styles.story} key={index}>
 							<div className={styles.cover}>
 								<Image
-									src={`/images/${result.story_id}/cover.jpg`}
+									src={`/images/stories/id${result.story_id}/cover.jpg`}
 									width='75px'
 									height='125px'
 								/>

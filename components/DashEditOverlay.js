@@ -1,8 +1,12 @@
 import styles from "./dasheditoverlay.module.scss"
 import Heading from "../components/Heading"
 import Link from "next/link"
+import Router from 'next/router'
 
 const DashEditOverlay = ({ stories }) => {
+	function edit(id){
+		Router.push({pathname: "/editor", query: {storyId: id}})
+	}
 	return (
 		<>
 			<div className={styles.overlay}>
@@ -15,10 +19,8 @@ const DashEditOverlay = ({ stories }) => {
 						<ul>
 							{stories.map((story, index) => {
 								return (
-									<li key={index}>
-										<Link href={`/editor`}>
-											<a>{story.title}</a>
-										</Link>
+									<li key={index} onClick={() => edit(story.id)}>
+										{story.title}
 									</li>
 								)
 							})}

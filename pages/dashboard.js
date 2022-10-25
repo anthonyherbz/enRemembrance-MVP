@@ -64,6 +64,8 @@ const Dashboard = ({ data }) => {
 								size='small'
 								label='Create'
 								path='editor'
+								targetUrl='/editor'
+								
 							/>
 							<div onClick={() => setshowEdit(true)}>
 								<ButtonText fill='true' color='yellow' size='small' label='Edit' />

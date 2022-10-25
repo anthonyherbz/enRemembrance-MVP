@@ -15,6 +15,9 @@ import { useState, useEffect } from "react";
 
 let cx = classNames.bind(styles);
 
+
+
+
 const Header = ({ show, shadow }) => {
 	let headerClasses = cx({
 		header: true,

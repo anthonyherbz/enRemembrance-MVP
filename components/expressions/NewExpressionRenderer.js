@@ -1,10 +1,13 @@
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { UserContext } from "../../pages/_app"
 
 const NewExpressionRenderer = ({ update_id, count, templ, styles, type }) => {
 	const [showTip, setShowTip] = useState(0)
 	const [counter, setCounter] = useState(count)
 	const [hasUpdated, setHasUpdated] = useState(false)
+	const loggedInUser = useContext(UserContext)
+	// console.log("LIU", loggedInUser)
 
 	async function handleClose() {
 		handleHover()
@@ -37,6 +40,7 @@ const NewExpressionRenderer = ({ update_id, count, templ, styles, type }) => {
 					countVal: c,
 					expression: templ.id,
 					type: type,
+					user: loggedInUser,
 				}),
 			}
 			const response = await fetch(endpoint, postData)

@@ -4,6 +4,7 @@ export default async function getServerSideProps(req, res) {
 	const countVal = req.body.countVal
 	const expression_id = req.body.expression
 	const type = req.body.type
+	const user = req.body.user
 	console.log(update_id)
 	console.log(expression_id)
 	console.log(countVal)
@@ -21,7 +22,10 @@ export default async function getServerSideProps(req, res) {
 					"INSERT INTO post_expressions (post_id, expression_id, count) VALUES (?, ?, 1)"
 			}
 		} else {
+			//Need to check if a user ID is found in column
+			
 			valuesParams = [countVal, update_id, expression_id]
+			//valuesParams = [countVal, user, update_id, expression_id,  user, update_id, expression_id]
 			if (type == "story") {
 				querySql =
 					"UPDATE story_expressions SET count = ? WHERE story_id = ? AND expression_id = ?"
@@ -31,6 +35,9 @@ export default async function getServerSideProps(req, res) {
 					"UPDATE post_expressions SET count = ? WHERE post_id = ? AND expression_id = ?"
 			}
 		}
+		//AND (JSON_CONTAINS(story_expressions.users_interacted, '?', '$.users') = FALSE OR users_interacted IS NULL)
+		//UPDATE story_expressions SET count = ?, SET users_interacted(JSON_ARRAY_APPEND(users_interacted, '.$users', ?)) WHERE story_id = ? AND expression_id = ? AND (SELECT JSON_CONTAINS(story_expressions.users_interacted, '?', '$.users') FROM story_expressions WHERE story_expressions.story_id = ? AND expression_id = ?) = 0;
+
 
 		const data = await query({ query: querySql, values: valuesParams })
 		const result = res.status(200).json({ status: data })

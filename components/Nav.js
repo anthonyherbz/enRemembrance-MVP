@@ -12,7 +12,7 @@ const Nav = ({iconSize="30", topSpace="50"}) => {
 			slug: "",
 		},
 		{
-			item: "Books",
+			item: "Stories",
 			slug: "dashboard",
 		},
 		{

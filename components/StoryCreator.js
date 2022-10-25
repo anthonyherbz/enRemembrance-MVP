@@ -1,11 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import StoryCreatorPage from "./StoryCreatorPage"
 import styles from "./storycreator.module.scss"
 import Icon from "./icons/Icon"
 import ButtonText from "./button/ButtonText"
 import update from "immutability-helper"
 
-const StoryCreator = () => {
+const StoryCreator = ({data}) => {
 	//Define the initial structure for the story object. Set a placeholder cover at a specific location. This can't be set to the story ID because we don't have that yet.
 	let story = {
 		pages: [
@@ -25,13 +25,32 @@ const StoryCreator = () => {
 	}
 
 	//Store the whether the story has been created, the id, the title, the object, the page, and the page limit
-	const [storyInstantiated, setStoryInstantiated] = useState(false)
+	const [storyInstantiated, setStoryInstantiated] = useState()
 	const [title, updateTitle] = useState()
-	const [storyState, updatestoryState] = useState({ story })
+	const [storyState, updatestoryState] = useState()
 	const [page, setPage] = useState(0)
-	const [pageCount, setpageCount] = useState(0)
-	const [storyId, setstoryId] = useState(0)
+	const [pageCount, setpageCount] = useState()
+	const [storyId, setstoryId] = useState()
 
+	useEffect(() => {
+		if (!data) {
+			console.log("new story useeffect")
+			setStoryInstantiated(false)
+			updatestoryState({story})
+			setpageCount(0)
+			setstoryId(0)
+		} else{
+			console.log(data)
+			console.log("existing story useeffect")
+			setStoryInstantiated(true)
+			updatestoryState(data.page_json)
+			setpageCount(data.page_json.story.pages.length-1)
+			setstoryId(data.id)
+			updateTitle(data.title)
+		}
+	}, [])
+
+	console.log(storyState)
 	//TBD
 	//let session = getSession() < get the current session
 	//let user = session.user < get the current user from the session
@@ -64,7 +83,7 @@ const StoryCreator = () => {
 			const res = await response.json()
 			setstoryId(res.story.insertId) //Set the story ID to the insertID of the response
 
-			// Assign a default cover 
+			// Assign a default cover
 			// async function defaultCover() {
 			// 	const endpoint = "/api/generatedefaults-lib"
 			// 	const pd = {
@@ -191,9 +210,7 @@ const StoryCreator = () => {
 						</div>
 					</div>
 					<div className={styles.controls}>
-						<button onClick={() => saveStory(storyState, title, storyId)}>
-							save to db
-						</button>
+						<div onClick={() => saveStory(storyState, title, storyId)}> <ButtonText color="green">Save</ButtonText></div>
 						<div onClick={backward}>
 							<Icon name='arrow' rotate='180' />
 						</div>
