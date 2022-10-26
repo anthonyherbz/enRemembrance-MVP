@@ -26,7 +26,7 @@ const ExpressionPreview = ({ align = "default", expressions, template, type, par
 	function hideExp() {
 		setShowExp(0)
 	}
-	console.log(expressions)
+	// console.log(expressions)
 	const valuePairs = [
 		{
 			id: 1,

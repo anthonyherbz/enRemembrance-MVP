@@ -1,10 +1,15 @@
 import "../sass/global.css";
 import React, { useState } from "react";
+import { getUser } from '../lib/getUser'
 
-export const UserContext = React.createContext()
+export const UserContext = React.createContext({
+	loggedInUser: null,
+	setLoggedInUser: () => {} //update context from within application
+})
 
 const App = ({Component, pageProps}) => {
-	const [loggedInUser, setLoggedInUser] = useState(1)
-	return <UserContext.Provider value={loggedInUser}><Component {...pageProps}/></UserContext.Provider>
+	const [loggedInUser, setLoggedInUser] = useState()
+	const value = {loggedInUser, setLoggedInUser}
+	return <UserContext.Provider value={value}><Component {...pageProps}/></UserContext.Provider>
 }
 export default App;

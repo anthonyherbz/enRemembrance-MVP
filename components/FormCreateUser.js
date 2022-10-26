@@ -79,7 +79,7 @@ const FormCreateUser = () => {
 			password: event.target.password.value,
 		}
 		// console.log(data)
-		const endpoint = `${URL}/api/createuser-lib`
+		const endpoint = `${URL}/api/createuser1-lib`
 		const postData = {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },

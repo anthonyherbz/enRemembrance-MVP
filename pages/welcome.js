@@ -10,7 +10,6 @@ import ButtonText from "../components/button/ButtonText"
 import Video from "../components/Video"
 import ExpandingText from "../components/ExpandingText"
 import { useState } from "react"
-import { getBooks } from "./api/api"
 import SignOverlay from "../components/overlay/SignOverlay"
 import PreviewFeed from "../components/post/PreviewFeed"
 import Head from "next/head"
@@ -20,7 +19,6 @@ import Head from "next/head"
 const Welcome = () => {
 	const [signInShow, setSignInShow] = useState(false)
 	const [signUpShow, setSignUpShow] = useState(false)
-	const books = getBooks()
 
 	console.log(signInShow, signUpShow)
 	function handleSignInClick() {
@@ -112,7 +110,7 @@ const Welcome = () => {
 								<Video />
 							</Row>
 							<Row>
-								<PreviewFeed books={books} />
+								{/* <PreviewFeed books={books} /> */}
 							</Row>
 						</Col>
 					</Row>

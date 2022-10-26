@@ -6,8 +6,9 @@ const NewExpressionRenderer = ({ update_id, count, templ, styles, type }) => {
 	const [showTip, setShowTip] = useState(0)
 	const [counter, setCounter] = useState(count)
 	const [hasUpdated, setHasUpdated] = useState(false)
-	const loggedInUser = useContext(UserContext)
-	// console.log("LIU", loggedInUser)
+	const context = useContext(UserContext)
+	const loggedInUser = context.loggedInUser //pull loggedinuser from context
+	console.log("LIU", loggedInUser)
 
 	async function handleClose() {
 		handleHover()

@@ -1,5 +1,6 @@
 import { IconContext } from "react-icons/lib"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { UserContext } from "../../pages/_app"
 
 
 const ExpressionIcon = ({ expression, styles, count, update_id, type, description }) => {
@@ -7,7 +8,10 @@ const ExpressionIcon = ({ expression, styles, count, update_id, type, descriptio
 	const [showTip, setShowTip] = useState(0)
 	const [counter, setCounter] = useState(count)
 	const [hasUpdated, setHasUpdated] = useState(false)
-	
+	const context = useContext(UserContext)
+	const loggedInUser = context.loggedInUser
+	console.log("LIU",loggedInUser)
+
 	async function handleClose() {
 		handleHover()
 	}

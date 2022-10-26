@@ -9,9 +9,14 @@ import Container from "../components/Container"
 import Nav from "../components/Nav"
 import MobileNav from "../components/MobileNav"
 import PostFeedv2 from "../components/post/PostFeedv2"
+import getUser from "../lib/getUser"
+import { UserContext } from "./_app"
+import { useContext, useEffect } from "react"
 
 //Retrieve all of the posts, comments, and expressions from the database
-export async function getServerSideProps({}) {
+export async function getServerSideProps({req}) {
+	const userID = await getUser(req)
+	console.log(userID)
 	try {
 		const valuesParams = []
 		const selectPosts =
@@ -28,14 +33,19 @@ export async function getServerSideProps({}) {
 		const querySql =
 			selectPosts + selectComments + selectPostExpressions + selectStoryExpressions + selectTemplates
 		const data = await multiQuery({ query: querySql, values: valuesParams })
-		return { props: { data } }
+		return { props: { data, userID } }
 	} catch (error) {
 		const data = error.message
 		return { props: { data } }
 	}
 }
 
-export default function Home({ data }) {
+export default function Home({ data, userID }) {
+	// console.log("UID", userRes)
+	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
+	useEffect(() => {
+		setLoggedInUser(userID)
+	}, [])
 	const posts = data[0]
 	const comments = data[1]
 	const postExpressions = data[2]
