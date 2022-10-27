@@ -210,7 +210,9 @@ const StoryCreator = ({data}) => {
 						</div>
 					</div>
 					<div className={styles.controls}>
+
 						<div onClick={() => saveStory(storyState, title, storyId)}> <ButtonText color="green">Save</ButtonText></div>
+
 						<div onClick={backward}>
 							<Icon name='arrow' rotate='180' />
 						</div>

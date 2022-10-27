@@ -1,6 +1,5 @@
 import "../sass/global.css";
 import React, { useState } from "react";
-import { getUser } from '../lib/getUser'
 
 export const UserContext = React.createContext({
 	loggedInUser: null,

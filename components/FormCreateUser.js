@@ -1,17 +1,22 @@
 import { useState } from "react"
 import Link from "next/link"
 import styles from "./formcreateuser.module.scss"
+
 const FormCreateUser = () => {
 	const URL = process.env.NEXT_PUBLIC_ROOT
 	console.log(URL)
-	const [emailOK, setemailOK] = useState(true)
+	const [emailOK, setEmailOK] = useState(true)
 	const [submitted, setsubmitted] = useState(false)
+	const [clientVerifOK, setClientVerifOK] = useState(true)
+	const [serverVerifOK, setServerVerifOK] = useState(true)
 	console.log("emailOK", emailOK)
 	let stylecheck
 	if (!emailOK) {
+		//If the email is unacceptable set the border to the invalid color
 		stylecheck = styles.stylecheck
 	}
 	const hints = {
+		//Object with login hints
 		fullname: "Your name",
 		handle: "A handle between 4 and 24 characters in length",
 		password: "A password between 12 and 54 characters in length",
@@ -19,14 +24,17 @@ const FormCreateUser = () => {
 		phone: "An American phone number",
 	}
 
+	//Checks the DB if email is valid; clientside verif
 	const checkDB = async (event) => {
 		const val = event.target.value
 		const type = event.target.name
-		if (val == "") {
-			setemailOK(true)
+		//If email field is false, set email to OK
+		if (val == "" && type == "email") {
+			setEmailOK(true)
 			return
 		}
-		console.log(val)
+
+		//Send the value and type to the api endpoint
 		const endpoint = `${URL}/api/checkdb-lib`
 		const postData = {
 			method: "POST",
@@ -39,13 +47,12 @@ const FormCreateUser = () => {
 		const response = await fetch(endpoint, postData)
 		const res = await response.json()
 		console.log(res)
-		if (res.status == 1) {
-			setemailOK(false)
-		}
-		if (res.status == 0) {
-			setemailOK(true)
-		}
+		// If 1, email exists in DB; if 0, email does not exist in DB
+		if (res.status == 1) setEmailOK(false) //Should be false
+		if (res.status == 0) setEmailOK(true) //Should be true
 	}
+
+	//Create the default profile icon in the user's folder
 	async function generateDefaults(id) {
 		// const id = 1
 		const url = `${URL}/api/generatedefaults-lib`
@@ -62,12 +69,14 @@ const FormCreateUser = () => {
 		console.log(res)
 	}
 
+	//Set the email OK when user is typing
 	const clearContent = () => {
-		setemailOK(true)
+		setEmailOK(true)
 	}
 
 	const handleSubmit = async (event) => {
 		event.preventDefault()
+		//Prevent submission if email is not OK
 		if (!emailOK) {
 			return
 		}
@@ -78,18 +87,35 @@ const FormCreateUser = () => {
 			handle: event.target.handle.value,
 			password: event.target.password.value,
 		}
-		// console.log(data)
+		//If any of these are empty set client verification to false and exit
+		if (!data.fullname || !data.email || !data.handle || !data.phone_number || !data.password) {
+			console.log("clientside verification failed")
+			setClientVerifOK(false)
+			return
+		}
+
 		const endpoint = `${URL}/api/createuser1-lib`
 		const postData = {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(data),
 		}
+		//Send data to the endpoint
 		const response = await fetch(endpoint, postData)
 		const res = await response.json()
-		console.log(res)
-		generateDefaults(res.users.insertId)
-		setsubmitted(true)
+
+		//If 409, then server has decided that clientside verification has failed and exits before creating user icon or submitted true
+		if (response.status == 409) {
+			setEmailOK(false)
+			console.log("serverside verification failed")
+			console.log(res)
+			setServerVerifOK(false)
+			return
+		}
+		console.log("response", response)
+		console.log("res", res)
+		// generateDefaults(res.users.insertId)
+		// setsubmitted(true)
 	}
 	if (submitted == true) {
 		return (
@@ -105,12 +131,7 @@ const FormCreateUser = () => {
 	}
 	return (
 		<div>
-			<form
-				className={styles.form}
-				name='createUser'
-				// method='post'
-				// action='/api/createuser-lib'
-				onSubmit={handleSubmit}>
+			<form className={styles.form} name='createUser' onSubmit={handleSubmit}>
 				<div>
 					<label htmlFor='fullname' aria-label='required'>
 						Your Full Name
@@ -119,7 +140,7 @@ const FormCreateUser = () => {
 						required
 						type='string'
 						name='fullname'
-						// pattern='[a-zA-Z]+'
+						// pattern='[a-zA-Z0-9]+'
 						placeholder='Full Name'
 						minLength='2'
 						maxLength='100'
@@ -133,7 +154,7 @@ const FormCreateUser = () => {
 					</label>
 					<input
 						onChange={clearContent}
-						onBlur={checkDB}
+						// onBlur={checkDB} //Validates that the email is not in the database when focus lost
 						required
 						type='email'
 						name='email'
@@ -145,9 +166,7 @@ const FormCreateUser = () => {
 						className={stylecheck}
 					/>
 					{!emailOK ? (
-						<div className={styles.emailalert}>
-							This email is already in use
-						</div>
+						<div className={styles.emailalert}>This email is already in use</div>
 					) : null}
 					<div className={styles.hint}>{hints.email}</div>
 				</div>
@@ -156,7 +175,7 @@ const FormCreateUser = () => {
 						Phone Number
 					</label>
 					<input
-						required
+						// required
 						type='tel'
 						pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
 						name='phone_number'

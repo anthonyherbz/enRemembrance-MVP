@@ -2,30 +2,29 @@ import { serialize } from "cookie"
 import { SignJWT } from "jose"
 import { query } from "../../lib/db"
 import {compare} from 'bcrypt'
-
+import { checkEmail } from "../../lib/login"
 const secret = process.env.SECRET_API_KEY //Secret key from env.development
+
+
 export default async function (req, res) {
-	const { email, password, userID } = req.body //Destructure user and pass from provided req.body
-
-	const getUser = async () => {
-		let qsql = "SELECT email, password FROM users WHERE email = ?"
-		let vp = [email]
-		const data = await query({query: qsql, values: vp})
-		if (!data[0].email){
-			return res.status(401).json({ message: "invalid" })
-		}
-		const match = compare(password, data[0].password, function(err, result){})
-		return match
-		console.log("DATA", data)
-		console.log("user", userID)
+	const { email, password } = req.body //Destructure user and pass from provided req.body
+	if (!await checkEmail(email)){
+		return {props: res.status(404).json({message: "Email does not exist"})}
 	}
-	const match = getUser()
+	
+	const querySQL = "SELECT password, id FROM users WHERE email = ?"
+	const valuesParams = [email]
+	const data = await query({ query: querySQL, values: valuesParams })
+	const userID = data[0].id
+	const hashedPwd = data[0].password
+	// console.log("from auth", data[0])
+	const pwMatch = await compare(password, hashedPwd)
 
-	if (match) {
+	if (pwMatch) {
 		//if user and password from the DB match provided input
 
 		//Create a new token with jose.signJWT-- store the userID as the payload
-		const token = await new SignJWT({ userID: userID })
+		const token = await new SignJWT({ userID })
 			.setProtectedHeader({ alg: "HS256" }) //selects encryption algo
 			.setExpirationTime("2h") //does not seem to work
 			.setIssuedAt()
@@ -40,7 +39,7 @@ export default async function (req, res) {
 			path: "/",
 		})
 		res.setHeader("Set-Cookie", serialised)
-		return res.status(200).json({ message: "Success!??" })
+		return res.status(200).json({ message: "Successful login." })
 	} else {
 		res.status(401).json({ message: "invalid" })
 	}

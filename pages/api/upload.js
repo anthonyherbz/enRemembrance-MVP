@@ -37,6 +37,7 @@ export default async (req, res) => {
 			//   ensureDir('public/testfolder1')
 			  const image = await fs.readFile(imagePath);
 			  await fs.writeFile(pathToWriteImage, image);
+			  console.log("trying to write")
 			  //store path in DB
 			  res.status(200).json({ message: 'image uploaded!', data: data});
 		 } catch (error) {

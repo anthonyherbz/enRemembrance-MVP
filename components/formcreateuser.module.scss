@@ -38,7 +38,7 @@
 			outline-style: none;
 			box-shadow: none;
 
-			//Show the invalid border when the plaeholder is not shown (content is in the field)
+			//Show the invalid border when the placeholder is not shown (content is in the field)
 			&:not(:placeholder-shown):invalid {
 				border: 3px solid var(--invalid);
 			}

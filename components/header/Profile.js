@@ -27,7 +27,7 @@ const Profile = ({ user, userLink, expanded, setExpanded }) => {
 		},
 		{
 			item : "Log Out",
-			slug : [`api/logout`]
+			slug : [`api/unauth`]
 		}
 	]
 	const profileMenu = (

@@ -1,6 +1,8 @@
 import styles from "./signoverlay.module.scss";
 // import TextInput from "./TextInput";
 import ButtonText from "../button/ButtonText";
+import FormCreateUser1 from "../FormCreateUser1";
+import FormLogInUser from "../FormLogInUser";
 
 //Name: Overlay
 //Purpose: displays one of two overlays on the landing page
@@ -29,36 +31,7 @@ const SignOverlay = ({ signInShow, setSignInShow, signUpShow, setSignUpShow }) =
 					<div onClick={handleSignUpClick} className={styles.close}>
 						x
 					</div>
-					<form action=''>
-						<label htmlFor='name'>Name</label>
-						<input type='text' name='name' id='name' />
-						<label htmlFor='nickname'>Nickname</label>
-						<input type='text' name='nickname' id='nickname' />
-						<label htmlFor='email'>Email</label>
-						<input type='text' name='email' id='email' />
-						<label htmlFor='age'>Age</label>
-						<input
-							type='number'
-							name='age'
-							id='age'
-							min='13'
-							max='120'
-						/>
-						<label htmlFor='password'>Password</label>
-						<input type='password' name='password' id='password' />
-						<div className={styles.checkbox}>
-							<label htmlFor='readtc'>
-								I have read and agreed to the Terms and
-								Conditions
-							</label>
-							<input required type='checkbox' name='readtc' />
-						</div>
-						<div className={styles.button}>
-							<ButtonText
-								color='yellow'
-								size='small'>Sign Up</ButtonText>
-						</div>
-					</form>
+					<FormCreateUser1/>
 				</div>
 			</div>
 		</div>
@@ -71,20 +44,7 @@ const SignOverlay = ({ signInShow, setSignInShow, signUpShow, setSignUpShow }) =
 					<div onClick={handleSignInClick} className={styles.close}>
 						x
 					</div>
-					<form>
-						<label htmlFor='email'>Email</label>
-						<input type='text' name='email' id='email' />
-						<label htmlFor='password'>Password</label>
-						<input type='password' name='password' id='password' />
-						<div className={styles.button}>
-							<ButtonText
-								color='blue'
-								size='small'
-								label='Sign In'
-								// path='/'
-							/>
-						</div>
-					</form>
+					<FormLogInUser/>
 				</div>
 			</div>
 		</div>

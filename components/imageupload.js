@@ -3,6 +3,7 @@ import { useState } from 'react';
 //https://github.com/vercel/next.js/discussions/11634%23discussioncomment-1865018#discussioncomment-1865018
 
 const ImageUpload = ({fileNamePath = "default", parentImg, setParentImg, imageType, setimageType}) => {
+    console.log("running image upload")
     const [pictureFile, setpictureFile] = useState();
     const fileObject = fileNamePath
     const pictureChangeHandler = (event) => {
@@ -23,12 +24,13 @@ const ImageUpload = ({fileNamePath = "default", parentImg, setParentImg, imageTy
         const pictureData = new FormData();
         pictureData.append('image', pictureFile);
         pictureData.append('fileName', fileObject)
+        console.log("upload picture handler here")
         try {
             const response = await fetch('/api/upload', {
                 method: 'POST',
                 body: pictureData
             });
-           
+            console.log("res", response)
             const data = await response.json();
             console.log("data", data)
             const type = data.data.files.image.mimetype
