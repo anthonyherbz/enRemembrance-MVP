@@ -37,7 +37,6 @@ const FormLogInUser = () => {
 		}
 	}
 
-	//Patterns are still generally nonfunctional.
 	return (
 		<div>
 			<form className={styles.form} name='createUser' onSubmit={handleSubmit}>
@@ -73,15 +72,15 @@ const FormLogInUser = () => {
 						}}
 						type='password'
 						name='password'
-						pattern='[a-zA-Z0-9_!-2@?]{12,}'
+						pattern='[a-zA-Z0-9_!-2@?]{8,}'
 						placeholder='Password'
 						autoComplete='off'
-						minLength='12'
+						minLength='8'
 						maxLength='54'
 						title='password'
 					/>
 				</div>
-				{!!password && !!email ? <button type='submit'>Submit</button> : null}
+				{!!password && !!email ? <button type='submit'>Submit</button> : <button disabled>Submit</button>}
 			</form>
 		</div>
 	)

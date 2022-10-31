@@ -20,14 +20,12 @@ const Logo = ({hover, size="1x"}) => {
 	});
 	return (
 		<Link href='/'>
-			<a>
 				<div className={logoClasses}>
 					<Icon name="logo" color="#629aba" width="25" height="25"/>
 					<Text color='blue' size='1em' fontWeight='bold'>
 						enRemembrance
 					</Text>
 				</div>
-			</a>
 		</Link>
 	);
 };

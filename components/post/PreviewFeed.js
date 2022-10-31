@@ -7,7 +7,8 @@ import styles from "./previewfeed.module.scss";
 import PreviewPost from "./PreviewPost";
 // import Text from "./Text";
 
-const PreviewFeed = ({ books }) => {
+const PreviewFeed = ({ stories }) => {
+	console.log(stories)
 	// console.log("PreviewFeed books output: ",{ books });
 	return (
 		<div className={styles.sizing}>
@@ -17,8 +18,8 @@ const PreviewFeed = ({ books }) => {
 				</Heading>
 			</div>
 			<div className={styles.previewFeed}>
-				{books.map((book, index) => {
-					return <PreviewPost book={book} key={index} />;
+				{stories.map((story, index) => {
+					return <PreviewPost story={story} key={index} />;
 				})}
 			</div>
 		</div>

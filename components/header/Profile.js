@@ -23,7 +23,7 @@ const Profile = ({ user, userLink, expanded, setExpanded }) => {
 		},
 		{
 			item : "Settings",
-			slug : [`authors/${userLink}/settings`]
+			slug : [`settings`]
 		},
 		{
 			item : "Log Out",

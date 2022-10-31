@@ -13,10 +13,22 @@ import { useState } from "react"
 import SignOverlay from "../components/overlay/SignOverlay"
 import PreviewFeed from "../components/post/PreviewFeed"
 import Head from "next/head"
+import { query } from "../lib/db"
 
 //This is the Landing Page. It be the only page accessible while unauthenticated
 
-const Welcome = () => {
+export async function getServerSideProps({ }) {
+	let qsql = "SELECT stories.id, stories.author_id, stories.title, CONVERT(stories.create_date, char) as create_date, CONVERT(stories.publish_date, char) as publish_date, stories.published, stories.visible, stories.monetized, stories.page_json, story_users.id AS user_id, story_users.handle AS handle FROM stories LEFT JOIN users story_users ON stories.author_id = story_users.id WHERE story_users.id = 1 LIMIT 10;"
+	let vp = []
+	try{
+		const data = await query({query: qsql, values: vp})
+		return {props: {data}}
+	}catch (error){
+		return {props: {data: error.message}}
+	}
+}
+
+const Welcome = ({data}) => {
 	const [signInShow, setSignInShow] = useState(false)
 	const [signUpShow, setSignUpShow] = useState(false)
 
@@ -110,7 +122,7 @@ const Welcome = () => {
 								<Video />
 							</Row>
 							<Row>
-								{/* <PreviewFeed books={books} /> */}
+								<PreviewFeed stories={data} />
 							</Row>
 						</Col>
 					</Row>

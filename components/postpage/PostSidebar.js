@@ -9,12 +9,12 @@ const PostSidebar = ({ post, expressions, templates }) => {
 			<div className={styles.bookElement}>
 				<div className={styles.bookCover}>
 					<Link href={`/stories/${post.story_id}`}>
-						<a>
+						 
 							<ImageContainer
 								src={`/images/stories/id${post.story_id}/cover.jpg`}
 								alt="The story's cover image"
 							/>
-						</a>
+						 
 					</Link>
 				</div>
 				<div style={{position: "relative"}}>
@@ -30,7 +30,7 @@ const PostSidebar = ({ post, expressions, templates }) => {
 					<ul>
 						<li>
 							<Link href={`/stories/${post.story_id}`}>
-								<a>View Story</a>
+								 View Story 
 							</Link>
 						</li>
 						<li>Buy Story</li>

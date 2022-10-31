@@ -5,9 +5,17 @@ import Link from "next/link"
 import Heading from "../Heading"
 import ExpressionPreview from "../expressions/ExpressionPreview"
 import EnterComment from "../EnterComment"
+import Image from "next/image"
 import ImageContainer from "../ImageContainer"
 
-const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressions, expressionTemplates }) => {
+const PostFromFeed = ({
+	post,
+	counter,
+	comments,
+	postExpressions,
+	storyExpressions,
+	expressionTemplates,
+}) => {
 	// console.log("postexpres", postExpressions)
 	// console.log("storyexp", storyExpressions)
 	const [loaded, setLoaded] = useState(true)
@@ -32,14 +40,24 @@ const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressio
 				{/* col */}
 				{loaded ? (
 					<Link href={storyUrl}>
-						<a>
-							<div style={{ width: "80px", height: "100px" }}>
-								<ImageContainer src={storyCover} alt='Story cover' />
-							</div>
-						</a>
+						<div style={{ width: "80px", height: "100px" }}>
+							<Image
+								src={storyCover}
+								width='80'
+								height='100'
+								layout='fill'
+								object-fit='cover'
+								alt='alt'
+							/>{" "}
+						</div>
 					</Link>
 				) : null}
-				<ExpressionPreview parent_id={post.story_id} type='story' expressions={storyExpressions} template={expressionTemplates}/>
+				<ExpressionPreview
+					parent_id={post.story_id}
+					type='story'
+					expressions={storyExpressions}
+					template={expressionTemplates}
+				/>
 			</div>
 			{/* center column containing book title, the post text, and a single comment */}
 			<div className={styles.c2}>
@@ -48,64 +66,58 @@ const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressio
 					<div>
 						{loaded ? (
 							<Link href={storyUrl}>
-								<a>
-									<Heading level='3'>{post.title}</Heading>
-								</a>
+								<Heading level='3'>{post.title}</Heading>
 							</Link>
 						) : null}
 					</div>
-					<div style={{ fontSize: "1rem", position:"relative"}}>
-							<ExpressionPreview
-								expressions={postExpressions}
-								template={expressionTemplates}
-								align='right'
-								type='post'
-								parent_id={post.post_id}
-							/>
-						</div>
+					<div style={{ fontSize: "1rem", position: "relative" }}>
+						<ExpressionPreview
+							expressions={postExpressions}
+							template={expressionTemplates}
+							align='right'
+							type='post'
+							parent_id={post.post_id}
+						/>
+					</div>
 					{/* should link to a specific author's profile */}
 					<div style={{ display: "flex", flexDirection: "row" }}>
 						{loaded ? (
 							<Link href={authorUrl}>
-								<a>
-									<div
-										style={{
-											width: "50px",
-											height: "50px",
-										}}>
-										<ImageContainer
-											src={authorImg}
-											alt="Author's profile image"
-										/>
-									</div>
-								</a>
+								<div
+									style={{
+										width: "50px",
+										height: "50px",
+									}}>
+									<Image
+										src={authorImg}
+										width='25'
+										height='25'
+										layout='fill'
+										object-fit='cover'
+										alt='alt'
+									/>
+								</div>
 							</Link>
 						) : null}
 					</div>
 				</div>{" "}
 				{/*row1 end*/}
 				<div className={styles.r2}>
-					{loaded ? (
-						<Link href={`/posts/${post.post_id}`}>
-							<a>{post.post_text}</a>
-						</Link>
-					) : null}
+					{loaded ? <Link href={`/posts/${post.post_id}`}>{post.post_text}</Link> : null}
 				</div>
 				{/*row 2 end*/}
 				<div className={styles.r3}>
 					<div className={styles.commentbody}>
 						{loaded ? (
 							<Link href={`/posts/${post.post_id}`}>
-								<a>
-									<Heading level='4'>Comments</Heading>
-									{comments.length != 0 ? (
-										<span>
-											{comments[0].handle}: {comments[0].comment_text}
-										</span>
-									) : (
-										<span>No comments yet.</span>
-									)}
-								</a>
+								<Heading level='4'>Comments</Heading>
+								{comments.length != 0 ? (
+									<span>
+										{comments[0].handle}: {comments[0].comment_text}
+									</span>
+								) : (
+									<span>No comments yet.</span>
+								)}
 							</Link>
 						) : null}
 					</div>
@@ -113,7 +125,13 @@ const PostFromFeed = ({ post, counter, comments, postExpressions, storyExpressio
 					<div style={{ cursor: "pointer", zIndex: "1" }} onClick={toggleComment}>
 						<div style={{ width: "30px", height: "30px" }}>
 							{loaded ? (
-								<ImageContainer src='/images/comment.jpg' alt='Comment icon' />
+								<Image
+									src={`/images/comment.jpg`}
+									width='30'
+									height='30'
+									layout='fill'
+									alt='alt'
+								/>
 							) : null}
 						</div>
 					</div>

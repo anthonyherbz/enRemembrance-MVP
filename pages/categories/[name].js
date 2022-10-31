@@ -30,7 +30,7 @@ const Category = ({data}) => {
 			<strong>Category</strong>
 			<div>
 				<Link href='/categories'>
-					<a>Return to Categories List</a>
+					 Return to Categories List 
 				</Link>
 			</div>
 			{category != undefined ? (

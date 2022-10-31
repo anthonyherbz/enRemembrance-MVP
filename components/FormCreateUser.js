@@ -122,9 +122,9 @@ const FormCreateUser = () => {
 			<div>
 				<div>User created!</div>
 				<Link href='/'>
-					<a>
+					 
 						<button>Click me to go home</button>
-					</a>
+					 
 				</Link>
 			</div>
 		)

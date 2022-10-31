@@ -3,19 +3,26 @@ import styles from "../page_sass/results.module.scss"
 import Header from "../components/header/Header"
 import Head from "next/head"
 import Image from "next/image"
+import getUser from "../lib/getUser"
+import { UserContext } from "./_app"
+import { useContext, useEffect } from "react"
 
-export async function getServerSideProps({ query }) {
-	// console.log(context.query)
-	// console.log(query)
-	// console.log(context)
-	let type = query.type
-	let search = query.search
+export async function getServerSideProps({ query, req }) {
+	const { userID, handle } = await getUser(req)
+	console.log("user", userID, handle)
+	const { type, search } = query
+
 	function sanitizeString(str) {
 		//sanitize input
 		str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "")
 		return str.trim()
 	}
 	const parsedString = sanitizeString(search.toLowerCase())
+	console.log(parsedString)
+	if (parsedString == "" || parsedString == " ") {
+		return { props: { queryVaild: false, userID, handle } }
+	}
+
 	try {
 		let querySql
 		let valuesParams = [`%${parsedString}%`]
@@ -33,29 +40,33 @@ export async function getServerSideProps({ query }) {
 				"SELECT story_tags.story_id, story_tags.tag_string, stories.id AS story_id, stories.title, CONVERT(stories.create_date, char) AS create_date, users.handle, users.id AS user_id FROM stories LEFT JOIN story_tags ON story_tags.story_id = stories.id LEFT JOIN users ON users.id = stories.author_id WHERE story_tags.tag_string LIKE ? ORDER BY create_date DESC"
 		}
 		const data = await squery({ query: querySql, values: valuesParams })
-		console.log("dt", data)
-		return { props: { data, type } }
+		console.log("datat", data)
+		let qvalidity
+		if (data.length == 0) {
+			qvalidity = false
+		} else {
+			qvalidity = true
+		}
+		return { props: { data, type, userID, handle, queryValid: qvalidity } }
 	} catch (error) {
 		const data = error.message
 		return { props: { data } }
 	}
 }
 
-const Results = ({ data, type }) => {
-	// console.log(query)
-	// console.log(type)
-	// console.log(data)
+const Results = ({ data, type, handle, userID, queryValid }) => {
+	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
+	useEffect(() => {
+		setLoggedInUser({ userID, handle })
+	}, [])
 	let styleType
 	let searchResults = data
-	let empty = searchResults.length == 0
-	console.log(empty)
-	if (empty) {
-		console.log("xzero")
+
+	if (!queryValid)
 		styleType = (
 			<div className={styles.noResults}>Sorry, there are no results for this query.</div>
 		)
-	}
-	if (type == "story" || (type == "tag" && !empty)) {
+	if (type == "story" && queryValid){
 		styleType = (
 			<div className={styles.results}>
 				{searchResults.map((result, index) => {
@@ -88,7 +99,7 @@ const Results = ({ data, type }) => {
 			</div>
 		)
 	}
-	if (type == "user" && !empty) {
+	if (type == "user" && queryValid) {
 		styleType = (
 			<div className={styles.results}>
 				{searchResults.map((result, index) => {

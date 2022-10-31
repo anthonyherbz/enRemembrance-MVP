@@ -69,6 +69,21 @@ const FormCreateUser1 = () => {
 
 		//If the creation is successful
 		if (createData.status == 201) {
+			async function handleRole() {
+				console.log("handlerole")
+				const pd = {
+					method: "post",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						userID: createRes.data.insertId,
+						kind: "create",
+					}),
+				}
+				const roleData = await fetch("/api/role-lib", pd)
+				const roleRes = await roleData.json()
+				console.log(roleRes, "roleres")
+			}
+			handleRole() //creates the role with the userid
 			//send the email, pw, and userid to be authenticated against the credentials in the server
 			try {
 				const login = {
@@ -83,17 +98,15 @@ const FormCreateUser1 = () => {
 				const loginData = await fetch("/api/auth2", login)
 				const loginRes = await loginData.json()
 				// console.log("loginres", loginRes)
-				setSuccess(true)
 				setWorking(false)
-				// return console.log("successful login")
 				Router.push({ pathname: "/" })
+				return console.log("successful login")
 			} catch (error) {
 				setWorking(false)
 				return console.log(error.message)
 			}
 		}
 	}
-
 
 	//Patterns are still generally nonfunctional.
 	return (
@@ -196,16 +209,16 @@ const FormCreateUser1 = () => {
 						}}
 						type='password'
 						name='password'
-						pattern='[a-zA-Z0-9_!-2@?]{12,}'
+						pattern='[a-zA-Z0-9_!-2@?]{8,}'
 						placeholder='Password'
 						autoComplete='off'
-						minLength='12'
+						minLength='8'
 						maxLength='54'
 						title={hints.password}
 					/>
 					<div className={styles.hint}>{hints.password}</div>
 				</div>
-				{emailOK ? <button type='submit'>Submit</button> : null}
+				{emailOK && !!password && !!handle && !!fullname && !!phone? <button type='submit'>Submit</button> : <button disabled>Submit</button>}
 			</form>
 		</div>
 	)

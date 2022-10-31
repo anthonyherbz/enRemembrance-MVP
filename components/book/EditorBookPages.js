@@ -5,26 +5,16 @@ import React, { useState } from "react";
 import BookPage from "./BookPage";
 
 const EditorBookPages = ({ book, position, setPosition }) => {
-	// let title = book.title;
-	// console.log(title)
+
 	const [selectedFile, setSelectedFile] = useState();
 	const [isSelected, setIsSelected] = useState();
 	const [fileUrl, setFileUrl] = useState();
 
 	const changeHandler = (event) => {
 		let file = event.target.files[0];
-		// setSelectedFile(file); //not working, not used
 		setIsSelected(true);
 		setFileUrl(URL.createObjectURL(file));
 	};
-
-	//deprecated function that would search to match an image with an index
-	// function matchId(searchId) {
-	// 	let result = pageList.filter((item) => {
-	// 		return item.id === searchId;
-	// 	});
-	// 	return result[0].image;
-	// }
 
 	//returns the cover interactive screen if position is 0
 	if (position == 0) {
@@ -52,7 +42,7 @@ const EditorBookPages = ({ book, position, setPosition }) => {
 							<Image
 								src={fileUrl}
 								layout='fill'
-								objectFit='cover'
+								 object-fit='cover'
 							/>
 						</div>
 					</div>

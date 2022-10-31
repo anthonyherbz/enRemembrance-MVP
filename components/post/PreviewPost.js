@@ -2,29 +2,26 @@
 //Requires Col, Row, BookCover, Text
 import styles from "./previewpost.module.scss";
 import Link from "next/link";
+import Image from "next/image";
 import Heading from "../Heading";
 
-const PreviewPost = ({ book }) => {
+const PreviewPost = ({ story }) => {
 	//pull props out of title.book, etc.
-	const {title, slug, coverName, description} = book;
+	// const {title, slug, coverName, description} = story;
+	const {title, id} = story
 	return (
 		<div className={styles.previewPost}>
 			<div className={styles.c1}>
-				<Link href={slug}>
-					<a>
-						<img src={`/images/${coverName}`} alt='placeholder' />
-					</a>
+				<Link href={`/stories/${id}`}>
+						<Image width="25" height="50" src={`/images/stories/id${id}/cover.jpg`} alt='Story cover' />
 				</Link>
 			</div>
 			<div className={styles.c2}>
 				<div className={styles.r1}>
-						<Link href={slug}>
-							<a>
+						<Link href={`/stories/${id}`}>
 								<Heading level='3'>{title}</Heading>
-							</a>
 						</Link>
 				</div>
-				<div className={styles.r2}>{description}</div>
 			</div>
 		</div>
 	);

@@ -3,23 +3,32 @@
 //Items are clickable, will change cursor type, can have hover background change, corner radius
 //Reqs: Icon, Row
 //Props: hori, vert, margin-btwn-item, hover-color, corner-radius
-import styles from "./menu.module.scss";
-import classNames from "classnames/bind";
-import Link from "next/link";
-import Text from '../Text';
+import styles from "./menu.module.scss"
+import classNames from "classnames/bind"
+import Link from "next/link"
+import Text from "../Text"
 
-let cx = classNames.bind(styles);
+let cx = classNames.bind(styles)
 //menuLinks takes input of slug and item as objects in an array
 
-const Menu = ({ menuLinks, horizontal, left, center, right, textAlign, fontWeight="bold", isMobile }) => {
+const Menu = ({
+	menuLinks,
+	horizontal,
+	left,
+	center,
+	right,
+	textAlign,
+	fontWeight = "bold",
+	isMobile,
+}) => {
 	let menuClasses = cx({
 		menu: true,
 		horizontal: horizontal,
 		left: left,
 		right: right,
 		center: center,
-		[`text-alignment-${textAlign}`] : textAlign,
-	});
+		[`text-alignment-${textAlign}`]: textAlign,
+	})
 
 	return (
 		<div className={menuClasses}>
@@ -28,12 +37,14 @@ const Menu = ({ menuLinks, horizontal, left, center, right, textAlign, fontWeigh
 				return (
 					<div key={index}>
 						<Link href={`/${navLink.slug}`}>
-							<a><Text textAlign={textAlign} fontWeight={fontWeight} size="">{navLink.item}</Text></a>
+							<Text textAlign={textAlign} fontWeight={fontWeight} size=''>
+								{navLink.item}
+							</Text>
 						</Link>
 					</div>
-				);
+				)
 			})}
 		</div>
-	);
-};
-export default Menu;
+	)
+}
+export default Menu

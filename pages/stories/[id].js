@@ -12,6 +12,8 @@ import ImageContainer from "../../components/ImageContainer"
 import { multiQuery } from "../../lib/db"
 import CommentFeed from "../../components/comment/CommentFeed"
 import EnterComment from "../../components/EnterComment"
+
+//needs to check jwt
 export async function getServerSideProps({ params }) {
 	const id = params.id
 	try {

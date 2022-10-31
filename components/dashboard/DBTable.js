@@ -25,7 +25,7 @@ const DBTable = ({ stories, user_id }) => {
 					<>
 						<td className={styles.old}>
 							<Link href={`/stories/${story.id}`}>
-								<a>{story.title}</a>
+								 {story.title} 
 							</Link>
 						</td>
 						<td className={styles.old}>
@@ -45,7 +45,7 @@ const DBTable = ({ stories, user_id }) => {
 					<>
 						<td className={styles.new}>
 							<Link href={`/stories/${story.id}`}>
-								<a>{story.title}</a>
+								 {story.title} 
 							</Link>
 						</td>
 						<td className={styles.new}>

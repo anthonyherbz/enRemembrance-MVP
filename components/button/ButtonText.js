@@ -30,7 +30,7 @@ const ButtonText = ({path, size, color="empty", fill="true", label, submit, form
 					// conditional-- if path is not empty, return button with a link, if path is empty return only button with label
 					<div className={styles.btnTxtParent}>
 						<Link href={path}>
-							<a>{label}{children}</a>
+							 {label}{children} 
 						</Link>
 					</div>
 				) : (

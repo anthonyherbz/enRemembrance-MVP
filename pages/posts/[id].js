@@ -93,12 +93,10 @@ const Post = ({ post, postExpressions, comments, storyExpressions, templates }) 
 							<div className={styles.mobileRow}>
 								<div className={styles.mobileCover}>
 									<Link href='/book'>
-										<a>
 											<ImageContainer
 												src={`/images/stories/id${post.story_id}/cover.jpg`}
 												alt="The story's cover image"
 											/>
-										</a>
 									</Link>
 								</div>
 								<div className={styles.info}>
@@ -110,12 +108,12 @@ const Post = ({ post, postExpressions, comments, storyExpressions, templates }) 
 										)}
 										<li>
 											<Link href={`/stories/${post.story_id}`}>
-												<a>View Book</a>
+												 View Book 
 											</Link>
 										</li>
 										<li>
 											<Link href={`/buy`}>
-												<a>Buy Book</a>
+												 Buy Book 
 											</Link>
 										</li>
 									</ul>

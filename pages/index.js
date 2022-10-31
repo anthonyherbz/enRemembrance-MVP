@@ -15,8 +15,7 @@ import { useContext, useEffect } from "react"
 
 //Retrieve all of the posts, comments, and expressions from the database
 export async function getServerSideProps({req}) {
-	const userID = await getUser(req)
-	console.log(userID)
+	const {userID, handle} = await getUser(req) //get the user ID and handle from the cookie
 	try {
 		const valuesParams = []
 		const selectPosts =
@@ -33,19 +32,19 @@ export async function getServerSideProps({req}) {
 		const querySql =
 			selectPosts + selectComments + selectPostExpressions + selectStoryExpressions + selectTemplates
 		const data = await multiQuery({ query: querySql, values: valuesParams })
-		return { props: { data, userID } }
+		return { props: { data, userID, handle } }
 	} catch (error) {
 		const data = error.message
 		return { props: { data } }
 	}
 }
 
-export default function Home({ data, userID }) {
-	// console.log("UID", userRes)
+export default function Home({ data, userID, handle }) {
 	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
 	useEffect(() => {
-		setLoggedInUser(userID)
+		setLoggedInUser({userID, handle})
 	}, [])
+	console.log(loggedInUser)
 	const posts = data[0]
 	const comments = data[1]
 	const postExpressions = data[2]

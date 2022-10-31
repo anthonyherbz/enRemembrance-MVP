@@ -11,13 +11,16 @@ import DashEditOverlay from "../components/DashEditOverlay"
 let cx = classNames.bind(styles)
 import { query } from "../lib/db"
 import Layout from "../components/Layout"
+import getUser from "../lib/getUser"
+import { UserContext } from "./_app"
+import { useContext, useEffect } from "react"
 
 //https://www.geeksforgeeks.org/how-to-calculate-the-number-of-days-between-two-dates-in-javascript/
 
 //Get all of the stories belonging to a particular user and sort the results by creation date reverse chron
-export async function getServerSideProps({}) {
-	const logged_in_user_id = 1
-	let id = logged_in_user_id
+export async function getServerSideProps({req}) {
+	const {userID, handle} = await getUser(req)
+	let id = userID
 	try {
 		const querySql =
 			"SELECT id, author_id, title, CONVERT(create_date, char) as create_date, CONVERT(publish_date, char) as publish_date, published, visible, monetized, page_json FROM stories WHERE author_id = ? ORDER BY create_date DESC"
@@ -29,21 +32,26 @@ export async function getServerSideProps({}) {
 			let age = Math.trunc((today.getTime() - createdDate.getTime()) / (1000 * 3600 * 24))
 			data[i].daysOld = age
 		}
-		return { props: { data } }
+		return { props: { data, userID, handle } }
 	} catch (error) {
 		const data = error.message
-		return { props: { data } }
+		return { props: { data, userID, handle } }
 	}
 }
 
-const Dashboard = ({ data }) => {
-	const logged_in_user_id = 1
+const Dashboard = ({ data, userID, handle }) => {
+	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
+	useEffect(() => {
+		setLoggedInUser({userID, handle})
+	}, [])
+	const logged_in_user_id = loggedInUser
 	const [stories, setstories] = useState(data)
 	const [showEdit, setshowEdit] = useState(false)
 	let dashboardClasses = cx({
 		dashboard: true,
 	})
 	if (stories == undefined) return <div>Error with stories data</div>
+	if (stories.length == 0) return <div>You have not created any stories</div>
 	return (
 		<Layout>
 			<Head>

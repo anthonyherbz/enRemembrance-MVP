@@ -63,7 +63,7 @@ const ExpressionPreview = ({ align = "default", expressions, template, type, par
 			{expressions.map((expression, index) => {
 				return (
 					<div key={index}>
-						<Image width='15px' height='15px' src={expression.image_path} />
+						<Image width='15' height='15' src={expression.image_path} />
 					</div>
 				)
 			})}

@@ -120,7 +120,7 @@ const StoryContentSelector = ({
 				/>
 				{/* If the .content isn't an empty string, show the image */}
 				{storyState.story.pages[page].quadrants[quadrant.number - 1].content != "" ? (
-					<Image layout='fill' objectFit='cover' src={`/${finalPath}.${fileFormat}`} />
+					<Image layout='fill' width='25' height='25' object-fit='cover' src={`/${finalPath}.${fileFormat}`} />
 				) : null}
 			</>
 		)
@@ -171,7 +171,9 @@ const StoryContentSelector = ({
 									.content != "" ? ( // If content is not an empty string, show the image
 									<Image
 										layout='fill'
-										objectFit='cover'
+										height='25'
+										width='25'
+										 object-fit='cover'
 										src={`/${finalPath}.${fileFormat}`}
 									/>
 								) : null}
@@ -218,11 +220,13 @@ const StoryContentSelector = ({
 				</div>
 				{storyState.story.pages[page].quadrants[0].content ==
 				"/images/placeholders/cover.jpg" ? (
-					<Image layout='fill' objectFit='cover' src={`/images/placeholders/cover.jpg`} />
+					<Image layout='fill'  width='25' height='25' object-fit='cover' src={`/images/placeholders/cover.jpg`} />
 				) : (
 					<Image
 						layout='fill'
-						objectFit='cover'
+						width='25'
+						height='25'
+						 object-fit='cover'
 						src={`/${finalPath}/cover.${fileFormat}`}
 					/>
 				)}

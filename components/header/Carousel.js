@@ -15,12 +15,12 @@ const Carousel = ({ showCarousel, setShowCarousel, categories }) => {
 			{categories.map((category, index) => {
 				return (
 					<Link key={index} href={`/categories/${category.name}`}>
-						<a>
+						 
 							<div className={styles.carouselItem}>
 								<ImageContainer src={`/images/categories/${category.name}`} />
 								<div>{category.name}</div>
 							</div>
-						</a>
+						 
 					</Link>
 				)
 			})}

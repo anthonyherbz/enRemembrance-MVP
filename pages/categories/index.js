@@ -21,7 +21,7 @@ const Categories = ({ data }) => {
 				return (
 					<div key={category.id}>
 						<Link href={`categories/${category.name}`}>
-							<a>{category.name}</a>
+							 {category.name} 
 						</Link>
 					</div>
 				)

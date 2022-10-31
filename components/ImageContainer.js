@@ -12,7 +12,7 @@ const ImageContainer = ({src, alt="alt text"}) => {
 	})
 	return (
 		<div className={imageContainer}>
-			<Image src={src} layout="fill" objectFit="cover" alt={alt}/>
+			<Image src={src} layout="fill" object-fit="cover" width='50' height='50' alt={alt}/>
 		</div>
 	)
 }

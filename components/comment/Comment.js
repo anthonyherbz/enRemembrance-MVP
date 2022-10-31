@@ -17,18 +17,19 @@ const Comment = ({ comment, stacked }) => {
 		<div className={varStyles}>
 			<div>
 				<Link href={`/users/${comment.commentor_id}`}>
-					<a>
 						<div className={styles.commentAuthor}>
 							<div className={styles.containedImg}>
 								<Image
+									width='25'
+									height='25'
 									src={`/images/users/id${comment.commentor_id}.svg`}
 									layout='fill'
-									objectFit='cover'
+									 object-fit='cover'
 								/>
 							</div>
 							{comment.handle}:
 						</div>
-					</a>
+					 
 				</Link>
 			</div>
 			<div>{comment.comment_text}</div>

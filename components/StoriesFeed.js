@@ -14,17 +14,17 @@ const StoriesFeed = ({ stories }) => {
 				return (
 					<div key={story.story_id}>
 						<Link href={`/stories/${story.story_id}`}>
-							<a>
+							 
 								<div style={{ width: "50px", height: "50px" }}>
 									<ImageContainer
 										src={`/images/covers/placeholder${story.story_id}.jpg`}
 									/>
 								</div>
-							</a>
+							 
 						</Link>
 						<div>
 							<Link href={`/stories/${story.story_id}`}>
-								<a>{story.story_title}</a>
+								 {story.story_title} 
 							</Link>
 						</div>
 					</div>

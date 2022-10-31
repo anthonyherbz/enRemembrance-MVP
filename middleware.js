@@ -31,7 +31,9 @@ export default async function middleware(req) {
 		// return NextResponse.rewrite(new URL("/welcome", url))
 	}
 	try {
-		await verify(jwt, new TextEncoder().encode(secret))
+		await verify(jwt, new TextEncoder().encode(secret), (err, decoded) => {
+			if (err) return res.sendStatus(403) //invalid token
+		})
 		console.log("success")
 		return NextResponse.next()
 	} catch (err) {
