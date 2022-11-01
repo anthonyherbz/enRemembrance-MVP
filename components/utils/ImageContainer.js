@@ -3,7 +3,7 @@ import styles from './imagecontainer.module.scss';
 import classNames from "classnames/bind";
 let cx = classNames.bind(styles);
 
-const ImageContainer = ({src, alt="alt text"}) => {
+const ImageContainer = ({src, alt="alt text", sizes}) => {
 
 
 	let imageContainer = cx({
@@ -12,7 +12,7 @@ const ImageContainer = ({src, alt="alt text"}) => {
 	})
 	return (
 		<div className={imageContainer}>
-			<Image src={src} layout="fill" object-fit="cover" width='50' height='50' alt={alt}/>
+			<Image src={src} fill="true" object-fit="cover" alt={alt} sizes={sizes}/>
 		</div>
 	)
 }

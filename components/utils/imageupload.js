@@ -51,7 +51,7 @@ const ImageUpload = ({fileNamePath = "default", parentImg, setParentImg, imageTy
 
     return (
         <div>
-            <input accept="image" type="file" name='picture' id="file" onChange={pictureChangeHandler} />
+            <input type="file" accept="image/jpeg, image/jpg" name='picture' id="file" onChange={pictureChangeHandler} />
             <button onClick={uploadPictureHandler}>
                 go
             </button>

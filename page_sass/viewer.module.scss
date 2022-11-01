@@ -1,0 +1,123 @@
+@use "../sass/abstracts/vars.scss";
+//BPs at 700 and 500
+
+.viewer {
+	//Universal Styles
+	height: 100vh;
+	flex-direction: column;
+	display: flex;
+	.splitPage {
+		display: flex;
+	}
+	.storyInfo {
+		display: flex;
+		flex-direction: column;
+		background-color: #fff;
+		border-radius: 11px;
+	}
+	//Desktop Styles
+	@media screen and (min-width: 701px) {
+		.headerMobile {
+			display: none;
+		}
+		.splitPage {
+			flex-direction: row;
+			height: 100%;
+			width: 100%;
+			.colLeft {
+				max-width: 25%;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				.storyInfo {
+					height: 100%;
+					gap: 2rem;
+					margin-left: 1rem;
+					margin-bottom: 1rem;
+					padding: 0.5rem;
+					.infoRow1{
+						display: flex;
+						flex-direction: column;
+						gap: 0.5rem;
+					}
+					.infoRow2{
+						position: relative;
+					}
+					.infoRow3{
+						.commentLimited{
+							display: none;
+						}
+						.commentSidebar{
+							display: inline
+						}
+					}
+				}
+				.colRight{
+					max-height: 100vh;
+				}
+			}
+			.colRight {
+				height: 100%;
+				width: 100%;
+			}
+		}
+	}
+	//Tablet Styles
+	@media screen and (max-width: 700px) {
+		.headerDesktop {
+			display: none;
+		}
+		.headerMobile {
+			display: flex;
+			justify-content: space-between;
+			margin: 1rem 0.75rem 0.25rem 0.75rem;
+			align-items: center;
+		}
+		.splitPage {
+			flex-direction: column;
+			height: 100%;
+			.colLeft {
+				.storyInfo {
+					margin: 0.5rem 1rem;
+					padding: 0.5rem;
+					.infoRow1{
+						margin-bottom: 0.5rem;
+					}
+					.infoRow1,
+					.infoRow2 {
+						gap: 0.5em;
+						display: flex;
+						justify-content: space-around;
+						align-items: center;
+						position: relative;
+						
+					}
+					.infoRow3{
+						.commentSidebar{
+							display: none;
+						}
+						.commentLimited{
+							display: inline;
+							width: 100%;
+						}
+						display: flex;
+						gap: 3rem;
+						align-items: center;
+					}
+				}
+			}
+			.colRight{
+				height: 100%;
+			}
+		}
+	}
+	//Mobile Styles
+	@media screen and (max-width: 500px) {
+		.headerMobile {
+			font-size: 0.75em;
+		}
+		.infoRow1, .infoRow2{
+			font-size: 0.8em;
+		}
+	}
+}

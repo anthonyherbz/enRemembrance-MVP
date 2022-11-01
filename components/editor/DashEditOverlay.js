@@ -1,5 +1,5 @@
 import styles from "./dasheditoverlay.module.scss"
-import Heading from "../components/Heading"
+import Heading from "../Heading"
 import Link from "next/link"
 import Router from 'next/router'
 

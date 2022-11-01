@@ -1,9 +1,13 @@
 import Comment from "./Comment"
 import styles from "./commentfeed.module.scss"
+import classNames from "classnames/bind";
+let cx = classNames.bind(styles);
 
-
-const CommentFeed = ({ comments, stacked }) => {
-	
+const CommentFeed = ({ comments, stacked, limit }) => {
+	let commentStyles = cx({
+		commentfeed: true,
+		limit: limit
+	})
 	let undef = false
 	if (comments == undefined || comments.length == 0) {
 		undef = true
@@ -11,7 +15,7 @@ const CommentFeed = ({ comments, stacked }) => {
 	return (
 		<>
 			{undef == false ? (
-				<div className={styles.commentfeed}>
+				<div className={commentStyles}>
 					{comments.map((comment, index) => {
 						return <Comment key={index} comment={comment} stacked={stacked} />
 					})}

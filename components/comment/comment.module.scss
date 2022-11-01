@@ -5,8 +5,8 @@
 	display: flex;
 	// border: 1px solid black;
 	align-items: flex-end;
-	gap: 0.5em;
-	padding-block: 0.5rem;
+	// gap: 0.5em;
+	// padding-block: 0.5rem;
 	border-bottom: 1px solid vars.$color_grey_light;
 	&.stacked{
 		flex-direction: column;
@@ -14,7 +14,7 @@
 	}
 	.commentAuthor{
 		display: flex;
-		align-items: flex-end;
+		align-items: center;
 		gap: 0.5em;
 		.containedImg{
 			position: relative;

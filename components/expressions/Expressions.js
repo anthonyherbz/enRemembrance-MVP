@@ -35,38 +35,7 @@ const Expressions = ({ setShowExp, type, align, template, parent_id }) => {
 		}
 		getData()
 	}, [])
-	// console.log(expData)
-	const expList = [
-		{
-			id: 1,
-			icon: <GiLotusFlower />,
-		},
-		{
-			id: 2,
-			icon: <GiTrefoilLily />,
-		},
-		{
-			id: 3,
-			icon: <GiPoppy />,
-		},
-		{
-			id: 4,
-			icon: <Daffodil />,
-		},
-		{
-			id: 5,
-			icon: <Daisy />,
-		},
-		{
-			id: 6,
-			icon: <FMN />,
-		},
-		{
-			id: 7,
-			icon: <Snap />,
-		},
-	]
-
+	
 	if (expData != undefined) {
 		return (
 			<div className={expressionStyleVars} onMouseLeave={() => setShowExp(0)}>

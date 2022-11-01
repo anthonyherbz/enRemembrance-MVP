@@ -1,5 +1,5 @@
-import Icon from "./icons/Icon";
-import Menu from "./menu/Menu";
+import Icon from "../icons/Icon";
+import Menu from "./Menu";
 import styles from './mobilenav.module.scss'
 
 const MobileNav = ({iconSize="30", topSpace="50"}) => {

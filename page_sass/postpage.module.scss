@@ -1,6 +1,8 @@
 @use "../sass/abstracts/vars.scss";
 $bp-width: 500px;
-
+.per1c{
+	margin-left: 1rem;
+}
 .postPage {
 	display: flex;
 	flex-direction: column;
@@ -42,7 +44,6 @@ $bp-width: 500px;
 			@media screen and (max-width: $bp-width) {
 				display: none;
 			}
-			
 		}
 		.rightcol {
 			display: flex;
@@ -63,6 +64,14 @@ $bp-width: 500px;
 					padding: 0;
 					.peR2 {
 						display: none;
+					}
+					.peR1 {
+						.per1c {
+							> img {
+								max-width: 25px;
+								max-height: 25px;
+							}
+						}
 					}
 					.mobileRow {
 						padding: 0.5em;

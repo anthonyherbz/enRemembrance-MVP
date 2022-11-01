@@ -1,0 +1,71 @@
+@use "../../../sass/abstracts/vars.scss";
+
+// $quads: quad-1, quad-2, quad-3, quad-4;
+
+.quadrants {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	>div{
+		position: relative;
+	}
+	.span {
+		grid-column-start: 1;
+		grid-column-end: 3;
+	}
+}
+.blank {
+	position: relative;
+}
+
+@media screen and (min-width: 701px) {
+	.quadrants,
+	.blank,
+	.cover {
+		aspect-ratio: 0.75;
+		height: 50%;
+		border: 1px solid grey;
+	}
+}
+@media screen and (max-width: 700px) {
+	.quadrants,
+	.blank,
+	.cover {
+		aspect-ratio: 0.75;
+		margin-inline: 200px;
+		border: 5px solid green;
+		@media screen and (max-width: 660px) {
+			margin-inline: 180px;
+		}
+		@media screen and (max-width: 600px) {
+			margin-inline: 150px;
+		}
+		@media screen and (max-width: 560px) {
+			margin-inline: 130px;
+		}
+		@media screen and (max-width: 520px) {
+			margin-inline: 110px;
+		}
+		@media screen and (max-width: 490px) {
+			margin-inline: 90px;
+		}
+		@media screen and (max-width: 450px) {
+			margin-inline: 70px;
+		}
+		@media screen and (max-width: 400px) {
+			margin-inline: 50px;
+		}
+	}
+}
+
+.pageNum {
+	position: absolute !important;
+	margin: 0 auto;
+	bottom: -25px;
+	z-index: 10;
+	right: 50%;
+	left: 50%;
+	&.hidecount {
+		display: none;
+	}
+}

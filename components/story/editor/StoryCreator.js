@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import StoryCreatorPage from "./StoryCreatorPage"
 import styles from "./storycreator.module.scss"
 import Icon from "./icons/Icon"
 import ButtonText from "./button/ButtonText"
 import update from "immutability-helper"
+import { UserContext } from "../pages/_app"
 
-const StoryCreator = ({data}) => {
+const StoryCreator = ({data, userID}) => {
+	let user_id = userID
 	//Define the initial structure for the story object. Set a placeholder cover at a specific location. This can't be set to the story ID because we don't have that yet.
 	let story = {
 		pages: [
@@ -50,12 +52,6 @@ const StoryCreator = ({data}) => {
 		}
 	}, [])
 
-	console.log(storyState)
-	//TBD
-	//let session = getSession() < get the current session
-	//let user = session.user < get the current user from the session
-	//let user_id = session.user_id <get the current user_id from the session
-	let user_id = 1
 
 	//Run when the "Start story" button is clicked
 	function handleStartStory() {

@@ -56,7 +56,7 @@ const NewExpressionRenderer = ({ update_id, count, templ, styles, type }) => {
 		<div onMouseEnter={handleHover} onMouseLeave={handleClose}>
 			{/* show the tip on hover, hide the tip on leave */}
 			<div className={styles.icon} onClick={() => increment()}>
-				<Image src={templ.image_path} width='50' height='50' layout='fill' alt="alt" />
+				<Image src={templ.image_path} width='35' height='35' alt="alt" />
 				{counter != null ? <div className={styles.counter}>{counter}</div> : null}
 			</div>
 			{showTip ? (

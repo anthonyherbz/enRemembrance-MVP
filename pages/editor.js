@@ -12,14 +12,14 @@ import { UserContext } from "./_app"
 import { useContext, useEffect } from "react"
 
 export async function getServerSideProps({ query, req }) {
-	const {userID, handle} = await getUser(req)
+	const { userID, handle } = await getUser(req)
 	try {
 		let querySql
 		let valuesParams = [query.storyId]
 		querySql =
 			"SELECT id, author_id, title, CONVERT(create_date, char) as create_date, CONVERT(publish_date, char) as publish_date, published, visible, monetized, page_json FROM stories WHERE id = ?"
 		const data = await squery({ query: querySql, values: valuesParams })
-		return { props: { data: data[0], error: false, userID, handle} }
+		return { props: { data: data[0], error: false, userID, handle } }
 	} catch (error) {
 		const data = error.message
 		return { props: { data, error: true, userID, handle } }
@@ -27,10 +27,12 @@ export async function getServerSideProps({ query, req }) {
 }
 
 const Editor = ({ data, error, userID, handle }) => {
+	console.log(userID, "UUUid")
 	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
 	useEffect(() => {
-		setLoggedInUser({userID, handle})
+		setLoggedInUser({ userID, handle })
 	}, [])
+	console.log(loggedInUser)
 	if (error) data = null
 	return (
 		<Layout>
@@ -43,10 +45,9 @@ const Editor = ({ data, error, userID, handle }) => {
 			<div className={styles.editor}>
 				<div className={styles.menuSection}>
 					<Nav />
-					{/* buttons to save changes or delete book; not implemented; not useable until database is implemented */}
 				</div>
 				<div className={styles.bookSection}>
-					<StoryCreator data={data} /> : <div>there is already a story</div>
+					<StoryCreator data={data} userID={userID} />
 				</div>
 			</div>
 		</Layout>

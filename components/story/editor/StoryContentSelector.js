@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { useState } from "react"
 import { GiConsoleController } from "react-icons/gi"
-import ImageUpload from "./imageupload"
+import ImageUpload from "../../imageupload"
 import update from "immutability-helper"
 
 const StoryContentSelector = ({
@@ -120,7 +120,7 @@ const StoryContentSelector = ({
 				/>
 				{/* If the .content isn't an empty string, show the image */}
 				{storyState.story.pages[page].quadrants[quadrant.number - 1].content != "" ? (
-					<Image layout='fill' width='25' height='25' object-fit='cover' src={`/${finalPath}.${fileFormat}`} />
+					<Image layout='fill' width='25' height='25' object-fit='cover' src={`/${finalPath}.${fileFormat}`} alt={`An image on page ${page} of this story.`} />
 				) : null}
 			</>
 		)
@@ -220,13 +220,12 @@ const StoryContentSelector = ({
 				</div>
 				{storyState.story.pages[page].quadrants[0].content ==
 				"/images/placeholders/cover.jpg" ? (
-					<Image layout='fill'  width='25' height='25' object-fit='cover' src={`/images/placeholders/cover.jpg`} />
+					<Image fill="true" object-fit='cover' src={`/images/placeholders/cover.jpg`} alt="The cover image"/>
 				) : (
 					<Image
-						layout='fill'
-						width='25'
-						height='25'
-						 object-fit='cover'
+						fill="true"
+						alt="The cover image"
+						object-fit='cover'
 						src={`/${finalPath}/cover.${fileFormat}`}
 					/>
 				)}

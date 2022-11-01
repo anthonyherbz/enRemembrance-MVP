@@ -18,14 +18,15 @@ import { useContext, useEffect } from "react"
 //https://www.geeksforgeeks.org/how-to-calculate-the-number-of-days-between-two-dates-in-javascript/
 
 //Get all of the stories belonging to a particular user and sort the results by creation date reverse chron
-export async function getServerSideProps({req}) {
-	const {userID, handle} = await getUser(req)
+export async function getServerSideProps({ req }) {
+	const { userID, handle } = await getUser(req)
 	let id = userID
 	try {
 		const querySql =
 			"SELECT id, author_id, title, CONVERT(create_date, char) as create_date, CONVERT(publish_date, char) as publish_date, published, visible, monetized, page_json FROM stories WHERE author_id = ? ORDER BY create_date DESC"
 		const valuesParams = [id]
 		const data = await query({ query: querySql, values: valuesParams })
+		//For each item in data, check and assign a property of daysOld containing the age in days
 		for (let i = 0; i < data.length; i++) {
 			let createdDate = new Date(data[i].create_date)
 			const today = new Date()
@@ -42,16 +43,14 @@ export async function getServerSideProps({req}) {
 const Dashboard = ({ data, userID, handle }) => {
 	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
 	useEffect(() => {
-		setLoggedInUser({userID, handle})
+		setLoggedInUser({ userID, handle })
 	}, [])
-	const logged_in_user_id = loggedInUser
 	const [stories, setstories] = useState(data)
 	const [showEdit, setshowEdit] = useState(false)
 	let dashboardClasses = cx({
 		dashboard: true,
 	})
-	if (stories == undefined) return <div>Error with stories data</div>
-	if (stories.length == 0) return <div>You have not created any stories</div>
+
 	return (
 		<Layout>
 			<Head>
@@ -73,16 +72,26 @@ const Dashboard = ({ data, userID, handle }) => {
 								label='Create'
 								path='editor'
 								targetUrl='/editor'
-								
 							/>
-							<div onClick={() => setshowEdit(true)}>
-								<ButtonText fill='true' color='yellow' size='small' label='Edit' />
-							</div>
+							{!stories || stories.length == 0 ? null : (
+								<div onClick={() => setshowEdit(true)}>
+									<ButtonText
+										fill='true'
+										color='yellow'
+										size='small'
+										label='Edit'
+									/>
+								</div>
+							)}
 						</div>
 
 						{showEdit ? <DashEditOverlay stories={stories} /> : null}
 						<div className={styles.dash}>
-							<DBTable stories={stories} user_id={logged_in_user_id} />
+							{!stories || stories.length == 0 ? (
+								<div>No stories found</div>
+							) : (
+								<DBTable stories={stories} user_id={loggedInUser.userID} />
+							)}
 						</div>
 					</div>
 				</div>

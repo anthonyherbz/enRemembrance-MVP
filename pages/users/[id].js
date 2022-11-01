@@ -6,7 +6,14 @@ import styles from "../../page_sass/authorpage.module.scss"
 import StoriesFeed from "../../components/StoriesFeed"
 import UserComp from "../../components/UserComp"
 import { multiQuery } from "../../lib/db"
-export async function getServerSideProps({ params }) {
+import getUser from "../lib/getUser"
+import { UserContext } from "./_app"
+import { useContext, useEffect } from "react"
+
+
+
+export async function getServerSideProps({ params, req}) {
+	const {userID, handle} = await getUser(req)
 	const id = params.id
 	try {
 		const query1 =
@@ -18,17 +25,20 @@ export async function getServerSideProps({ params }) {
 		const valuesParams = [id, id]
 		const data = await multiQuery({ query: querySql, values: valuesParams })
 		console.log("d1", data[0])
-		return { props: { data } }
+		return { props: { data, userID, handle } }
 	} catch (error) {
 		const data = error
 		console.log(data)
 		return { props: { data } }
 	}
 }
-const User = ({ data }) => {
+const User = ({ data, userID, handle }) => {
 	const [user, setuser] = useState(data[0][0])
 	const [stories, setstories] = useState(data[1])
-
+	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
+	useEffect(() => {
+		setLoggedInUser({userID, handle})
+	}, [])
 	if (user == undefined) {
 		return <div>This user does not exist</div>
 	}

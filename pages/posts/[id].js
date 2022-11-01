@@ -9,10 +9,15 @@ import Logo from "../../components/Logo"
 import ExpressionPreview from "../../components/expressions/ExpressionPreview"
 import { multiQuery } from "../../lib/db"
 import PostSidebar from "../../components/postpage/PostSidebar"
+import getUser from '../../lib/getUser'
+import { UserContext } from "../_app"
+import { useContext, useEffect } from "react"
 
-export async function getServerSideProps({ params }) {
+
+
+export async function getServerSideProps({ params, req }) {
 	let id = params.id
-
+	const {userID, handle} = await getUser(req)
 	try {
 		const selectPost =
 			"SELECT posts.id AS post_id, CONVERT(posts.post_date, char) AS post_date, posts.story_id, posts.post_text, posts.user_id, stories.title, post_users.handle AS poster_handle, users.handle AS story_author, users.id AS author_id FROM posts LEFT JOIN stories ON posts.story_id = stories.id LEFT JOIN users ON stories.author_id = users.id LEFT JOIN users post_users ON post_users.id = posts.user_id WHERE posts.id = ?;"
@@ -35,7 +40,9 @@ export async function getServerSideProps({ params }) {
 				postExpressions: data[1],
 				comments: data[2],
 				storyExpressions: data[3],
-				templates: data[4]
+				templates: data[4],
+				userID,
+				handle
 			},
 		}
 	} catch (error) {
@@ -45,9 +52,12 @@ export async function getServerSideProps({ params }) {
 	}
 }
 
-const Post = ({ post, postExpressions, comments, storyExpressions, templates }) => {
+const Post = ({ post, postExpressions, comments, storyExpressions, templates, userID, handle }) => {
 	console.log(post, comments, postExpressions, storyExpressions)
-	const logged_in_user_id = 1 //temporary until authentication is set up
+	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
+	useEffect(() => {
+		setLoggedInUser({userID, handle})
+	}, [])
 	post = post[0]
 	console.log("post", post)
 	return (
@@ -79,11 +89,10 @@ const Post = ({ post, postExpressions, comments, storyExpressions, templates }) 
 								align='right'
 								/>
 								<div className={styles.per1c}>
-									{/* change to jpg */}
 									<Image
-										width='50'
-										height='50'
-										src={`/images/users/id${post.user_id}.svg`}
+										width='35'
+										height='35'
+										src={`/images/users/id${post.user_id}.svg`} //change to jpg
 										alt="The post creator's profile image"
 									/>
 									{post.poster_handle}

@@ -38,20 +38,17 @@ const PostFromFeed = ({
 			{/* left-most column containing the book's cover and it's expressions */}
 			<div className={styles.c1}>
 				{/* col */}
-				{loaded ? (
-					<Link href={storyUrl}>
-						<div style={{ width: "80px", height: "100px" }}>
-							<Image
-								src={storyCover}
-								width='80'
-								height='100'
-								layout='fill'
-								object-fit='cover'
-								alt='alt'
-							/>{" "}
-						</div>
-					</Link>
-				) : null}
+				<Link href={storyUrl}>
+					<div style={{ position: "relative", height: "100%", width: "100%" }}>
+						<Image
+							src={storyCover}
+							// width='80'
+							// height='100'
+							alt='alt'
+							fill='true'
+						/>
+					</div>
+				</Link>
 				<ExpressionPreview
 					parent_id={post.story_id}
 					type='story'
@@ -83,16 +80,11 @@ const PostFromFeed = ({
 					<div style={{ display: "flex", flexDirection: "row" }}>
 						{loaded ? (
 							<Link href={authorUrl}>
-								<div
-									style={{
-										width: "50px",
-										height: "50px",
-									}}>
+								<div>
 									<Image
 										src={authorImg}
-										width='25'
-										height='25'
-										layout='fill'
+										width='50'
+										height='50'
 										object-fit='cover'
 										alt='alt'
 									/>
@@ -122,18 +114,13 @@ const PostFromFeed = ({
 						) : null}
 					</div>
 					{/* comment icon that opens and closes the comment box */}
-					<div style={{ cursor: "pointer", zIndex: "1" }} onClick={toggleComment}>
-						<div style={{ width: "30px", height: "30px" }}>
-							{loaded ? (
-								<Image
-									src={`/images/comment.jpg`}
-									width='30'
-									height='30'
-									layout='fill'
-									alt='alt'
-								/>
-							) : null}
-						</div>
+					<div style={{ cursor: "pointer" }} onClick={toggleComment}>
+						<Image
+							src={`/images/comment.jpg`}
+							width='40'
+							height='30'
+							alt='alt'
+						/>
 					</div>
 				</div>
 				{/*row 3 end*/}

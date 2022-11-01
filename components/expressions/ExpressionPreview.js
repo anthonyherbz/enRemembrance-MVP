@@ -23,47 +23,12 @@ const ExpressionPreview = ({ align = "default", expressions, template, type, par
 	let [showExp, setShowExp] = useState(0)
 	// console.log(template)
 
-	function hideExp() {
-		setShowExp(0)
-	}
-	// console.log(expressions)
-	const valuePairs = [
-		{
-			id: 1,
-			icon: <GiLotusFlower />,
-		},
-		{
-			id: 2,
-			icon: <GiTrefoilLily />,
-		},
-		{
-			id: 3,
-			icon: <GiPoppy />,
-		},
-		{
-			id: 4,
-			icon: <Daffodil />,
-		},
-		{
-			id: 5,
-			icon: <Daisy />,
-		},
-		{
-			id: 6,
-			icon: <FMN />,
-		},
-		{
-			id: 7,
-			icon: <Snap />,
-		},
-	]
-	// console.log(expressions[0])
 	const selectedExpressions = (
 		<>
 			{expressions.map((expression, index) => {
 				return (
 					<div key={index}>
-						<Image width='15' height='15' src={expression.image_path} />
+						<Image width='25' height='25' src={expression.image_path} />
 					</div>
 				)
 			})}

@@ -1,4 +1,4 @@
-import ButtonText from "./button/ButtonText"
+import ButtonText from "../button/ButtonText"
 import styles from "./createpostdiag.module.scss"
 import { useState } from "react"
 

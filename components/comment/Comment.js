@@ -27,12 +27,11 @@ const Comment = ({ comment, stacked }) => {
 									 object-fit='cover'
 								/>
 							</div>
-							{comment.handle}:
+							{comment.handle}: {comment.comment_text}
 						</div>
 					 
 				</Link>
 			</div>
-			<div>{comment.comment_text}</div>
 		</div>
 	);
 };

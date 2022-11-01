@@ -1,10 +1,14 @@
 import React, { useState } from "react"
 import BookViewer from "../../components/story/viewer/BookViewer"
 import Heading from "../../components/Heading"
+import Row from "../../components/Row"
 import styles from "../../page_sass/viewer.module.scss"
 import Logo from "../../components/Logo"
+import ButtonText from "../../components/button/ButtonText"
 import CreatePostDiag from "../../components/CreatePostDiag"
 import ExpressionPreview from "../../components/expressions/ExpressionPreview"
+import ImageContainer from "../../components/ImageContainer"
+
 import { multiQuery } from "../../lib/db"
 import CommentFeed from "../../components/comment/CommentFeed"
 import EnterComment from "../../components/EnterComment"
@@ -13,6 +17,7 @@ import { UserContext } from "../_app"
 import { useContext, useEffect } from "react"
 import Image from "next/image"
 
+//needs to check jwt
 export async function getServerSideProps({ params, req }) {
 	const { userID, handle } = await getUser(req)
 
@@ -71,74 +76,72 @@ const Story = ({ data, userID, handle, id }) => {
 		return <div>Sorry, {id} is not a valid story ID.</div>
 	}
 	return (
-		<div className={styles.viewer}>
+		<div className={styles.bookPreview}>
 			{/* Mobile logo and title */}
-			<div className={styles.headerMobile}>
+			<div className={styles.displayMobile}>
 				<Logo size='1-5x' />
 				<Heading level='2'>{story.title}</Heading>
+			</div> 
+			<div className={styles.colleft}>
+				{/* Desktop Logo */}
+				<div className={styles.hideMobile}>
+					<Logo size='1-5x' />
+				</div> 
+
+				<div className={styles.bookContent}>
+					{/* Desktop Title */}
+					<div className={styles.hideMobile}>
+						<Heading level='1'>{story.title}</Heading>
+					</div>
+					<div className={styles.mobileRow1}>
+						<Row>Created on {story.create_date}</Row>
+						<Row>By {story.handle}</Row>
+						<div onClick={() => toggleDiag()}>
+							<ButtonText color='green'>Post about this story</ButtonText>
+						</div>
+					</div>
+					<div className={styles.mobileRow2}>
+						{visPostDiag ? (
+							<CreatePostDiag
+								id={story.id}
+								user_id={loggedInUser.userID}
+								setvisPostDiag={setvisPostDiag}
+							/>
+						) : null}
+						<div>
+							<ExpressionPreview
+								type='story'
+								expressions={expressions}
+								align='left'
+								template={templates}
+								parent_id={story.id}
+							/>
+						</div>
+						<div onClick={toggleComment} style={{ cursor: "pointer" }}>
+							<span style={{display: "flex"}}>
+								<Image
+									src='/images/comment.jpg'
+									alt='Comment icon'
+									width='35'
+									height='30'
+								/>
+								Comment on this story.
+							</span>
+						</div>
+					</div>
+					{showComment ? (
+						<EnterComment toggleComment={toggleComment} story_id={story.id} />
+					) : null}
+					<CommentFeed comments={comments} stacked={true} />
+				</div>
+				<div onClick={() => history.back()}>
+					<ButtonText path='/' color='blue'>
+						Back
+					</ButtonText>
+				</div>
 			</div>
-			<div className={styles.splitPage}>
-				<div className={styles.colLeft}>
-					{/* Desktop Logo */}
-					<div className={styles.headerDesktop}>
-						<Logo size='1-5x' />
-					</div>
-					<div className={styles.storyInfo}>
-						{/* Desktop Title */}
-						<div className={styles.headerDesktop}>
-							<Heading level='1'>{story.title}</Heading>
-						</div>
-						<div className={styles.infoRow1}>
-							<div>Created on {story.create_date.split(" ", [1])} </div>
-							<div>By {story.handle}</div>
-							<div onClick={() => toggleDiag()}>
-								<button>Post about this story</button>
-							</div>
-						</div>
-						<div className={styles.infoRow2}>
-							{visPostDiag ? (
-								<CreatePostDiag
-									id={story.id}
-									user_id={loggedInUser.userID}
-									setvisPostDiag={setvisPostDiag}
-								/>
-							) : null}
-							<div className={styles.exp}>
-								<ExpressionPreview
-									type='story'
-									expressions={expressions}
-									align='left'
-									template={templates}
-									parent_id={story.id}
-								/>
-							</div>
-							<div onClick={toggleComment} style={{ cursor: "pointer" }}>
-								<span style={{ display: "flex", alignItems:"center", cursor: "pointer" }}>
-									<Image
-										src='/images/comment.jpg'
-										alt='Comment icon'
-										width='35'
-										height='30'
-									/>
-									<span style={{fontSize: "0.8em"}}>Comment on this story.</span>
-								</span>
-							</div>
-							{showComment ? (
-								<EnterComment toggleComment={toggleComment} story_id={story.id} />
-							) : null}
-						</div>
-						<div className={styles.infoRow3}>
-							<span className={styles.commentSidebar}><CommentFeed comments={comments} stacked={true} /></span>
-							<span className={styles.commentLimited}><CommentFeed comments={comments} stacked={true} limit/></span>
-							<div onClick={() => history.back()}>
-							<button>Back</button>
-						</div>
-					</div>
-					</div>
-				</div>
-				<div className={styles.colRight}>
-					<BookViewer story={story} />
-				</div>
+			<div className={styles.colright}>
+				<BookViewer story={story} />
 			</div>
 		</div>
 	)

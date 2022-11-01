@@ -1,0 +1,148 @@
+// @use '../../../sass/abstracts/vars.scss';
+.bookController {
+	margin-bottom: 1rem;
+	> div {
+		cursor: pointer;
+		transition: all 125ms;
+		display: flex;
+		align-items: center;
+		&:hover {
+			background: rgba(0, 0, 0, 0.145);
+			border-radius: 11px;
+		}
+	}
+}
+
+@media screen and (min-width: 701px) {
+	.bookParent {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		.bookController {
+			display: flex;
+			justify-content: space-between;
+		}
+		// overflow: hidden;
+		.bookViewer {
+			display: flex;
+			height: 100%;
+			// margin-inline: 5rem;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+	.mobile {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.bookViewer,
+	.bookController {
+		display: none;
+	}
+	.bookParent {
+		height: 100%;
+		.mobile {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			height: 100%;
+			.bookViewerMobile {
+				height: 100%;
+			}
+			.bookController {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
+		}
+	}
+}
+
+// .bookParent {
+// 	height: 90vh;
+// 	// width: 100%;
+// 	display: flex;
+// 	flex-direction: column;
+// 	justify-content: space-around;
+// 	.mobile {
+// 		display: none;
+// 	}
+// 	// max-height: 100vh;
+// 	// max-height: 100%;
+// 	.bookViewer {
+// 		// aspect-ratio: 1.5;
+// 		// height: 100%;
+// 		// width: 100%;
+// 		max-height: 100%;
+// 		display: flex;
+// 		justify-content: center;
+// 		gap: 0.2rem;
+// 		margin-bottom: 1rem;
+// 		// flex-grow: 1;
+// 		// max-width: 100%;
+// 		// max-height: 100%;
+// 		// box-sizing: content-box;
+// 		// height: 100%;
+// 		// margin: 2rem;
+// 		// border: 1px solid black;
+// 		// padding: 2rem 2rem;
+// 		// background-color: black;
+// 		// overflow: visible;
+// 		// display: grid;
+// 		// grid-template-columns: 1fr 1fr;
+// 	}
+// 	.bookController {
+// 		display: flex;
+// 		align-items: center;
+// 		justify-content: space-between;
+// 		> div {
+// 			cursor: pointer;
+// 			transition: all 125ms;
+// 			display: flex;
+// 			align-items: center;
+// 			&:hover {
+// 				background: rgba(0, 0, 0, 0.145);
+// 				border-radius: 11px;
+// 			}
+// 		}
+// 	}
+// 	@media screen and (max-width: 700px) {
+// 		.bookViewer,
+// 		.bookController {
+// 			display: none;
+// 		}
+// 		.mobile {
+// 			display: flex;
+// 			flex-direction: column;
+// 			justify-content: space-around;
+// 			height: 100%;
+// 			.bookViewerMobile{
+// 				// aspect-ratio: 1.5;
+// 				display: flex;
+// 				justify-content: center;
+// 				gap: 0.2rem;
+// 				margin-bottom: 1rem;
+// 				// height: 100%;
+// 				max-height: 100%;
+// 			}
+// 			.bookController {
+// 				display: flex;
+// 				align-items: center;
+// 				justify-content: space-between;
+// 				> div {
+// 					cursor: pointer;
+// 					transition: all 125ms;
+// 					display: flex;
+// 					align-items: center;
+// 					&:hover {
+// 						background: rgba(0, 0, 0, 0.145);
+// 						border-radius: 11px;
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// }
