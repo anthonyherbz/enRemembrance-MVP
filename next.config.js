@@ -1,8 +1,8 @@
 module.exports = {
-	output: 'standalone',
-	distDir: 'build',
+	output: "standalone",
+	distDir: "build",
+	pageExtensions: ["page.tsx", "page.ts", "page.jsx", "page.js"],
 	webpack: (config, { isServer }) => {
-		
 		if (!isServer) {
 			// don't resolve 'fs' module on the client to prevent this error on build --> Error: Can't resolve 'fs'
 			config.resolve.fallback = {
@@ -12,10 +12,9 @@ module.exports = {
 				net: "empty",
 				tls: "empty",
 				mysql2: false,
-				mysql: "empty"
+				mysql: "empty",
 			}
 		}
-
 		return config
 	},
 }

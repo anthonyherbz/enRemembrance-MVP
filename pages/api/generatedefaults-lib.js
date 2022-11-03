@@ -1,5 +1,5 @@
 import { promises as fs } from "fs"
-export default async function handler(req, res) {
+export default async function getServerSideProps(req, res) {
 	const type = req.body.type
 	let userId
 	let coverId

@@ -1,7 +1,6 @@
 import styles from "./postfeed.module.scss"
 import PostFromFeed from "./PostFromFeed"
 
-//Generates a feed of posts via data from getPosts()
 const PostFeedv2 = ({ posts, comments, postExpressions, storyExpressions, expressionTemplates}) => {
 	// console.log("post exp", postExpressions)
 	const mappedPosts = posts.map((post, index) => {
