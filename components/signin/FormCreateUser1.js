@@ -4,7 +4,6 @@ import Link from "next/link"
 import styles from "./formcreateuser.module.scss"
 
 const FormCreateUser1 = () => {
-	const URL = process.env.NEXT_PUBLIC_ROOT
 	const router = useRouter()
 	// console.log(URL)
 

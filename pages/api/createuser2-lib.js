@@ -3,7 +3,6 @@ import { hash } from "bcrypt"
 import { checkEmail } from "../../lib/login"
 
 export default async function getServerSideProps(req, res) {
-	const URL = process.env.NEXT_PUBLIC_ROOT
 	const enabled = 1 //default
 
 	
