@@ -1,4 +1,4 @@
-import { multiQuery, query } from "../../lib/db"
+import { multiQuery } from "../../lib/db"
 import { hash } from "bcrypt"
 import { checkEmail } from "../../lib/login"
 
