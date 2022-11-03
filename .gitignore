@@ -15,7 +15,9 @@
 /out/
 
 # production
-/build
+/build/cache
+/build/static
+/build/*.json
 
 # misc
 .DS_Store
