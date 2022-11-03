@@ -119,8 +119,8 @@ const Results = ({ data, type, handle, userID, queryValid }) => {
 							<div className={styles.image}>
 								<Image
 									src={`/images/users/id${result.id}.jpg`}
-									height='75px'
-									width='75px'
+									height='75'
+									width='75'
 									alt='user profile image'
 								/>
 							</div>

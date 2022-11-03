@@ -1,4 +1,4 @@
-import { multiQuery, query } from "../../lib/db"
+import { multiQuery } from "../../lib/db"
 export default async function getServerSideProps(req, res) {
 	const update_id = req.body.update_id
 	const countVal = req.body.countVal

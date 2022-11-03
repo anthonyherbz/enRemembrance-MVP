@@ -17,20 +17,20 @@ export default async function getServerSideProps(req, res) {
 
 	try {
 		if (newhandle) {
-			updateHandle = "UPDATE USERS SET handle = ? WHERE id = ?;"
+			updateHandle = "UPDATE users SET handle = ? WHERE id = ?;"
 			userhandle = userID
 		}
 		if (email) {
-			updateEmail = "UPDATE USERS SET email = ? WHERE id = ?;"
+			updateEmail = "UPDATE users SET email = ? WHERE id = ?;"
 			useremail = userID
 		}
 		if (password) {
-			updatePassword = "UPDATE USERS SET password = ? WHERE id = ?;"
+			updatePassword = "UPDATE users SET password = ? WHERE id = ?;"
 			userpwd = userID
 			hashedPwd = await hash(password, 10)
 		}
 		if (bio) {
-			updateBio = "UPDATE USERS SET bio = ? WHERE id = ?;"
+			updateBio = "UPDATE users SET bio = ? WHERE id = ?;"
 			userbio = userID
 		}
 		if (!email && !newhandle && !password && !bio){

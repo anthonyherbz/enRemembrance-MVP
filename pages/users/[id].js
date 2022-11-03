@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import Header from "../../components/header/Header"
 import ButtonText from "../../components/button/ButtonText"
-import Container from "../../components/utils/Container"
 import styles from "../../page_sass/authorpage.module.scss"
 import StoriesFeed from "../../components/story/StoriesFeed"
 import UserComp from "../../components/utils/UserComp"
