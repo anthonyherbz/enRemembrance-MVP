@@ -10,7 +10,7 @@ const Carousel = ({ showCarousel, setShowCarousel, categories }) => {
 	const [loading, setLoading] = useState(true)
 	useEffect(() => {
 		if (categories) setLoading(true)
-	}, [loading, setLoading])
+	}, [loading, setLoading, categories])
 	function handleMouseLeave() {
 		setShowCarousel((showCarousel = 0))
 	}

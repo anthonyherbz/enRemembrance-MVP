@@ -1,4 +1,4 @@
-import { query } from "../../lib/db"
+import { multiQuery, query } from "../../lib/db"
 export default async function getServerSideProps(req, res) {
 	const update_id = req.body.update_id
 	const countVal = req.body.countVal
@@ -8,38 +8,50 @@ export default async function getServerSideProps(req, res) {
 	// console.log(update_id)
 	// console.log(expression_id)
 	// console.log(countVal)
+
 	try {
 		let querySql
 		let valuesParams
 		if (countVal == null) {
-			valuesParams = [update_id, expression_id]
+			valuesParams = [update_id, expression_id, user]
 			if (type == "story") {
 				querySql =
-					"INSERT INTO story_expressions (story_id, expression_id, count) VALUES (?, ?, 1)"
+					"INSERT INTO story_expressions (story_id, expression_id, count, users_interacted) VALUES (?, ?, 1, JSON_ARRAY(CAST (? AS char)))"
 			}
 			if (type == "post") {
 				querySql =
-					"INSERT INTO post_expressions (post_id, expression_id, count) VALUES (?, ?, 1)"
+					"INSERT INTO post_expressions (story_id, expression_id, count, users_interacted) VALUES (?, ?, 1, JSON_ARRAY(CAST (? AS char)))"
 			}
 		} else {
-			//Need to check if a user ID is found in column
-			
-			valuesParams = [countVal, update_id, expression_id]
-			//valuesParams = [countVal, user, update_id, expression_id,  user, update_id, expression_id]
+			valuesParams = [
+				`%${user}%`,
+				`%${user}%`,
+				update_id,
+				expression_id,
+				`%${user}%`,
+				user,
+				`%${user}%`,
+				user,
+				user,
+				update_id,
+				expression_id,
+				update_id,
+				expression_id
+			]
 			if (type == "story") {
-				querySql =
-					"UPDATE story_expressions SET count = ? WHERE story_id = ? AND expression_id = ?"
+				let query1 = `UPDATE story_expressions SET count = CASE WHEN users_interacted NOT LIKE ? THEN (count+1) WHEN users_interacted LIKE ? THEN (count - 1) ELSE count END WHERE story_id = ? and expression_id = ?;`
+				let query2 = `UPDATE story_expressions SET users_interacted = CASE WHEN users_interacted NOT LIKE ? THEN JSON_ARRAY_APPEND(users_interacted, '$', CAST(? AS char)) WHEN users_interacted LIKE ? THEN JSON_REMOVE(users_interacted, REPLACE (JSON_SEARCH(users_interacted, 'one', CAST(? AS char)), '"', '')) WHEN users_interacted IS NULL THEN (JSON_ARRAY(CAST(? AS char))) ELSE users_interacted END WHERE story_id = ? and expression_id = ?;`
+				let query3 = "SELECT count FROM story_expressions WHERE story_id = ? AND expression_id = ?;"
+				querySql = query1+ query2 + query3
 			}
 			if (type == "post") {
-				querySql =
-					"UPDATE post_expressions SET count = ? WHERE post_id = ? AND expression_id = ?"
+				let query1 = `UPDATE post_expressions SET count = CASE WHEN users_interacted NOT LIKE ? THEN (count+1) WHEN users_interacted LIKE ? THEN (count - 1) ELSE count END WHERE post_id = ? and expression_id = ?;`
+				let query2 = `UPDATE post_expressions SET users_interacted = CASE WHEN users_interacted NOT LIKE ? THEN JSON_ARRAY_APPEND(users_interacted, '$', CAST(? AS char)) WHEN users_interacted LIKE ? THEN JSON_REMOVE(users_interacted, REPLACE (JSON_SEARCH(users_interacted, 'one', CAST(? AS char)), '"', '')) WHEN users_interacted IS NULL THEN (JSON_ARRAY(CAST(? AS char))) ELSE users_interacted END WHERE post_id = ? and expression_id = ?;`
+				querySql = query1 + query2
 			}
 		}
-		//AND (JSON_CONTAINS(story_expressions.users_interacted, '?', '$.users') = FALSE OR users_interacted IS NULL)
-		//UPDATE story_expressions SET count = ?, SET users_interacted(JSON_ARRAY_APPEND(users_interacted, '.$users', ?)) WHERE story_id = ? AND expression_id = ? AND (SELECT JSON_CONTAINS(story_expressions.users_interacted, '?', '$.users') FROM story_expressions WHERE story_expressions.story_id = ? AND expression_id = ?) = 0;
 
-
-		const data = await query({ query: querySql, values: valuesParams })
+		const data = await multiQuery({ query: querySql, values: valuesParams })
 		const result = res.status(200).json({ status: data })
 		return { props: result }
 	} catch (error) {
@@ -47,3 +59,29 @@ export default async function getServerSideProps(req, res) {
 		return { props: result }
 	}
 }
+
+// let querySql
+// 			let valuesParams = [
+// 				user,
+// 				user,
+// 				update_id,
+// 				expression_id,
+// 				user,
+// 				user,
+// 				user,
+// 				user,
+// 				user,
+// 				update_id,
+// 				expression_id,
+// 			]
+// 			if (type == "story") {
+// 				let query1 = `UPDATE story_expressions SET count = CASE WHEN users_interacted NOT LIKE CONCAT('%', ?, '%') THEN (count+1) WHEN users_interacted LIKE CONCAT('%', ?, '%') THEN (count - 1) ELSE count END WHERE story_id = ? and expression_id = ?;`
+
+// 				let query2 = `UPDATE story_expressions SET users_interacted = CASE WHEN users_interacted NOT LIKE CONCAT('%', ?, '%') THEN JSON_ARRAY_APPEND(users_interacted, '$', CAST(? AS char)) WHEN users_interacted LIKE CONCAT('%', ?, '%') THEN JSON_REMOVE(users_interacted, REPLACE (JSON_SEARCH(users_interacted, 'one', CAST(? AS char)), '"', '')) WHEN users_interacted IS NULL THEN (JSON_ARRAY(CAST(? AS char))) ELSE users_interacted END WHERE story_id = ? and expression_id = ?;`
+
+// 				querySql = query1 + query2
+// 			}
+// 			if (type == "post") {
+// 				querySql =
+// 					"INSERT INTO post_expressions (post_id, expression_id, count) VALUES (?, ?, 1)"
+// 			}

@@ -6,7 +6,7 @@ import { checkEmail } from "../../lib/login"
 const secret = process.env.SECRET_API_KEY //Secret key from env.development
 
 
-export default async function auth (req, res) {
+export default async function getServersideProps (req, res) {
 	const { email, password } = req.body //Destructure user and pass from provided req.body
 	if (!await checkEmail(email)){
 		return {props: res.status(404).json({message: "Email does not exist"})}

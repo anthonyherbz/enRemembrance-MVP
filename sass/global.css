@@ -13,6 +13,8 @@ button{
 	border: none;
 	background-color: lightblue;
 	border-radius: 5px;
+	margin: .25rem;
+	padding: .25rem;
 }
 button:hover{
 	cursor: pointer;

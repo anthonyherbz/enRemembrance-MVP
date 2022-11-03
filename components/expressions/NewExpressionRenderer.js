@@ -26,10 +26,8 @@ const NewExpressionRenderer = ({ update_id, count, templ, styles, type }) => {
 			let c
 			if (count == null) {
 				c = null
-				setCounter(1)
 			} else {
 				c = counter + incrementVal
-				setCounter(c)
 			}
 
 			const endpoint = "/api/updateExpressionCounter-lib"
@@ -46,7 +44,13 @@ const NewExpressionRenderer = ({ update_id, count, templ, styles, type }) => {
 			}
 			const response = await fetch(endpoint, postData)
 			const res = await response.json()
-			// console.log(res)
+			let cc
+			if (response.status == 200) {
+				cc = res.status[2].count
+				setCounter(cc)
+			}
+			console.log(counter)
+			console.log(res)
 		}
 		if (!hasUpdated) handleUpdate(1, true)
 		if (hasUpdated) handleUpdate(-1, false)
@@ -56,7 +60,7 @@ const NewExpressionRenderer = ({ update_id, count, templ, styles, type }) => {
 		<div onMouseEnter={handleHover} onMouseLeave={handleClose}>
 			{/* show the tip on hover, hide the tip on leave */}
 			<div className={styles.icon} onClick={() => increment()}>
-				<Image src={templ.image_path} width='35' height='35' alt="alt" />
+				<Image src={templ.image_path} width='35' height='35' alt='alt' />
 				{counter != null ? <div className={styles.counter}>{counter}</div> : null}
 			</div>
 			{showTip ? (

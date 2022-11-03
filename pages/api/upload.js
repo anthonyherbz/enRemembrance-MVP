@@ -23,9 +23,8 @@ const upload = async (req, res) => {
 		 });
 
 		 try {
-
 			  const imageFile = data.files.image;
-			  const imagePath = imageFile.filepath;
+			  const imagePath = imageFile.filepath
 			  const imageName = data.fields.fileName;
 			  let fileType;
 			  if (imageFile.mimetype.split("/")[1]== "jpeg"){

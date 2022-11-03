@@ -1,7 +1,7 @@
 import { serialize } from "cookie"
 
 //unauth/logout function
-export default async function unauth (req, res) {
+export default async function getServersideProps (req, res) {
 	//gets the jwt from the cookie. Does not require req.cookies.get, unlike middleware, for unknown reasons (cookie parser middleware?)
 	const jwt = req.cookies.SessionJWT
 

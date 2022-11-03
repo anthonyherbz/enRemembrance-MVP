@@ -10,6 +10,7 @@ const ImageUpload1 = ({fileNamePath = "default", hasChanged, setHasChanged}) => 
         let file = event.target.files[0]
         // console.log("source: local", file)
         setpictureFile(pictureFile = file)
+        setHasChanged(true)
         await uploadPictureHandler()
 
     };
@@ -18,6 +19,7 @@ const ImageUpload1 = ({fileNamePath = "default", hasChanged, setHasChanged}) => 
         const pictureData = new FormData();
         pictureData.append('image', pictureFile);
         pictureData.append('fileName', fileObject)
+        // console.log(pictureData)
         try {
             const response = await fetch('/api/upload', {
                 method: 'POST',
@@ -29,14 +31,16 @@ const ImageUpload1 = ({fileNamePath = "default", hasChanged, setHasChanged}) => 
             }
             setpictureFile(null);
         } catch (error) {
-            console.log(error.message);
+            // console.log(error.message);
         }
     };
 
     return (
-        <div>
-            <input type="file" accept="image/jpeg, image/jpg" name='picture' id="file" onChange={pictureChangeHandler} />
-        </div>
+      <>
+           {!hasChanged ? <div>
+                <input type="file" accept="image/jpeg, image/jpg" name='picture' id="file" onChange={pictureChangeHandler} />
+            </div> : <div>Profile picture updated, it will take a few minutes for the change to take effect</div>}
+      </>
     );
 };
 export default ImageUpload1;
