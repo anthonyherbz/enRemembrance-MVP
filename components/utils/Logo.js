@@ -4,8 +4,8 @@
 //STATUS: Functional
 //TODO: per-instance size control
 
-import Icon from "./icons/Icon";
-import Text from "../components/Text";
+import Icon from "../icons/Icon"
+import Text from "./Text";
 import Link from "next/link";
 import styles from "./logo.module.scss";
 import classNames from "classnames/bind";

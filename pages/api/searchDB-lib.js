@@ -3,8 +3,8 @@ import { query } from "../../lib/db"
 export default async function getServerSideProps(req, res) {
 	const searchVal = req.body.parsedString
 	const type = req.body.type
-	console.log("type", type)
-	console.log("val", searchVal)
+	// console.log("type", type)
+	// console.log("val", searchVal)
 	try {
 		let querySql
 		let valuesParams = [`%${searchVal}%`]

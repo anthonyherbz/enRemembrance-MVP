@@ -4,7 +4,7 @@ import { query } from "../../lib/db"
 import {compare} from 'bcrypt'
 
 const secret = process.env.SECRET_API_KEY //Secret key from env.development
-export default async function (req, res) {
+export default async function auth1 (req, res) {
 	const { email, password, userID } = req.body //Destructure user and pass from provided req.body
 
 	const getUser = async () => {
@@ -16,8 +16,7 @@ export default async function (req, res) {
 		}
 		const match = compare(password, data[0].password, function(err, result){})
 		return match
-		console.log("DATA", data)
-		console.log("user", userID)
+	
 	}
 	const match = getUser()
 

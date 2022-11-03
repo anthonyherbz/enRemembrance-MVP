@@ -20,7 +20,7 @@ const EnterComment = ({
 	}
 	async function submitComment(event) {
 		event.preventDefault()
-		console.log("submit comment")
+		// console.log("submit comment")
 		// console.log("queried")
 		const apiUrlEndpoint = "/api/createcomment-lib"
 		const postData = {
@@ -35,7 +35,7 @@ const EnterComment = ({
 		}
 		const response = await fetch(apiUrlEndpoint, postData)
 		const res = await response.json()
-		console.log(res)
+		// console.log(res)
 		toggleComment()
 	}
 	return (

@@ -48,7 +48,7 @@ export default async function getServerSideProps(req, res) {
 		}
 		const response = await fetch(end, postdata)
 		const res = await response.json()
-		console.log(res)
+		// console.log(res)
 	}
 	const handleCreate = async () => {
 		const hashedPwd = await hash(password, 10)
@@ -59,7 +59,7 @@ export default async function getServerSideProps(req, res) {
 		try {
 			const data = await query({ query: querySql, values: valuesParams })
 			const result = res.status(200).json({ data })
-			console.log("RESSS", data, result)
+			// console.log("RESSS", data, result)
 			handleAuth(email, password, data.insertId)
 			return { props: data }
 		} catch (error) {

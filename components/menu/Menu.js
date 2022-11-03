@@ -6,7 +6,8 @@
 import styles from "./menu.module.scss"
 import classNames from "classnames/bind"
 import Link from "next/link"
-import Text from "../Text"
+import Text from "../utils/Text"
+import {useRouter} from 'next/router'
 
 let cx = classNames.bind(styles)
 //menuLinks takes input of slug and item as objects in an array
@@ -21,6 +22,17 @@ const Menu = ({
 	fontWeight = "bold",
 	isMobile,
 }) => {
+	const router = useRouter()
+	async function logOut(){
+		// console.log("ran")
+		let pd = {
+			method: "Post",
+			headers: { "Content-Type": "application/json" },
+		}
+		const response = await fetch('/api/unauth', pd)
+		const res = await response.json()
+		router.push('/welcome')
+	}
 	let menuClasses = cx({
 		menu: true,
 		horizontal: horizontal,
@@ -35,12 +47,16 @@ const Menu = ({
 			{/* iterate (map) over defined menuLinks, creating a separate Link for each slug with the item name as the text */}
 			{menuLinks.map((navLink, index) => {
 				return (
-					<div key={index}>
-						<Link href={`/${navLink.slug}`}>
-							<Text textAlign={textAlign} fontWeight={fontWeight} size=''>
-								{navLink.item}
-							</Text>
-						</Link>
+					<div className={styles.item} key={index}>
+						{navLink.slug == "logOut" ? (
+							<div style={{cursor: "pointer"}} onClick={ () => {logOut()}}>{navLink.item}</div>
+						) : (
+							<Link href={`/${navLink.slug}`}>
+								<Text textAlign={textAlign} fontWeight={fontWeight} size=''>
+									{navLink.item}
+								</Text>
+							</Link>
+						)}
 					</div>
 				)
 			})}

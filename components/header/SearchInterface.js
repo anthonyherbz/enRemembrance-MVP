@@ -2,7 +2,7 @@ import { useState } from "react"
 import Router, { useRouter } from "next/router"
 import Carousel from "./Carousel"
 import styles from "./searchinterface.module.scss"
-import next from "next"
+import Image from "next/image"
 
 const SearchInterface = ({ expand, setExpand }) => {
 	const [searchVal, setSearchVal] = useState("") // Store the search string
@@ -14,32 +14,11 @@ const SearchInterface = ({ expand, setExpand }) => {
 	}
 
 	function search(type) {
-		// //Will need to redirect to a search page and use headers to confer the query or results to GSSP
-		// function sanitizeString(str) { //sanitize input
-		// 	str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "")
-		// 	return str.trim()
-		// }
-		// const parsedString = sanitizeString(searchVal.toLowerCase()) // convert string to lowercase
-		// console.log("parsedString", parsedString)
-		// async function getData(type) {
-		// 	const endPoint = "/api/searchDB-lib"
-		// 	const postData = {
-		// 		method: "Post",
-		// 		headers: { "Content-Type": "application/json" },
-		// 		body: JSON.stringify({
-		// 			parsedString: parsedString,
-		// 			type: type,
-		// 		}),
-		// 	}
-		// 	const response = await fetch(endPoint, postData)
-		// 	const res = await response.json()
-		// 	console.log(res)
-		// }
-		// getData(type)
 		Router.push({ pathname: "/results", query: { search: searchVal, type: type } })
 	}
 	// Function to get the categories from the table in DB
-	function showCategories() {
+	async function showCategories() {
+		// console.log("showc")
 		async function getData() {
 			const endPoint = "/api/getcategories-lib"
 			const postData = {
@@ -51,16 +30,15 @@ const SearchInterface = ({ expand, setExpand }) => {
 			setCategories(res.categories)
 			// console.log(res)
 		}
-		getData()
-		if (!!categories) setShowCarousel(true) // If categories has a value, set showCarousel to true
+		await getData()
+		setShowCarousel(true) // If categories has a value, set showCarousel to true
 	}
 
 	return (
 		<form className={styles.interface} onSubmit={handleSubmit}>
 			<button className={styles.mobileButton} onClick={() => setExpand(!expand)}>
-				{" "}
 				{/* Only visible in mobile */}
-				Go
+				<Image src={`/images/icons/search.png`} width="25" height="25" alt="search icon"/>
 			</button>
 			<div className={styles.interactions}>
 				<input // Display: none in mobile
@@ -104,7 +82,7 @@ const SearchInterface = ({ expand, setExpand }) => {
 							</button>
 							<button
 								onClick={() => {
-									showCategories
+									showCategories()
 								}}
 								name='category'>
 								View Categories

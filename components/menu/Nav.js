@@ -1,7 +1,7 @@
-import Menu from "./menu/Menu";
+import Menu from "./Menu";
 import classNames from "classnames/bind";
 import { useState } from "react";
-import Icon from "./icons/Icon";
+import Icon from "../icons/Icon";
 import styles from "./nav.module.scss";
 let cx = classNames.bind(styles);
 

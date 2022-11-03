@@ -1,17 +1,6 @@
 //Arrays the different expressions horizontally and shows their description on hover
-//Reqs: Icon, Row
-//Props: icon-color, row-spacing,
-import { BsFlower1 as Daisy, BsFlower3 as FMN } from "react-icons/bs"
-import {
-	GiSpotedFlower as Daffodil,
-	GiLotusFlower,
-	GiTrefoilLily,
-	GiPoppy,
-	GiButterflyFlower,
-} from "react-icons/gi"
-import { TbHandClick as Snap } from "react-icons/tb"
+import {	GiButterflyFlower} from "react-icons/gi"
 import { useState } from "react"
-import { IconContext } from "react-icons"
 import Image from "next/image"
 import styles from "./expressionspreview.module.scss"
 import Expressions from "./Expressions"
@@ -28,7 +17,7 @@ const ExpressionPreview = ({ align = "default", expressions, template, type, par
 			{expressions.map((expression, index) => {
 				return (
 					<div key={index}>
-						<Image width='25' height='25' src={expression.image_path} />
+						<Image width='25' height='25' src={expression.image_path} alt={`Expression ${expression}`}/>
 					</div>
 				)
 			})}

@@ -9,7 +9,7 @@ import { useContext, useEffect } from "react"
 
 export async function getServerSideProps({ query, req }) {
 	const { userID, handle } = await getUser(req)
-	console.log("user", userID, handle)
+	// console.log("user", userID, handle)
 	const { type, search } = query
 
 	function sanitizeString(str) {
@@ -18,7 +18,7 @@ export async function getServerSideProps({ query, req }) {
 		return str.trim()
 	}
 	const parsedString = sanitizeString(search.toLowerCase())
-	console.log(parsedString)
+	// console.log(parsedString)
 	if (parsedString == "" || parsedString == " ") {
 		return { props: { queryVaild: false, userID, handle } }
 	}
@@ -40,7 +40,7 @@ export async function getServerSideProps({ query, req }) {
 				"SELECT story_tags.story_id, story_tags.tag_string, stories.id AS story_id, stories.title, CONVERT(stories.create_date, char) AS create_date, users.handle, users.id AS user_id FROM stories LEFT JOIN story_tags ON story_tags.story_id = stories.id LEFT JOIN users ON users.id = stories.author_id WHERE story_tags.tag_string LIKE ? ORDER BY create_date DESC"
 		}
 		const data = await squery({ query: querySql, values: valuesParams })
-		console.log("datat", data)
+		// console.log("datat", data)
 		let qvalidity
 		if (data.length == 0) {
 			qvalidity = false
@@ -58,7 +58,7 @@ const Results = ({ data, type, handle, userID, queryValid }) => {
 	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
 	useEffect(() => {
 		setLoggedInUser({ userID, handle })
-	}, [])
+	}, [handle, setLoggedInUser, userID])
 	let styleType
 	let searchResults = data
 
@@ -66,18 +66,20 @@ const Results = ({ data, type, handle, userID, queryValid }) => {
 		styleType = (
 			<div className={styles.noResults}>Sorry, there are no results for this query.</div>
 		)
-	if (type == "story" && queryValid){
+
+	if ((type == "story" || type == "tag") && queryValid) {
 		styleType = (
 			<div className={styles.results}>
 				{searchResults.map((result, index) => {
-					console.log(result)
+					// console.log(result)
 					return (
 						<div className={styles.story} key={index}>
 							<div className={styles.cover}>
 								<Image
 									src={`/images/stories/id${result.story_id}/cover.jpg`}
-									width='75px'
-									height='125px'
+									width='75'
+									height='125'
+									alt='story cover'
 								/>
 							</div>
 							<div className={styles.items}>
@@ -90,8 +92,6 @@ const Results = ({ data, type, handle, userID, queryValid }) => {
 										{result.create_date.split(" ", [1])}
 									</div>
 								</div>
-								<div className={styles.tags}>Space for Tags</div>
-								<div className={styles.status}>Status Icons</div>
 							</div>
 						</div>
 					)
@@ -103,7 +103,7 @@ const Results = ({ data, type, handle, userID, queryValid }) => {
 		styleType = (
 			<div className={styles.results}>
 				{searchResults.map((result, index) => {
-					console.log(result)
+					// console.log(result)
 					return (
 						<div className={styles.user} key={index}>
 							<div className={styles.text}>
@@ -121,6 +121,7 @@ const Results = ({ data, type, handle, userID, queryValid }) => {
 									src={`/images/users/id${result.id}.jpg`}
 									height='75px'
 									width='75px'
+									alt='user profile image'
 								/>
 							</div>
 						</div>

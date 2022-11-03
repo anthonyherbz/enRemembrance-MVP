@@ -5,9 +5,9 @@ export default async function getServerSideProps(req, res) {
 	const expression_id = req.body.expression
 	const type = req.body.type
 	const user = req.body.user
-	console.log(update_id)
-	console.log(expression_id)
-	console.log(countVal)
+	// console.log(update_id)
+	// console.log(expression_id)
+	// console.log(countVal)
 	try {
 		let querySql
 		let valuesParams

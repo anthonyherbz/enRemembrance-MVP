@@ -1,0 +1,37 @@
+@use "../sass//abstracts/vars.scss";
+.top {
+	.controls{
+		display: flex;
+		justify-content: space-between;
+		margin: 0.5em 1em;
+	}
+	.results {
+		display: flex;
+		flex-direction: column;
+		// width: 100%;
+		background-color: #fff;
+		margin: .5em 1.5em;
+		padding: 1.5em;
+		border-radius: 11px;
+		gap: 1em;
+		.item {
+			display: flex;
+			align-items: center;
+			gap: 0.5em;
+			padding-block: 0.25em;
+			border-bottom: 1px solid vars.$color_white_95;
+			justify-content: space-between;
+			&:hover{
+				background-color:vars.$color_white_95;;
+			}
+			.stacked{
+				display: flex;
+				flex-direction: column;
+			}
+			.title{
+				font-size: 1.15em;
+				font-weight: 600;
+			}
+		}
+	}
+}

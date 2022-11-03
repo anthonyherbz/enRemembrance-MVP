@@ -17,7 +17,7 @@ export default async function getServerSideProps(req, res) {
 		const querySql =
 			"INSERT INTO users (fullname, handle, email, password, phone_number, enabled) values (?, ?, ?, ?, ?, ?)"
 		const valuesParams = [fullname, handle, email, password, phone_number, enabled]
-		console.log("sending")
+		// console.log("sending")
 		const data = await query({ query: querySql, values: valuesParams })
 		const result = res.status(200).json({ users: data })
 		return { props: result }

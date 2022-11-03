@@ -1,8 +1,8 @@
 import styles from "./signoverlay.module.scss";
 // import TextInput from "./TextInput";
 import ButtonText from "../button/ButtonText";
-import FormCreateUser1 from "../FormCreateUser1";
-import FormLogInUser from "../FormLogInUser";
+import FormCreateUser1 from "../signin/FormCreateUser1"
+import FormLogInUser from "../signin/FormLogInUser";
 
 //Name: Overlay
 //Purpose: displays one of two overlays on the landing page
@@ -14,14 +14,14 @@ import FormLogInUser from "../FormLogInUser";
 //Opportunities for improvement: reduce duplicates by checking once if the type is sign in or sign up and using vars accordingly
 
 const SignOverlay = ({ signInShow, setSignInShow, signUpShow, setSignUpShow }) => {
-	console.log("signInShow state: ", signInShow);
+	// console.log("signInShow state: ", signInShow);
 	function handleSignInClick() {
 		setSignInShow(!signInShow);
-		console.log("signInShow changed to: ", signInShow);
+		// console.log("signInShow changed to: ", signInShow);
 	}
 	function handleSignUpClick() {
 		setSignUpShow(!signUpShow);
-		console.log("signUpShow changed to: ", signUpShow);
+		// console.log("signUpShow changed to: ", signUpShow);
 	}
 	const signUpOverlay = (
 		<div className={styles.topLevel}>

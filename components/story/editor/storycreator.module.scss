@@ -16,6 +16,30 @@
 	flex-direction: column;
 	>form{
 		text-align: center;
+		.tagCat{
+			padding: .5em 0.25em;
+			position: fixed;
+			top: 55px;
+			right: 5px;
+			// width: 20%;
+			min-width: 10%;
+			max-width: 20%;
+			background-color: white;
+			border-radius: 11px;
+			// height: 200px;
+			z-index: 100;
+			display: flex;
+			gap: 0.5em;
+			flex-direction: column;
+			align-items: center;
+			select{
+				width: 90%;
+			}
+			input[type="text"]{
+				border: 1px solid rgb(207, 207, 207);
+				width: 90%;
+			}
+		}
 	}
 	.body{
 		display: flex;
@@ -35,9 +59,17 @@
 	.controls{
 		position: absolute;
 		bottom: 50px;
-		left: 0;
-		right: 0;
+		width: 100%;
+		// left: 0;
+		// right: 0;
 		display: flex;
-		justify-content: space-between;
+		.arrows{
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			>div{
+				cursor: pointer;
+			}
+		}
 	}
 }

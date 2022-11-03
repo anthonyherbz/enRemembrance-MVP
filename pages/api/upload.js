@@ -9,7 +9,7 @@ export const config = {
 	}
 };
 
-export default async (req, res) => {
+const upload = async (req, res) => {
 	if (req.method === 'POST') {
 
 		 // parse form with a Promise wrapper
@@ -37,7 +37,7 @@ export default async (req, res) => {
 			//   ensureDir('public/testfolder1')
 			  const image = await fs.readFile(imagePath);
 			  await fs.writeFile(pathToWriteImage, image);
-			  console.log("trying to write")
+			//   console.log("trying to write")
 			  //store path in DB
 			  res.status(200).json({ message: 'image uploaded!', data: data});
 		 } catch (error) {
@@ -45,4 +45,4 @@ export default async (req, res) => {
 			  return;
 		 }
 	};
-};
+}; export default upload

@@ -1,16 +1,16 @@
 import styles from "../page_sass/dashboard.module.scss"
 import classNames from "classnames/bind"
 import Header from "../components/header/Header"
-import Nav from "../components/Nav"
+import Nav from "../components/menu/Nav"
 import ButtonText from "../components/button/ButtonText"
 import DBTable from "../components/dashboard/DBTable"
-import MobileNav from "../components/MobileNav"
+import MobileNav from "../components/menu/MobileNav"
 import React, { useState } from "react"
 import Head from "next/head"
-import DashEditOverlay from "../components/DashEditOverlay"
+import DashEditOverlay from "../components/dashboard/DashEditOverlay"
 let cx = classNames.bind(styles)
 import { query } from "../lib/db"
-import Layout from "../components/Layout"
+import Layout from "../components/utils/Layout"
 import getUser from "../lib/getUser"
 import { UserContext } from "./_app"
 import { useContext, useEffect } from "react"
@@ -44,7 +44,7 @@ const Dashboard = ({ data, userID, handle }) => {
 	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
 	useEffect(() => {
 		setLoggedInUser({ userID, handle })
-	}, [])
+	}, [handle, setLoggedInUser, userID])
 	const [stories, setstories] = useState(data)
 	const [showEdit, setshowEdit] = useState(false)
 	let dashboardClasses = cx({
@@ -85,7 +85,7 @@ const Dashboard = ({ data, userID, handle }) => {
 							)}
 						</div>
 
-						{showEdit ? <DashEditOverlay stories={stories} /> : null}
+						{showEdit ? <DashEditOverlay stories={stories} setshowEdit={setshowEdit} /> : null}
 						<div className={styles.dash}>
 							{!stories || stories.length == 0 ? (
 								<div>No stories found</div>

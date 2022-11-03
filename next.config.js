@@ -1,4 +1,5 @@
 module.exports = {
+	output: 'standalone',
 	distDir: 'build',
 	webpack: (config, { isServer }) => {
 		

@@ -1,4 +1,4 @@
-import Logo from "../Logo"
+import Logo from "../utils/Logo"
 import Profile from "./Profile"
 import styles from "./header.module.scss"
 import classNames from "classnames/bind"
@@ -20,7 +20,6 @@ const Header = ({ show, shadow }) => {
 	const [expand, setExpand] = useState(false)
 
 	let [showCarousel, setShowCarousel] = useState(false)
-	const [categories, setcategories] = useState()
 	function handleMouseEnter() {
 		setExpanded((expanded = true))
 	}
@@ -35,7 +34,6 @@ const Header = ({ show, shadow }) => {
 	} else {
 		user = loggedInUser.handle
 		logged_in_user_id = loggedInUser.userID
-		console.log(loggedInUser, "liu")
 	}
 	// let user = "Jane Doe";
 	// let logged_in_user_id = 1

@@ -29,7 +29,7 @@ const ActionIcons = ({ old, published, story_id, user_id }) => {
 		// postData sends info to the API. Using to specify ID of item to request
 		const response = await fetch(apiUrlEndpoint, postData)
 		const res = await response.json()
-		console.log(res)
+		// console.log(res)
 	}
 	const moreLinks = [
 		{

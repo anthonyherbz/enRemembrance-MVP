@@ -1,8 +1,7 @@
 import Head from "next/head";
-import Container from "../components/Container";
+import Container from "../components/utils/Container";
 import Header from "../components/header/Header";
-import Heading from "../components/Heading";
-import Text from "../components/Text";
+import Heading from "../components/utils/Heading";
 import styles from '../page_sass/about.module.scss'
 
 const About = () => {

@@ -7,9 +7,9 @@ export default async function handler(req, res) {
 		userId = req.body.id
 		try {
 			const img = await fs.readFile(
-				"public/images/placeholders/profile_default.svg"
+				"public/images/placeholders/profile_default.jpg"
 			)
-			await fs.writeFile(`public/images/users/id${userId}.svg`, img)
+			await fs.writeFile(`public/images/users/id${userId}.jpg`, img)
 			res.status(200).json({ message: "default image copied" })
 		} catch (error) {
 			res.status(400).json({ message: error.message })

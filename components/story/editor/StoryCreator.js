@@ -1,30 +1,33 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useMemo } from "react"
 import StoryCreatorPage from "./StoryCreatorPage"
 import styles from "./storycreator.module.scss"
-import Icon from "./icons/Icon"
-import ButtonText from "./button/ButtonText"
+import Icon from "../../icons/Icon"
+import ButtonText from "../../button/ButtonText"
 import update from "immutability-helper"
-import { UserContext } from "../pages/_app"
 
-const StoryCreator = ({data, userID}) => {
+const StoryCreator = ({ data, userID, categories }) => {
 	let user_id = userID
 	//Define the initial structure for the story object. Set a placeholder cover at a specific location. This can't be set to the story ID because we don't have that yet.
-	let story = {
-		pages: [
-			{
-				number: 0,
-				templateName: "cover",
-				quadrants: [
-					{
-						number: 1,
-						type: "image",
-						span: null,
-						content: "/images/placeholders/cover.jpg",
-					},
-				],
-			},
-		],
+	function setStoryDefault() {
+		let story = {
+			pages: [
+				{
+					number: 0,
+					templateName: "cover",
+					quadrants: [
+						{
+							number: 1,
+							type: "image",
+							span: null,
+							content: "/images/placeholders/cover.jpg",
+						},
+					],
+				},
+			],
+		}
+		return story
 	}
+	let story = useMemo(() => setStoryDefault(), [])
 
 	//Store the whether the story has been created, the id, the title, the object, the page, and the page limit
 	const [storyInstantiated, setStoryInstantiated] = useState()
@@ -34,34 +37,31 @@ const StoryCreator = ({data, userID}) => {
 	const [pageCount, setpageCount] = useState()
 	const [storyId, setstoryId] = useState()
 
+	//If there is no data, set story instantiated to false thus start new story
 	useEffect(() => {
 		if (!data) {
-			console.log("new story useeffect")
 			setStoryInstantiated(false)
-			updatestoryState({story})
+			updatestoryState({ story })
 			setpageCount(0)
 			setstoryId(0)
-		} else{
-			console.log(data)
-			console.log("existing story useeffect")
+		} else {
 			setStoryInstantiated(true)
 			updatestoryState(data.page_json)
-			setpageCount(data.page_json.story.pages.length-1)
+			setpageCount(data.page_json.story.pages.length - 1)
 			setstoryId(data.id)
 			updateTitle(data.title)
 		}
-	}, [])
-
+	}, [data, story])
 
 	//Run when the "Start story" button is clicked
 	function handleStartStory() {
-		console.log("ran handleStartStory")
+		// console.log("ran handleStartStory")
 		setStoryInstantiated(true) //Change the state to reflect that the story has been started
 		startStory(storyState, user_id) //Run the start story function and pass the logged in user
 	}
 
 	function startStory(storyState, user_id) {
-		console.log("ran startStory")
+		// console.log("ran startStory")
 		//Sends a story to the database as the logged in user, default story state, and default title
 		async function sendToDB() {
 			//make sure the path is relative instead of absolute
@@ -77,28 +77,29 @@ const StoryCreator = ({data, userID}) => {
 			}
 			const response = await fetch(apiUrlEndpoint, postData)
 			const res = await response.json()
-			setstoryId(res.story.insertId) //Set the story ID to the insertID of the response
+			setstoryId(res.story.insertId) //Set the story ID to the insertID of the
+			response
 
 			// Assign a default cover
-			// async function defaultCover() {
-			// 	const endpoint = "/api/generatedefaults-lib"
-			// 	const pd = {
-			// 		method: "POST",
-			// 		headers: { "Content-Type": "application/json" },
-			// 		body: JSON.stringify({
-			// 			id: res.story.insertId,
-			// 			type: "cover",
-			// 		}),
-			// 	}
-			// 	const response = await fetch(endpoint, pd)
-			// 	const data = await response.json()
-			// 	console.log("data", data)
-			// }
+			async function defaultCover() {
+				const endpoint = "/api/generatedefaults-lib"
+				const pd = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						id: res.story.insertId,
+						type: "cover",
+					}),
+				}
+				const response = await fetch(endpoint, pd)
+				const data = await response.json()
+				// console.log("data", data)
+			}
 
 			// Create a new directory according to the story ID
 			async function createNewDir() {
 				const dirId = res.story.insertId
-				console.log("createnewdir storyid", dirId)
+				// console.log("createnewdir storyid", dirId)
 				const dirPath = `public/images/stories/id${dirId}`
 				const apiUrlEndpoint = "/api/makedir-lib"
 				const postData = {
@@ -111,9 +112,10 @@ const StoryCreator = ({data, userID}) => {
 
 				const response = await fetch(apiUrlEndpoint, postData)
 				const data = await response.json()
+				// console.log(data)
 			}
-			createNewDir() //Create the directory
-			// defaultCover() //Save the cover file to the directory
+			await createNewDir() //Create the directory
+			await defaultCover() //Save the cover file to the directory
 		}
 		sendToDB()
 	}
@@ -142,14 +144,13 @@ const StoryCreator = ({data, userID}) => {
 		let upd = update(storyState, {
 			story: { pages: { $push: [newPageDefault] } },
 		})
-		console.log("upd", upd)
 		updatestoryState(upd)
 		setpageCount(pageCount + 1)
 		setPage(pageCount + 1)
 	}
 
 	function saveStory(storyState, title, story_id) {
-		console.log("trying to save")
+		// console.log("trying to save")
 		async function sendToDB() {
 			const apiUrlEndpoint = "/api/updatestory-lib"
 			const postData = {
@@ -163,9 +164,40 @@ const StoryCreator = ({data, userID}) => {
 			}
 			const response = await fetch(apiUrlEndpoint, postData)
 			const res = await response.json()
-			console.log(res)
+			// console.log(res)
 		}
 		sendToDB()
+	}
+
+	async function setCategory(categoryId) {
+		// console.log(categoryId,"tried this id" )
+		const postData = {
+			method: "Post",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				categoryId,
+				storyId
+			}),
+		}
+		const endp = "/api/setcategory-lib"
+		const response = await fetch(endp, postData)
+		const res = await response.json()
+		// console.log(res)
+	}
+	async function setTags(tag) {
+		const postData = {
+			method: "Post",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				tag,
+				storyId
+			}),
+		}
+		const endp = "/api/settags-lib"
+		const response = await fetch(endp, postData)
+		const res = await response.json()
+		// console.log(res)
+		tag = ""
 	}
 
 	return (
@@ -192,6 +224,33 @@ const StoryCreator = ({data, userID}) => {
 							placeholder='Untitled Story'
 							onChange={(e) => updateTitle(e.target.value)}
 						/>
+						<div className={styles.tagCat}>
+							<label htmlFor='categories'>Choose Category</label>
+							<select
+								name='categories'
+								onChange={(e) => {
+									setCategory(e.target.value)
+								}}>
+									<option value={null}>Pick</option>
+								{categories.map((item, index) => {
+									return (
+										<option key={index} value={item.id}>
+											{item.name}
+										</option>
+									)
+								})}
+							</select>
+							<label htmlFor='tag'>Choose Tag</label>
+							<input
+								onBlur={(e) => {
+									setTags(e.target.value)
+								}}
+								type='text'
+								maxLength='16'
+								minLength='3'
+								name='tag'
+								placeholder='tag'></input>
+						</div>
 					</form>
 					<div className={styles.body}>
 						<StoryCreatorPage
@@ -206,14 +265,17 @@ const StoryCreator = ({data, userID}) => {
 						</div>
 					</div>
 					<div className={styles.controls}>
-
-						<div onClick={() => saveStory(storyState, title, storyId)}> <ButtonText color="green">Save</ButtonText></div>
-
-						<div onClick={backward}>
-							<Icon name='arrow' rotate='180' />
+						<div onClick={() => saveStory(storyState, title, storyId)}>
+							<ButtonText color='green'>Save</ButtonText>
 						</div>
-						<div onClick={forward}>
-							<Icon name='arrow' />
+
+						<div className={styles.arrows}>
+							<div onClick={backward}>
+								<Icon name='arrow' rotate='180' />
+							</div>
+							<div onClick={forward}>
+								<Icon name='arrow' />
+							</div>
 						</div>
 					</div>
 				</section>

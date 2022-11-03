@@ -1,21 +1,21 @@
 import Head from "next/head"
-import Layout from "../components/Layout"
-import Col from "../components/Col"
+import Layout from "../components/utils/Layout"
+import Col from "../components/utils/Col"
 import { multiQuery } from "../lib/db"
-import Row from "../components/Row"
+import Row from "../components/utils/Row"
 import Header from "../components/header/Header"
-import Footer from "../components/Footer"
-import Container from "../components/Container"
-import Nav from "../components/Nav"
-import MobileNav from "../components/MobileNav"
+import Footer from "../components/utils/Footer"
+import Container from "../components/utils/Container"
+import Nav from "../components/menu/Nav"
+import MobileNav from "../components/menu/MobileNav"
 import PostFeedv2 from "../components/post/PostFeedv2"
 import getUser from "../lib/getUser"
 import { UserContext } from "./_app"
 import { useContext, useEffect } from "react"
 
 //Retrieve all of the posts, comments, and expressions from the database
-export async function getServerSideProps({req}) {
-	const {userID, handle} = await getUser(req) //get the user ID and handle from the cookie
+export async function getServerSideProps({ req }) {
+	const { userID, handle } = await getUser(req) //get the user ID and handle from the cookie
 	try {
 		const valuesParams = []
 		const selectPosts =
@@ -30,7 +30,11 @@ export async function getServerSideProps({req}) {
 
 		//Combine all of the queries into a single statement
 		const querySql =
-			selectPosts + selectComments + selectPostExpressions + selectStoryExpressions + selectTemplates
+			selectPosts +
+			selectComments +
+			selectPostExpressions +
+			selectStoryExpressions +
+			selectTemplates
 		const data = await multiQuery({ query: querySql, values: valuesParams })
 		return { props: { data, userID, handle } }
 	} catch (error) {
@@ -42,9 +46,8 @@ export async function getServerSideProps({req}) {
 export default function Home({ data, userID, handle }) {
 	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
 	useEffect(() => {
-		setLoggedInUser({userID, handle})
-	}, [])
-	console.log(loggedInUser)
+		setLoggedInUser({ userID, handle })
+	}, [handle, setLoggedInUser, userID])
 	const posts = data[0]
 	const comments = data[1]
 	const postExpressions = data[2]

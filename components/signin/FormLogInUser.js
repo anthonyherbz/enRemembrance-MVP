@@ -1,9 +1,11 @@
 import { useState } from "react"
+import { useRouter } from "next/router"
 import Link from "next/link"
 import styles from "./formcreateuser.module.scss"
 
 const FormLogInUser = () => {
 	const URL = process.env.NEXT_PUBLIC_ROOT
+	const router = useRouter()
 	// console.log(URL)
 
 	const [email, setEmail] = useState()
@@ -12,7 +14,7 @@ const FormLogInUser = () => {
 	const [working, setWorking] = useState(false)
 
 	const handleSubmit = async (e) => {
-		console.log("tried to submit")
+		// console.log("tried to submit")
 		e.preventDefault()
 		setWorking(true)
 		try {
@@ -27,10 +29,9 @@ const FormLogInUser = () => {
 			const loginData = await fetch("/api/auth2", login)
 			const loginRes = await loginData.json()
 			// console.log("loginres", loginRes)
-			setSuccess(true)
 			setWorking(false)
 			// return console.log("successful login")
-			Router.push({ pathname: "/" })
+			router.push('/')
 		} catch (error) {
 			setWorking(false)
 			return console.log(error.message)

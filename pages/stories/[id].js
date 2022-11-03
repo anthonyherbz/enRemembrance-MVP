@@ -1,17 +1,18 @@
 import React, { useState } from "react"
 import BookViewer from "../../components/story/viewer/BookViewer"
-import Heading from "../../components/Heading"
+import Heading from "../../components/utils/Heading"
 import styles from "../../page_sass/viewer.module.scss"
-import Logo from "../../components/Logo"
-import CreatePostDiag from "../../components/CreatePostDiag"
+import Logo from "../../components/utils/Logo"
+import CreatePostDiag from "../../components/post/CreatePostDiag"
 import ExpressionPreview from "../../components/expressions/ExpressionPreview"
 import { multiQuery } from "../../lib/db"
 import CommentFeed from "../../components/comment/CommentFeed"
-import EnterComment from "../../components/EnterComment"
+import EnterComment from "../../components/comment/EnterComment"
 import getUser from "../../lib/getUser"
 import { UserContext } from "../_app"
 import { useContext, useEffect } from "react"
 import Image from "next/image"
+import Head from "next/head"
 
 export async function getServerSideProps({ params, req }) {
 	const { userID, handle } = await getUser(req)
@@ -31,7 +32,7 @@ export async function getServerSideProps({ params, req }) {
 		return { props: { data, userID, handle, id } }
 	} catch (error) {
 		const data = error.message
-		console.log(data)
+		// console.log(data)
 		return { props: { data } }
 	}
 }
@@ -41,7 +42,7 @@ const Story = ({ data, userID, handle, id }) => {
 	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
 	useEffect(() => {
 		setLoggedInUser({ userID, handle })
-	}, [])
+	}, [handle, setLoggedInUser, userID])
 	//extract expressions, templates, comments from data
 	const expressions = data[1]
 	const templates = data[3]
@@ -61,7 +62,7 @@ const Story = ({ data, userID, handle, id }) => {
 		//post entry box
 		setvisPostDiag(!visPostDiag)
 	}
-	console.log(story)
+	// console.log(story)
 
 	if (!story || story.length == 0) {
 		setStory("invalid")
@@ -72,6 +73,11 @@ const Story = ({ data, userID, handle, id }) => {
 	}
 	return (
 		<div className={styles.viewer}>
+			<Head>
+			<title>enRemembrance</title>
+				<link rel='icon' href='/images/icons/logo_temp_blue.svg' />
+				<meta name='description' content='summary of website' />
+			</Head>
 			{/* Mobile logo and title */}
 			<div className={styles.headerMobile}>
 				<Logo size='1-5x' />

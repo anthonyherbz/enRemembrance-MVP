@@ -8,7 +8,7 @@ import classNames from "classnames/bind";
 let cx = classNames.bind(styles);
 
 const Comment = ({ comment, stacked }) => {
-	console.log(comment)
+	// console.log(comment)
 	const varStyles = cx({
 		comment: true,
 		stacked: stacked == true
@@ -22,9 +22,8 @@ const Comment = ({ comment, stacked }) => {
 								<Image
 									width='25'
 									height='25'
-									src={`/images/users/id${comment.commentor_id}.svg`}
-									layout='fill'
-									 object-fit='cover'
+									src={`/images/users/id${comment.commentor_id}.jpg`}
+									alt="comment user profile image"
 								/>
 							</div>
 							{comment.handle}: {comment.comment_text}

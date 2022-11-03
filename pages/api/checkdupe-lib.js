@@ -16,7 +16,7 @@ export default async function getServerSideProps(req, res) {
 		const result = res.status(200).json({ isDuplicate: data })
 		return { props: result }
 	} catch (error) {
-		const result = res.status(400).json({ error: error })
+		const result = res.status(400).json({ error: error.message })
 		return { props: result }
 	}
 }

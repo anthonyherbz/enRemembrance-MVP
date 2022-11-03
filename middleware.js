@@ -21,12 +21,12 @@ export default async function middleware(req) {
 		return NextResponse.next()
 
 	const jwt = req.cookies.get("SessionJWT") //extract jwt from cookie
-	console.log(jwt)
+	// console.log(jwt)
 	// if (
 	// 	url.includes('/')
 	// )
 	if (!jwt) {
-		console.log("no jwt")
+		// console.log("no jwt")
 		return NextResponse.redirect(new URL("/welcome", url))
 		// return NextResponse.rewrite(new URL("/welcome", url))
 	}
@@ -34,11 +34,11 @@ export default async function middleware(req) {
 		await verify(jwt, new TextEncoder().encode(secret), (err, decoded) => {
 			if (err) return res.sendStatus(403) //invalid token
 		})
-		console.log("success")
+		// console.log("success")
 		return NextResponse.next()
 	} catch (err) {
-		console.log(error.message)
-		console.log("login failed")
+		// console.log(error.message)
+		// console.log("login failed")
 		return NextResponse.redirect(new URL("/welcome", url))
 		// return NextResponse.rewrite(new URL("/welcome", url))
 	}

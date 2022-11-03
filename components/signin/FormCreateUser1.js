@@ -1,9 +1,11 @@
 import { useState } from "react"
+import { useRouter } from "next/router"
 import Link from "next/link"
 import styles from "./formcreateuser.module.scss"
 
 const FormCreateUser1 = () => {
 	const URL = process.env.NEXT_PUBLIC_ROOT
+	const router = useRouter()
 	// console.log(URL)
 
 	const [email, setEmail] = useState()
@@ -32,21 +34,21 @@ const FormCreateUser1 = () => {
 			setClientOK(true)
 			return
 		}
-		console.log(email)
+		// console.log(email)
 		const check = {
 			method: "post",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ email }),
 		}
-		console.log(check)
+		// console.log(check)
 		const checkData = await fetch("/api/checkemail-lib", check)
 		const checkRes = await checkData.json()
-		console.log(checkRes)
+		// console.log(checkRes)
 		setEmailOK(!checkRes.data) //if the email exists, set emailOK to false
 	}
 	if (!emailOK) stylecheck = styles.stylecheck //runs on state change
 	const handleSubmit = async (e) => {
-		console.log("tried to submit")
+		// console.log("tried to submit")
 		e.preventDefault()
 		setWorking(true)
 		const cred = {
@@ -70,7 +72,7 @@ const FormCreateUser1 = () => {
 		//If the creation is successful
 		if (createData.status == 201) {
 			async function handleRole() {
-				console.log("handlerole")
+				// console.log("handlerole")
 				const pd = {
 					method: "post",
 					headers: { "Content-Type": "application/json" },
@@ -81,7 +83,7 @@ const FormCreateUser1 = () => {
 				}
 				const roleData = await fetch("/api/role-lib", pd)
 				const roleRes = await roleData.json()
-				console.log(roleRes, "roleres")
+				// console.log(roleRes, "roleres")
 			}
 			handleRole() //creates the role with the userid
 			//send the email, pw, and userid to be authenticated against the credentials in the server
@@ -99,11 +101,11 @@ const FormCreateUser1 = () => {
 				const loginRes = await loginData.json()
 				// console.log("loginres", loginRes)
 				setWorking(false)
-				Router.push({ pathname: "/" })
-				return console.log("successful login")
+				router.push('/')
+				// return console.log("successful login")
 			} catch (error) {
 				setWorking(false)
-				return console.log(error.message)
+				// return console.log(error.message)
 			}
 		}
 	}

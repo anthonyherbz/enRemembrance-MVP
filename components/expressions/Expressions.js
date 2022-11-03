@@ -1,8 +1,4 @@
-import { BsFlower1 as Daisy, BsFlower3 as FMN } from "react-icons/bs"
-import { GiSpotedFlower as Daffodil, GiLotusFlower, GiTrefoilLily, GiPoppy } from "react-icons/gi"
 import NewExpressionRenderer from "./NewExpressionRenderer"
-import { TbHandClick as Snap } from "react-icons/tb"
-import Image from "next/image"
 import { useState, useEffect } from "react"
 import styles from "./expressions.module.scss"
 import classNames from "classnames/bind"
@@ -31,10 +27,10 @@ const Expressions = ({ setShowExp, type, align, template, parent_id }) => {
 			const response = await fetch(endPoint, postData)
 			const res = await response.json()
 			setExpData(res.expressions)
-			console.log(res)
+			// console.log(res)
 		}
 		getData()
-	}, [])
+	}, [parent_id, type])
 	
 	if (expData != undefined) {
 		return (
@@ -43,7 +39,7 @@ const Expressions = ({ setShowExp, type, align, template, parent_id }) => {
 					let filteredData = expData.filter(function (expr) {
 						return expr.expression_id == templ.id
 					})
-					console.log(filteredData[0])
+					// console.log(filteredData[0])
 					let count
 					if (filteredData[0] == undefined) {
 						count = null

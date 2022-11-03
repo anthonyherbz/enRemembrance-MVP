@@ -1,64 +1,40 @@
-import { useState, useEffect } from "react"
-import ImageContainer from "./ImageContainer"
-import { useRouter } from "next/router"
+import ImageContainer from "../utils/ImageContainer"
 import Link from "next/link"
+import styles from "./storiesfeed.module.scss"
+import Image from "next/image"
 
 const StoriesFeed = ({ stories }) => {
 	if (stories.length == 0) {
 		return <div>This user doesn&apos;t have any stories visible to you</div>
 	}
-
+	// console.log(stories)
 	return (
-		<div>
-			{stories.map((story) => {
-				return (
-					<div key={story.story_id}>
-						<Link href={`/stories/${story.story_id}`}>
-							 
-								<div style={{ width: "50px", height: "50px" }}>
-									<ImageContainer
-										src={`/images/covers/placeholder${story.story_id}.jpg`}
+		<div className={styles.storyfeedContainer}>
+			<div className={styles.storyfeed}>
+				{stories.length == 0 ? (
+					<div>This user doesn&apos;t have any stories visible to you</div>
+				) : (
+					stories.map((story) => {
+						return (
+							<div className={styles.item} key={story.story_id}>
+								<Link href={`/stories/${story.story_id}`}>
+									<Image
+										src={`/images/stories/id${story.story_id}/cover.jpg`}
+										alt='story cover'
+										width='55'
+										height='80'
 									/>
-								</div>
-							 
-						</Link>
-						<div>
-							<Link href={`/stories/${story.story_id}`}>
-								 {story.story_title} 
-							</Link>
-						</div>
-					</div>
-				)
-			})}
+								</Link>
+								<Link href={`/stories/${story.story_id}`}>
+									<span className={styles.title}>{story.story_title}</span>
+									<span className={styles.date}>Created on {story.create_date.split(" ", [1])}</span>
+								</Link>
+							</div>
+						)
+					})
+				)}
+			</div>
 		</div>
 	)
 }
 export default StoriesFeed
-
-// console.log(userId)
-// const [dataResponse, setdataResponse] = useState([]);
-// useEffect(() => {
-// 	if(userId==undefined) return; //don't run useEffect contents if the userId hasn't yet been passed
-// 	async function getPageData() {
-// 		const apiUrlEndpoint = "http://localhost:3000/api/getstoriesbyuser-lib";
-// 		const postData = {
-// 			method: "Post",
-// 			headers: {"Content-Type": "application/json"},
-// 			body: JSON.stringify({
-// 				id: userId,
-// 			})
-// 		}
-// 		// postData sends info to the API. Using to specify ID of item to request
-// 		const response = await fetch(apiUrlEndpoint, postData);
-// 		const res = await response.json();
-// 		console.log(res);
-// 		setdataResponse(res.stories);
-// 	}
-// 	getPageData();
-// }, [userId]);
-// console.log("dataresponse", dataResponse)
-
-// if (dataResponse.length == 0) {
-// 	//basic error handling
-// 	return <div>This user has no stories</div>;
-// }

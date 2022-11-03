@@ -1,6 +1,6 @@
-import ImageContainer from "./ImageContainer"
+import ImageContainer from "../../utils/ImageContainer"
 import styles from "./storycreatorpage.module.scss"
-import Heading from "./Heading"
+import Heading from "../../utils/Heading"
 import { useState } from "react"
 import classNames from "classnames/bind"
 import StoryContentSelector from "./StoryContentSelector"

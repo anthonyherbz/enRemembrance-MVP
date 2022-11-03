@@ -1,5 +1,5 @@
 import Icon from "../icons/Icon";
-import NoSsr from "../NoSsr"
+// import NoSsr from "../NoSsr"
 
 const statusIcons = ({ story, old }) => {
 	const { published, visible, monetized } = story;

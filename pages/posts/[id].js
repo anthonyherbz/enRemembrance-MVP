@@ -1,14 +1,14 @@
-import ImageContainer from "../../components/ImageContainer"
+import ImageContainer from "../../components/utils/ImageContainer"
 import styles from "../../page_sass/postpage.module.scss"
 import CommentFeed from "../../components/comment/CommentFeed"
-import Heading from "../../components/Heading"
+import Heading from "../../components/utils/Heading"
 import Image from "next/image"
 import Link from "next/link"
 import ButtonText from "../../components/button/ButtonText"
-import Logo from "../../components/Logo"
+import Logo from "../../components/utils/Logo"
 import ExpressionPreview from "../../components/expressions/ExpressionPreview"
 import { multiQuery } from "../../lib/db"
-import PostSidebar from "../../components/postpage/PostSidebar"
+import PostSidebar from "../../components/post/PostSidebar"
 import getUser from '../../lib/getUser'
 import { UserContext } from "../_app"
 import { useContext, useEffect } from "react"
@@ -32,7 +32,7 @@ export async function getServerSideProps({ params, req }) {
 			selectPost + selectPostExpressions + selectComments + selectStoryExpressions + selectTemplates
 		const valuesParams = [id, id, id, id]
 		const data = await multiQuery({ query: querySql, values: valuesParams })
-		console.log(data)
+		// console.log(data)
 		// console.log("d1", data)
 		return {
 			props: {
@@ -47,19 +47,19 @@ export async function getServerSideProps({ params, req }) {
 		}
 	} catch (error) {
 		const data = error.message
-		console.log(data)
+		// console.log(data)
 		return { props: { data } }
 	}
 }
 
 const Post = ({ post, postExpressions, comments, storyExpressions, templates, userID, handle }) => {
-	console.log(post, comments, postExpressions, storyExpressions)
+	// console.log(post, comments, postExpressions, storyExpressions)
 	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
 	useEffect(() => {
 		setLoggedInUser({userID, handle})
-	}, [])
+	}, [handle, setLoggedInUser, userID])
 	post = post[0]
-	console.log("post", post)
+	// console.log("post", post)
 	return (
 		<>
 			<div className={styles.postPage}>
@@ -80,7 +80,7 @@ const Post = ({ post, postExpressions, comments, storyExpressions, templates, us
 						<div className={styles.postElement}>
 							<div className={styles.peR1}>
 								<Heading level='1'>{post.title}</Heading>
-								{console.log(postExpressions, post.id, templates)}
+								{/* {console.log(postExpressions, post.id, templates)} */}
 								<ExpressionPreview 
 								expressions={postExpressions} 
 								type='post'
@@ -92,7 +92,7 @@ const Post = ({ post, postExpressions, comments, storyExpressions, templates, us
 									<Image
 										width='35'
 										height='35'
-										src={`/images/users/id${post.user_id}.svg`} //change to jpg
+										src={`/images/users/id${post.user_id}.jpg`} //change to jpg
 										alt="The post creator's profile image"
 									/>
 									{post.poster_handle}

@@ -1,6 +1,6 @@
 import {ensureDir} from 'fs-extra'
 
-export default async (req, res) => {
+const makedir = async (req, res) => {
 	const path = req.body.dirPath
 	try {
 		ensureDir(path)
@@ -8,4 +8,4 @@ export default async (req, res) => {
 	} catch (error){
 		res.status(400).json({message: error})
 	}
-} 
+}; export default makedir

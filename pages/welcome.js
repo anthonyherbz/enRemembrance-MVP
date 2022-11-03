@@ -1,14 +1,13 @@
-import Layout from "../components/Layout"
-import Heading from "../components/Heading"
-import Container from "../components/Container"
+import Layout from "../components/utils/Layout"
+import Heading from "../components/utils/Heading"
+import Container from "../components/utils/Container"
 import styles from "../page_sass/welcome.module.scss"
-import Row from "../components/Row"
-import Col from "../components/Col"
-import Logo from "../components/Logo"
-import Text from "../components/Text"
+import Row from "../components/utils/Row"
+import Col from "../components/utils/Col"
+import Logo from "../components/utils/Logo"
 import ButtonText from "../components/button/ButtonText"
-import Video from "../components/Video"
-import ExpandingText from "../components/ExpandingText"
+import Video from "../components/utils/Video"
+import ExpandingText from "../components/utils/ExpandingText"
 import { useState } from "react"
 import SignOverlay from "../components/overlay/SignOverlay"
 import PreviewFeed from "../components/post/PreviewFeed"
@@ -54,21 +53,21 @@ const Welcome = ({ data }) => {
 					{/* Flexbox with center justify, direction row */}
 					<Row justifyContent='center'>
 						{/* Flex child with width set to 5/10 (50%) */}
-						<Col
-							textAlign='left'
-							lg='5'
-							md='5'
-							sm='5'
-							alignItems='center'
-							justifyContent='space-around'>
+						<Col textAlign='left' lg='5' md='5' sm='5' alignItems='center'>
 							<Logo size='2x' /> {/* Logo at 2x default size */}
 							<div className={styles.welcome}>
-								<Heading color='white' marginBottom='1' level='1'> {/* h1 with margin */}
+								<Heading color='white' marginBottom='1' level='1'>
+									{" "}
+									{/* h1 with margin */}
 									Welcome
 								</Heading>
-								<Row mWidth justifyContent='center' nowrap> {/* Flexbox direction row set to max with, center justify, wrapping off */}
+								<Row mWidth justifyContent='center' nowrap>
+									{" "}
+									{/* Flexbox direction row set to max with, center justify, wrapping off */}
 									<Col ratio='1' alignItems='center'>
-										<div onClick={handleSignInClick}> {/* Show the sign in modal */}
+										<div onClick={handleSignInClick}>
+											{" "}
+											{/* Show the sign in modal */}
 											<ButtonText color='blue'>Sign In</ButtonText>
 										</div>
 										<SignOverlay
@@ -77,7 +76,9 @@ const Welcome = ({ data }) => {
 										/>
 									</Col>
 									<Col ratio='1' alignItems='center'>
-										<div onClick={handleSignUpClick}> {/* Show the sign up modal */}
+										<div onClick={handleSignUpClick}>
+											{" "}
+											{/* Show the sign up modal */}
 											<ButtonText color='yellow'>Sign Up</ButtonText>
 										</div>
 										<SignOverlay
@@ -91,14 +92,11 @@ const Welcome = ({ data }) => {
 								{/* Flexbox with collapseable text-boxes inside */}
 								<Row alignItems='center'>
 									<ExpandingText
-										title='About'
+										title='Vision'
 										color='white'
 										backgroundColor='green_landing'>
-										Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-										Delectus nihil pariatur laboriosam modi ullam aliquid nobis,
-										officiis quidem, omnis, aut consectetur est dolore expedita?
-										Dignissimos cupiditate aliquid commodi exercitationem
-										quisquam!
+										To be a transformative and accessible social and memorial
+										platform for our families and communities
 									</ExpandingText>
 								</Row>
 								<Row>
@@ -106,19 +104,13 @@ const Welcome = ({ data }) => {
 										title='Mission'
 										color='white'
 										backgroundColor='green_landing'>
-										Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-										Delectus nihil pariatur laboriosam modi ullam aliquid nobis,
-										officiis quidem, omnis, aut consectetur est dolore expedita?
-										Dignissimos cupiditate aliquid commodi exercitationem
-										quisquam!
+										To offer a medium in which original stories can be shared
+										both publically and personally. Via storybooks, everyone can
+										be an author that shares memories which inspire both the
+										current and future generations to run with their visions
 									</ExpandingText>
 								</Row>
 							</div>
-							{/* <div className={styles.feature}>
-								<Text textAlign='center' color='white'>
-									COMPETITION/FEATURE SPACE
-								</Text>
-							</div> */}
 						</Col>
 						{/* Flex child on the right half othe page, 50% width, aligned center */}
 						<Col lg='5' md='5' sm='5' alignItems='center'>

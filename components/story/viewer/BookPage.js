@@ -1,5 +1,5 @@
 import styles from "./bookpage.module.scss"
-import ImageContainer from "../../ImageContainer"
+import ImageContainer from "../../utils/ImageContainer"
 import Image from "next/image"
 import classNames from "classnames/bind"
 let cx = classNames.bind(styles)

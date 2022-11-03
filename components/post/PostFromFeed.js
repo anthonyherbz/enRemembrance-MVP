@@ -2,11 +2,11 @@ import { useEffect, useState } from "react"
 import styles from "./post.module.scss"
 import classNames from "classnames/bind"
 import Link from "next/link"
-import Heading from "../Heading"
+import Heading from "../utils/Heading"
 import ExpressionPreview from "../expressions/ExpressionPreview"
-import EnterComment from "../EnterComment"
+import EnterComment from "../comment/EnterComment"
 import Image from "next/image"
-import ImageContainer from "../ImageContainer"
+import ImageContainer from "../utils/ImageContainer"
 
 const PostFromFeed = ({
 	post,
@@ -27,7 +27,7 @@ const PostFromFeed = ({
 	// console.log("story cover", storyCover)
 	const storyUrl = `/stories/${post.story_id}`
 	const authorUrl = `/users/${post.post_user_id}`
-	const authorImg = `/images/users/id${post.post_user_id}.svg`
+	const authorImg = `/images/users/id${post.post_user_id}.jpg`
 	// console.log("post comment", post.comment_text)
 	function toggleComment() {
 		setShowComment(!showComment)

@@ -3,7 +3,7 @@
 import styles from "./previewpost.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import Heading from "../Heading";
+import Heading from "../utils/Heading";
 
 const PreviewPost = ({ story }) => {
 	//pull props out of title.book, etc.

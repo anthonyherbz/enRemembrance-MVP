@@ -6,7 +6,7 @@ import { checkEmail } from "../../lib/login"
 const secret = process.env.SECRET_API_KEY //Secret key from env.development
 
 
-export default async function (req, res) {
+export default async function auth (req, res) {
 	const { email, password } = req.body //Destructure user and pass from provided req.body
 	if (!await checkEmail(email)){
 		return {props: res.status(404).json({message: "Email does not exist"})}
@@ -18,8 +18,7 @@ export default async function (req, res) {
 	const userID = data[0].id
 	const hashedPwd = data[0].password
 	const handle = data[0].handle
-	// console.log("data", data)
-	// console.log("from auth", data[0])
+
 	const pwMatch = await compare(password, hashedPwd)
 
 	if (pwMatch) {

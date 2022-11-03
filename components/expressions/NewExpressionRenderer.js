@@ -8,7 +8,7 @@ const NewExpressionRenderer = ({ update_id, count, templ, styles, type }) => {
 	const [hasUpdated, setHasUpdated] = useState(false)
 	const context = useContext(UserContext)
 	const loggedInUser = context.loggedInUser.userID //pull loggedinuser from context
-	console.log("LIU", loggedInUser)
+	// console.log("LIU", loggedInUser)
 
 	async function handleClose() {
 		handleHover()
@@ -18,7 +18,7 @@ const NewExpressionRenderer = ({ update_id, count, templ, styles, type }) => {
 		setShowTip(!showTip)
 	}
 
-	console.log("type", type, "templ", templ)
+	// console.log("type", type, "templ", templ)
 
 	function increment() {
 		async function handleUpdate(incrementVal, hasUpdateVal, counterNull) {
@@ -46,7 +46,7 @@ const NewExpressionRenderer = ({ update_id, count, templ, styles, type }) => {
 			}
 			const response = await fetch(endpoint, postData)
 			const res = await response.json()
-			console.log(res)
+			// console.log(res)
 		}
 		if (!hasUpdated) handleUpdate(1, true)
 		if (hasUpdated) handleUpdate(-1, false)

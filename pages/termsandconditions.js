@@ -1,8 +1,8 @@
-import Layout from "../components/Layout"
-import Heading from "../components/Heading"
+import Layout from "../components/utils/Layout"
+import Heading from "../components/utils/Heading"
 import Head from "next/head"
 import Header from "../components/header/Header"
-import Container from "../components/Container"
+import Container from "../components/utils/Container"
 import getUser from "../lib/getUser"
 import { UserContext } from "./_app"
 import { useContext, useEffect } from "react"
@@ -16,7 +16,7 @@ const TermsAndConditions = ({ userID, handle }) => {
 	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
 	useEffect(() => {
 		setLoggedInUser({ userID, handle })
-	}, [])
+	}, [handle, setLoggedInUser, userID])
 
 	return (
 		<Layout>
