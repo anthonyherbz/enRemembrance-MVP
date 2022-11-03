@@ -3,9 +3,9 @@ import Container from "../components/utils/Container";
 import Header from "../components/header/Header";
 import Heading from "../components/utils/Heading";
 import styles from '../page_sass/about.module.scss'
+import Logo from "../components/utils/Logo";
 
 const About = () => {
-	let isLoggedIn = true;
 	return (
 		<>
 			<Head>
@@ -13,7 +13,7 @@ const About = () => {
 				<link rel='icon' href='/images/icons/logo_temp_blue.svg' />
 				<meta name='description' content='summary of website' />
 			</Head>
-			{isLoggedIn ? <Header show/> : null}
+			<Logo/>
 			<div className={styles.about}>
 				<Container marginTop>
 					<Heading level="2">

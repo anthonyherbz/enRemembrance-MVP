@@ -1,22 +1,11 @@
 import Layout from "../components/utils/Layout"
 import Heading from "../components/utils/Heading"
 import Head from "next/head"
-import Header from "../components/header/Header"
 import Container from "../components/utils/Container"
-import getUser from "../lib/getUser"
-import { UserContext } from "./_app"
-import { useContext, useEffect } from "react"
+import Logo from "../components/utils/Logo"
 
-export async function getServerSideProps({ req }) {
-	const { userID, handle } = await getUser(req)
-	return { props: {userID, handle} }
-}
 
-const TermsAndConditions = ({ userID, handle }) => {
-	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
-	useEffect(() => {
-		setLoggedInUser({ userID, handle })
-	}, [handle, setLoggedInUser, userID])
+const TermsAndConditions = ({}) => {
 
 	return (
 		<Layout>
@@ -25,7 +14,7 @@ const TermsAndConditions = ({ userID, handle }) => {
 				<link rel='icon' href='/images/icons/logo_temp_blue.svg' />
 				<meta name='description' content='summary of website' />
 			</Head>
-			<Header show />
+			<Logo/>
 			<Container>
 				<Heading level='1'>Terms and Conditions</Heading>
 				<p>Test content</p>
