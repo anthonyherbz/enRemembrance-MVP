@@ -21,15 +21,6 @@ const ExpressionPreview = ({ align = "default", expressions, template, type, par
 					</div>
 				)
 			})}
-			{/* {expressions.map((exp, index) => {
-				if (exp.count > 0) {
-					let fvp = valuePairs.filter(function (vp) {
-						return vp.id == exp.expression_id
-					})
-					// console.log(fvp)
-					return <div key={index}>{fvp[0].icon}</div>
-				}
-			})} */}
 		</>
 	)
 	// console.log(selectedExpressions)

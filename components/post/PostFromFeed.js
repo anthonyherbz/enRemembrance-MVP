@@ -6,7 +6,6 @@ import Heading from "../utils/Heading"
 import ExpressionPreview from "../expressions/ExpressionPreview"
 import EnterComment from "../comment/EnterComment"
 import Image from "next/image"
-import ImageContainer from "../utils/ImageContainer"
 
 const PostFromFeed = ({
 	post,

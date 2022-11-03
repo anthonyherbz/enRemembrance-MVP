@@ -45,7 +45,8 @@ const NewExpressionRenderer = ({ update_id, count, templ, styles, type }) => {
 			const response = await fetch(endpoint, postData)
 			const res = await response.json()
 			let cc
-			if (response.status == 200) {
+			if (response.status == 200 && res.status.length==3) {
+				console.log(cc)
 				cc = res.status[2].count
 				setCounter(cc)
 			}

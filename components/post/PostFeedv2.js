@@ -3,6 +3,8 @@ import PostFromFeed from "./PostFromFeed"
 
 const PostFeedv2 = ({ posts, comments, postExpressions, storyExpressions, expressionTemplates}) => {
 	// console.log("post exp", postExpressions)
+	// console.log(posts)
+	if (!posts || posts.length==0) {return <div>There are no posts to show</div>}
 	const mappedPosts = posts.map((post, index) => {
 		// {console.log(post)}
 		let pid = post.post_id
