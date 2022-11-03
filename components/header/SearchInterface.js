@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Router, { useRouter } from "next/router"
+import Router from "next/router"
 import Carousel from "./Carousel"
 import styles from "./searchinterface.module.scss"
 import Image from "next/image"
