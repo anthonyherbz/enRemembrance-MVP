@@ -16,6 +16,7 @@ export default async function middleware(req) {
 		url.includes("upload") ||
 		url.includes("public") ||
 		url.includes("lib") ||
+		url.is("lib") ||
 		url.includes(".") // exclude all files in the public folder
 	)
 		return NextResponse.next()

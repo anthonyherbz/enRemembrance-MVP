@@ -42,6 +42,7 @@ export async function getServerSideProps({ req }) {
 
 const Dashboard = ({ data, userID, handle }) => {
 	const { loggedInUser, setLoggedInUser } = useContext(UserContext)
+	console.log(userID)
 	useEffect(() => {
 		setLoggedInUser({ userID, handle })
 	}, [handle, setLoggedInUser, userID])
@@ -90,7 +91,7 @@ const Dashboard = ({ data, userID, handle }) => {
 							{!stories || stories.length == 0 ? (
 								<div>No stories found</div>
 							) : (
-								<DBTable stories={stories} user_id={loggedInUser.userID} />
+								<DBTable stories={stories} user_id={userID} />
 							)}
 						</div>
 					</div>
