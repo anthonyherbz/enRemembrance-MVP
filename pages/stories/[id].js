@@ -105,7 +105,7 @@ const Story = ({ data, userID, handle, id }) => {
 							{visPostDiag ? (
 								<CreatePostDiag
 									id={story.id}
-									user_id={loggedInUser.userID}
+									user_id={userID}
 									setvisPostDiag={setvisPostDiag}
 								/>
 							) : null}
